@@ -1,0 +1,51 @@
+.site-footer {
+  background-color: $code-bg-color;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: solid 1px $hr-border-color;
+  font-size: 0.9rem;
+
+  @include large {
+    // max-width: 64rem;
+    padding: 2rem 6rem;
+    margin: 0 auto;
+  }
+
+  @include medium {
+    padding: 2rem 4rem;
+  }
+
+  @include small {
+    padding: 2rem 1rem;
+  }
+
+  h3 {
+    text-transform: uppercase;
+  }
+}
+
+.site-footer-owner {
+  display: block;
+  font-weight: bold;
+}
+
+.site-footer-credits {
+  color: $blockquote-text-color;
+}
+
+// columns
+.three-column {
+  float: left;
+  width: 100%;
+  padding: 0 3rem; 
+
+  @include large {
+    width: 33.33%;
+  } 
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

@@ -1,0 +1,39 @@
+{
+  "name": "loopBuilder",
+  "version": "1.0.0",
+  "description": "A graphical interface to create looping melodies and rhythms",
+  "main": "script.js",
+  "dependencies": {
+    "tone": "^14.7.58"
+  },
+  "devDependencies": {
+    "file-loader": "^6.1.0",
+    "html-loader": "^1.3.1",
+    "markdown-loader": "^6.0.0",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.26.11",
+    "sass-loader": "^10.0.2",
+    "source-map-loader": "^1.1.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch sass/style.scss:dist/styles.css",
+    "webpack": "npx webpack",
+    "firefox": "open -a Firefox ./dist/index.html",
+    "dev": "npm run firefox && npm-run-all --parallel sass webpack",
+    "build": "pandoc source/index.md -o dist/index.html -s -c styles.css",
+    "deploy": "git subtree push --prefix dist origin gh-pages"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjwit/loopBuilder.git"
+  },
+  "author": "Christopher Witulski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cjwit/loopBuilder/issues"
+  },
+  "homepage": "https://github.com/cjwit/loopBuilder#readme"
+}

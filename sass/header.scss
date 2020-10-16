@@ -1,0 +1,183 @@
+header {
+  // background: #87cc77;
+  // margin: 0;
+  // font-family: arial;
+  // width: 100vw;
+  // height: 100vh;
+  animation: bugfix infinite 1s;
+  -webkit-animation: bugfix infinite 1s;
+}
+
+@keyframes bugfix { from {padding:0;} to {padding:0;}}
+@-webkit-keyframes bugfix { from {padding:0;} to {padding:0;}}
+
+#overlay-button {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  padding: 26px 11px;
+
+  z-index: 5;
+  cursor: pointer;
+  user-select: none;
+  span {
+      height: 4px;
+      width: 35px;
+      border-radius: 2px;
+      background-color: white;
+      position: relative;
+      display: block;
+      transition: all .2s ease-in-out;
+      &:before {
+        top: -10px;
+        visibility: visible;
+      }
+      &:after {
+        top: 10px;
+      }
+      &:before, &:after {
+          height: 4px;
+          width: 35px;
+          border-radius: 2px;
+          background-color: white;
+          position: absolute;
+          content: "";
+          transition: all .2s ease-in-out;
+      }
+    }
+    &:hover span, &:hover span:before, &:hover span:after {
+      background: #333332;
+    }
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox]:checked ~ #overlay {
+  visibility: visible;
+}
+
+input[type=checkbox]:checked ~ #overlay-button {
+  &:hover span, span{
+    background: transparent;
+  }
+  span {
+    &:before {
+      transform: rotate(45deg) translate(7px, 7px);
+      opacity: 1;
+    }
+    &:after {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+  }
+}
+
+#overlay {
+  height: 100vh;
+  width: 100vw;
+  background: $code-text-color;
+  z-index: 2;
+  visibility: hidden;
+  position: fixed;
+  &.active {
+    visibility: visible;
+  }
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100vh;
+    padding-left: 0;
+    list-style-type: none;
+    li {
+      padding: 1em;
+      a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.5em;
+        &:hover {
+          color: #333332;
+        }
+      }
+    }
+  }
+}
+
+
+.page-header {
+  color: $header-heading-color;
+  text-align: center;
+  background-color: $header-bg-color;
+  background-image: linear-gradient(120deg, $header-bg-color-secondary, $header-bg-color);
+
+  @include large {
+    padding: 5rem 6rem;
+  }
+
+  @include medium {
+    padding: 6rem 4rem;
+  }
+
+  @include small {
+    padding: 5rem 1rem;
+  }
+}
+
+.project-name {
+  margin-top: 0;
+  margin-bottom: 0.1rem;
+
+  @include large {
+    font-size: 3.25rem;
+  }
+
+  @include medium {
+    font-size: 2.25rem;
+  }
+
+  @include small {
+    font-size: 1.75rem;
+  }
+}
+
+.project-tagline {
+  // margin-bottom: 2rem;
+  font-weight: normal;
+  opacity: 0.7;
+
+  @include large {
+    font-size: 1.25rem;
+  }
+
+  @include medium {
+    font-size: 1.15rem;
+  }
+
+  @include small {
+    font-size: 1rem;
+  }
+}
+
+.turtle {
+  @include medium {
+    background: url(../images/morning-brew-blue-and-green-earth-globe-edited.jpg);
+    background-position: center;
+    background-size: cover;
+    text-align: right;
+  }
+  @include large {
+    background: url(../images/morning-brew-blue-and-green-earth-globe-edited.jpg);
+    background-position: center;
+    background-size: cover;
+    text-align: right;
+  }
+  @include small {
+    background: url(../images/morning-brew-blue-and-green-earth-globe-mobile-tall.jpg);
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+  }
+}

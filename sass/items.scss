@@ -1,0 +1,99 @@
+// for items
+.tag {
+  font-size: 0.8rem;
+  padding: 0.3rem;
+}
+
+.tag.active {
+  color: white;
+  background-color: $section-headings-color;
+  border-color: $section-headings-color;
+}
+
+.tag.active:hover {
+  color: white;
+  background-color: $section-headings-color;
+  border-color: $border-color;
+}
+
+.tag.geoTag {
+  color: $body-link-color;
+  border-color: $body-link-color;
+  &:hover {
+    color: $body-link-color;
+    background-color: rgba(0, 0, 0, 0.08);
+    border-color: $body-link-color;
+  }
+}
+
+.geoTag.active {
+  color: white;
+  background-color: $body-link-color;
+  border-color: $body-link-color;
+}
+
+.geoTag.active:hover {
+  color: white;
+  background-color: $body-link-color;
+  border-color: $border-color;
+}
+
+#tagList .tag, .item .tag {
+  margin: 5px;
+  @include small {
+    display: inline-block;
+    width: unset;
+    // padding: 0.75rem;
+    // font-size: 0.9rem;
+  }
+}
+
+.item {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  display: block;
+}
+
+#itemList div {
+  border-top: 1px solid $border-color;
+}
+
+.top-border {
+  border-top: 1px solid $border-color;
+}
+
+#itemList div:first-child {
+  border-top: 0px;
+}
+
+// for item formatting
+.author-info {
+  color: grey;
+}
+
+.bio {
+  font-size: .9rem;
+  font-style: italic;
+}
+
+.hang {
+  padding-left: 1.5rem;
+  text-indent: -1.5rem;
+}
+
+.description {
+  font-size: .8em;
+  font-style: italic;
+  padding-left: 36px;
+}
+
+.collection-indent {
+  list-style: none;
+}
+
+.collection-indent>li {
+  border-top: 1px solid $border-color;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  text-indent: 0px;
+}
