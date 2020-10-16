@@ -4,25 +4,22 @@ export class Row {
   constructor(part) {
     this.labelWidth = 6.0;
 
-    var row = document.createElement("div");
-    row.classList.add("row-of-boxes");
-    row = this.makeRowLabel(row, part.name);
+    this.domObject = document.createElement("div");
+    this.domObject.classList.add("row-of-boxes");
+    this.domObject.appendChild(this.makeRowLabel(part.name));
 
     for (let i = 0; i < part.pattern.length; i++) {
       let box = new Box(part.name, part.pattern[i]);
       box.calculateWidth(part.pattern.length, this.labelWidth);
-      row.appendChild(box.box);
+      this.domObject.appendChild(box.domObject);
     }
-    return row;
   }
 
-  makeRowLabel(row, label) {
-    // add name to the row of boxes
+  makeRowLabel(label) {
     var rowName = document.createElement("span");
     rowName.classList.add("row-label");
     rowName.innerText = label;
     rowName.style.width = this.labelWidth + "em";
-    row.appendChild(rowName);
-    return row;
+    return rowName;
   }
 }

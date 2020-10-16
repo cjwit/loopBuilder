@@ -14,7 +14,7 @@ export class Loop {
     var rows = 0;
     for (let i = 0; i < this.parts.length; i++) {
       let row = new Row(this.parts[i]);
-      this.domObject.appendChild(row);
+      this.domObject.appendChild(row.domObject);
       rows++;
     }
   }
