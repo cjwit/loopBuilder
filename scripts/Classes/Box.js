@@ -15,4 +15,10 @@ export class Box {
     box.classList.add(className);
     this.box = box;
   }
+
+  calculateWidth(numberOfBoxes, labelWidth) {
+    let percent = 100.0 / numberOfBoxes + "%";
+    let padding = labelWidth / numberOfBoxes + 0.1;
+    this.box.style.width = "calc(" + percent + " - " + padding + "em)";
+  }
 }

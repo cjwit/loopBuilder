@@ -27,12 +27,7 @@ export class Loop {
 
     for (let i = 0; i < part.pattern.length; i++) {
       let box = new Box(part.name, part.pattern[i]);
-      console.log(box);
-      // style box width
-      let percent = 100.0 / part.pattern.length + "%";
-      let padding = this.labelWidth / part.pattern.length + 0.1;
-      box.box.style.width = "calc(" + percent + " - " + padding + "em)"
-
+      box.calculateWidth(part.pattern.length, this.labelWidth);
       row.appendChild(box.box);
     }
     return row;
