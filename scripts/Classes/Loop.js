@@ -1,4 +1,4 @@
-import { Box } from './Box.js';
+import { Row } from './Row.js';
 
 export class Loop {
   constructor(tagId, data) {
@@ -6,7 +6,6 @@ export class Loop {
     this.parts = data.parts;
     this.source = data.source;
     this.tempo = data.tempo;
-    this.labelWidth = 6.0;
     this.domObject = document.getElementById(tagId);
     this.makeRows();
   }
@@ -14,34 +13,12 @@ export class Loop {
   makeRows() {
     var rows = 0;
     for (let i = 0; i < this.parts.length; i++) {
-      let row = this.makeBoxes(this.parts[i]);
+      let row = new Row(this.parts[i]);
       this.domObject.appendChild(row);
       rows++;
     }
   }
 
-  makeBoxes(part) {
-    var row = document.createElement("div");
-    row.classList.add("row-of-boxes");
-    row = this.makeRowLabel(row, part.name);
-
-    for (let i = 0; i < part.pattern.length; i++) {
-      let box = new Box(part.name, part.pattern[i]);
-      box.calculateWidth(part.pattern.length, this.labelWidth);
-      row.appendChild(box.box);
-    }
-    return row;
-  }
-
-  makeRowLabel(row, label) {
-    // add name to the row of boxes
-    var rowName = document.createElement("span");
-    rowName.classList.add("row-label");
-    rowName.innerText = label;
-    rowName.style.width = this.labelWidth + "em";
-    row.appendChild(rowName);
-    return row;
-  }
 
   // visualCallback(name) {
   //   var name = name.toLowerCase().replace(" ", "-");
