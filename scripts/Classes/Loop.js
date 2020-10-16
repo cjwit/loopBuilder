@@ -1,3 +1,5 @@
+import { Box } from './Box.js';
+
 export class Loop {
   constructor(tagId, data) {
     this.tagId = tagId;
@@ -24,26 +26,14 @@ export class Loop {
     row = this.makeRowLabel(row, part.name);
 
     for (let i = 0; i < part.pattern.length; i++) {
-      let box = document.createElement("span");
-      box.classList.add("box");
-
-      // filled or not
-      let status = "empty-box";
-      if (part.pattern[i] != null && part.pattern[i] != 0) {
-        status = "filled-box";
-      }
-      box.classList.add(status);
-
+      let box = new Box(part.name, part.pattern[i]);
+      console.log(box);
       // style box width
       let percent = 100.0 / part.pattern.length + "%";
       let padding = this.labelWidth / part.pattern.length + 0.1;
-      box.style.width = "calc(" + percent + " - " + padding + "em)"
+      box.box.style.width = "calc(" + percent + " - " + padding + "em)"
 
-      // for identification from the draw command
-      let className = part.name.toLowerCase().replace(" ", "-") + "-box";
-      box.classList.add(className);
-
-      row.appendChild(box);
+      row.appendChild(box.box);
     }
     return row;
   }
