@@ -46,6 +46,8 @@ function convertPatternToNotes(part) {
 
 function createLoop(part, source) {
   var sequence = new Tone.Sequence((time, note) => {
+    // visualCallback(part.name);
+    console.log(Tone.Transport.position)
     source.triggerAttackRelease(note, "8n", time);
   }, part.pattern).start(0);
   return sequence;
@@ -69,35 +71,36 @@ export function setUpLoop(loop, source) {
   return sequences;
 }
 
-// visualCallback(name) {
-//     var name = name.toLowerCase().replace(" ", "-");
-//     var row = Array.from(this.example.getElementsByClassName(name + "-box"));
-//     row = row.filter(box => box.classList.contains("filled-box"));
-//     var numBoxes = row.length;
+// uses the name of the part to find the row within an example dom object
+// function visualCallback(name) {
+//   var name = name.toLowerCase().replace(" ", "-");
+//   var row = Array.from(this.example.getElementsByClassName(name + "-box"));
+//   row = row.filter(box => box.classList.contains("filled-box"));
+//   var numBoxes = row.length;
 
-//     // determine the active box
-//     var active = 0;
-//     for (let i = 0; i < row.length; i++) {
-//       if (row[i].classList.contains("active-box")) {
-//         row[i].classList.remove("active-box");
-//         active = (i + 1) % numBoxes;
-//         break;
-//       }
+//   // determine the active box
+//   var active = 0;
+//   for (let i = 0; i < row.length; i++) {
+//     if (row[i].classList.contains("active-box")) {
+//       row[i].classList.remove("active-box");
+//       active = (i + 1) % numBoxes;
+//       break;
 //     }
-
-//     // style the fade animation for the active box
-//     var activeBox = row[active];
-//     activeBox.style.backgroundColor = "#2875a1";
-//     setTimeout(function () { }, 100);
-//     setTimeout(function () {
-//       activeBox.animate({
-//         backgroundColor: "#570E51"
-//       }, 1000);
-//     });
-//     setTimeout(function () {
-//       activeBox.style.backgroundColor = "#570E51";
-//     }, 1000);
-
-//     // increment which box is active for the next iteration
-//     activeBox.classList.add("active-box");
 //   }
+
+//   // style the fade animation for the active box
+//   var activeBox = row[active];
+//   activeBox.style.backgroundColor = "#2875a1";
+//   setTimeout(function () { }, 100);
+//   setTimeout(function () {
+//     activeBox.animate({
+//       backgroundColor: "#570E51"
+//     }, 1000);
+//   });
+//   setTimeout(function () {
+//     activeBox.style.backgroundColor = "#570E51";
+//   }, 1000);
+
+//   // increment which box is active for the next iteration
+//   activeBox.classList.add("active-box");
+// }

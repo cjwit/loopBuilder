@@ -9,8 +9,9 @@ export class Row {
     this.domObject.appendChild(this.makeRowLabel(part.name));
 
     for (let i = 0; i < part.pattern.length; i++) {
-      let box = new Box(part.name, part.pattern[i]);
+      let box = new Box(part.name, part.pattern[i], i);
       box.calculateWidth(part.pattern.length, this.labelWidth);
+      console.log(part.name, i, box.position, box.filled);
       this.domObject.appendChild(box.domObject);
     }
   }
