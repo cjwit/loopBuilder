@@ -33,27 +33,9 @@ export class Loop {
 
   createLoop(partNumber) {
     var sequence = new Tone.Sequence((time, note) => {
-      this.visualCallback(partNumber);
+      this.rows[partNumber].flashActiveBox();
       this.source.triggerAttackRelease(note, "8n", time);
     }, this.parts[partNumber].pattern).start(0);
     return sequence;
-  }
-
-  visualCallback(partNumber) {
-    var row = this.rows[partNumber];
-    var filledBoxes = row.boxes.filter(box => box.domObject.classList.contains("filled-box"));
-  
-    var activeBoxIndex = 0;
-    for (let i = 0; i < filledBoxes.length; i++) {
-      if (filledBoxes[i].domObject.classList.contains("active-box")) {
-        filledBoxes[i].domObject.classList.remove("active-box");
-        activeBoxIndex = (i + 1) % filledBoxes.length;
-        break;
-      }
-    }
-    
-    var activeBox = filledBoxes[activeBoxIndex];
-    activeBox.domObject.classList.add("active-box");
-    activeBox.flash();
   }
 }

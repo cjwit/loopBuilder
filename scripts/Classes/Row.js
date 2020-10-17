@@ -24,4 +24,21 @@ export class Row {
     rowName.style.width = this.labelWidth + "em";
     return rowName;
   }
+
+  flashActiveBox() {
+    var filledBoxes = this.boxes.filter(box => box.domObject.classList.contains("filled-box"));
+  
+    var activeBoxIndex = 0;
+    for (let i = 0; i < filledBoxes.length; i++) {
+      if (filledBoxes[i].domObject.classList.contains("active-box")) {
+        filledBoxes[i].domObject.classList.remove("active-box");
+        activeBoxIndex = (i + 1) % filledBoxes.length;
+        break;
+      }
+    }
+    
+    var activeBox = filledBoxes[activeBoxIndex];
+    activeBox.domObject.classList.add("active-box");
+    activeBox.flash();
+  }
 }

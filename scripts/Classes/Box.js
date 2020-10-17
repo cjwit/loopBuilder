@@ -5,14 +5,10 @@ export class Box {
     this.position = this.getTransportPosition(this.positionNumber);
     this.domObject = document.createElement("span");
     this.filled = this.isFilled();
-
-    // for identification from the draw command
-    let className = partName.toLowerCase().replace(" ", "-") + "-box";
-    this.domObject.classList.add(className);
     this.domObject.classList.add("box");
   }
 
-  // called by Row
+  // called by Row after the box is created
   calculateWidth(numberOfBoxes, labelWidth) {
     let percent = 100.0 / numberOfBoxes + "%";
     let padding = labelWidth / numberOfBoxes + 0.1;
