@@ -10,7 +10,7 @@ export class Loop {
     this.rows = [];
     this.domObject = document.getElementById(tagId);
     this.makeRows();
-    this.setUpLoop(source);
+    this.sequences = this.setUpLoop(source);
   }
 
   makeRows() {
@@ -24,34 +24,13 @@ export class Loop {
   }
 
   setUpLoop() {
-    var needsConverting = false;
-    if (typeof this.parts[0].pattern[0] == "number") {
-      needsConverting = true;
-    }
-  
     var sequences = [];
     for (let i = 0; i < this.parts.length; i++) {
-      let part = this.parts[i];
-      if (needsConverting) {
-        part = this.convertPatternToNotes(part);
-      }
       sequences.push(this.createLoop(i));
     }
-  
     return sequences;
   }
 
-  convertPatternToNotes(part) {
-    for (let i = 0; i < part.pattern.length; i++) {
-      if (part.pattern[i] == 0) {
-        part.pattern[i] = null
-      } else {
-        part.pattern[i] = part.note;
-      }
-    }
-    return part;
-  }
-  
   createLoop(partNumber) {
     var sequence = new Tone.Sequence((time, note) => {
       this.visualCallback(partNumber);

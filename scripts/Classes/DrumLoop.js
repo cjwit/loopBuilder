@@ -7,7 +7,6 @@ export class DrumLoop extends Loop {
 
   setUpLoop() {
     var sequences = [];
-    console.log("setup drum loop")
     for (let i = 0; i < this.parts.length; i++) {
       this.parts[i] = this.convertPatternToNotes(this.parts[i]);
       sequences.push(this.createLoop(i));
