@@ -48,12 +48,12 @@ const bassEffect2 = new Tone.Chorus({
 
 bassSynth.chain(bassEffect1, bassEffect2);
 
-// set up graphical elements and loops
+// set up loops
 const Play = new PlayButton();
 const melodyLoop = new Loop("melodyLoop", loops.melodyLoop, melodySynth);
 const bassLoop = new Loop("bassLoop", loops.bassLoop, bassSynth);
 const drumLoop = new DrumLoop("drumLoop", loops.drumLoop, drumSampler);
 
-// create filter listeners
+// set up filter listeners
 const synthEffects = new EffectsUI("synthEffects", melodyEffect1, melodyEffect2);
 const bassEffects = new EffectsUI("bassEffects", bassEffect1, bassEffect2);

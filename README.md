@@ -10,7 +10,6 @@ This is a test project that links [tone.js](https://tonejs.github.io) to a graph
 
 ### Next
 
-* Add color box flashes
 * Add control to change melody and bass loops
 * Add control to change drum loop
 * Write a short introduction
