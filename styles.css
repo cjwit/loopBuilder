@@ -806,6 +806,81 @@ input {
   background-color: #74276D;
 }
 
+#melodyLoop {
+  border: 2px solid #3A0035;
+}
+#melodyLoop .title {
+  color: #3A0035;
+}
+#melodyLoop .box {
+  color: #AD74A8;
+}
+#melodyLoop .empty-box {
+  background-color: #90488A;
+}
+#melodyLoop .filled-box {
+  background-color: #3A0035;
+}
+#melodyLoop .row-label {
+  color: #570E51;
+}
+
+#melodyEffects {
+  border: 2px solid #3A0035;
+  color: #3A0035;
+  background-color: #AD74A8;
+}
+
+#bassLoop {
+  border: 2px solid #9A7F00;
+}
+#bassLoop .title {
+  color: #9A7F00;
+}
+#bassLoop .box {
+  color: #FFE87C;
+}
+#bassLoop .empty-box {
+  background-color: #FADE52;
+}
+#bassLoop .filled-box {
+  background-color: #9A7F00;
+}
+#bassLoop .row-label {
+  color: #C2A30E;
+}
+
+#bassEffects {
+  border: 2px solid #9A7F00;
+  color: #9A7F00;
+  background-color: #FFE87C;
+}
+
+#drumLoop {
+  border: 2px solid #104375;
+}
+#drumLoop .title {
+  color: #104375;
+}
+#drumLoop .box {
+  color: #84ADD4;
+}
+#drumLoop .empty-box {
+  background-color: #84ADD4;
+}
+#drumLoop .filled-box {
+  background-color: #376DA2;
+}
+#drumLoop .row-label {
+  color: #1C5B98;
+}
+
+#drumEffects {
+  border: 2px solid #104375;
+  color: #104375;
+  background-color: #84ADD4;
+}
+
 .loop {
   border: 2px solid #570E51;
   border-radius: 5px;
@@ -816,7 +891,6 @@ input {
 .loop .title {
   display: inline-block;
   padding-left: 1em;
-  color: #570E51;
   font-weight: bold;
   padding-bottom: 1em;
 }
@@ -877,32 +951,6 @@ input {
   background-color: #570E51;
 }
 
-.mark-with-border {
-  padding-top: calc(0.5em - 4px);
-  padding-bottom: calc(0.5em - 4px);
-  border: 4px solid #2875a1;
-}
-
-.mute.btn {
-  margin-top: 1em;
-  margin-bottom: 0em;
-  background-color: #AD74A8;
-}
-
-.hidden {
-  display: none;
-}
-
-.video-embed {
-  width: 640px;
-  height: 480px;
-}
-@media screen and (max-width: 42em) {
-  .video-embed {
-    width: 100%;
-  }
-}
-
 .slider {
   -webkit-appearance: none;
   width: 100%;
@@ -934,10 +982,7 @@ input {
 }
 
 .effects {
-  border: 2px solid #570E51;
   border-radius: 5px;
-  color: #3A0035;
-  background-color: #AD74A8;
   margin-bottom: 1em;
   height: 15em;
 }
