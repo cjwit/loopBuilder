@@ -1,0 +1,131 @@
+{
+  "coverage": "1.4%",
+  "expectCount": 71,
+  "actualCount": 1,
+  "files": {
+    "scripts/Classes/Box.js": {
+      "expectCount": 11,
+      "actualCount": 1,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        12,
+        18,
+        24
+      ]
+    },
+    "scripts/Classes/DrumLoop.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        4,
+        8,
+        18
+      ]
+    },
+    "scripts/Classes/EffectsUI.js": {
+      "expectCount": 8,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        11,
+        43
+      ]
+    },
+    "scripts/Classes/Loop.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        13,
+        16,
+        26,
+        34
+      ]
+    },
+    "scripts/Classes/PlayButton.js": {
+      "expectCount": 6,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        4,
+        5,
+        19,
+        28,
+        33
+      ]
+    },
+    "scripts/Classes/Row.js": {
+      "expectCount": 8,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        20,
+        28
+      ]
+    },
+    "scripts/audio.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        13,
+        31
+      ]
+    },
+    "scripts/loops.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        11,
+        21,
+        42
+      ]
+    },
+    "scripts/script.js": {
+      "expectCount": 16,
+      "actualCount": 0,
+      "undocumentLines": [
+        10,
+        11,
+        14,
+        15,
+        18,
+        19,
+        23,
+        28,
+        37,
+        42,
+        52,
+        53,
+        54,
+        55,
+        58,
+        59
+      ]
+    }
+  }
+}

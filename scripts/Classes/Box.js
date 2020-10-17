@@ -1,5 +1,5 @@
 export class Box {
-  constructor(partName, value, positionNumber) {
+  constructor(positionNumber, value) {
     this.value = value;
     this.positionNumber = positionNumber;
     this.position = this.getTransportPosition(this.positionNumber);
@@ -30,7 +30,10 @@ export class Box {
     return filled;
   }
 
-  // called by Loop.visualCallback()
+  /**
+   * `Box.flash()` is called by a `Row` object to animate 
+   * a block as part of the `Tone.Sequencer` callback
+   */
   flash() {
     var box = this.domObject;
     var bgColor = window.getComputedStyle(box, null).getPropertyValue("background-color");

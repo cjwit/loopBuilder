@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">scripts/script.js | loopBuilder</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A graphical interface to create looping melodies and rhythms"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="loopBuilder"><meta property="twitter:description" content="A graphical interface to create looping melodies and rhythms"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/cjwit/loopBuilder"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createDrumSampler">createDrumSampler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSynth">createSynth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-loops">loops</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html">DrumLoop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/EffectsUI.js~EffectsUI.html">EffectsUI</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">scripts/script.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import * as Tone from &apos;tone&apos;;
+import { Loop } from &apos;./Classes/Loop.js&apos;;
+import { DrumLoop } from &apos;./Classes/DrumLoop.js&apos;;
+import { PlayButton } from &apos;./Classes/PlayButton.js&apos;;
+import { EffectsUI } from &apos;./Classes/EffectsUI.js&apos;;
+import { loops } from &apos;./loops.js&apos;;
+import { createDrumSampler, createSynth } from &apos;./audio.js&apos;;
+
+// create sources
+const drumSampler = createDrumSampler();
+const drumVolumeNode = new Tone.Volume(-6).toDestination();
+drumSampler.connect(drumVolumeNode);
+
+const melodySynth = createSynth();
+const melodyVolumeNode = new Tone.Volume(0).toDestination();
+melodySynth.connect(melodyVolumeNode);
+
+const bassSynth = createSynth();
+const bassVolumeNode = new Tone.Volume(-20).toDestination();
+bassSynth.connect(bassVolumeNode);
+
+// add effects
+const melodyEffect1 = new Tone.Distortion({
+  distortion: 10,
+  wet: 0.5,
+})
+
+const melodyEffect2 = new Tone.FeedbackDelay({
+  delayTime: &quot;8n&quot;,
+  feedback: 0.7,
+  maxDelay: &quot;4n&quot;,
+  wet: 0.5
+}).toDestination();
+
+melodySynth.chain(melodyEffect1, melodyEffect2);
+
+const bassEffect1 = new Tone.BitCrusher({ 
+  bits: 2,
+  wet: 0.5
+}).toDestination();
+
+const bassEffect2 = new Tone.Chorus({
+  depth: 1,
+  delayTime: 700,
+  feedback: 0.4,
+  wet: 0.5,
+}).toDestination();
+
+bassSynth.chain(bassEffect1, bassEffect2);
+
+// set up loops
+const Play = new PlayButton();
+const melodyLoop = new Loop(&quot;melodyLoop&quot;, loops.melodyLoop, melodySynth);
+const bassLoop = new Loop(&quot;bassLoop&quot;, loops.bassLoop, bassSynth);
+const drumLoop = new DrumLoop(&quot;drumLoop&quot;, loops.drumLoop, drumSampler);
+
+// set up filter listeners
+const synthEffects = new EffectsUI(&quot;melodyEffects&quot;, melodyEffect1, melodyEffect2);
+const bassEffects = new EffectsUI(&quot;bassEffects&quot;, bassEffect1, bassEffect2);</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

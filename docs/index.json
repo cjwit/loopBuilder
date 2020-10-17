@@ -1,0 +1,2017 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "scripts/.external-ecmascript.js",
+    "static": true,
+    "longname": "scripts/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "scripts/Classes/Box.js",
+    "content": "export class Box {\n  constructor(partName, value, positionNumber) {\n    this.value = value;\n    this.positionNumber = positionNumber;\n    this.position = this.getTransportPosition(this.positionNumber);\n    this.domObject = document.createElement(\"span\");\n    this.filled = this.isFilled();\n    this.domObject.classList.add(\"box\");\n  }\n\n  // called by Row after the box is created\n  calculateWidth(numberOfBoxes, labelWidth) {\n    let percent = 100.0 / numberOfBoxes + \"%\";\n    let padding = labelWidth / numberOfBoxes + 0.1;\n    this.domObject.style.width = \"calc(\" + percent + \" - \" + padding + \"em)\";\n  }\n\n  getTransportPosition(positionNumber) {\n    var beat = Math.floor(positionNumber / 2);\n    var sixteenth = positionNumber % 2;\n    return `${beat}:${sixteenth}`;\n  }\n\n  isFilled() {\n    let filled = false;\n    if (this.value != null && this.value != 0) {\n      filled = true;\n    }\n    this.domObject.classList.add(filled ? \"filled-box\" : \"empty-box\");\n    return filled;\n  }\n\n  /**\n   * `Box.flash()` is called by a `Row` object to animate \n   * a block as part of the `Tone.Sequencer` callback\n   */\n  flash() {\n    var box = this.domObject;\n    var bgColor = window.getComputedStyle(box, null).getPropertyValue(\"background-color\");\n    box.style.backgroundColor = \"#0a4f2d\";\n    setTimeout(function () {\n      box.animate({ backgroundColor: bgColor }, 1000);\n    });\n    setTimeout(function () {\n      box.style.backgroundColor = bgColor;\n    }, 1000);\n  }\n}",
+    "static": true,
+    "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/Box.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "class",
+    "name": "Box",
+    "memberof": "scripts/Classes/Box.js",
+    "static": true,
+    "longname": "scripts/Classes/Box.js~Box",
+    "access": "public",
+    "export": true,
+    "importPath": "loopBuilder/scripts/Classes/Box.js",
+    "importStyle": "{Box}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 50,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "scripts/Classes/Box.js~Box",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Box.js~Box#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true
+  },
+  {
+    "__docId__": 51,
+    "kind": "member",
+    "name": "value",
+    "memberof": "scripts/Classes/Box.js~Box",
+    "static": false,
+    "longname": "scripts/Classes/Box.js~Box#value",
+    "access": "public",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "member",
+    "name": "positionNumber",
+    "memberof": "scripts/Classes/Box.js~Box",
+    "static": false,
+    "longname": "scripts/Classes/Box.js~Box#positionNumber",
+    "access": "public",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "member",
+    "name": "position",
+    "memberof": "scripts/Classes/Box.js~Box",
+    "static": false,
+    "longname": "scripts/Classes/Box.js~Box#position",
+    "access": "public",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "member",
+    "name": "domObject",
+    "memberof": "scripts/Classes/Box.js~Box",
+    "static": false,
+    "longname": "scripts/Classes/Box.js~Box#domObject",
+    "access": "public",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "member",
+    "name": "filled",
+    "memberof": "scripts/Classes/Box.js~Box",
+    "static": false,
+    "longname": "scripts/Classes/Box.js~Box#filled",
+    "access": "public",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "method",
+    "name": "calculateWidth",
+    "memberof": "scripts/Classes/Box.js~Box",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Box.js~Box#calculateWidth",
+    "access": "public",
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "params": [
+      {
+        "name": "numberOfBoxes",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "labelWidth",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 57,
+    "kind": "method",
+    "name": "getTransportPosition",
+    "memberof": "scripts/Classes/Box.js~Box",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Box.js~Box#getTransportPosition",
+    "access": "public",
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "params": [
+      {
+        "name": "positionNumber",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "method",
+    "name": "isFilled",
+    "memberof": "scripts/Classes/Box.js~Box",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Box.js~Box#isFilled",
+    "access": "public",
+    "description": null,
+    "lineNumber": 24,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "method",
+    "name": "flash",
+    "memberof": "scripts/Classes/Box.js~Box",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Box.js~Box#flash",
+    "access": "public",
+    "description": "`Box.flash()` is called by a `Row` object to animate \na block as part of the `Tone.Sequencer` callback",
+    "lineNumber": 37,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 60,
+    "kind": "file",
+    "name": "scripts/Classes/DrumLoop.js",
+    "content": "import { Loop } from './Loop.js';\n\nexport class DrumLoop extends Loop {\n  constructor(tagId, data, source) {\n    super(tagId, data, source);\n  }\n\n  setUpLoop() {\n    var sequences = [];\n    for (let i = 0; i < this.parts.length; i++) {\n      this.parts[i] = this.convertPatternToNotes(this.parts[i]);\n      sequences.push(this.createLoop(i));\n    }\n  \n    return sequences;\n  }\n\n  convertPatternToNotes(part) {\n    for (let i = 0; i < part.pattern.length; i++) {\n      if (part.pattern[i] == 0) {\n        part.pattern[i] = null\n      } else {\n        part.pattern[i] = part.note;\n      }\n    }\n    return part;\n  }\n}",
+    "static": true,
+    "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/DrumLoop.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 61,
+    "kind": "class",
+    "name": "DrumLoop",
+    "memberof": "scripts/Classes/DrumLoop.js",
+    "static": true,
+    "longname": "scripts/Classes/DrumLoop.js~DrumLoop",
+    "access": "public",
+    "export": true,
+    "importPath": "loopBuilder/scripts/Classes/DrumLoop.js",
+    "importStyle": "{DrumLoop}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "scripts/Classes/Loop.js~Loop"
+    ]
+  },
+  {
+    "__docId__": 62,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "scripts/Classes/DrumLoop.js~DrumLoop",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/DrumLoop.js~DrumLoop#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true
+  },
+  {
+    "__docId__": 63,
+    "kind": "method",
+    "name": "setUpLoop",
+    "memberof": "scripts/Classes/DrumLoop.js~DrumLoop",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/DrumLoop.js~DrumLoop#setUpLoop",
+    "access": "public",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 64,
+    "kind": "method",
+    "name": "convertPatternToNotes",
+    "memberof": "scripts/Classes/DrumLoop.js~DrumLoop",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/DrumLoop.js~DrumLoop#convertPatternToNotes",
+    "access": "public",
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "params": [
+      {
+        "name": "part",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 65,
+    "kind": "file",
+    "name": "scripts/Classes/EffectsUI.js",
+    "content": "export class EffectsUI {\n  constructor(tagId, effect1 = null, effect2 = null) {\n    this.tagId = tagId;\n    this.effect1 = effect1;\n    this.effect2 = effect2;\n    this.domObject = document.getElementById(this.tagId);\n\n    this.createHandle();\n  }\n\n  createHandle() {\n    var handle = document.createElement(\"span\");\n    handle.classList.add(\"handle\");\n    this.domObject.appendChild(handle);\n\n    var parent = $(handle).parent();\n    var parentWidth = parent.width();\n    var parentHeight = parent.height();\n\n    var handle = $(handle); // switch to jQuery\n    var handleWidth = handle.outerWidth();\n    var handleHeight = handle.outerHeight();\n\n    handle.offset({ \n      left: parent.offset().left + parentWidth / 2 - handleWidth / 2,\n      top: parent.offset().top + parentHeight / 2 - handleHeight / 2\n    })\n\n    var self = this;\n    handle.draggable({ \n      containment: \"parent\",\n      drag: function() {\n        var handleOffset = handle.offset();\n        var left = (handleOffset.left - parent.offset().left) / parentWidth;\n        var top = (handleOffset.top - parent.offset().top) / parentHeight;\n        self.effect1Value = left;\n        self.effect2Value = top;\n        self.updateEffects();\n      }\n    });\n  }\n\n  updateEffects() {\n    if (this.effect1) {\n      this.effect1.wet.value = this.effect1Value;\n    }\n    if (this.effect2) {\n      this.effect2.wet.value = this.effect2Value;\n    }\n  }\n}",
+    "static": true,
+    "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/EffectsUI.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 66,
+    "kind": "class",
+    "name": "EffectsUI",
+    "memberof": "scripts/Classes/EffectsUI.js",
+    "static": true,
+    "longname": "scripts/Classes/EffectsUI.js~EffectsUI",
+    "access": "public",
+    "export": true,
+    "importPath": "loopBuilder/scripts/Classes/EffectsUI.js",
+    "importStyle": "{EffectsUI}",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 67,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "scripts/Classes/EffectsUI.js~EffectsUI",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/EffectsUI.js~EffectsUI#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true
+  },
+  {
+    "__docId__": 68,
+    "kind": "member",
+    "name": "tagId",
+    "memberof": "scripts/Classes/EffectsUI.js~EffectsUI",
+    "static": false,
+    "longname": "scripts/Classes/EffectsUI.js~EffectsUI#tagId",
+    "access": "public",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 69,
+    "kind": "member",
+    "name": "effect1",
+    "memberof": "scripts/Classes/EffectsUI.js~EffectsUI",
+    "static": false,
+    "longname": "scripts/Classes/EffectsUI.js~EffectsUI#effect1",
+    "access": "public",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 70,
+    "kind": "member",
+    "name": "effect2",
+    "memberof": "scripts/Classes/EffectsUI.js~EffectsUI",
+    "static": false,
+    "longname": "scripts/Classes/EffectsUI.js~EffectsUI#effect2",
+    "access": "public",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 71,
+    "kind": "member",
+    "name": "domObject",
+    "memberof": "scripts/Classes/EffectsUI.js~EffectsUI",
+    "static": false,
+    "longname": "scripts/Classes/EffectsUI.js~EffectsUI#domObject",
+    "access": "public",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 72,
+    "kind": "method",
+    "name": "createHandle",
+    "memberof": "scripts/Classes/EffectsUI.js~EffectsUI",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/EffectsUI.js~EffectsUI#createHandle",
+    "access": "public",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 73,
+    "kind": "method",
+    "name": "updateEffects",
+    "memberof": "scripts/Classes/EffectsUI.js~EffectsUI",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/EffectsUI.js~EffectsUI#updateEffects",
+    "access": "public",
+    "description": null,
+    "lineNumber": 43,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 74,
+    "kind": "file",
+    "name": "scripts/Classes/Loop.js",
+    "content": "import * as Tone from 'tone';\nimport { Row } from './Row.js';\n\nexport class Loop {\n  constructor(tagId, data, source) {\n    this.tagId = tagId;\n    this.source = source;\n    this.parts = data.parts;\n    this.tempo = data.tempo;\n    this.rows = [];\n    this.domObject = document.getElementById(tagId);\n    this.makeRows();\n    this.sequences = this.setUpLoop(source);\n  }\n\n  makeRows() {\n    var rows = 0;\n    for (let i = 0; i < this.parts.length; i++) {\n      let row = new Row(this.parts[i]);\n      this.domObject.appendChild(row.domObject);\n      this.rows.push(row);\n      rows++;\n    }\n  }\n\n  setUpLoop() {\n    var sequences = [];\n    for (let i = 0; i < this.parts.length; i++) {\n      sequences.push(this.createLoop(i));\n    }\n    return sequences;\n  }\n\n  createLoop(partNumber) {\n    var sequence = new Tone.Sequence((time, note) => {\n      this.rows[partNumber].flashActiveBox();\n      this.source.triggerAttackRelease(note, \"8n\", time);\n    }, this.parts[partNumber].pattern).start(0);\n    return sequence;\n  }\n}",
+    "static": true,
+    "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/Loop.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 75,
+    "kind": "class",
+    "name": "Loop",
+    "memberof": "scripts/Classes/Loop.js",
+    "static": true,
+    "longname": "scripts/Classes/Loop.js~Loop",
+    "access": "public",
+    "export": true,
+    "importPath": "loopBuilder/scripts/Classes/Loop.js",
+    "importStyle": "{Loop}",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 76,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true
+  },
+  {
+    "__docId__": 77,
+    "kind": "member",
+    "name": "tagId",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#tagId",
+    "access": "public",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 78,
+    "kind": "member",
+    "name": "source",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#source",
+    "access": "public",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 79,
+    "kind": "member",
+    "name": "parts",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#parts",
+    "access": "public",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 80,
+    "kind": "member",
+    "name": "tempo",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#tempo",
+    "access": "public",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 81,
+    "kind": "member",
+    "name": "rows",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#rows",
+    "access": "public",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 82,
+    "kind": "member",
+    "name": "domObject",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#domObject",
+    "access": "public",
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 83,
+    "kind": "member",
+    "name": "sequences",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#sequences",
+    "access": "public",
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 84,
+    "kind": "method",
+    "name": "makeRows",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#makeRows",
+    "access": "public",
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 85,
+    "kind": "method",
+    "name": "setUpLoop",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#setUpLoop",
+    "access": "public",
+    "description": null,
+    "lineNumber": 26,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 86,
+    "kind": "method",
+    "name": "createLoop",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#createLoop",
+    "access": "public",
+    "description": null,
+    "lineNumber": 34,
+    "undocument": true,
+    "params": [
+      {
+        "name": "partNumber",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 87,
+    "kind": "file",
+    "name": "scripts/Classes/PlayButton.js",
+    "content": "import * as Tone from \"tone\";\n\nexport class PlayButton {\n  constructor() {\n    this.domObject = document.getElementById(\"playButton\");\n    this.domObject.innerText = \"Start\";\n\n    this.domObject.start = this.start;\n    this.domObject.stop = this.stop;\n    this.domObject.addEventListener(\"click\", this.listener.bind(this));\n    document.addEventListener(\"keydown\", e => {\n      if (e.code === \"Space\") {\n        e.preventDefault();\n        this.listener();\n      }\n    });\n  }\n\n  async listener(e) { \n    if (this.domObject.innerText == \"Start\") {\n      await Tone.start();\n      this.start();\n    } else {\n      this.stop();\n    }\n  }\n\n  start() {\n    this.domObject.innerText = \"Stop\";\n    Tone.Transport.start(\"+0.01\")\n  }\n\n  stop() {\n    Tone.Transport.pause();\n    this.domObject.innerText = \"Start\";\n  }\n}",
+    "static": true,
+    "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/PlayButton.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 88,
+    "kind": "class",
+    "name": "PlayButton",
+    "memberof": "scripts/Classes/PlayButton.js",
+    "static": true,
+    "longname": "scripts/Classes/PlayButton.js~PlayButton",
+    "access": "public",
+    "export": true,
+    "importPath": "loopBuilder/scripts/Classes/PlayButton.js",
+    "importStyle": "{PlayButton}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 89,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "scripts/Classes/PlayButton.js~PlayButton",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/PlayButton.js~PlayButton#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true
+  },
+  {
+    "__docId__": 90,
+    "kind": "member",
+    "name": "domObject",
+    "memberof": "scripts/Classes/PlayButton.js~PlayButton",
+    "static": false,
+    "longname": "scripts/Classes/PlayButton.js~PlayButton#domObject",
+    "access": "public",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 91,
+    "kind": "method",
+    "name": "listener",
+    "memberof": "scripts/Classes/PlayButton.js~PlayButton",
+    "generator": false,
+    "async": true,
+    "static": false,
+    "longname": "scripts/Classes/PlayButton.js~PlayButton#listener",
+    "access": "public",
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "params": [
+      {
+        "name": "e",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 92,
+    "kind": "method",
+    "name": "start",
+    "memberof": "scripts/Classes/PlayButton.js~PlayButton",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/PlayButton.js~PlayButton#start",
+    "access": "public",
+    "description": null,
+    "lineNumber": 28,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 93,
+    "kind": "method",
+    "name": "stop",
+    "memberof": "scripts/Classes/PlayButton.js~PlayButton",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/PlayButton.js~PlayButton#stop",
+    "access": "public",
+    "description": null,
+    "lineNumber": 33,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 94,
+    "kind": "file",
+    "name": "scripts/Classes/Row.js",
+    "content": "import { Box } from './Box.js';\n\nexport class Row {\n  constructor(part) {\n    this.labelWidth = 6.0;\n    this.name = part.name;\n    this.boxes = [];\n    this.domObject = document.createElement(\"div\");\n    this.domObject.classList.add(\"row-of-boxes\");\n    this.domObject.appendChild(this.makeRowLabel(part.name));\n\n    for (let i = 0; i < part.pattern.length; i++) {\n      let box = new Box(part.name, part.pattern[i], i);\n      box.calculateWidth(part.pattern.length, this.labelWidth);\n      this.domObject.appendChild(box.domObject);\n      this.boxes.push(box);\n    }\n  }\n\n  makeRowLabel(label) {\n    var rowName = document.createElement(\"span\");\n    rowName.classList.add(\"row-label\");\n    rowName.innerText = label;\n    rowName.style.width = this.labelWidth + \"em\";\n    return rowName;\n  }\n\n  flashActiveBox() {\n    var filledBoxes = this.boxes.filter(box => box.domObject.classList.contains(\"filled-box\"));\n  \n    var activeBoxIndex = 0;\n    for (let i = 0; i < filledBoxes.length; i++) {\n      if (filledBoxes[i].domObject.classList.contains(\"active-box\")) {\n        filledBoxes[i].domObject.classList.remove(\"active-box\");\n        activeBoxIndex = (i + 1) % filledBoxes.length;\n        break;\n      }\n    }\n    \n    var activeBox = filledBoxes[activeBoxIndex];\n    activeBox.domObject.classList.add(\"active-box\");\n    activeBox.flash();\n  }\n}\n",
+    "static": true,
+    "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/Row.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 95,
+    "kind": "class",
+    "name": "Row",
+    "memberof": "scripts/Classes/Row.js",
+    "static": true,
+    "longname": "scripts/Classes/Row.js~Row",
+    "access": "public",
+    "export": true,
+    "importPath": "loopBuilder/scripts/Classes/Row.js",
+    "importStyle": "{Row}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 96,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true
+  },
+  {
+    "__docId__": 97,
+    "kind": "member",
+    "name": "labelWidth",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#labelWidth",
+    "access": "public",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "__docId__": 98,
+    "kind": "member",
+    "name": "name",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#name",
+    "access": "public",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 99,
+    "kind": "member",
+    "name": "boxes",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#boxes",
+    "access": "public",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*[]"
+      ]
+    }
+  },
+  {
+    "__docId__": 100,
+    "kind": "member",
+    "name": "domObject",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#domObject",
+    "access": "public",
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 101,
+    "kind": "method",
+    "name": "makeRowLabel",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#makeRowLabel",
+    "access": "public",
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "params": [
+      {
+        "name": "label",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 102,
+    "kind": "method",
+    "name": "flashActiveBox",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#flashActiveBox",
+    "access": "public",
+    "description": null,
+    "lineNumber": 28,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 103,
+    "kind": "file",
+    "name": "scripts/audio.js",
+    "content": "import * as Tone from 'tone';\n\nimport hihat from \"../audio/hihat.mp3\";\nimport snare from \"../audio/snare.mp3\";\nimport kick from \"../audio/kick.mp3\";\nimport clave from \"../audio/clave.mp3\";\nimport ding from \"../audio/ding.mp3\";\nimport bongo1 from \"../audio/bongo1.mp3\";\nimport bongo2 from \"../audio/bongo2.mp3\";\nimport tom3 from \"../audio/tom3.mp3\";\nimport cowbell from \"../audio/cowbell.mp3\";\n\nexport function createDrumSampler() {\n  const drumSampler = new Tone.Sampler({\n    urls: {\n      A1: hihat,\n      A2: snare,\n      A3: kick,\n      A4: clave,\n      A5: ding,\n      A6: bongo1,\n      A7: bongo2,\n      A8: tom3,\n      A9: cowbell,\n    },\n  }).toDestination();\n\n  return drumSampler;\n}\n\nexport function createSynth() {\n  const synth = new Tone.Synth().toDestination();\n  return synth;\n}\n",
+    "static": true,
+    "longname": "/Users/cwituls/Documents/loopBuilder/scripts/audio.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 104,
+    "kind": "function",
+    "name": "createDrumSampler",
+    "memberof": "scripts/audio.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "scripts/audio.js~createDrumSampler",
+    "access": "public",
+    "export": true,
+    "importPath": "loopBuilder/scripts/audio.js",
+    "importStyle": "{createDrumSampler}",
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 105,
+    "kind": "function",
+    "name": "createSynth",
+    "memberof": "scripts/audio.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "scripts/audio.js~createSynth",
+    "access": "public",
+    "export": true,
+    "importPath": "loopBuilder/scripts/audio.js",
+    "importStyle": "{createSynth}",
+    "description": null,
+    "lineNumber": 31,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 106,
+    "kind": "file",
+    "name": "scripts/loops.js",
+    "content": "var melodyLoop = {\n  tempo: 108,\n  parts: [\n    {\n      name: \"Melody\",\n      pattern: [\"C4\", \"C5\", null, \"F4\", null, \"Eb4\", \"Bb3\", null],\n    }\n  ]\n}\n\nvar bassLoop = {\n  tempo: 108,\n  parts: [\n    {\n      name: \"Bass\",\n      pattern: [\"C3\", null, null, \"G2\", \"Bb3\", null, \"G3\", null],\n    }\n  ]\n}\n\nvar drumLoop = {\n  tempo: 108,\n  parts: [\n    {\n      name: \"Kick drum\",\n      note: \"A3\",\n      pattern: [1, 0, 0, 0, 1, 0, 0, 0],\n    },\n    {\n      name: \"Snare drum\",\n      note: \"A2\",\n      pattern: [0, 0, 1, 1, 0, 0, 1, 0],\n    },\n    {\n      name: \"Cowbell\",\n      note: \"A9\",\n      pattern: [0, 0, 1, 0, 0, 1, 0, 0],\n    }\n  ]\n}\n\nexport var loops = {\n  drumLoop: drumLoop,\n  melodyLoop: melodyLoop,\n  bassLoop: bassLoop\n}",
+    "static": true,
+    "longname": "/Users/cwituls/Documents/loopBuilder/scripts/loops.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 107,
+    "kind": "variable",
+    "name": "melodyLoop",
+    "memberof": "scripts/loops.js",
+    "static": true,
+    "longname": "scripts/loops.js~melodyLoop",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/loops.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{\"tempo\": number, \"parts\": *}"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 108,
+    "kind": "variable",
+    "name": "bassLoop",
+    "memberof": "scripts/loops.js",
+    "static": true,
+    "longname": "scripts/loops.js~bassLoop",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/loops.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{\"tempo\": number, \"parts\": *}"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 109,
+    "kind": "variable",
+    "name": "drumLoop",
+    "memberof": "scripts/loops.js",
+    "static": true,
+    "longname": "scripts/loops.js~drumLoop",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/loops.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 21,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{\"tempo\": number, \"parts\": *}"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 110,
+    "kind": "variable",
+    "name": "loops",
+    "memberof": "scripts/loops.js",
+    "static": true,
+    "longname": "scripts/loops.js~loops",
+    "access": "public",
+    "export": true,
+    "importPath": "loopBuilder/scripts/loops.js",
+    "importStyle": "{loops}",
+    "description": null,
+    "lineNumber": 42,
+    "undocument": true,
+    "type": {
+      "types": [
+        "{\"drumLoop\": *, \"melodyLoop\": *, \"bassLoop\": *}"
+      ]
+    }
+  },
+  {
+    "__docId__": 111,
+    "kind": "file",
+    "name": "scripts/script.js",
+    "content": "import * as Tone from 'tone';\nimport { Loop } from './Classes/Loop.js';\nimport { DrumLoop } from './Classes/DrumLoop.js';\nimport { PlayButton } from './Classes/PlayButton.js';\nimport { EffectsUI } from './Classes/EffectsUI.js';\nimport { loops } from './loops.js';\nimport { createDrumSampler, createSynth } from './audio.js';\n\n// create sources\nconst drumSampler = createDrumSampler();\nconst drumVolumeNode = new Tone.Volume(-6).toDestination();\ndrumSampler.connect(drumVolumeNode);\n\nconst melodySynth = createSynth();\nconst melodyVolumeNode = new Tone.Volume(0).toDestination();\nmelodySynth.connect(melodyVolumeNode);\n\nconst bassSynth = createSynth();\nconst bassVolumeNode = new Tone.Volume(-20).toDestination();\nbassSynth.connect(bassVolumeNode);\n\n// add effects\nconst melodyEffect1 = new Tone.Distortion({\n  distortion: 10,\n  wet: 0.5,\n})\n\nconst melodyEffect2 = new Tone.FeedbackDelay({\n  delayTime: \"8n\",\n  feedback: 0.7,\n  maxDelay: \"4n\",\n  wet: 0.5\n}).toDestination();\n\nmelodySynth.chain(melodyEffect1, melodyEffect2);\n\nconst bassEffect1 = new Tone.BitCrusher({ \n  bits: 2,\n  wet: 0.5\n}).toDestination();\n\nconst bassEffect2 = new Tone.Chorus({\n  depth: 1,\n  delayTime: 700,\n  feedback: 0.4,\n  wet: 0.5,\n}).toDestination();\n\nbassSynth.chain(bassEffect1, bassEffect2);\n\n// set up loops\nconst Play = new PlayButton();\nconst melodyLoop = new Loop(\"melodyLoop\", loops.melodyLoop, melodySynth);\nconst bassLoop = new Loop(\"bassLoop\", loops.bassLoop, bassSynth);\nconst drumLoop = new DrumLoop(\"drumLoop\", loops.drumLoop, drumSampler);\n\n// set up filter listeners\nconst synthEffects = new EffectsUI(\"melodyEffects\", melodyEffect1, melodyEffect2);\nconst bassEffects = new EffectsUI(\"bassEffects\", bassEffect1, bassEffect2);",
+    "static": true,
+    "longname": "/Users/cwituls/Documents/loopBuilder/scripts/script.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 112,
+    "kind": "variable",
+    "name": "drumSampler",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~drumSampler",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 113,
+    "kind": "variable",
+    "name": "drumVolumeNode",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~drumVolumeNode",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 114,
+    "kind": "variable",
+    "name": "melodySynth",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~melodySynth",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 115,
+    "kind": "variable",
+    "name": "melodyVolumeNode",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~melodyVolumeNode",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 116,
+    "kind": "variable",
+    "name": "bassSynth",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~bassSynth",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 117,
+    "kind": "variable",
+    "name": "bassVolumeNode",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~bassVolumeNode",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 118,
+    "kind": "variable",
+    "name": "melodyEffect1",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~melodyEffect1",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 23,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 119,
+    "kind": "variable",
+    "name": "melodyEffect2",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~melodyEffect2",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 28,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 120,
+    "kind": "variable",
+    "name": "bassEffect1",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~bassEffect1",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 37,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 121,
+    "kind": "variable",
+    "name": "bassEffect2",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~bassEffect2",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 42,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 122,
+    "kind": "variable",
+    "name": "Play",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~Play",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 52,
+    "undocument": true,
+    "type": {
+      "types": [
+        "scripts/Classes/PlayButton.js~PlayButton"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 123,
+    "kind": "variable",
+    "name": "melodyLoop",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~melodyLoop",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 53,
+    "undocument": true,
+    "type": {
+      "types": [
+        "scripts/Classes/Loop.js~Loop"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 124,
+    "kind": "variable",
+    "name": "bassLoop",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~bassLoop",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 54,
+    "undocument": true,
+    "type": {
+      "types": [
+        "scripts/Classes/Loop.js~Loop"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 125,
+    "kind": "variable",
+    "name": "drumLoop",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~drumLoop",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 55,
+    "undocument": true,
+    "type": {
+      "types": [
+        "scripts/Classes/DrumLoop.js~DrumLoop"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 126,
+    "kind": "variable",
+    "name": "synthEffects",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~synthEffects",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 58,
+    "undocument": true,
+    "type": {
+      "types": [
+        "scripts/Classes/EffectsUI.js~EffectsUI"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 127,
+    "kind": "variable",
+    "name": "bassEffects",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~bassEffects",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 59,
+    "undocument": true,
+    "type": {
+      "types": [
+        "scripts/Classes/EffectsUI.js~EffectsUI"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "kind": "index",
+    "content": "# Loop Builder\n\nThis is a test project that links [tone.js](https://tonejs.github.io) to a graphical interface to create looping melodies and rhythms.\n\n![Screen shot](./assets/screenShot.png)\n\n## Features\n\n* Manipulate the timbre of generated synthesizer melodies using a graphical effects controller\n\n### Next\n\n* Add control to change melody and bass loops\n* Add control to change drum loop\n* Write a short introduction\n* Allow saving and loading\n\n## Sounds\n\n* Cowbell sound is from [GowlerMusic on freesound.org](https://freesound.org/people/GowlerMusic/sounds/364919/)\n",
+    "longname": "/Users/cwituls/Documents/loopBuilder/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"loopBuilder\",\n  \"version\": \"1.0.0\",\n  \"description\": \"A graphical interface to create looping melodies and rhythms\",\n  \"main\": \"script.js\",\n  \"dependencies\": {\n    \"tone\": \"^14.7.58\"\n  },\n  \"devDependencies\": {\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"file-loader\": \"^6.1.0\",\n    \"html-loader\": \"^1.3.1\",\n    \"markdown-loader\": \"^6.0.0\",\n    \"npm-run-all\": \"^4.1.5\",\n    \"sass\": \"^1.26.11\",\n    \"sass-loader\": \"^10.0.2\",\n    \"source-map-loader\": \"^1.1.0\",\n    \"webpack\": \"^4.44.2\",\n    \"webpack-cli\": \"^3.3.12\"\n  },\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n    \"sass\": \"sass --watch sass/style.scss:dist/styles.css\",\n    \"webpack\": \"npx webpack\",\n    \"firefox\": \"open -a Firefox ./dist/index.html\",\n    \"dev\": \"npm run firefox && npm-run-all --parallel sass webpack\",\n    \"build\": \"pandoc source/index.md -o dist/index.html -s -c styles.css\",\n    \"deploy\": \"git subtree push --prefix dist origin gh-pages\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/cjwit/loopBuilder.git\"\n  },\n  \"author\": \"Christopher Witulski\",\n  \"license\": \"ISC\",\n  \"bugs\": {\n    \"url\": \"https://github.com/cjwit/loopBuilder/issues\"\n  },\n  \"homepage\": \"https://github.com/cjwit/loopBuilder#readme\",\n  \"esdoc\": {\n    \"source\": \"./scripts\",\n    \"destination\": \"./docs\",\n    \"plugins\": [\n      {\n        \"name\": \"esdoc-standard-plugin\"\n      }\n    ]\n  }\n}\n",
+    "longname": "/Users/cwituls/Documents/loopBuilder/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  }
+]
