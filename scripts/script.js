@@ -55,5 +55,5 @@ const bassLoop = new Loop("bassLoop", loops.bassLoop, bassSynth);
 const drumLoop = new DrumLoop("drumLoop", loops.drumLoop, drumSampler);
 
 // set up filter listeners
-const synthEffects = new EffectsUI("synthEffects", melodyEffect1, melodyEffect2);
+const synthEffects = new EffectsUI("melodyEffects", melodyEffect1, melodyEffect2);
 const bassEffects = new EffectsUI("bassEffects", bassEffect1, bassEffect2);

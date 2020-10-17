@@ -16,7 +16,7 @@ The large boxes under the melody and bass loops control the timbre of those soun
 
 Drag the circle to add or remove distortion and delay.
 
-<div id="synthEffects" class="effects"></div>
+<div id="melodyEffects" class="effects"></div>
 
 <div id="bassLoop" class="loop"></div>
 

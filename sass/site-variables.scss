@@ -22,6 +22,25 @@ $border-color: #dce6f0 !default;
 $table-border-color: #e9ebec !default;
 $hr-border-color: #eff0f1 !default;
 
+// color schemes
+$red-1: #AD74A8;
+$red-2: #90488A;
+$red-3: #74276D;	// Main Primary color */
+$red-4: #570E51;
+$red-5: #3A0035;
+
+$blue-1: #84ADD4;
+$blue-2: #5688B8;
+$blue-3: #376DA2;	// Main Primary color */
+$blue-4: #1C5B98;
+$blue-5: #104375;
+
+$yellow-1: #FFE87C;
+$yellow-2: #FADE52;
+$yellow-3: #EBC928;	// Main Primary color */
+$yellow-4: #C2A30E;
+$yellow-5: #9A7F00;
+
 @mixin large {
   @media screen and (min-width: #{$large-breakpoint}) {
     @content;
