@@ -33,15 +33,13 @@ export class Box {
   // called by Loop.visualCallback()
   flash() {
     var box = this.domObject;
-    box.style.backgroundColor = "#2875a1";
-    setTimeout(function () { }, 100);
+    var bgColor = window.getComputedStyle(box, null).getPropertyValue("background-color");
+    box.style.backgroundColor = "#0a4f2d";
     setTimeout(function () {
-      box.animate({
-        backgroundColor: "#570E51"
-      }, 1000);
+      box.animate({ backgroundColor: bgColor }, 1000);
     });
     setTimeout(function () {
-      box.style.backgroundColor = "#570E51";
+      box.style.backgroundColor = bgColor;
     }, 1000);
   }
 }
