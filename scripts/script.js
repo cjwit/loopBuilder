@@ -54,9 +54,9 @@ const bassEffect2 = new Tone.Chorus({
 bassSynth.chain(bassEffect1, bassEffect2);
 
 // create sequences
-const melodySequences = setUpLoop(loops.melodyLoop, melodySynth);
-const bassSequences = setUpLoop(loops.bassLoop, bassSynth);
-const drumSequences = setUpLoop(loops.drumLoop, drumSampler);
+const melodySequences = setUpLoop(melodyLoop, melodySynth);
+const bassSequences = setUpLoop(bassLoop, bassSynth);
+const drumSequences = setUpLoop(drumLoop, drumSampler);
 
 // create filter listeners
 const synthEffects = new EffectsUI("synthEffects", melodyEffect1, melodyEffect2);

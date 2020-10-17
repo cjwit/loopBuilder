@@ -6,6 +6,7 @@ export class Loop {
     this.parts = data.parts;
     this.source = data.source;
     this.tempo = data.tempo;
+    this.rows = [];
     this.domObject = document.getElementById(tagId);
     this.makeRows();
   }
@@ -15,6 +16,7 @@ export class Loop {
     for (let i = 0; i < this.parts.length; i++) {
       let row = new Row(this.parts[i]);
       this.domObject.appendChild(row.domObject);
+      this.rows.push(row);
       rows++;
     }
   }

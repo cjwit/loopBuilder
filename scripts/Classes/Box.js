@@ -6,15 +6,13 @@ export class Box {
     this.domObject = document.createElement("span");
     this.filled = this.isFilled();
 
-    this.domObject.classList.add("box");
-
-    // filled or not
-
     // for identification from the draw command
     let className = partName.toLowerCase().replace(" ", "-") + "-box";
     this.domObject.classList.add(className);
+    this.domObject.classList.add("box");
   }
 
+  // called by Row
   calculateWidth(numberOfBoxes, labelWidth) {
     let percent = 100.0 / numberOfBoxes + "%";
     let padding = labelWidth / numberOfBoxes + 0.1;
@@ -32,7 +30,7 @@ export class Box {
     if (this.value != null && this.value != 0) {
       filled = true;
     }
-    this.domObject.classList.add(this.filled ? "filled-box" : "empty-box");
+    this.domObject.classList.add(filled ? "filled-box" : "empty-box");
     return filled;
   }
 }
