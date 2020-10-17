@@ -33,4 +33,18 @@ export class Box {
     this.domObject.classList.add(filled ? "filled-box" : "empty-box");
     return filled;
   }
+
+  flash() {
+    var box = this.domObject;
+    box.style.backgroundColor = "#2875a1";
+    setTimeout(function () { }, 100);
+    setTimeout(function () {
+      box.animate({
+        backgroundColor: "#570E51"
+      }, 1000);
+    });
+    setTimeout(function () {
+      box.style.backgroundColor = "#570E51";
+    }, 1000);
+  }
 }

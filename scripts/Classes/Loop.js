@@ -75,19 +75,6 @@ export class Loop {
     
     var activeBox = filledBoxes[activeBoxIndex];
     activeBox.domObject.classList.add("active-box");
-    this.animateActiveBox(activeBox);
-  }
-
-  animateActiveBox(box) {
-    box.domObject.style.backgroundColor = "#2875a1";
-    setTimeout(function () { }, 100);
-    setTimeout(function () {
-      box.domObject.animate({
-        backgroundColor: "#570E51"
-      }, 1000);
-    });
-    setTimeout(function () {
-      box.domObject.style.backgroundColor = "#570E51";
-    }, 1000);
+    activeBox.flash();
   }
 }
