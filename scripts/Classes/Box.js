@@ -34,6 +34,7 @@ export class Box {
     return filled;
   }
 
+  // called by Loop.visualCallback()
   flash() {
     var box = this.domObject;
     box.style.backgroundColor = "#2875a1";
