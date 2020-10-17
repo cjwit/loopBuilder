@@ -12,7 +12,7 @@ author: Christopher Witulski
 
 The large boxes under the melody and bass loops control the timbre of those sounds. They are connected to filters: drag the circle to the right or left to change one effect, up and down to change another. Click **Start** or press the **Space Bar** to play and pause the loop.
 
-<div id="playButton"></div>
+<div id="playButton">Start</div>
 
 <div id="melodyLoop" class="loop"></div>
 
