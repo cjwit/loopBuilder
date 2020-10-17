@@ -12,15 +12,15 @@ The large boxes under the melody and bass loops control the timbre of those soun
 
 <div id="playButton">Start</div>
 
-<div id="melodyLoop" class="loop"></div>
+Drag the circle to add or remove distortion and delay to the melody synthesizer.
 
-Drag the circle to add or remove distortion and delay.
+<div id="melodyLoop" class="loop"></div>
 
 <div id="melodyEffects" class="effects"></div>
 
-<div id="bassLoop" class="loop"></div>
+Drag the circle to add or remove "BitCrusher" and "Chorus" effects to the bass synthesizer.
 
-Drag the circle to add or remove "BitCrusher" and "Chorus" effects.
+<div id="bassLoop" class="loop"></div>
 
 <div id="bassEffects" class="effects"></div>
 
