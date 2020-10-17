@@ -1,12 +1,10 @@
 ---
 title: Loop Builder
-author: Christopher Witulski
+author: "<a href='https://cwitulski.com'>Christopher Witulski</a>"
 ---
 <main>
 
-## Testing
-
->Note: this is a draft for a project that spans multiple pages. The layout and look of the page will change depending on where it is published. In its current state, this draft is not intended to represent visual or interactive elements in their final form.
+>Note: This is a thing to see if I can do it. It's only the second thing I've worked on using <a href="https://tonejs.github.io/">Tone.js</a>, but I think I like it so far. It may be the beginning of a few other things, but that will depend.
 
 ## Try it yourself
 

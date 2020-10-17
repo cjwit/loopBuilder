@@ -3,7 +3,7 @@ var melodyLoop = {
   parts: [
     {
       name: "Melody",
-      pattern: ["C4", "C4", null, "Bb3", "C4", null, "Eb4", null],
+      pattern: ["C4", "C5", null, "F4", null, "Eb4", "Bb3", null],
     }
   ]
 }
@@ -13,7 +13,7 @@ var bassLoop = {
   parts: [
     {
       name: "Bass",
-      pattern: ["C3", null, null, "Bb2", null, null, "G3", null],
+      pattern: ["C3", null, null, "G2", "Bb3", null, "G3", null],
     }
   ]
 }
