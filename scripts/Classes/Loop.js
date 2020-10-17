@@ -53,7 +53,6 @@ export class Loop {
   }
   
   createLoop(partNumber) {
-    console.log("loop name", this.tagId, this.source)
     var sequence = new Tone.Sequence((time, note) => {
       this.visualCallback(partNumber);
       this.source.triggerAttackRelease(note, "8n", time);
@@ -73,21 +72,22 @@ export class Loop {
         break;
       }
     }
-  
-    // // style the fade animation for the active box
+    
     var activeBox = filledBoxes[activeBoxIndex];
-    activeBox.domObject.style.backgroundColor = "#2875a1";
+    activeBox.domObject.classList.add("active-box");
+    this.animateActiveBox(activeBox);
+  }
+
+  animateActiveBox(box) {
+    box.domObject.style.backgroundColor = "#2875a1";
     setTimeout(function () { }, 100);
     setTimeout(function () {
-      activeBox.domObject.animate({
+      box.domObject.animate({
         backgroundColor: "#570E51"
       }, 1000);
     });
     setTimeout(function () {
-      activeBox.domObject.style.backgroundColor = "#570E51";
+      box.domObject.style.backgroundColor = "#570E51";
     }, 1000);
-  
-    // // increment which box is active for the next iteration
-    activeBox.domObject.classList.add("active-box");
   }
 }
