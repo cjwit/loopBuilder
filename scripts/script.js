@@ -8,15 +8,15 @@ import { createDrumSampler, createSynth } from './audio.js';
 
 // create sources
 const drumSampler = createDrumSampler();
-const drumVolumeNode = new Tone.Volume(12).toDestination();
+const drumVolumeNode = new Tone.Volume(-6).toDestination();
 drumSampler.connect(drumVolumeNode);
 
 const melodySynth = createSynth();
-const melodyVolumeNode = new Tone.Volume(18).toDestination();
+const melodyVolumeNode = new Tone.Volume(0).toDestination();
 melodySynth.connect(melodyVolumeNode);
 
 const bassSynth = createSynth();
-const bassVolumeNode = new Tone.Volume(0).toDestination();
+const bassVolumeNode = new Tone.Volume(-20).toDestination();
 bassSynth.connect(bassVolumeNode);
 
 // add effects
