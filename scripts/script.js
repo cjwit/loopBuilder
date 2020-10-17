@@ -3,13 +3,7 @@ import { Loop } from './Classes/Loop.js';
 import { PlayButton } from './Classes/PlayButton.js';
 import { EffectsUI } from './Classes/EffectsUI.js';
 import { loops } from './loops.js';
-import { createDrumSampler, createSynth, setUpLoop } from './audio.js';
-
-// set up graphical elements
-const Play = new PlayButton();
-const melodyLoop = new Loop("melodyLoop", loops.melodyLoop);
-const bassLoop = new Loop("bassLoop", loops.bassLoop);
-const drumLoop = new Loop("drumLoop", loops.drumLoop);
+import { createDrumSampler, createSynth } from './audio.js';
 
 // create sources
 const drumSampler = createDrumSampler();
@@ -21,7 +15,7 @@ const melodyGainNode = new Tone.Gain(1).toDestination();
 melodySynth.connect(melodyGainNode);
 
 const bassSynth = createSynth();
-const bassGainNode = new Tone.Gain(1).toDestination();
+const bassGainNode = new Tone.Gain(0.8).toDestination();
 bassSynth.connect(bassGainNode);
 
 // add effects
@@ -53,10 +47,11 @@ const bassEffect2 = new Tone.Chorus({
 
 bassSynth.chain(bassEffect1, bassEffect2);
 
-// create sequences
-const melodySequences = setUpLoop(melodyLoop, melodySynth);
-const bassSequences = setUpLoop(bassLoop, bassSynth);
-const drumSequences = setUpLoop(drumLoop, drumSampler);
+// set up graphical elements and loops
+const Play = new PlayButton();
+const melodyLoop = new Loop("melodyLoop", loops.melodyLoop, melodySynth);
+const bassLoop = new Loop("bassLoop", loops.bassLoop, bassSynth);
+const drumLoop = new Loop("drumLoop", loops.drumLoop, drumSampler);
 
 // create filter listeners
 const synthEffects = new EffectsUI("synthEffects", melodyEffect1, melodyEffect2);

@@ -1,14 +1,16 @@
+import * as Tone from 'tone';
 import { Row } from './Row.js';
 
 export class Loop {
-  constructor(tagId, data) {
+  constructor(tagId, data, source) {
     this.tagId = tagId;
+    this.source = source;
     this.parts = data.parts;
-    this.source = data.source;
     this.tempo = data.tempo;
     this.rows = [];
     this.domObject = document.getElementById(tagId);
     this.makeRows();
+    this.setUpLoop(source);
   }
 
   makeRows() {
@@ -19,5 +21,73 @@ export class Loop {
       this.rows.push(row);
       rows++;
     }
+  }
+
+  setUpLoop() {
+    var needsConverting = false;
+    if (typeof this.parts[0].pattern[0] == "number") {
+      needsConverting = true;
+    }
+  
+    var sequences = [];
+    for (let i = 0; i < this.parts.length; i++) {
+      let part = this.parts[i];
+      if (needsConverting) {
+        part = this.convertPatternToNotes(part);
+      }
+      sequences.push(this.createLoop(i));
+    }
+  
+    return sequences;
+  }
+
+  convertPatternToNotes(part) {
+    for (let i = 0; i < part.pattern.length; i++) {
+      if (part.pattern[i] == 0) {
+        part.pattern[i] = null
+      } else {
+        part.pattern[i] = part.note;
+      }
+    }
+    return part;
+  }
+  
+  createLoop(partNumber) {
+    console.log("loop name", this.tagId, this.source)
+    var sequence = new Tone.Sequence((time, note) => {
+      this.visualCallback(partNumber);
+      this.source.triggerAttackRelease(note, "8n", time);
+    }, this.parts[partNumber].pattern).start(0);
+    return sequence;
+  }
+
+  visualCallback(partNumber) {
+    var row = this.rows[partNumber];
+    var filledBoxes = row.boxes.filter(box => box.domObject.classList.contains("filled-box"));
+  
+    var activeBoxIndex = 0;
+    for (let i = 0; i < filledBoxes.length; i++) {
+      if (filledBoxes[i].domObject.classList.contains("active-box")) {
+        filledBoxes[i].domObject.classList.remove("active-box");
+        activeBoxIndex = (i + 1) % filledBoxes.length;
+        break;
+      }
+    }
+  
+    // // style the fade animation for the active box
+    var activeBox = filledBoxes[activeBoxIndex];
+    activeBox.domObject.style.backgroundColor = "#2875a1";
+    setTimeout(function () { }, 100);
+    setTimeout(function () {
+      activeBox.domObject.animate({
+        backgroundColor: "#570E51"
+      }, 1000);
+    });
+    setTimeout(function () {
+      activeBox.domObject.style.backgroundColor = "#570E51";
+    }, 1000);
+  
+    // // increment which box is active for the next iteration
+    activeBox.domObject.classList.add("active-box");
   }
 }
