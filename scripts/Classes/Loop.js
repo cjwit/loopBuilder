@@ -1,15 +1,43 @@
 import * as Tone from 'tone';
+import { Timeline } from 'tone';
 import { Row } from './Row.js';
 
 export class Loop {
+  /**
+   * Synthesizer loop structure and graphical representation
+   * @param {string} tagId 
+   * @param {object} data 
+   * @param {Tone.Synth} source 
+   */
   constructor(tagId, data, source) {
+    /**
+     * @type {string}
+     */
     this.tagId = tagId;
+    /**
+     * @type {Tone.synth}
+     */
     this.source = source;
+    /**
+     * @type {Array}
+     */
     this.parts = data.parts;
+    /**
+     * @type {number}
+     */
     this.tempo = data.tempo;
+    /**
+     * @type {Array}
+     */
     this.rows = [];
+    /**
+     * @type {HTMLElement}
+     */
     this.domObject = document.getElementById(tagId);
     this.makeRows();
+    /**
+     * @type {Array}
+     */
     this.sequences = this.setUpLoop(source);
   }
 

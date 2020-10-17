@@ -44,7 +44,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">scripts/Classes/Box.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export class Box {
-  constructor(partName, value, positionNumber) {
+  constructor(positionNumber, value) {
     this.value = value;
     this.positionNumber = positionNumber;
     this.position = this.getTransportPosition(this.positionNumber);
@@ -53,19 +53,32 @@
     this.domObject.classList.add(&quot;box&quot;);
   }
 
-  // called by Row after the box is created
+  /**
+   * Called by the parent `Row` using the number of boxes
+   * to calculate and set the CSS width property
+   * @param {number} numberOfBoxes - The number of boxes in the row
+   * @param {number} labelWidth - The row name with, to subtract from the calculation
+   */
   calculateWidth(numberOfBoxes, labelWidth) {
     let percent = 100.0 / numberOfBoxes + &quot;%&quot;;
     let padding = labelWidth / numberOfBoxes + 0.1;
     this.domObject.style.width = &quot;calc(&quot; + percent + &quot; - &quot; + padding + &quot;em)&quot;;
   }
 
+  /**
+   * Used to calculate the position for Tone.Transport
+   * @param {number} positionNumber - This box&apos;s place in the row 
+   */
   getTransportPosition(positionNumber) {
     var beat = Math.floor(positionNumber / 2);
     var sixteenth = positionNumber % 2;
     return `${beat}:${sixteenth}`;
   }
 
+  /**
+   * Determine whether the current box has an event associated with it
+   * and sets the appropriate css class
+   */
   isFilled() {
     let filled = false;
     if (this.value != null &amp;&amp; this.value != 0) {

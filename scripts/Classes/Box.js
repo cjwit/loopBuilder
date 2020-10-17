@@ -8,19 +8,32 @@ export class Box {
     this.domObject.classList.add("box");
   }
 
-  // called by Row after the box is created
+  /**
+   * Called by the parent `Row` using the number of boxes
+   * to calculate and set the CSS width property
+   * @param {number} numberOfBoxes - The number of boxes in the row
+   * @param {number} labelWidth - The row name with, to subtract from the calculation
+   */
   calculateWidth(numberOfBoxes, labelWidth) {
     let percent = 100.0 / numberOfBoxes + "%";
     let padding = labelWidth / numberOfBoxes + 0.1;
     this.domObject.style.width = "calc(" + percent + " - " + padding + "em)";
   }
 
+  /**
+   * Used to calculate the position for Tone.Transport
+   * @param {number} positionNumber - This box's place in the row 
+   */
   getTransportPosition(positionNumber) {
     var beat = Math.floor(positionNumber / 2);
     var sixteenth = positionNumber % 2;
     return `${beat}:${sixteenth}`;
   }
 
+  /**
+   * Determine whether the current box has an event associated with it
+   * and sets the appropriate css class
+   */
   isFilled() {
     let filled = false;
     if (this.value != null && this.value != 0) {

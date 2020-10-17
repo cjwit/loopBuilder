@@ -50,6 +50,11 @@ export class DrumLoop extends Loop {
     super(tagId, data, source);
   }
 
+  /**
+   * Create loops, overwrites `Loop.setUpLoop()` to convert
+   * an array of numbers into notes, as used by the drum sampler
+   * @return { Array } An array of sequence objects
+   */
   setUpLoop() {
     var sequences = [];
     for (let i = 0; i &lt; this.parts.length; i++) {
@@ -60,6 +65,12 @@ export class DrumLoop extends Loop {
     return sequences;
   }
 
+  /**
+   * Used by the overwritten setUpLoop() to convert an array
+   * of numbers into note names
+   * @param { Object } part Part object that includes an array of numbers in `part.pattern`
+   * @return { Object } Part object with the pattern converted into notes
+   */
   convertPatternToNotes(part) {
     for (let i = 0; i &lt; part.pattern.length; i++) {
       if (part.pattern[i] == 0) {

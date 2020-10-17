@@ -137,13 +137,15 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html#instance-method-convertPatternToNotes">convertPatternToNotes</a></span></span><span class="code" data-ice="signature">(part: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html#instance-method-convertPatternToNotes">convertPatternToNotes</a></span></span><span class="code" data-ice="signature">(part: <span> Object </span>): <span> Object </span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Used by the overwritten setUpLoop() to convert an array
+of numbers into note names</p>
+</div>
       </div>
     </td>
     <td>
@@ -165,13 +167,15 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html#instance-method-setUpLoop">setUpLoop</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html#instance-method-setUpLoop">setUpLoop</a></span></span><span class="code" data-ice="signature">(): <span> Array </span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Create loops, overwrites <code>Loop.setUpLoop()</code> to convert
+an array of numbers into notes, as used by the drum sampler</p>
+</div>
       </div>
     </td>
     <td>
@@ -201,7 +205,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-domObject">domObject</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-domObject">domObject</a></span></span><span class="code" data-ice="signature">: <span>HTMLElement</span></span>
         </p>
       </div>
       <div>
@@ -229,7 +233,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-parts">parts</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-parts">parts</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
         </p>
       </div>
       <div>
@@ -257,7 +261,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-rows">rows</a></span></span><span class="code" data-ice="signature">: <span><span>*</span><span>[]</span></span></span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-rows">rows</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
         </p>
       </div>
       <div>
@@ -285,7 +289,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-sequences">sequences</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-sequences">sequences</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
         </p>
       </div>
       <div>
@@ -313,7 +317,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-source">source</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-source">source</a></span></span><span class="code" data-ice="signature">: <span>Tone.synth</span></span>
         </p>
       </div>
       <div>
@@ -341,7 +345,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-tagId">tagId</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-tagId">tagId</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -369,7 +373,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-tempo">tempo</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-tempo">tempo</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -494,7 +498,8 @@
   
   
   
-  
+  <div data-ice="description"><p>Synthesizer loop structure and graphical representation</p>
+</div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-constructor-constructor">Loop#constructor</a></span></div>
 
@@ -530,18 +535,20 @@
     
     
     
-    <span class="code" data-ice="name">convertPatternToNotes</span><span class="code" data-ice="signature">(part: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">convertPatternToNotes</span><span class="code" data-ice="signature">(part: <span> Object </span>): <span> Object </span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/DrumLoop.js.html#lineNumber18">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/DrumLoop.js.html#lineNumber29">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Used by the overwritten setUpLoop() to convert an array
+of numbers into note names</p>
+</div>
 
   
 
@@ -555,9 +562,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">part</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span> Object </span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Part object that includes an array of numbers in <code>part.pattern</code></p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -569,8 +577,9 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span> Object </span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Part object with the pattern converted into notes</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -601,18 +610,20 @@
     
     
     
-    <span class="code" data-ice="name">setUpLoop</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="code" data-ice="name">setUpLoop</span><span class="code" data-ice="signature">(): <span> Array </span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/DrumLoop.js.html#lineNumber8">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/DrumLoop.js.html#lineNumber13">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Create loops, overwrites <code>Loop.setUpLoop()</code> to convert
+an array of numbers into notes, as used by the drum sampler</p>
+</div>
 
   <div data-ice="override"><h4>Override:</h4><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-method-setUpLoop">Loop#setUpLoop</a></span></div>
 
@@ -624,8 +635,9 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span> Array </span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>An array of sequence objects</p>
+</td>
         </tr>
       </tbody>
     </table>
