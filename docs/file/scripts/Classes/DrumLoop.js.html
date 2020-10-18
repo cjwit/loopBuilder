@@ -32,10 +32,12 @@
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createDrumSampler">createDrumSampler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSynth">createSynth</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-loops">loops</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/BassLoop.js~BassLoop.html">BassLoop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html">DrumLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/EffectsUI.js~EffectsUI.html">EffectsUI</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/MelodyLoop.js~MelodyLoop.html">MelodyLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
 </ul>
@@ -43,43 +45,39 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">scripts/Classes/DrumLoop.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Loop } from &apos;./Loop.js&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Tone } from &apos;tone/build/esm/core/Tone&apos;;
+import { Loop } from &apos;./Loop.js&apos;;
 
+/**
+ * Creates and controls the drum loop, overwrites the convertPattern() method
+ */
 export class DrumLoop extends Loop {
+  /**
+   * @param {string} tagId 
+   * @param {object} data 
+   * @param {Tone.Sampler} source 
+   */
   constructor(tagId, data, source) {
     super(tagId, data, source);
   }
 
-  /**
-   * Create loops, overwrites `Loop.setUpLoop()` to convert
-   * an array of numbers into notes, as used by the drum sampler
-   * @return { Array } An array of sequence objects
-   */
-  setUpLoop() {
-    var sequences = [];
-    for (let i = 0; i &lt; this.parts.length; i++) {
-      this.parts[i] = this.convertPatternToNotes(this.parts[i]);
-      sequences.push(this.createLoop(i));
-    }
-  
-    return sequences;
-  }
-
-  /**
+    /**
    * Used by the overwritten setUpLoop() to convert an array
    * of numbers into note names
-   * @param { Object } part Part object that includes an array of numbers in `part.pattern`
-   * @return { Object } Part object with the pattern converted into notes
    */
-  convertPatternToNotes(part) {
-    for (let i = 0; i &lt; part.pattern.length; i++) {
-      if (part.pattern[i] == 0) {
-        part.pattern[i] = null
-      } else {
-        part.pattern[i] = part.note;
+  convertPattern() {
+    var newPartsArray = [];
+    this.parts.forEach(part =&gt; {
+      for (let i = 0; i &lt; part.pattern.length; i++) {
+        if (part.pattern[i] == 0) {
+          part.pattern[i] = null
+        } else {
+          part.pattern[i] = part.note;
+        }
       }
-    }
-    return part;
+      newPartsArray.push(part);
+    })
+    this.parts = newPartsArray;
   }
 }</code></pre>
 

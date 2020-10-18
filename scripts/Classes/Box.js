@@ -1,9 +1,32 @@
+/**
+ * Creates and handles Box object data and
+ * DOM interactions, including visual callbacks
+ */
 export class Box {
+  /**
+   * @param {number} positionNumber 
+   * @param {number} value 
+   */
   constructor(positionNumber, value) {
+    /**
+     * @type {number}
+     */
     this.value = value;
+    /**
+     * @type {number}
+     */
     this.positionNumber = positionNumber;
+    /**
+     * @type {string} A string in the format of 0:0 showing beat:sixteenth
+     */
     this.position = this.getTransportPosition(this.positionNumber);
+    /**
+     * @type {HTMLElement}
+     */
     this.domObject = document.createElement("span");
+    /**
+     * @type {boolean}
+     */
     this.filled = this.isFilled();
     this.domObject.classList.add("box");
   }

@@ -1,6 +1,9 @@
 import * as Tone from 'tone';
 import { Row } from './Row.js';
 
+/**
+ * Parent interface for MelodyLoop, BassLoop, and DrumLoop
+ */
 export class Loop {
   /**
    * Synthesizer loop structure and graphical representation
@@ -33,16 +36,36 @@ export class Loop {
      * @type {HTMLElement}
      */
     this.domObject = document.getElementById(tagId);
+
+    /**
+     * @type {Array}
+     */
+    this.scale = this.setScale();
     this.convertPattern();
     this.makeRows();
     /**
      * @type {Array}
      */
     this.sequences = this.setUpLoop(source);
+
   }
 
-  convertPattern() {}
+  /**
+   * Overridden by subclasses to set individual scales
+   * @return {Array} Scale members as strings with note names and octaves
+   */
+  setScale() { return [] }
 
+  /**
+   * Overridden by subclasses to process incoming pattern arrays and
+   * save them to `this.pattern`
+   */
+  convertPattern() { }
+
+  /**
+   * Uses `this.parts` to create and store new row class objects and
+   * add them to the DOM
+   */
   makeRows() {
     this.parts.forEach(part => {
       let row = new Row(part.note, part.pattern);
@@ -51,7 +74,9 @@ export class Loop {
     })
   }
 
-
+  /**
+   * Iterate through `this.parts` to create and store sequence objects
+   */
   setUpLoop() {
     var sequences = [];
     for (let i = 0; i < this.parts.length; i++) {
@@ -60,6 +85,11 @@ export class Loop {
     return sequences;
   }
 
+  /**
+   * Used by `setUpLoo()` to create individual `Tone.Sequence` objects
+   * and assign visual callbacks
+   * @param {number} partNumber 
+   */
   createLoop(partNumber) {
     var sequence = new Tone.Sequence((time, note) => {
       this.rows[partNumber].flashActiveBox();

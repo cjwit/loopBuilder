@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">scripts/audio.js | loopBuilder</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">scripts/Classes/MelodyLoop.js | loopBuilder</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -44,42 +44,56 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">scripts/audio.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import * as Tone from &apos;tone&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">scripts/Classes/MelodyLoop.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Tone } from &apos;tone/build/esm/core/Tone&apos;;
+import { Loop } from &apos;./Loop.js&apos;;
 
-import hihat from &quot;../audio/hihat.mp3&quot;;
-import snare from &quot;../audio/snare.mp3&quot;;
-import kick from &quot;../audio/kick.mp3&quot;;
-import clave from &quot;../audio/clave.mp3&quot;;
-import ding from &quot;../audio/ding.mp3&quot;;
-import bongo1 from &quot;../audio/bongo1.mp3&quot;;
-import bongo2 from &quot;../audio/bongo2.mp3&quot;;
-import tom3 from &quot;../audio/tom3.mp3&quot;;
-import cowbell from &quot;../audio/cowbell.mp3&quot;;
+/**
+ * Defines the scale for a melody loop graphical interface and the pattern
+ * conversion method used by this and other melodic loops
+ */
+export class MelodyLoop extends Loop {
+  /**
+   * 
+   * @param {string} tagId 
+   * @param {object} data 
+   * @param {Tone.Synth} source 
+   */
+  constructor(tagId, data, source) {
+    super(tagId, data, source);
+  }
 
-export function createDrumSampler() {
-  const drumSampler = new Tone.Sampler({
-    urls: {
-      A1: hihat,
-      A2: snare,
-      A3: kick,
-      A4: clave,
-      A5: ding,
-      A6: bongo1,
-      A7: bongo2,
-      A8: tom3,
-      A9: cowbell,
-    },
-  }).toDestination();
+  /**
+   * @return {Array} Scale members as strings with note names and octaves
+   */
+  setScale() {
+    return [&quot;G2&quot;, &quot;A3&quot;, &quot;Bb3&quot;, &quot;C3&quot;, &quot;D3&quot;, &quot;Eb3&quot;, &quot;F3&quot;, &quot;G3&quot;, &quot;A4&quot;, &quot;Bb4&quot;, &quot;C4&quot;, &quot;D4&quot;, &quot;Eb4&quot;, &quot;F4&quot;, &quot;G4&quot;, &quot;A5&quot;, &quot;Bb5&quot;, &quot;C5&quot;];
+  }
 
-  return drumSampler;
-}
+  /**
+   * Convert an array of note names into a series of patterns for use by `makeRows()`
+   */
+  convertPattern() {
+    var melody = this.parts[0].pattern;
+    var newPartsArray = [];
 
-export function createSynth() {
-  const synth = new Tone.Synth().toDestination();
-  return synth;
-}
-</code></pre>
+    for (let i = this.scale.length - 1; i &gt;= 0; i--) {
+      let currentNotePattern = [];
+      let currentNote = this.scale[i];
+      melody.forEach(melodyNote =&gt; {
+        if (melodyNote == currentNote) {
+          currentNotePattern.push(currentNote)
+        } else {
+          currentNotePattern.push(null);
+        }
+      })
+      newPartsArray.push({ note: currentNote, pattern: currentNotePattern });
+    }
+
+    this.parts = newPartsArray;
+  }
+
+}</code></pre>
 
 </div>
 

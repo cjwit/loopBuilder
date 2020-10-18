@@ -1,6 +1,7 @@
 import * as Tone from 'tone';
 import { MelodyLoop } from './Classes/MelodyLoop.js';
 import { DrumLoop } from './Classes/DrumLoop.js';
+import { BassLoop } from './Classes/BassLoop.js';
 import { PlayButton } from './Classes/PlayButton.js';
 import { EffectsUI } from './Classes/EffectsUI.js';
 import { loops } from './loops.js';
@@ -51,7 +52,7 @@ bassSynth.chain(bassEffect1, bassEffect2);
 // set up loops
 const Play = new PlayButton();
 const melodyLoop = new MelodyLoop("melodyLoop", loops.melodyLoop, melodySynth);
-const bassLoop = new MelodyLoop("bassLoop", loops.bassLoop, bassSynth);
+const bassLoop = new BassLoop("bassLoop", loops.bassLoop, bassSynth);
 const drumLoop = new DrumLoop("drumLoop", loops.drumLoop, drumSampler);
 
 // set up filter listeners

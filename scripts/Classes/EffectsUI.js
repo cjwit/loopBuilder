@@ -1,13 +1,38 @@
+import { Tone } from "tone/build/esm/core/Tone";
+
+/**
+ * Create and handle effects user interaction objects
+ */
 export class EffectsUI {
+  /**
+   * @param {string} tagId 
+   * @param {*} effect1 
+   * @param {*} effect2 
+   */
   constructor(tagId, effect1 = null, effect2 = null) {
+    /**
+     * @type {string}
+     */
     this.tagId = tagId;
+    /**
+     * @type {*}
+     */
     this.effect1 = effect1;
+    /**
+     * @type {*}
+     */
     this.effect2 = effect2;
+    /**
+     * @type {HTMLElement}
+     */
     this.domObject = document.getElementById(this.tagId);
 
     this.createHandle();
   }
 
+  /**
+   * Create handle for user interactions
+   */
   createHandle() {
     var handle = document.createElement("span");
     handle.classList.add("handle");
@@ -40,6 +65,9 @@ export class EffectsUI {
     });
   }
 
+  /**
+   * Read handle location and update effect levels
+   */
   updateEffects() {
     if (this.effect1) {
       this.effect1.wet.value = this.effect1Value;

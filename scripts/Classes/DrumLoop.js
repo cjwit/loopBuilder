@@ -1,7 +1,15 @@
+import { Tone } from 'tone/build/esm/core/Tone';
 import { Loop } from './Loop.js';
-import { Row } from './Row.js';
 
+/**
+ * Creates and controls the drum loop, overwrites the convertPattern() method
+ */
 export class DrumLoop extends Loop {
+  /**
+   * @param {string} tagId 
+   * @param {object} data 
+   * @param {Tone.Sampler} source 
+   */
   constructor(tagId, data, source) {
     super(tagId, data, source);
   }
@@ -9,8 +17,6 @@ export class DrumLoop extends Loop {
     /**
    * Used by the overwritten setUpLoop() to convert an array
    * of numbers into note names
-   * @param { Object } part Part object that includes an array of numbers in `part.pattern`
-   * @return { Object } Part object with the pattern converted into notes
    */
   convertPattern() {
     var newPartsArray = [];

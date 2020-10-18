@@ -32,10 +32,12 @@
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createDrumSampler">createDrumSampler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSynth">createSynth</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-loops">loops</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/BassLoop.js~BassLoop.html">BassLoop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html">DrumLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/EffectsUI.js~EffectsUI.html">EffectsUI</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/MelodyLoop.js~MelodyLoop.html">MelodyLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
 </ul>
@@ -44,9 +46,11 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">scripts/Classes/Loop.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import * as Tone from &apos;tone&apos;;
-import { Timeline } from &apos;tone&apos;;
 import { Row } from &apos;./Row.js&apos;;
 
+/**
+ * Parent interface for MelodyLoop, BassLoop, and DrumLoop
+ */
 export class Loop {
   /**
    * Synthesizer loop structure and graphical representation
@@ -79,23 +83,47 @@ export class Loop {
      * @type {HTMLElement}
      */
     this.domObject = document.getElementById(tagId);
+
+    /**
+     * @type {Array}
+     */
+    this.scale = this.setScale();
+    this.convertPattern();
     this.makeRows();
     /**
      * @type {Array}
      */
     this.sequences = this.setUpLoop(source);
+
   }
 
+  /**
+   * Overridden by subclasses to set individual scales
+   * @return {Array} Scale members as strings with note names and octaves
+   */
+  setScale() { return [] }
+
+  /**
+   * Overridden by subclasses to process incoming pattern arrays and
+   * save them to `this.pattern`
+   */
+  convertPattern() { }
+
+  /**
+   * Uses `this.parts` to create and store new row class objects and
+   * add them to the DOM
+   */
   makeRows() {
-    var rows = 0;
-    for (let i = 0; i &lt; this.parts.length; i++) {
-      let row = new Row(this.parts[i]);
+    this.parts.forEach(part =&gt; {
+      let row = new Row(part.note, part.pattern);
       this.domObject.appendChild(row.domObject);
       this.rows.push(row);
-      rows++;
-    }
+    })
   }
 
+  /**
+   * Iterate through `this.parts` to create and store sequence objects
+   */
   setUpLoop() {
     var sequences = [];
     for (let i = 0; i &lt; this.parts.length; i++) {
@@ -104,6 +132,11 @@ export class Loop {
     return sequences;
   }
 
+  /**
+   * Used by `setUpLoo()` to create individual `Tone.Sequence` objects
+   * and assign visual callbacks
+   * @param {number} partNumber 
+   */
   createLoop(partNumber) {
     var sequence = new Tone.Sequence((time, note) =&gt; {
       this.rows[partNumber].flashActiveBox();
