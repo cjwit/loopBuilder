@@ -29,6 +29,9 @@ export class Box {
      */
     this.filled = this.isFilled();
     this.domObject.classList.add("box");
+    this.domObject.addEventListener("click", (e) => {
+      this.switchFilledBox();
+    })
   }
 
   /**
@@ -80,5 +83,18 @@ export class Box {
     setTimeout(function () {
       box.style.backgroundColor = bgColor;
     }, 1000);
+  }
+
+  /**
+   * Switch the status of a box as filled and not filled
+   */
+  switchFilledBox() {
+    if (this.domObject.classList.contains("filled-box")) {
+      this.domObject.classList.remove("filled-box");
+      this.domObject.classList.add("empty-box");
+    } else {
+      this.domObject.classList.add("filled-box");
+      this.domObject.classList.remove("empty-box");
+    }
   }
 }
