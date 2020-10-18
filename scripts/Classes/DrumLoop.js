@@ -26,18 +26,4 @@ export class DrumLoop extends Loop {
     })
     this.parts = newPartsArray;
   }
-
-  /**
-   * Create loops, overwrites `Loop.setUpLoop()` to convert
-   * an array of numbers into notes, as used by the drum sampler
-   * @return { Array } An array of sequence objects
-   */
-  setUpLoop() {
-    var sequences = [];
-    for (let i = 0; i < this.parts.length; i++) {
-      sequences.push(this.createLoop(i));
-    }
-  
-    return sequences;
-  }
 }
