@@ -57,6 +57,30 @@ export class Box {
   }
 
   /**
+   * Iterate through `this.parts` to create and store sequence objects
+   */
+  setUpLoop() {
+    var sequences = [];
+    for (let i = 0; i < this.parts.length; i++) {
+      sequences.push(this.createLoop(i));
+    }
+    return sequences;
+  }
+
+  /**
+   * Used by `setUpLoo()` to create individual `Tone.Sequence` objects
+   * and assign visual callbacks
+   * @param {number} partNumber 
+   */
+  createLoop(partNumber) {
+    var sequence = new Tone.Sequence((time, note) => {
+      this.rows[partNumber].flashActiveBox();
+      this.source.triggerAttackRelease(note, "8n", time);
+    }, this.parts[partNumber].pattern).start(0);
+    return sequence;
+  }
+
+  /**
    * Determine whether the current box has an event associated with it
    * and sets the appropriate css class
    */

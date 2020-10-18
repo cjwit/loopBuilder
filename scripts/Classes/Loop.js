@@ -1,4 +1,3 @@
-import * as Tone from 'tone';
 import { Row } from './Row.js';
 
 /**
@@ -43,11 +42,6 @@ export class Loop {
     this.scale = this.setScale();
     this.convertPattern();
     this.makeRows();
-    /**
-     * @type {Array}
-     */
-    this.sequences = this.setUpLoop(source);
-
   }
 
   /**
@@ -68,33 +62,9 @@ export class Loop {
    */
   makeRows() {
     this.parts.forEach(part => {
-      let row = new Row(part.name, part.pattern);
+      let row = new Row(part, this.source);
       this.domObject.appendChild(row.domObject);
       this.rows.push(row);
     })
-  }
-
-  /**
-   * Iterate through `this.parts` to create and store sequence objects
-   */
-  setUpLoop() {
-    var sequences = [];
-    for (let i = 0; i < this.parts.length; i++) {
-      sequences.push(this.createLoop(i));
-    }
-    return sequences;
-  }
-
-  /**
-   * Used by `setUpLoo()` to create individual `Tone.Sequence` objects
-   * and assign visual callbacks
-   * @param {number} partNumber 
-   */
-  createLoop(partNumber) {
-    var sequence = new Tone.Sequence((time, note) => {
-      this.rows[partNumber].flashActiveBox();
-      this.source.triggerAttackRelease(note, "8n", time);
-    }, this.parts[partNumber].pattern).start(0);
-    return sequence;
   }
 }

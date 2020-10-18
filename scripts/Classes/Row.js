@@ -1,3 +1,4 @@
+import * as Tone from 'tone';
 import { Box } from './Box.js';
 
 /**
@@ -5,10 +6,11 @@ import { Box } from './Box.js';
  */
 export class Row {
   /**
-   * @param {string} note 
-   * @param {array} pattern 
+   * @param {object} part
+   * @param {Tone.Synth} source 
    */
-  constructor(note, pattern) {
+  constructor(part, source) {
+    console.log(part);
     /**
      * @type {number}
      */
@@ -16,11 +18,24 @@ export class Row {
     /**
      * @type {string}
      */
-    this.name = note;
+    this.name = part.name;
     /**
      * @type {array}
      */
-    this.pattern = pattern;
+    this.note = part.note;
+    /**
+     * @type {array}
+     */
+    this.pattern = part.pattern;
+    /**
+    * @type {Tone.synth}
+    */
+   this.source = source;
+    /**
+     * @type {array}
+     */
+    this.sequence = this.createLoop();
+    console.log(part.sequence)
     /**
      * @type {array}
      */
@@ -32,9 +47,9 @@ export class Row {
     this.domObject.classList.add("row-of-boxes");
     this.domObject.appendChild(this.makeRowLabel(this.name));
 
-    for (let i = 0; i < pattern.length; i++) {
-      let box = new Box(i, pattern[i]);
-      box.calculateWidth(pattern.length, this.labelWidth);
+    for (let i = 0; i < this.pattern.length; i++) {
+      let box = new Box(i, this.pattern[i]);
+      box.calculateWidth(this.pattern.length, this.labelWidth);
       this.domObject.appendChild(box.domObject);
       this.boxes.push(box);
     }
@@ -51,6 +66,19 @@ export class Row {
     rowName.innerText = label;
     rowName.style.width = this.labelWidth + "em";
     return rowName;
+  }
+
+  /**
+   * Used by `setUpLoop()` to create individual `Tone.Sequence` objects
+   * and assign visual callbacks
+   * @param {number} partNumber 
+   */
+  createLoop() {
+    var sequence = new Tone.Sequence((time, note) => {
+      this.flashActiveBox();
+      this.source.triggerAttackRelease(note, "8n", time);
+    }, this.pattern).start(0);
+    return sequence;
   }
 
   /**
