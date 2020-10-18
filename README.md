@@ -11,10 +11,10 @@ This is a test project that links [tone.js](https://tonejs.github.io) to a graph
 
 ### Next
 
+* Check DrumLoop version to make sure it's working correctly
 * Rework flashActiveBox() using position information
 * Reconsider box vs row class info (pass part and parent row to box, perhaps?)
 * Consider removing note names
-* Reset loop, ideally without stopping, may require changing sequence object
 
 ### After that
 
