@@ -29,6 +29,6 @@ export function createDrumSampler() {
 }
 
 export function createSynth() {
-  const synth = new Tone.Synth().toDestination();
+  const synth = new Tone.PolySynth().toDestination();
   return synth;
 }
