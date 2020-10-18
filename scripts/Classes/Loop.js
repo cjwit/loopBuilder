@@ -95,6 +95,7 @@ export class Loop {
       this.rows[partNumber].flashActiveBox();
       this.source.triggerAttackRelease(note, "8n", time);
     }, this.parts[partNumber].pattern).start(0);
+    console.log(this.tagId, sequence._eventsArray)
     return sequence;
   }
 }
