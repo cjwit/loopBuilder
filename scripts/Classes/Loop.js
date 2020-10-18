@@ -33,6 +33,7 @@ export class Loop {
      * @type {HTMLElement}
      */
     this.domObject = document.getElementById(tagId);
+    this.convertPattern();
     this.makeRows();
     /**
      * @type {Array}
@@ -40,7 +41,7 @@ export class Loop {
     this.sequences = this.setUpLoop(source);
   }
 
-  makeRows() {
+  convertPattern() {
     var notes = ["G2", "A3", "Bb3", "C3", "D3", "Eb3", "F3", "G3", "A4", "Bb4", "C4", "D4", "Eb4", "F4", "G4", "A5", "Bb5", "C5"];
     var melody = this.parts[0].pattern;
     var newPartsArray = [];
@@ -55,14 +56,20 @@ export class Loop {
           currentNotePattern.push(null);
         }
       })
-      let row = new Row (currentNote, currentNotePattern)
-      this.domObject.appendChild(row.domObject);
-      this.rows.push(row);
       newPartsArray.push({ note: currentNote, pattern: currentNotePattern });
     }
 
     this.parts = newPartsArray;
   }
+
+  makeRows() {
+    this.parts.forEach(part => {
+      let row = new Row(part.note, part.pattern);
+      this.domObject.appendChild(row.domObject);
+      this.rows.push(row);
+    })
+  }
+
 
   setUpLoop() {
     var sequences = [];
