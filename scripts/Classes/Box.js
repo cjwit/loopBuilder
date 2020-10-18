@@ -153,6 +153,7 @@ export class Box {
       pattern[this.positionNumber] = null;
     }
     console.log(pattern);
+    this.sequence.dispose();
     this.sequence = new Tone.Sequence((time, note) => {
       // this.flashActiveBox();
       this.source.triggerAttackRelease(note, "8n", time);
