@@ -43,6 +43,7 @@ export class Loop {
   makeRows() {
     var notes = ["G2", "A3", "Bb3", "C3", "D3", "Eb3", "F3", "G3", "A4", "Bb4", "C4", "D4", "Eb4", "F4", "G4", "A5", "Bb5", "C5"];
     var melody = this.parts[0].pattern;
+    var newPartsArray = [];
 
     for (let i = notes.length - 1; i >= 0; i--) {
       let currentNotePattern = [];
@@ -57,7 +58,10 @@ export class Loop {
       let row = new Row (currentNote, currentNotePattern)
       this.domObject.appendChild(row.domObject);
       this.rows.push(row);
+      newPartsArray.push({ note: currentNote, pattern: currentNotePattern });
     }
+
+    this.parts = newPartsArray;
   }
 
   setUpLoop() {
@@ -70,7 +74,7 @@ export class Loop {
 
   createLoop(partNumber) {
     var sequence = new Tone.Sequence((time, note) => {
-      // this.rows[partNumber].flashActiveBox();
+      this.rows[partNumber].flashActiveBox();
       this.source.triggerAttackRelease(note, "8n", time);
     }, this.parts[partNumber].pattern).start(0);
     return sequence;

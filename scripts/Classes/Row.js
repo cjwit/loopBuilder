@@ -26,9 +26,13 @@ export class Row {
     return rowName;
   }
 
+  /**
+   * Called in the Tone.Sequencer callback to determine which
+   * box to animate
+   */
   flashActiveBox() {
     var filledBoxes = this.boxes.filter(box => box.domObject.classList.contains("filled-box"));
-  
+    // console.log(this.name, filledBoxes);
     var activeBoxIndex = 0;
     for (let i = 0; i < filledBoxes.length; i++) {
       if (filledBoxes[i].domObject.classList.contains("active-box")) {
