@@ -3,7 +3,7 @@ var melodyLoop = {
   parts: [
     {
       name: "Melody",
-      pattern: ["C4", "C5", null, "F4", null, "Eb4", "Bb4", null],
+      pattern: ["C5", "C6", null, "F5", null, "Eb5", "Bb4", null],
     }
   ]
 }

@@ -18,6 +18,6 @@ export class BassLoop extends MelodyLoop {
    * @return {Array} Scale members as strings with note names and octaves
    */
   setScale() {
-    return ["G2", "A3", "Bb3", "C3", "D3", "Eb3", "F3", "G3", "A4", "Bb4", "C4"];
+    return ["G2", "A2", "Bb2", "C3", "D3", "Eb3", "F3", "G3", "A3", "Bb3", "C4"];
   }
 }

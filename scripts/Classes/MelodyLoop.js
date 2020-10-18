@@ -20,7 +20,7 @@ export class MelodyLoop extends Loop {
    * @return {Array} Scale members as strings with note names and octaves
    */
   setScale() {
-    return ["G3", "A4", "Bb4", "C4", "D4", "Eb4", "F4", "G4", "A5", "Bb5", "C5"];
+    return ["G4", "A4", "Bb4", "C5", "D5", "Eb5", "F5", "G5", "A5", "Bb5", "C6"];
   }
 
   /**

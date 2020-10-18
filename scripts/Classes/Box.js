@@ -25,7 +25,6 @@ export class Box {
     /**
      * @type {string} A string in the format of 0:0 showing beat:sixteenth
      */
-    console.log(note)
     this.position = this.getTransportPosition(this.positionNumber);
     /**
      * @type {Tone.Sequence} Parent row's sequence object
