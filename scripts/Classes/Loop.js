@@ -68,7 +68,7 @@ export class Loop {
    */
   makeRows() {
     this.parts.forEach(part => {
-      let row = new Row(part.note, part.pattern);
+      let row = new Row(part.name, part.pattern);
       this.domObject.appendChild(row.domObject);
       this.rows.push(row);
     })
