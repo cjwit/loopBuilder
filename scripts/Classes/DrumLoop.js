@@ -1,8 +1,19 @@
 import { Loop } from './Loop.js';
+import { Row } from './Row.js';
 
 export class DrumLoop extends Loop {
   constructor(tagId, data, source) {
     super(tagId, data, source);
+  }
+
+  makeRows() {
+    var rows = 0;
+    for (let i = 0; i < this.parts.length; i++) {
+      let row = new Row(this.parts[i].name, this.parts[i].pattern);
+      this.domObject.appendChild(row.domObject);
+      this.rows.push(row);
+      rows++;
+    }
   }
 
   /**

@@ -1,5 +1,4 @@
 import * as Tone from 'tone';
-import { Timeline } from 'tone';
 import { Row } from './Row.js';
 
 export class Loop {
@@ -42,12 +41,22 @@ export class Loop {
   }
 
   makeRows() {
-    var rows = 0;
-    for (let i = 0; i < this.parts.length; i++) {
-      let row = new Row(this.parts[i]);
+    var notes = ["G2", "A3", "Bb3", "C3", "D3", "Eb3", "F3", "G3", "A4", "Bb4", "C4", "D4", "Eb4", "F4", "G4", "A5", "Bb5", "C5"];
+    var melody = this.parts[0].pattern;
+
+    for (let i = notes.length - 1; i >= 0; i--) {
+      let currentNotePattern = [];
+      let currentNote = notes[i];
+      melody.forEach(melodyNote => {
+        if (melodyNote == currentNote) {
+          currentNotePattern.push(currentNote)
+        } else {
+          currentNotePattern.push(null);
+        }
+      })
+      let row = new Row (currentNote, currentNotePattern)
       this.domObject.appendChild(row.domObject);
       this.rows.push(row);
-      rows++;
     }
   }
 
@@ -61,7 +70,7 @@ export class Loop {
 
   createLoop(partNumber) {
     var sequence = new Tone.Sequence((time, note) => {
-      this.rows[partNumber].flashActiveBox();
+      // this.rows[partNumber].flashActiveBox();
       this.source.triggerAttackRelease(note, "8n", time);
     }, this.parts[partNumber].pattern).start(0);
     return sequence;

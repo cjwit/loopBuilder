@@ -1,17 +1,18 @@
 import { Box } from './Box.js';
 
 export class Row {
-  constructor(part) {
+  constructor(note, pattern) {
     this.labelWidth = 6.0;
-    this.name = part.name;
+    this.name = note;
+    this.pattern = pattern;
     this.boxes = [];
     this.domObject = document.createElement("div");
     this.domObject.classList.add("row-of-boxes");
-    this.domObject.appendChild(this.makeRowLabel(part.name));
+    this.domObject.appendChild(this.makeRowLabel(this.name));
 
-    for (let i = 0; i < part.pattern.length; i++) {
-      let box = new Box(i, part.pattern[i]);
-      box.calculateWidth(part.pattern.length, this.labelWidth);
+    for (let i = 0; i < pattern.length; i++) {
+      let box = new Box(i, pattern[i]);
+      box.calculateWidth(pattern.length, this.labelWidth);
       this.domObject.appendChild(box.domObject);
       this.boxes.push(box);
     }
