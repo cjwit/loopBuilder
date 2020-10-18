@@ -31,7 +31,7 @@ export class PlayButton {
   }
 
   stop() {
-    Tone.Transport.pause();
+    Tone.Transport.stop();
     this.domObject.innerText = "Start";
   }
 }

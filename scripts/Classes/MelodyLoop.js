@@ -40,7 +40,7 @@ export class MelodyLoop extends Loop {
           currentNotePattern.push(null);
         }
       })
-      newPartsArray.push({ name: currentNote, pattern: currentNotePattern });
+      newPartsArray.push({ note: currentNote, name: currentNote, pattern: currentNotePattern });
     }
 
     this.parts = newPartsArray;

@@ -1,3 +1,5 @@
+import * as Tone from "tone";
+
 /**
  * Creates and handles Box object data and
  * DOM interactions, including visual callbacks
@@ -7,7 +9,7 @@ export class Box {
    * @param {number} positionNumber 
    * @param {number} value 
    */
-  constructor(positionNumber, value) {
+  constructor(positionNumber, value, note, sequence, source) {
     /**
      * @type {number}
      */
@@ -17,9 +19,22 @@ export class Box {
      */
     this.positionNumber = positionNumber;
     /**
+     * @type {string}
+     */
+    this.note = note;
+    /**
      * @type {string} A string in the format of 0:0 showing beat:sixteenth
      */
+    console.log(note)
     this.position = this.getTransportPosition(this.positionNumber);
+    /**
+     * @type {Tone.Sequence} Parent row's sequence object
+     */
+    this.sequence = sequence
+    /**
+    * @type {Tone.synth}
+    */
+   this.source = source;
     /**
      * @type {HTMLElement}
      */
@@ -30,6 +45,7 @@ export class Box {
     this.filled = this.isFilled();
     this.domObject.classList.add("box");
     this.domObject.addEventListener("click", (e) => {
+      Tone.Transport.stop();
       this.switchFilledBox();
     })
   }
@@ -113,12 +129,33 @@ export class Box {
    * Switch the status of a box as filled and not filled
    */
   switchFilledBox() {
+    var filled = false;
     if (this.domObject.classList.contains("filled-box")) {
       this.domObject.classList.remove("filled-box");
       this.domObject.classList.add("empty-box");
     } else {
       this.domObject.classList.add("filled-box");
       this.domObject.classList.remove("empty-box");
+      filled = true;
     }
+    this.updateSequence(filled)
+  }
+
+  /**
+   * Update the sequence object passed by Row whenever a user clicks
+   * a box. This is part of the Box click event listener
+   */
+  updateSequence(filled) {
+    var pattern = this.sequence._eventsArray;
+    if (filled) {
+      pattern[this.positionNumber] = this.note;
+    } else {
+      pattern[this.positionNumber] = null;
+    }
+    console.log(pattern);
+    this.sequence = new Tone.Sequence((time, note) => {
+      // this.flashActiveBox();
+      this.source.triggerAttackRelease(note, "8n", time);
+    }, pattern).start(0);
   }
 }

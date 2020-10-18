@@ -10,7 +10,6 @@ export class Row {
    * @param {Tone.Synth} source 
    */
   constructor(part, source) {
-    console.log(part);
     /**
      * @type {number}
      */
@@ -35,7 +34,6 @@ export class Row {
      * @type {array}
      */
     this.sequence = this.createLoop();
-    console.log(part.sequence)
     /**
      * @type {array}
      */
@@ -48,7 +46,7 @@ export class Row {
     this.domObject.appendChild(this.makeRowLabel(this.name));
 
     for (let i = 0; i < this.pattern.length; i++) {
-      let box = new Box(i, this.pattern[i]);
+      let box = new Box(i, this.pattern[i], this.note, this.sequence, this.source);
       box.calculateWidth(this.pattern.length, this.labelWidth);
       this.domObject.appendChild(box.domObject);
       this.boxes.push(box);
@@ -75,7 +73,7 @@ export class Row {
    */
   createLoop() {
     var sequence = new Tone.Sequence((time, note) => {
-      this.flashActiveBox();
+      // this.flashActiveBox();
       this.source.triggerAttackRelease(note, "8n", time);
     }, this.pattern).start(0);
     return sequence;
