@@ -951,6 +951,10 @@ input {
   background-color: #570E51;
 }
 
+.active-box {
+  background-color: #0a4f2d;
+}
+
 .slider {
   -webkit-appearance: none;
   width: 100%;
