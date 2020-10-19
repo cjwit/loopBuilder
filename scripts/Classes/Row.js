@@ -30,10 +30,7 @@ export class Row {
     * @type {Tone.synth}
     */
     this.source = source;
-    /**
-     * @type {array}
-     */
-    this.sequence = this.createLoop();
+    this.createLoop();
     /**
      * @type {HTMLElement}
      */
@@ -98,11 +95,10 @@ export class Row {
    * @param {number} partNumber 
    */
   createLoop() {
-    var sequence = new Tone.Sequence((time, note) => {
+    this.sequence = new Tone.Sequence((time, note) => {
       // this.flashActiveBox();
       this.source.triggerAttackRelease(note, "8n", time);
     }, this.pattern).start(0);
-    return sequence;
   }
 
   /**
@@ -138,23 +134,21 @@ export class Row {
       box.domObject.classList.remove("empty-box");
       filled = true;
     }
-    this.updateSequence(box, filled)
+    this.updateSequence(box.positionNumber, filled)
   }
 
   /**
    * Update the sequence object passed by Row whenever a user clicks
    * a box. This is part of the Box click event listener
    */
-  updateSequence(box, filled) {
+  updateSequence(positionNumber, filled) {
     var pattern = this.sequence._eventsArray;
     if (filled) {
-      pattern[box.positionNumber] = this.note;
+      pattern[positionNumber] = this.note;
     } else {
-      pattern[box.positionNumber] = null;
+      pattern[positionNumber] = null;
     }
-    this.sequence = new Tone.Sequence((time, note) => {
-      // this.flashActiveBox();
-      this.source.triggerAttackRelease(note, "8n", time);
-    }, pattern).start(0);
+    this.pattern = pattern;
+    this.createLoop();
   }
 }
