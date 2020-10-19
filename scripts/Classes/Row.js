@@ -63,7 +63,7 @@ export class Row {
     var boxes = [];
     let widthString = this.calculateBoxWidth();
     for (let i = 0; i < this.pattern.length; i++) {
-      let box = new Box(this.pattern[i], i);
+      let box = new Box(this.pattern[i]);
       box.domObject.style.width = widthString;
 
       // add event listeners

@@ -7,21 +7,12 @@ import * as Tone from "tone";
 export class Box {
   /**
    * @param {string} note 
-   * @param {number} positionNumber 
    */
-  constructor(note, positionNumber) {
+  constructor(note) {
     /**
      * @type {number}
      */
     this.note = note;
-    /**
-     * @type {string} A string in the format of 0:0 showing beat:sixteenth
-     */
-    this.positionNumber = positionNumber;
-    /**
-     * @type {string} A string in the format of 0:0 showing beat:sixteenth
-     */
-    this.positionString = this.getTransportPositionString();
     /**
      * @type {HTMLElement}
      */
@@ -31,16 +22,6 @@ export class Box {
      */
     this.filled = this.setFilledStatus();
     this.domObject.classList.add("box");
-  }
-
-  /**
-   * Used to calculate the position for Tone.Transport
-   * @param {number} positionNumber - This box's place in the row 
-   */
-  getTransportPositionString() {
-    var beat = Math.floor(this.positionNumber / 2);
-    var sixteenth = this.positionNumber % 2;
-    return `${beat}:${sixteenth}`;
   }
 
   /**
