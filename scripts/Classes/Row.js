@@ -46,7 +46,7 @@ export class Row {
     this.domObject.appendChild(this.makeRowLabel(this.name));
 
     for (let i = 0; i < this.pattern.length; i++) {
-      let box = new Box(i, this.pattern[i], this.note, this.sequence, this.source);
+      let box = new Box(i, this.pattern[i], this.note);
       box.calculateWidth(this.pattern.length, this.labelWidth);
       
       // add event listeners
@@ -132,7 +132,6 @@ export class Row {
     } else {
       pattern[box.positionNumber] = null;
     }
-    console.log(pattern);
     this.sequence = new Tone.Sequence((time, note) => {
       // this.flashActiveBox();
       this.source.triggerAttackRelease(note, "8n", time);

@@ -7,33 +7,21 @@ import * as Tone from "tone";
 export class Box {
   /**
    * @param {number} positionNumber 
-   * @param {number} value 
+   * @param {string} note 
    */
-  constructor(positionNumber, value, note, sequence, source) {
+  constructor(positionNumber, note) {
     /**
      * @type {number}
-     */
-    this.value = value;
-    /**
-     * @type {number}
-     */
-    this.positionNumber = positionNumber;
-    /**
-     * @type {string}
      */
     this.note = note;
     /**
      * @type {string} A string in the format of 0:0 showing beat:sixteenth
      */
-    this.position = this.getTransportPosition(this.positionNumber);
+    this.positionNumber = positionNumber;
     /**
-     * @type {Tone.Sequence} Parent row's sequence object
+     * @type {string} A string in the format of 0:0 showing beat:sixteenth
      */
-    this.sequence = sequence
-    /**
-    * @type {Tone.synth}
-    */
-   this.source = source;
+    this.positionString = this.getTransportPositionString();
     /**
      * @type {HTMLElement}
      */
@@ -41,7 +29,7 @@ export class Box {
     /**
      * @type {boolean}
      */
-    this.filled = this.isFilled();
+    this.filled = this.setFilledStatus();
     this.domObject.classList.add("box");
   }
 
@@ -61,43 +49,19 @@ export class Box {
    * Used to calculate the position for Tone.Transport
    * @param {number} positionNumber - This box's place in the row 
    */
-  getTransportPosition(positionNumber) {
-    var beat = Math.floor(positionNumber / 2);
-    var sixteenth = positionNumber % 2;
+  getTransportPositionString() {
+    var beat = Math.floor(this.positionNumber / 2);
+    var sixteenth = this.positionNumber % 2;
     return `${beat}:${sixteenth}`;
-  }
-
-  /**
-   * Iterate through `this.parts` to create and store sequence objects
-   */
-  setUpLoop() {
-    var sequences = [];
-    for (let i = 0; i < this.parts.length; i++) {
-      sequences.push(this.createLoop(i));
-    }
-    return sequences;
-  }
-
-  /**
-   * Used by `setUpLoo()` to create individual `Tone.Sequence` objects
-   * and assign visual callbacks
-   * @param {number} partNumber 
-   */
-  createLoop(partNumber) {
-    var sequence = new Tone.Sequence((time, note) => {
-      this.rows[partNumber].flashActiveBox();
-      this.source.triggerAttackRelease(note, "8n", time);
-    }, this.parts[partNumber].pattern).start(0);
-    return sequence;
   }
 
   /**
    * Determine whether the current box has an event associated with it
    * and sets the appropriate css class
    */
-  isFilled() {
+  setFilledStatus() {
     let filled = false;
-    if (this.value != null && this.value != 0) {
+    if (this.note != null) {
       filled = true;
     }
     this.domObject.classList.add(filled ? "filled-box" : "empty-box");
@@ -119,4 +83,5 @@ export class Box {
       box.style.backgroundColor = bgColor;
     }, 1000);
   }
+
 }
