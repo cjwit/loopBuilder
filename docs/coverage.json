@@ -1,0 +1,93 @@
+{
+  "coverage": "70.23%",
+  "expectCount": 84,
+  "actualCount": 59,
+  "files": {
+    "scripts/Classes/BassLoop.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "scripts/Classes/Box.js": {
+      "expectCount": 7,
+      "actualCount": 7,
+      "undocumentLines": []
+    },
+    "scripts/Classes/DrumLoop.js": {
+      "expectCount": 4,
+      "actualCount": 3,
+      "undocumentLines": [
+        33
+      ]
+    },
+    "scripts/Classes/EffectsUI.js": {
+      "expectCount": 8,
+      "actualCount": 8,
+      "undocumentLines": []
+    },
+    "scripts/Classes/Loop.js": {
+      "expectCount": 12,
+      "actualCount": 12,
+      "undocumentLines": []
+    },
+    "scripts/Classes/MelodyLoop.js": {
+      "expectCount": 5,
+      "actualCount": 4,
+      "undocumentLines": [
+        46
+      ]
+    },
+    "scripts/Classes/PlayButton.js": {
+      "expectCount": 6,
+      "actualCount": 6,
+      "undocumentLines": []
+    },
+    "scripts/Classes/Row.js": {
+      "expectCount": 17,
+      "actualCount": 16,
+      "undocumentLines": [
+        104
+      ]
+    },
+    "scripts/audio.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        13,
+        31
+      ]
+    },
+    "scripts/loops.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        11,
+        21,
+        42
+      ]
+    },
+    "scripts/script.js": {
+      "expectCount": 16,
+      "actualCount": 0,
+      "undocumentLines": [
+        10,
+        11,
+        14,
+        15,
+        18,
+        19,
+        23,
+        28,
+        37,
+        42,
+        52,
+        53,
+        54,
+        55,
+        58,
+        59
+      ]
+    }
+  }
+}

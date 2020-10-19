@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">scripts/Classes/Row.js | loopBuilder</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A graphical interface to create looping melodies and rhythms"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="loopBuilder"><meta property="twitter:description" content="A graphical interface to create looping melodies and rhythms"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/cjwit/loopBuilder"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createDrumSampler">createDrumSampler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSynth">createSynth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-loops">loops</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/BassLoop.js~BassLoop.html">BassLoop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html">DrumLoop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/EffectsUI.js~EffectsUI.html">EffectsUI</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/MelodyLoop.js~MelodyLoop.html">MelodyLoop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">scripts/Classes/Row.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import * as Tone from &apos;tone&apos;;
+import { Box } from &apos;./Box.js&apos;;
+
+/**
+ * Creates and controls DOM objects for individual loop rows
+ */
+export class Row {
+  /**
+   * @param {object} part
+   * @param {Tone.Synth} source 
+   */
+  constructor(part, source) {
+    /**
+     * @type {number}
+     */
+    this.labelWidth = 6.0;
+    /**
+     * @type {string}
+     */
+    this.name = part.name;
+    /**
+     * @type {array}
+     */
+    this.note = part.note;
+    /**
+     * @type {array}
+     */
+    this.pattern = part.pattern;
+    /**
+    * @type {Tone.synth}
+    */
+    this.source = source;
+    this.createLoop();
+    /**
+     * @type {HTMLElement}
+     */
+    this.domObject = document.createElement(&quot;div&quot;);
+    this.domObject.classList.add(&quot;row-of-boxes&quot;);
+    this.domObject.appendChild(this.makeRowLabel(this.name));
+    /**
+     * @type {array}
+     */
+    this.boxes = this.createBoxes();
+  }
+
+  /**
+   * 
+   * @param {string} label Name of the row, to be added to the DOM object before any boxes
+   * @return {HTMLSpanElement} HTML span element with the row name
+   */
+  makeRowLabel(label) {
+    var rowName = document.createElement(&quot;span&quot;);
+    rowName.classList.add(&quot;row-label&quot;);
+    rowName.innerText = label;
+    rowName.style.width = this.labelWidth + &quot;em&quot;;
+    return rowName;
+  }
+
+  /**
+   * Build and store the series of boxes in the row
+   */
+  createBoxes() {
+    var boxes = [];
+    let widthString = this.calculateBoxWidth();
+    for (let i = 0; i &lt; this.pattern.length; i++) {
+      let box = new Box(this.pattern[i]);
+      box.domObject.style.width = widthString;
+
+      // add event listeners
+      box.domObject.addEventListener(&quot;click&quot;, () =&gt; {
+        this.switchFilledStatus(box);
+        this.updateSequencePattern(i, box.filled);
+        this.createLoop();
+      })
+
+      // display and store the box
+      this.domObject.appendChild(box.domObject);
+      boxes.push(box);
+    };
+    return boxes;
+  }
+
+  /**
+   * Called by `createBoxes`, uses the number of boxes in
+   * a row to calculate and set the CSS width property
+   */
+  calculateBoxWidth() {
+    let percent = 100.0 / this.pattern.length + &quot;%&quot;;
+    let padding = this.labelWidth / this.pattern.length + 0.1;
+    return &quot;calc(&quot; + percent + &quot; - &quot; + padding + &quot;em)&quot;;
+  }
+
+  /**
+   * Used by the constructor and click event callbacks to remove the
+   * previous loop and replace it with an updated version
+   */
+  createLoop() {
+    // clear the previous sequence if one exists
+    if (this.sequence) {
+      this.sequence.dispose();
+    }
+
+    // create the new sequence for this row
+    this.sequence = new Tone.Sequence((time, note) =&gt; {
+      this.flashActiveBox();
+      this.source.triggerAttackRelease(note, &quot;8n&quot;, time);
+    }, this.pattern).start(0);
+  }
+
+  /**
+   * Called in the Tone.Sequencer callback to determine which
+   * box to animate
+   */
+  flashActiveBox() {
+    var [beat, sixteenth] = Tone.Transport.position.split(/\.|:/).slice(1,3);
+    beat = Number(beat);
+    sixteenth = Number(sixteenth);
+    var currentPosition = beat * 2 + sixteenth / 2, beat, sixteenth;
+    if (this.boxes[currentPosition].filled) {
+      this.boxes[currentPosition].flash();
+    }
+  }
+
+  /**
+   * Switch the status of a box as filled and not filled
+   * @param {Box} box
+   */
+  switchFilledStatus(box) {
+    var filled = false;
+    if (box.domObject.classList.contains(&quot;filled-box&quot;)) {
+      box.domObject.classList.remove(&quot;filled-box&quot;);
+      box.domObject.classList.add(&quot;empty-box&quot;);
+    } else {
+      box.domObject.classList.add(&quot;filled-box&quot;);
+      box.domObject.classList.remove(&quot;empty-box&quot;);
+      filled = true;
+    }
+    box.filled = filled;
+  }
+
+  /**
+   * Update the sequence object passed by Row whenever a user clicks
+   * a box. This is part of the Box click event listener
+   */
+  updateSequencePattern(positionNumber, filled) {
+    var pattern = this.sequence._eventsArray;
+    if (filled) {
+      pattern[positionNumber] = this.note;
+    } else {
+      pattern[positionNumber] = null;
+    }
+    this.pattern = pattern;
+  }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
