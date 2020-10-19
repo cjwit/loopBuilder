@@ -98,7 +98,7 @@ export class Row {
    */
   createLoop() {
     this.sequence = new Tone.Sequence((time, note) => {
-      // this.flashActiveBox();
+      this.flashActiveBox();
       this.source.triggerAttackRelease(note, "8n", time);
     }, this.pattern).start(0);
   }
@@ -108,19 +108,11 @@ export class Row {
    * box to animate
    */
   flashActiveBox() {
-    var filledBoxes = this.boxes.filter(box => box.domObject.classList.contains("filled-box"));
-    var activeBoxIndex = 0;
-    for (let i = 0; i < filledBoxes.length; i++) {
-      if (filledBoxes[i].domObject.classList.contains("active-box")) {
-        filledBoxes[i].domObject.classList.remove("active-box");
-        activeBoxIndex = (i + 1) % filledBoxes.length;
-        break;
-      }
-    }
-
-    var activeBox = filledBoxes[activeBoxIndex];
-    activeBox.domObject.classList.add("active-box");
-    activeBox.flash();
+    var [beat, sixteenth] = Tone.Transport.position.split(/\.|:/).slice(1,3);
+    beat = Number(beat);
+    sixteenth = Number(sixteenth);
+    var currentPosition = beat * 2 + sixteenth / 2, beat, sixteenth;
+    this.boxes[currentPosition].flash();
   }
 
   /**
