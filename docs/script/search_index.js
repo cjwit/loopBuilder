@@ -372,12 +372,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "scripts/classes/box.js~box#calculatewidth",
-    "class/scripts/Classes/Box.js~Box.html#instance-method-calculateWidth",
-    "scripts/Classes/Box.js~Box#calculateWidth",
-    "method"
-  ],
-  [
     "scripts/classes/box.js~box#constructor",
     "class/scripts/Classes/Box.js~Box.html#instance-constructor-constructor",
     "scripts/Classes/Box.js~Box#constructor",
@@ -402,34 +396,16 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "scripts/classes/box.js~box#gettransportposition",
-    "class/scripts/Classes/Box.js~Box.html#instance-method-getTransportPosition",
-    "scripts/Classes/Box.js~Box#getTransportPosition",
+    "scripts/classes/box.js~box#note",
+    "class/scripts/Classes/Box.js~Box.html#instance-member-note",
+    "scripts/Classes/Box.js~Box#note",
+    "member"
+  ],
+  [
+    "scripts/classes/box.js~box#setfilledstatus",
+    "class/scripts/Classes/Box.js~Box.html#instance-method-setFilledStatus",
+    "scripts/Classes/Box.js~Box#setFilledStatus",
     "method"
-  ],
-  [
-    "scripts/classes/box.js~box#isfilled",
-    "class/scripts/Classes/Box.js~Box.html#instance-method-isFilled",
-    "scripts/Classes/Box.js~Box#isFilled",
-    "method"
-  ],
-  [
-    "scripts/classes/box.js~box#position",
-    "class/scripts/Classes/Box.js~Box.html#instance-member-position",
-    "scripts/Classes/Box.js~Box#position",
-    "member"
-  ],
-  [
-    "scripts/classes/box.js~box#positionnumber",
-    "class/scripts/Classes/Box.js~Box.html#instance-member-positionNumber",
-    "scripts/Classes/Box.js~Box#positionNumber",
-    "member"
-  ],
-  [
-    "scripts/classes/box.js~box#value",
-    "class/scripts/Classes/Box.js~Box.html#instance-member-value",
-    "scripts/Classes/Box.js~Box#value",
-    "member"
   ],
   [
     "scripts/classes/drumloop.js",
@@ -522,12 +498,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "scripts/classes/loop.js~loop#createloop",
-    "class/scripts/Classes/Loop.js~Loop.html#instance-method-createLoop",
-    "scripts/Classes/Loop.js~Loop#createLoop",
-    "method"
-  ],
-  [
     "scripts/classes/loop.js~loop#domobject",
     "class/scripts/Classes/Loop.js~Loop.html#instance-member-domObject",
     "scripts/Classes/Loop.js~Loop#domObject",
@@ -558,21 +528,9 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "scripts/classes/loop.js~loop#sequences",
-    "class/scripts/Classes/Loop.js~Loop.html#instance-member-sequences",
-    "scripts/Classes/Loop.js~Loop#sequences",
-    "member"
-  ],
-  [
     "scripts/classes/loop.js~loop#setscale",
     "class/scripts/Classes/Loop.js~Loop.html#instance-method-setScale",
     "scripts/Classes/Loop.js~Loop#setScale",
-    "method"
-  ],
-  [
-    "scripts/classes/loop.js~loop#setuploop",
-    "class/scripts/Classes/Loop.js~Loop.html#instance-method-setUpLoop",
-    "scripts/Classes/Loop.js~Loop#setUpLoop",
     "method"
   ],
   [
@@ -672,9 +630,27 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "scripts/classes/row.js~row#calculateboxwidth",
+    "class/scripts/Classes/Row.js~Row.html#instance-method-calculateBoxWidth",
+    "scripts/Classes/Row.js~Row#calculateBoxWidth",
+    "method"
+  ],
+  [
     "scripts/classes/row.js~row#constructor",
     "class/scripts/Classes/Row.js~Row.html#instance-constructor-constructor",
     "scripts/Classes/Row.js~Row#constructor",
+    "method"
+  ],
+  [
+    "scripts/classes/row.js~row#createboxes",
+    "class/scripts/Classes/Row.js~Row.html#instance-method-createBoxes",
+    "scripts/Classes/Row.js~Row#createBoxes",
+    "method"
+  ],
+  [
+    "scripts/classes/row.js~row#createloop",
+    "class/scripts/Classes/Row.js~Row.html#instance-method-createLoop",
+    "scripts/Classes/Row.js~Row#createLoop",
     "method"
   ],
   [
@@ -708,10 +684,40 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "scripts/classes/row.js~row#note",
+    "class/scripts/Classes/Row.js~Row.html#instance-member-note",
+    "scripts/Classes/Row.js~Row#note",
+    "member"
+  ],
+  [
     "scripts/classes/row.js~row#pattern",
     "class/scripts/Classes/Row.js~Row.html#instance-member-pattern",
     "scripts/Classes/Row.js~Row#pattern",
     "member"
+  ],
+  [
+    "scripts/classes/row.js~row#sequence",
+    "class/scripts/Classes/Row.js~Row.html#instance-member-sequence",
+    "scripts/Classes/Row.js~Row#sequence",
+    "member"
+  ],
+  [
+    "scripts/classes/row.js~row#source",
+    "class/scripts/Classes/Row.js~Row.html#instance-member-source",
+    "scripts/Classes/Row.js~Row#source",
+    "member"
+  ],
+  [
+    "scripts/classes/row.js~row#switchfilledstatus",
+    "class/scripts/Classes/Row.js~Row.html#instance-method-switchFilledStatus",
+    "scripts/Classes/Row.js~Row#switchFilledStatus",
+    "method"
+  ],
+  [
+    "scripts/classes/row.js~row#updatesequencepattern",
+    "class/scripts/Classes/Row.js~Row.html#instance-method-updateSequencePattern",
+    "scripts/Classes/Row.js~Row#updateSequencePattern",
+    "method"
   ],
   [
     "scripts/audio.js",

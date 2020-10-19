@@ -1,6 +1,6 @@
 {
-  "coverage": "63.85%",
-  "expectCount": 83,
+  "coverage": "63.09%",
+  "expectCount": 84,
   "actualCount": 53,
   "files": {
     "scripts/Classes/BassLoop.js": {
@@ -9,8 +9,8 @@
       "undocumentLines": []
     },
     "scripts/Classes/Box.js": {
-      "expectCount": 11,
-      "actualCount": 11,
+      "expectCount": 7,
+      "actualCount": 7,
       "undocumentLines": []
     },
     "scripts/Classes/DrumLoop.js": {
@@ -26,8 +26,8 @@
       "undocumentLines": []
     },
     "scripts/Classes/Loop.js": {
-      "expectCount": 15,
-      "actualCount": 15,
+      "expectCount": 12,
+      "actualCount": 12,
       "undocumentLines": []
     },
     "scripts/Classes/MelodyLoop.js": {
@@ -50,9 +50,11 @@
       ]
     },
     "scripts/Classes/Row.js": {
-      "expectCount": 9,
-      "actualCount": 9,
-      "undocumentLines": []
+      "expectCount": 17,
+      "actualCount": 16,
+      "undocumentLines": [
+        104
+      ]
     },
     "scripts/audio.js": {
       "expectCount": 2,

@@ -78,7 +78,7 @@ export class PlayButton {
   }
 
   stop() {
-    Tone.Transport.pause();
+    Tone.Transport.stop();
     this.domObject.innerText = &quot;Start&quot;;
   }
 }</code></pre>

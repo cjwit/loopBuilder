@@ -45,13 +45,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Row} from &apos;<span><a href="file/scripts/Classes/Row.js.html#lineNumber6">loopBuilder/scripts/Classes/Row.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Row} from &apos;<span><a href="file/scripts/Classes/Row.js.html#lineNumber7">loopBuilder/scripts/Classes/Row.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/scripts/Classes/Row.js.html#lineNumber6">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/scripts/Classes/Row.js.html#lineNumber7">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -104,7 +104,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(note: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, pattern: <span>array</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(part: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, source: <span>Tone.Synth</span>)</span>
         </p>
       </div>
       <div>
@@ -251,7 +251,91 @@
           
           
           
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html#instance-member-note">note</a></span></span><span class="code" data-ice="signature">: <span>array</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
           <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html#instance-member-pattern">pattern</a></span></span><span class="code" data-ice="signature">: <span>array</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html#instance-member-sequence">sequence</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html#instance-member-source">source</a></span></span><span class="code" data-ice="signature">: <span>Tone.synth</span></span>
         </p>
       </div>
       <div>
@@ -273,6 +357,95 @@
   <tbody>
   
   <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html#instance-method-calculateBoxWidth">calculateBoxWidth</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Called by <code>createBoxes</code>, uses the number of boxes in
+a row to calculate and set the CSS width property</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html#instance-method-createBoxes">createBoxes</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Build and store the series of boxes in the row</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html#instance-method-createLoop">createLoop</a></span></span><span class="code" data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Used by the constructor and click event callbacks to remove the
+previous loop and replace it with an updated version</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
     <td>
       <span class="access" data-ice="access">public</span>
       
@@ -330,6 +503,65 @@ box to animate</p>
       
     </td>
   </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html#instance-method-switchFilledStatus">switchFilledStatus</a></span></span><span class="code" data-ice="signature">(box: <span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Switch the status of a box as filled and not filled</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html#instance-method-updateSequencePattern">updateSequencePattern</a></span></span><span class="code" data-ice="signature">(positionNumber: <span>*</span>, filled: <span>*</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Update the sequence object passed by Row whenever a user clicks
+a box.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
 </tbody>
 </table>
 </div>
@@ -348,11 +580,11 @@ box to animate</p>
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(note: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, pattern: <span>array</span>)</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(part: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, source: <span>Tone.Synth</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber11">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber12">source</a></span></span>
     </span>
   </h3>
 
@@ -372,14 +604,14 @@ box to animate</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">note</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="name" class="code" data-depth="0">part</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">pattern</td>
-      <td data-ice="type" class="code"><span>array</span></td>
+      <td data-ice="name" class="code" data-depth="0">source</td>
+      <td data-ice="type" class="code"><span>Tone.Synth</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
@@ -420,7 +652,7 @@ box to animate</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber27">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber43">source</a></span></span>
     </span>
   </h3>
 
@@ -463,7 +695,7 @@ box to animate</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber31">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber37">source</a></span></span>
     </span>
   </h3>
 
@@ -506,7 +738,7 @@ box to animate</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber15">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber16">source</a></span></span>
     </span>
   </h3>
 
@@ -549,7 +781,50 @@ box to animate</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber19">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber20">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-member-note">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">note</span><span class="code" data-ice="signature">: <span>array</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber24">source</a></span></span>
     </span>
   </h3>
 
@@ -592,7 +867,93 @@ box to animate</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber23">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber28">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-member-sequence">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">sequence</span><span class="code" data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber104">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-member-source">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">source</span><span class="code" data-ice="signature">: <span>Tone.synth</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber32">source</a></span></span>
     </span>
   </h3>
 
@@ -627,6 +988,164 @@ box to animate</p>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-calculateBoxWidth">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">calculateBoxWidth</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber87">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Called by <code>createBoxes</code>, uses the number of boxes in
+a row to calculate and set the CSS width property</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-createBoxes">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">createBoxes</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber62">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Build and store the series of boxes in the row</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-createLoop">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">createLoop</span><span class="code" data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber97">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Used by the constructor and click event callbacks to remove the
+previous loop and replace it with an updated version</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-flashActiveBox">
     <span class="access" data-ice="access">public</span>
     
@@ -638,7 +1157,7 @@ box to animate</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber60">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber114">source</a></span></span>
     </span>
   </h3>
 
@@ -683,7 +1202,7 @@ box to animate</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber48">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber51">source</a></span></span>
     </span>
   </h3>
 
@@ -728,6 +1247,133 @@ box to animate</p>
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-switchFilledStatus">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">switchFilledStatus</span><span class="code" data-ice="signature">(box: <span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber128">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Switch the status of a box as filled and not filled</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">box</td>
+      <td data-ice="type" class="code"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-updateSequencePattern">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">updateSequencePattern</span><span class="code" data-ice="signature">(positionNumber: <span>*</span>, filled: <span>*</span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber145">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Update the sequence object passed by Row whenever a user clicks
+a box. This is part of the Box click event listener</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">positionNumber</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">filled</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
 
   
 

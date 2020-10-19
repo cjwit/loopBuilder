@@ -567,7 +567,7 @@
     "__docId__": 48,
     "kind": "file",
     "name": "scripts/Classes/BassLoop.js",
-    "content": "import { Tone } from 'tone/build/esm/core/Tone';\nimport { MelodyLoop } from './MelodyLoop.js';\n\n/**\n * Defines the scale for a bass loop graphical interface\n */\nexport class BassLoop extends MelodyLoop {\n  /**\n   * @param {string} tagId \n   * @param {Object} data \n   * @param {Tone.Sampler} source \n   */\n  constructor(tagId, data, source) {\n    super(tagId, data, source);\n  }\n\n  /**\n   * @return {Array} Scale members as strings with note names and octaves\n   */\n  setScale() {\n    return [\"G2\", \"A3\", \"Bb3\", \"C3\", \"D3\", \"Eb3\", \"F3\", \"G3\", \"A4\", \"Bb4\", \"C4\"];\n  }\n}",
+    "content": "import { Tone } from 'tone/build/esm/core/Tone';\nimport { MelodyLoop } from './MelodyLoop.js';\n\n/**\n * Defines the scale for a bass loop graphical interface\n */\nexport class BassLoop extends MelodyLoop {\n  /**\n   * @param {string} tagId \n   * @param {Object} data \n   * @param {Tone.Sampler} source \n   */\n  constructor(tagId, data, source) {\n    super(tagId, data, source);\n  }\n\n  /**\n   * @return {Array} Scale members as strings with note names and octaves\n   */\n  setScale() {\n    return [\"G2\", \"A2\", \"Bb2\", \"C3\", \"D3\", \"Eb3\", \"F3\", \"G3\", \"A3\", \"Bb3\", \"C4\"];\n  }\n}",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/BassLoop.js",
     "access": "public",
@@ -663,7 +663,7 @@
     "__docId__": 52,
     "kind": "file",
     "name": "scripts/Classes/Box.js",
-    "content": "/**\n * Creates and handles Box object data and\n * DOM interactions, including visual callbacks\n */\nexport class Box {\n  /**\n   * @param {number} positionNumber \n   * @param {number} value \n   */\n  constructor(positionNumber, value) {\n    /**\n     * @type {number}\n     */\n    this.value = value;\n    /**\n     * @type {number}\n     */\n    this.positionNumber = positionNumber;\n    /**\n     * @type {string} A string in the format of 0:0 showing beat:sixteenth\n     */\n    this.position = this.getTransportPosition(this.positionNumber);\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.createElement(\"span\");\n    /**\n     * @type {boolean}\n     */\n    this.filled = this.isFilled();\n    this.domObject.classList.add(\"box\");\n  }\n\n  /**\n   * Called by the parent `Row` using the number of boxes\n   * to calculate and set the CSS width property\n   * @param {number} numberOfBoxes - The number of boxes in the row\n   * @param {number} labelWidth - The row name with, to subtract from the calculation\n   */\n  calculateWidth(numberOfBoxes, labelWidth) {\n    let percent = 100.0 / numberOfBoxes + \"%\";\n    let padding = labelWidth / numberOfBoxes + 0.1;\n    this.domObject.style.width = \"calc(\" + percent + \" - \" + padding + \"em)\";\n  }\n\n  /**\n   * Used to calculate the position for Tone.Transport\n   * @param {number} positionNumber - This box's place in the row \n   */\n  getTransportPosition(positionNumber) {\n    var beat = Math.floor(positionNumber / 2);\n    var sixteenth = positionNumber % 2;\n    return `${beat}:${sixteenth}`;\n  }\n\n  /**\n   * Determine whether the current box has an event associated with it\n   * and sets the appropriate css class\n   */\n  isFilled() {\n    let filled = false;\n    if (this.value != null && this.value != 0) {\n      filled = true;\n    }\n    this.domObject.classList.add(filled ? \"filled-box\" : \"empty-box\");\n    return filled;\n  }\n\n  /**\n   * `Box.flash()` is called by a `Row` object to animate \n   * a block as part of the `Tone.Sequencer` callback\n   */\n  flash() {\n    var box = this.domObject;\n    var bgColor = window.getComputedStyle(box, null).getPropertyValue(\"background-color\");\n    box.style.backgroundColor = \"#0a4f2d\";\n    setTimeout(function () {\n      box.animate({ backgroundColor: bgColor }, 1000);\n    });\n    setTimeout(function () {\n      box.style.backgroundColor = bgColor;\n    }, 1000);\n  }\n}",
+    "content": "import * as Tone from \"tone\";\n\n/**\n * Creates and handles Box object data and\n * DOM interactions, including visual callbacks\n */\nexport class Box {\n  /**\n   * @param {string} note \n   */\n  constructor(note) {\n    /**\n     * @type {number}\n     */\n    this.note = note;\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.createElement(\"span\");\n    /**\n     * @type {boolean}\n     */\n    this.filled = this.setFilledStatus();\n    this.domObject.classList.add(\"box\");\n  }\n\n  /**\n   * Determine whether the current box has an event associated with it\n   * and sets the appropriate css class\n   */\n  setFilledStatus() {\n    let filled = false;\n    if (this.note != null) {\n      filled = true;\n    }\n    this.domObject.classList.add(filled ? \"filled-box\" : \"empty-box\");\n    return filled;\n  }\n\n  /**\n   * `Box.flash()` is called by a `Row` object to animate \n   * a block as part of the `Tone.Sequencer` callback\n   */\n  flash() {\n    var box = this.domObject;\n    $(box).addClass(\"active-box\");\n    $(box).removeClass(\"filled-box\");\n    $(box).addClass(\"filled-box\", 500, \"swing\");\n    $(box).removeClass(\"active-box\", 500, \"swing\");\n  }\n}",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/Box.js",
     "access": "public",
@@ -682,7 +682,7 @@
     "importPath": "loopBuilder/scripts/Classes/Box.js",
     "importStyle": "{Box}",
     "description": "Creates and handles Box object data and\nDOM interactions, including visual callbacks",
-    "lineNumber": 5,
+    "lineNumber": 7,
     "interface": false
   },
   {
@@ -696,26 +696,16 @@
     "longname": "scripts/Classes/Box.js~Box#constructor",
     "access": "public",
     "description": "",
-    "lineNumber": 10,
+    "lineNumber": 11,
     "params": [
       {
         "nullable": null,
         "types": [
-          "number"
+          "string"
         ],
         "spread": false,
         "optional": false,
-        "name": "positionNumber",
-        "description": ""
-      },
-      {
-        "nullable": null,
-        "types": [
-          "number"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "value",
+        "name": "note",
         "description": ""
       }
     ]
@@ -723,13 +713,13 @@
   {
     "__docId__": 55,
     "kind": "member",
-    "name": "value",
+    "name": "note",
     "memberof": "scripts/Classes/Box.js~Box",
     "static": false,
-    "longname": "scripts/Classes/Box.js~Box#value",
+    "longname": "scripts/Classes/Box.js~Box#note",
     "access": "public",
     "description": "",
-    "lineNumber": 14,
+    "lineNumber": 15,
     "type": {
       "nullable": null,
       "types": [
@@ -742,51 +732,13 @@
   {
     "__docId__": 56,
     "kind": "member",
-    "name": "positionNumber",
-    "memberof": "scripts/Classes/Box.js~Box",
-    "static": false,
-    "longname": "scripts/Classes/Box.js~Box#positionNumber",
-    "access": "public",
-    "description": "",
-    "lineNumber": 18,
-    "type": {
-      "nullable": null,
-      "types": [
-        "number"
-      ],
-      "spread": false,
-      "description": null
-    }
-  },
-  {
-    "__docId__": 57,
-    "kind": "member",
-    "name": "position",
-    "memberof": "scripts/Classes/Box.js~Box",
-    "static": false,
-    "longname": "scripts/Classes/Box.js~Box#position",
-    "access": "public",
-    "description": "",
-    "lineNumber": 22,
-    "type": {
-      "nullable": null,
-      "types": [
-        "string"
-      ],
-      "spread": false,
-      "description": null
-    }
-  },
-  {
-    "__docId__": 58,
-    "kind": "member",
     "name": "domObject",
     "memberof": "scripts/Classes/Box.js~Box",
     "static": false,
     "longname": "scripts/Classes/Box.js~Box#domObject",
     "access": "public",
     "description": "",
-    "lineNumber": 26,
+    "lineNumber": 19,
     "type": {
       "nullable": null,
       "types": [
@@ -797,7 +749,7 @@
     }
   },
   {
-    "__docId__": 59,
+    "__docId__": 57,
     "kind": "member",
     "name": "filled",
     "memberof": "scripts/Classes/Box.js~Box",
@@ -805,7 +757,7 @@
     "longname": "scripts/Classes/Box.js~Box#filled",
     "access": "public",
     "description": "",
-    "lineNumber": 30,
+    "lineNumber": 23,
     "type": {
       "nullable": null,
       "types": [
@@ -816,83 +768,17 @@
     }
   },
   {
-    "__docId__": 60,
+    "__docId__": 58,
     "kind": "method",
-    "name": "calculateWidth",
+    "name": "setFilledStatus",
     "memberof": "scripts/Classes/Box.js~Box",
     "generator": false,
     "async": false,
     "static": false,
-    "longname": "scripts/Classes/Box.js~Box#calculateWidth",
-    "access": "public",
-    "description": "Called by the parent `Row` using the number of boxes\nto calculate and set the CSS width property",
-    "lineNumber": 40,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "number"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "numberOfBoxes",
-        "description": "The number of boxes in the row"
-      },
-      {
-        "nullable": null,
-        "types": [
-          "number"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "labelWidth",
-        "description": "The row name with, to subtract from the calculation"
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 61,
-    "kind": "method",
-    "name": "getTransportPosition",
-    "memberof": "scripts/Classes/Box.js~Box",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "scripts/Classes/Box.js~Box#getTransportPosition",
-    "access": "public",
-    "description": "Used to calculate the position for Tone.Transport",
-    "lineNumber": 50,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "number"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "positionNumber",
-        "description": "This box's place in the row"
-      }
-    ],
-    "return": {
-      "types": [
-        "string"
-      ]
-    }
-  },
-  {
-    "__docId__": 62,
-    "kind": "method",
-    "name": "isFilled",
-    "memberof": "scripts/Classes/Box.js~Box",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "scripts/Classes/Box.js~Box#isFilled",
+    "longname": "scripts/Classes/Box.js~Box#setFilledStatus",
     "access": "public",
     "description": "Determine whether the current box has an event associated with it\nand sets the appropriate css class",
-    "lineNumber": 60,
+    "lineNumber": 31,
     "params": [],
     "return": {
       "types": [
@@ -901,7 +787,7 @@
     }
   },
   {
-    "__docId__": 63,
+    "__docId__": 59,
     "kind": "method",
     "name": "flash",
     "memberof": "scripts/Classes/Box.js~Box",
@@ -911,12 +797,12 @@
     "longname": "scripts/Classes/Box.js~Box#flash",
     "access": "public",
     "description": "`Box.flash()` is called by a `Row` object to animate \na block as part of the `Tone.Sequencer` callback",
-    "lineNumber": 73,
+    "lineNumber": 44,
     "params": [],
     "return": null
   },
   {
-    "__docId__": 64,
+    "__docId__": 60,
     "kind": "file",
     "name": "scripts/Classes/DrumLoop.js",
     "content": "import { Tone } from 'tone/build/esm/core/Tone';\nimport { Loop } from './Loop.js';\n\n/**\n * Creates and controls the drum loop, overwrites the convertPattern() method\n */\nexport class DrumLoop extends Loop {\n  /**\n   * @param {string} tagId \n   * @param {object} data \n   * @param {Tone.Sampler} source \n   */\n  constructor(tagId, data, source) {\n    super(tagId, data, source);\n  }\n\n    /**\n   * Used by the overwritten setUpLoop() to convert an array\n   * of numbers into note names\n   */\n  convertPattern() {\n    var newPartsArray = [];\n    this.parts.forEach(part => {\n      for (let i = 0; i < part.pattern.length; i++) {\n        if (part.pattern[i] == 0) {\n          part.pattern[i] = null\n        } else {\n          part.pattern[i] = part.note;\n        }\n      }\n      newPartsArray.push(part);\n    })\n    this.parts = newPartsArray;\n  }\n}",
@@ -927,7 +813,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 65,
+    "__docId__": 61,
     "kind": "class",
     "name": "DrumLoop",
     "memberof": "scripts/Classes/DrumLoop.js",
@@ -945,7 +831,7 @@
     ]
   },
   {
-    "__docId__": 66,
+    "__docId__": 62,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "scripts/Classes/DrumLoop.js~DrumLoop",
@@ -990,7 +876,7 @@
     ]
   },
   {
-    "__docId__": 67,
+    "__docId__": 63,
     "kind": "method",
     "name": "convertPattern",
     "memberof": "scripts/Classes/DrumLoop.js~DrumLoop",
@@ -1005,7 +891,7 @@
     "return": null
   },
   {
-    "__docId__": 68,
+    "__docId__": 64,
     "kind": "member",
     "name": "parts",
     "memberof": "scripts/Classes/DrumLoop.js~DrumLoop",
@@ -1022,7 +908,7 @@
     }
   },
   {
-    "__docId__": 69,
+    "__docId__": 65,
     "kind": "file",
     "name": "scripts/Classes/EffectsUI.js",
     "content": "import { Tone } from \"tone/build/esm/core/Tone\";\n\n/**\n * Create and handle effects user interaction objects\n */\nexport class EffectsUI {\n  /**\n   * @param {string} tagId \n   * @param {*} effect1 \n   * @param {*} effect2 \n   */\n  constructor(tagId, effect1 = null, effect2 = null) {\n    /**\n     * @type {string}\n     */\n    this.tagId = tagId;\n    /**\n     * @type {*}\n     */\n    this.effect1 = effect1;\n    /**\n     * @type {*}\n     */\n    this.effect2 = effect2;\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.getElementById(this.tagId);\n\n    this.createHandle();\n  }\n\n  /**\n   * Create handle for user interactions\n   */\n  createHandle() {\n    var handle = document.createElement(\"span\");\n    handle.classList.add(\"handle\");\n    this.domObject.appendChild(handle);\n\n    var parent = $(handle).parent();\n    var parentWidth = parent.width();\n    var parentHeight = parent.height();\n\n    var handle = $(handle); // switch to jQuery\n    var handleWidth = handle.outerWidth();\n    var handleHeight = handle.outerHeight();\n\n    handle.offset({ \n      left: parent.offset().left + parentWidth / 2 - handleWidth / 2,\n      top: parent.offset().top + parentHeight / 2 - handleHeight / 2\n    })\n\n    var self = this;\n    handle.draggable({ \n      containment: \"parent\",\n      drag: function() {\n        var handleOffset = handle.offset();\n        var left = (handleOffset.left - parent.offset().left) / parentWidth;\n        var top = (handleOffset.top - parent.offset().top) / parentHeight;\n        self.effect1Value = left;\n        self.effect2Value = top;\n        self.updateEffects();\n      }\n    });\n  }\n\n  /**\n   * Read handle location and update effect levels\n   */\n  updateEffects() {\n    if (this.effect1) {\n      this.effect1.wet.value = this.effect1Value;\n    }\n    if (this.effect2) {\n      this.effect2.wet.value = this.effect2Value;\n    }\n  }\n}",
@@ -1033,7 +919,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 70,
+    "__docId__": 66,
     "kind": "class",
     "name": "EffectsUI",
     "memberof": "scripts/Classes/EffectsUI.js",
@@ -1048,7 +934,7 @@
     "interface": false
   },
   {
-    "__docId__": 71,
+    "__docId__": 67,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "scripts/Classes/EffectsUI.js~EffectsUI",
@@ -1093,7 +979,7 @@
     ]
   },
   {
-    "__docId__": 72,
+    "__docId__": 68,
     "kind": "member",
     "name": "tagId",
     "memberof": "scripts/Classes/EffectsUI.js~EffectsUI",
@@ -1112,7 +998,7 @@
     }
   },
   {
-    "__docId__": 73,
+    "__docId__": 69,
     "kind": "member",
     "name": "effect1",
     "memberof": "scripts/Classes/EffectsUI.js~EffectsUI",
@@ -1131,7 +1017,7 @@
     }
   },
   {
-    "__docId__": 74,
+    "__docId__": 70,
     "kind": "member",
     "name": "effect2",
     "memberof": "scripts/Classes/EffectsUI.js~EffectsUI",
@@ -1150,7 +1036,7 @@
     }
   },
   {
-    "__docId__": 75,
+    "__docId__": 71,
     "kind": "member",
     "name": "domObject",
     "memberof": "scripts/Classes/EffectsUI.js~EffectsUI",
@@ -1169,7 +1055,7 @@
     }
   },
   {
-    "__docId__": 76,
+    "__docId__": 72,
     "kind": "method",
     "name": "createHandle",
     "memberof": "scripts/Classes/EffectsUI.js~EffectsUI",
@@ -1184,7 +1070,7 @@
     "return": null
   },
   {
-    "__docId__": 77,
+    "__docId__": 73,
     "kind": "method",
     "name": "updateEffects",
     "memberof": "scripts/Classes/EffectsUI.js~EffectsUI",
@@ -1199,10 +1085,10 @@
     "return": null
   },
   {
-    "__docId__": 78,
+    "__docId__": 74,
     "kind": "file",
     "name": "scripts/Classes/Loop.js",
-    "content": "import * as Tone from 'tone';\nimport { Row } from './Row.js';\n\n/**\n * Parent interface for MelodyLoop, BassLoop, and DrumLoop\n */\nexport class Loop {\n  /**\n   * Synthesizer loop structure and graphical representation\n   * @param {string} tagId \n   * @param {object} data \n   * @param {Tone.Synth} source \n   */\n  constructor(tagId, data, source) {\n    /**\n     * @type {string}\n     */\n    this.tagId = tagId;\n    /**\n     * @type {Tone.synth}\n     */\n    this.source = source;\n    /**\n     * @type {Array}\n     */\n    this.parts = data.parts;\n    /**\n     * @type {number}\n     */\n    this.tempo = data.tempo;\n    /**\n     * @type {Array}\n     */\n    this.rows = [];\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.getElementById(tagId);\n\n    /**\n     * @type {Array}\n     */\n    this.scale = this.setScale();\n    this.convertPattern();\n    this.makeRows();\n    /**\n     * @type {Array}\n     */\n    this.sequences = this.setUpLoop(source);\n\n  }\n\n  /**\n   * Overridden by subclasses to set individual scales\n   * @return {Array} Scale members as strings with note names and octaves\n   */\n  setScale() { return [] }\n\n  /**\n   * Overridden by subclasses to process incoming pattern arrays and\n   * save them to `this.pattern`\n   */\n  convertPattern() { }\n\n  /**\n   * Uses `this.parts` to create and store new row class objects and\n   * add them to the DOM\n   */\n  makeRows() {\n    this.parts.forEach(part => {\n      let row = new Row(part.note, part.pattern);\n      this.domObject.appendChild(row.domObject);\n      this.rows.push(row);\n    })\n  }\n\n  /**\n   * Iterate through `this.parts` to create and store sequence objects\n   */\n  setUpLoop() {\n    var sequences = [];\n    for (let i = 0; i < this.parts.length; i++) {\n      sequences.push(this.createLoop(i));\n    }\n    return sequences;\n  }\n\n  /**\n   * Used by `setUpLoo()` to create individual `Tone.Sequence` objects\n   * and assign visual callbacks\n   * @param {number} partNumber \n   */\n  createLoop(partNumber) {\n    var sequence = new Tone.Sequence((time, note) => {\n      this.rows[partNumber].flashActiveBox();\n      this.source.triggerAttackRelease(note, \"8n\", time);\n    }, this.parts[partNumber].pattern).start(0);\n    return sequence;\n  }\n}",
+    "content": "import { Row } from './Row.js';\n\n/**\n * Parent interface for MelodyLoop, BassLoop, and DrumLoop\n */\nexport class Loop {\n  /**\n   * Synthesizer loop structure and graphical representation\n   * @param {string} tagId \n   * @param {object} data \n   * @param {Tone.Synth} source \n   */\n  constructor(tagId, data, source) {\n    /**\n     * @type {string}\n     */\n    this.tagId = tagId;\n    /**\n     * @type {Tone.synth}\n     */\n    this.source = source;\n    /**\n     * @type {Array}\n     */\n    this.parts = data.parts;\n    /**\n     * @type {number}\n     */\n    this.tempo = data.tempo;\n    /**\n     * @type {Array}\n     */\n    this.rows = [];\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.getElementById(tagId);\n\n    /**\n     * @type {Array}\n     */\n    this.scale = this.setScale();\n    this.convertPattern();\n    this.makeRows();\n  }\n\n  /**\n   * Overridden by subclasses to set individual scales\n   * @return {Array} Scale members as strings with note names and octaves\n   */\n  setScale() { return [] }\n\n  /**\n   * Overridden by subclasses to process incoming pattern arrays and\n   * save them to `this.pattern`\n   */\n  convertPattern() { }\n\n  /**\n   * Uses `this.parts` to create and store new row class objects and\n   * add them to the DOM\n   */\n  makeRows() {\n    this.parts.forEach(part => {\n      let row = new Row(part, this.source);\n      this.domObject.appendChild(row.domObject);\n      this.rows.push(row);\n    })\n  }\n}",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/Loop.js",
     "access": "public",
@@ -1210,7 +1096,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 79,
+    "__docId__": 75,
     "kind": "class",
     "name": "Loop",
     "memberof": "scripts/Classes/Loop.js",
@@ -1221,11 +1107,11 @@
     "importPath": "loopBuilder/scripts/Classes/Loop.js",
     "importStyle": "{Loop}",
     "description": "Parent interface for MelodyLoop, BassLoop, and DrumLoop",
-    "lineNumber": 7,
+    "lineNumber": 6,
     "interface": false
   },
   {
-    "__docId__": 80,
+    "__docId__": 76,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "scripts/Classes/Loop.js~Loop",
@@ -1235,7 +1121,7 @@
     "longname": "scripts/Classes/Loop.js~Loop#constructor",
     "access": "public",
     "description": "Synthesizer loop structure and graphical representation",
-    "lineNumber": 14,
+    "lineNumber": 13,
     "params": [
       {
         "nullable": null,
@@ -1270,7 +1156,7 @@
     ]
   },
   {
-    "__docId__": 81,
+    "__docId__": 77,
     "kind": "member",
     "name": "tagId",
     "memberof": "scripts/Classes/Loop.js~Loop",
@@ -1278,7 +1164,7 @@
     "longname": "scripts/Classes/Loop.js~Loop#tagId",
     "access": "public",
     "description": "",
-    "lineNumber": 18,
+    "lineNumber": 17,
     "type": {
       "nullable": null,
       "types": [
@@ -1289,7 +1175,7 @@
     }
   },
   {
-    "__docId__": 82,
+    "__docId__": 78,
     "kind": "member",
     "name": "source",
     "memberof": "scripts/Classes/Loop.js~Loop",
@@ -1297,7 +1183,7 @@
     "longname": "scripts/Classes/Loop.js~Loop#source",
     "access": "public",
     "description": "",
-    "lineNumber": 22,
+    "lineNumber": 21,
     "type": {
       "nullable": null,
       "types": [
@@ -1308,7 +1194,7 @@
     }
   },
   {
-    "__docId__": 83,
+    "__docId__": 79,
     "kind": "member",
     "name": "parts",
     "memberof": "scripts/Classes/Loop.js~Loop",
@@ -1316,7 +1202,83 @@
     "longname": "scripts/Classes/Loop.js~Loop#parts",
     "access": "public",
     "description": "",
-    "lineNumber": 26,
+    "lineNumber": 25,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Array"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 80,
+    "kind": "member",
+    "name": "tempo",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#tempo",
+    "access": "public",
+    "description": "",
+    "lineNumber": 29,
+    "type": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 81,
+    "kind": "member",
+    "name": "rows",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#rows",
+    "access": "public",
+    "description": "",
+    "lineNumber": 33,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Array"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 82,
+    "kind": "member",
+    "name": "domObject",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#domObject",
+    "access": "public",
+    "description": "",
+    "lineNumber": 37,
+    "type": {
+      "nullable": null,
+      "types": [
+        "HTMLElement"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 83,
+    "kind": "member",
+    "name": "scale",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#scale",
+    "access": "public",
+    "description": "",
+    "lineNumber": 42,
     "type": {
       "nullable": null,
       "types": [
@@ -1328,101 +1290,6 @@
   },
   {
     "__docId__": 84,
-    "kind": "member",
-    "name": "tempo",
-    "memberof": "scripts/Classes/Loop.js~Loop",
-    "static": false,
-    "longname": "scripts/Classes/Loop.js~Loop#tempo",
-    "access": "public",
-    "description": "",
-    "lineNumber": 30,
-    "type": {
-      "nullable": null,
-      "types": [
-        "number"
-      ],
-      "spread": false,
-      "description": null
-    }
-  },
-  {
-    "__docId__": 85,
-    "kind": "member",
-    "name": "rows",
-    "memberof": "scripts/Classes/Loop.js~Loop",
-    "static": false,
-    "longname": "scripts/Classes/Loop.js~Loop#rows",
-    "access": "public",
-    "description": "",
-    "lineNumber": 34,
-    "type": {
-      "nullable": null,
-      "types": [
-        "Array"
-      ],
-      "spread": false,
-      "description": null
-    }
-  },
-  {
-    "__docId__": 86,
-    "kind": "member",
-    "name": "domObject",
-    "memberof": "scripts/Classes/Loop.js~Loop",
-    "static": false,
-    "longname": "scripts/Classes/Loop.js~Loop#domObject",
-    "access": "public",
-    "description": "",
-    "lineNumber": 38,
-    "type": {
-      "nullable": null,
-      "types": [
-        "HTMLElement"
-      ],
-      "spread": false,
-      "description": null
-    }
-  },
-  {
-    "__docId__": 87,
-    "kind": "member",
-    "name": "scale",
-    "memberof": "scripts/Classes/Loop.js~Loop",
-    "static": false,
-    "longname": "scripts/Classes/Loop.js~Loop#scale",
-    "access": "public",
-    "description": "",
-    "lineNumber": 43,
-    "type": {
-      "nullable": null,
-      "types": [
-        "Array"
-      ],
-      "spread": false,
-      "description": null
-    }
-  },
-  {
-    "__docId__": 88,
-    "kind": "member",
-    "name": "sequences",
-    "memberof": "scripts/Classes/Loop.js~Loop",
-    "static": false,
-    "longname": "scripts/Classes/Loop.js~Loop#sequences",
-    "access": "public",
-    "description": "",
-    "lineNumber": 49,
-    "type": {
-      "nullable": null,
-      "types": [
-        "Array"
-      ],
-      "spread": false,
-      "description": null
-    }
-  },
-  {
-    "__docId__": 89,
     "kind": "method",
     "name": "setScale",
     "memberof": "scripts/Classes/Loop.js~Loop",
@@ -1432,7 +1299,7 @@
     "longname": "scripts/Classes/Loop.js~Loop#setScale",
     "access": "public",
     "description": "Overridden by subclasses to set individual scales",
-    "lineNumber": 57,
+    "lineNumber": 51,
     "return": {
       "nullable": null,
       "types": [
@@ -1444,7 +1311,7 @@
     "params": []
   },
   {
-    "__docId__": 90,
+    "__docId__": 85,
     "kind": "method",
     "name": "convertPattern",
     "memberof": "scripts/Classes/Loop.js~Loop",
@@ -1454,12 +1321,12 @@
     "longname": "scripts/Classes/Loop.js~Loop#convertPattern",
     "access": "public",
     "description": "Overridden by subclasses to process incoming pattern arrays and\nsave them to `this.pattern`",
-    "lineNumber": 63,
+    "lineNumber": 57,
     "params": [],
     "return": null
   },
   {
-    "__docId__": 91,
+    "__docId__": 86,
     "kind": "method",
     "name": "makeRows",
     "memberof": "scripts/Classes/Loop.js~Loop",
@@ -1469,64 +1336,15 @@
     "longname": "scripts/Classes/Loop.js~Loop#makeRows",
     "access": "public",
     "description": "Uses `this.parts` to create and store new row class objects and\nadd them to the DOM",
-    "lineNumber": 69,
+    "lineNumber": 63,
     "params": [],
     "return": null
   },
   {
-    "__docId__": 92,
-    "kind": "method",
-    "name": "setUpLoop",
-    "memberof": "scripts/Classes/Loop.js~Loop",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "scripts/Classes/Loop.js~Loop#setUpLoop",
-    "access": "public",
-    "description": "Iterate through `this.parts` to create and store sequence objects",
-    "lineNumber": 80,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 93,
-    "kind": "method",
-    "name": "createLoop",
-    "memberof": "scripts/Classes/Loop.js~Loop",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "scripts/Classes/Loop.js~Loop#createLoop",
-    "access": "public",
-    "description": "Used by `setUpLoo()` to create individual `Tone.Sequence` objects\nand assign visual callbacks",
-    "lineNumber": 93,
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "number"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "partNumber",
-        "description": ""
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 94,
+    "__docId__": 87,
     "kind": "file",
     "name": "scripts/Classes/MelodyLoop.js",
-    "content": "import { Tone } from 'tone/build/esm/core/Tone';\nimport { Loop } from './Loop.js';\n\n/**\n * Defines the scale for a melody loop graphical interface and the pattern\n * conversion method used by this and other melodic loops\n */\nexport class MelodyLoop extends Loop {\n  /**\n   * \n   * @param {string} tagId \n   * @param {object} data \n   * @param {Tone.Synth} source \n   */\n  constructor(tagId, data, source) {\n    super(tagId, data, source);\n  }\n\n  /**\n   * @return {Array} Scale members as strings with note names and octaves\n   */\n  setScale() {\n    return [\"G2\", \"A3\", \"Bb3\", \"C3\", \"D3\", \"Eb3\", \"F3\", \"G3\", \"A4\", \"Bb4\", \"C4\", \"D4\", \"Eb4\", \"F4\", \"G4\", \"A5\", \"Bb5\", \"C5\"];\n  }\n\n  /**\n   * Convert an array of note names into a series of patterns for use by `makeRows()`\n   */\n  convertPattern() {\n    var melody = this.parts[0].pattern;\n    var newPartsArray = [];\n\n    for (let i = this.scale.length - 1; i >= 0; i--) {\n      let currentNotePattern = [];\n      let currentNote = this.scale[i];\n      melody.forEach(melodyNote => {\n        if (melodyNote == currentNote) {\n          currentNotePattern.push(currentNote)\n        } else {\n          currentNotePattern.push(null);\n        }\n      })\n      newPartsArray.push({ note: currentNote, pattern: currentNotePattern });\n    }\n\n    this.parts = newPartsArray;\n  }\n\n}",
+    "content": "import { Tone } from 'tone/build/esm/core/Tone';\nimport { Loop } from './Loop.js';\n\n/**\n * Defines the scale for a melody loop graphical interface and the pattern\n * conversion method used by this and other melodic loops\n */\nexport class MelodyLoop extends Loop {\n  /**\n   * \n   * @param {string} tagId \n   * @param {object} data \n   * @param {Tone.Synth} source \n   */\n  constructor(tagId, data, source) {\n    super(tagId, data, source);\n  }\n\n  /**\n   * @return {Array} Scale members as strings with note names and octaves\n   */\n  setScale() {\n    return [\"G4\", \"A4\", \"Bb4\", \"C5\", \"D5\", \"Eb5\", \"F5\", \"G5\", \"A5\", \"Bb5\", \"C6\"];\n  }\n\n  /**\n   * Convert an array of note names into a series of patterns for use by `makeRows()`\n   */\n  convertPattern() {\n    var melody = this.parts[0].pattern;\n    var newPartsArray = [];\n\n    for (let i = this.scale.length - 1; i >= 0; i--) {\n      let currentNotePattern = [];\n      let currentNote = this.scale[i];\n      melody.forEach(melodyNote => {\n        if (melodyNote == currentNote) {\n          currentNotePattern.push(currentNote)\n        } else {\n          currentNotePattern.push(null);\n        }\n      })\n      newPartsArray.push({ note: currentNote, name: currentNote, pattern: currentNotePattern });\n    }\n\n    this.parts = newPartsArray;\n  }\n\n}",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/MelodyLoop.js",
     "access": "public",
@@ -1534,7 +1352,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 95,
+    "__docId__": 88,
     "kind": "class",
     "name": "MelodyLoop",
     "memberof": "scripts/Classes/MelodyLoop.js",
@@ -1552,7 +1370,7 @@
     ]
   },
   {
-    "__docId__": 96,
+    "__docId__": 89,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "scripts/Classes/MelodyLoop.js~MelodyLoop",
@@ -1597,7 +1415,7 @@
     ]
   },
   {
-    "__docId__": 97,
+    "__docId__": 90,
     "kind": "method",
     "name": "setScale",
     "memberof": "scripts/Classes/MelodyLoop.js~MelodyLoop",
@@ -1619,7 +1437,7 @@
     "params": []
   },
   {
-    "__docId__": 98,
+    "__docId__": 91,
     "kind": "method",
     "name": "convertPattern",
     "memberof": "scripts/Classes/MelodyLoop.js~MelodyLoop",
@@ -1634,7 +1452,7 @@
     "return": null
   },
   {
-    "__docId__": 99,
+    "__docId__": 92,
     "kind": "member",
     "name": "parts",
     "memberof": "scripts/Classes/MelodyLoop.js~MelodyLoop",
@@ -1651,10 +1469,10 @@
     }
   },
   {
-    "__docId__": 100,
+    "__docId__": 93,
     "kind": "file",
     "name": "scripts/Classes/PlayButton.js",
-    "content": "import * as Tone from \"tone\";\n\nexport class PlayButton {\n  constructor() {\n    this.domObject = document.getElementById(\"playButton\");\n    this.domObject.innerText = \"Start\";\n\n    this.domObject.start = this.start;\n    this.domObject.stop = this.stop;\n    this.domObject.addEventListener(\"click\", this.listener.bind(this));\n    document.addEventListener(\"keydown\", e => {\n      if (e.code === \"Space\") {\n        e.preventDefault();\n        this.listener();\n      }\n    });\n  }\n\n  async listener(e) { \n    if (this.domObject.innerText == \"Start\") {\n      await Tone.start();\n      this.start();\n    } else {\n      this.stop();\n    }\n  }\n\n  start() {\n    this.domObject.innerText = \"Stop\";\n    Tone.Transport.start(\"+0.01\")\n  }\n\n  stop() {\n    Tone.Transport.pause();\n    this.domObject.innerText = \"Start\";\n  }\n}",
+    "content": "import * as Tone from \"tone\";\n\nexport class PlayButton {\n  constructor() {\n    this.domObject = document.getElementById(\"playButton\");\n    this.domObject.innerText = \"Start\";\n\n    this.domObject.start = this.start;\n    this.domObject.stop = this.stop;\n    this.domObject.addEventListener(\"click\", this.listener.bind(this));\n    document.addEventListener(\"keydown\", e => {\n      if (e.code === \"Space\") {\n        e.preventDefault();\n        this.listener();\n      }\n    });\n  }\n\n  async listener(e) { \n    if (this.domObject.innerText == \"Start\") {\n      await Tone.start();\n      this.start();\n    } else {\n      this.stop();\n    }\n  }\n\n  start() {\n    this.domObject.innerText = \"Stop\";\n    Tone.Transport.start(\"+0.01\")\n  }\n\n  stop() {\n    Tone.Transport.stop();\n    this.domObject.innerText = \"Start\";\n  }\n}",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/PlayButton.js",
     "access": "public",
@@ -1662,7 +1480,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 101,
+    "__docId__": 94,
     "kind": "class",
     "name": "PlayButton",
     "memberof": "scripts/Classes/PlayButton.js",
@@ -1678,7 +1496,7 @@
     "interface": false
   },
   {
-    "__docId__": 102,
+    "__docId__": 95,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "scripts/Classes/PlayButton.js~PlayButton",
@@ -1692,7 +1510,7 @@
     "undocument": true
   },
   {
-    "__docId__": 103,
+    "__docId__": 96,
     "kind": "member",
     "name": "domObject",
     "memberof": "scripts/Classes/PlayButton.js~PlayButton",
@@ -1709,7 +1527,7 @@
     }
   },
   {
-    "__docId__": 104,
+    "__docId__": 97,
     "kind": "method",
     "name": "listener",
     "memberof": "scripts/Classes/PlayButton.js~PlayButton",
@@ -1732,7 +1550,7 @@
     "return": null
   },
   {
-    "__docId__": 105,
+    "__docId__": 98,
     "kind": "method",
     "name": "start",
     "memberof": "scripts/Classes/PlayButton.js~PlayButton",
@@ -1748,7 +1566,7 @@
     "return": null
   },
   {
-    "__docId__": 106,
+    "__docId__": 99,
     "kind": "method",
     "name": "stop",
     "memberof": "scripts/Classes/PlayButton.js~PlayButton",
@@ -1764,10 +1582,10 @@
     "return": null
   },
   {
-    "__docId__": 107,
+    "__docId__": 100,
     "kind": "file",
     "name": "scripts/Classes/Row.js",
-    "content": "import { Box } from './Box.js';\n\n/**\n * Creates and controls DOM objects for individual loop rows\n */\nexport class Row {\n  /**\n   * @param {string} note \n   * @param {array} pattern \n   */\n  constructor(note, pattern) {\n    /**\n     * @type {number}\n     */\n    this.labelWidth = 6.0;\n    /**\n     * @type {string}\n     */\n    this.name = note;\n    /**\n     * @type {array}\n     */\n    this.pattern = pattern;\n    /**\n     * @type {array}\n     */\n    this.boxes = [];\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.createElement(\"div\");\n    this.domObject.classList.add(\"row-of-boxes\");\n    this.domObject.appendChild(this.makeRowLabel(this.name));\n\n    for (let i = 0; i < pattern.length; i++) {\n      let box = new Box(i, pattern[i]);\n      box.calculateWidth(pattern.length, this.labelWidth);\n      this.domObject.appendChild(box.domObject);\n      this.boxes.push(box);\n    }\n  }\n\n  /**\n   * \n   * @param {string} label Name of the row, to be added to the DOM object before any boxes\n   * @return {HTMLSpanElement} HTML span element with the row name\n   */\n  makeRowLabel(label) {\n    var rowName = document.createElement(\"span\");\n    rowName.classList.add(\"row-label\");\n    rowName.innerText = label;\n    rowName.style.width = this.labelWidth + \"em\";\n    return rowName;\n  }\n\n  /**\n   * Called in the Tone.Sequencer callback to determine which\n   * box to animate\n   */\n  flashActiveBox() {\n    var filledBoxes = this.boxes.filter(box => box.domObject.classList.contains(\"filled-box\"));\n    var activeBoxIndex = 0;\n    for (let i = 0; i < filledBoxes.length; i++) {\n      if (filledBoxes[i].domObject.classList.contains(\"active-box\")) {\n        filledBoxes[i].domObject.classList.remove(\"active-box\");\n        activeBoxIndex = (i + 1) % filledBoxes.length;\n        break;\n      }\n    }\n    \n    var activeBox = filledBoxes[activeBoxIndex];\n    activeBox.domObject.classList.add(\"active-box\");\n    activeBox.flash();\n  }\n}\n",
+    "content": "import * as Tone from 'tone';\nimport { Box } from './Box.js';\n\n/**\n * Creates and controls DOM objects for individual loop rows\n */\nexport class Row {\n  /**\n   * @param {object} part\n   * @param {Tone.Synth} source \n   */\n  constructor(part, source) {\n    /**\n     * @type {number}\n     */\n    this.labelWidth = 6.0;\n    /**\n     * @type {string}\n     */\n    this.name = part.name;\n    /**\n     * @type {array}\n     */\n    this.note = part.note;\n    /**\n     * @type {array}\n     */\n    this.pattern = part.pattern;\n    /**\n    * @type {Tone.synth}\n    */\n    this.source = source;\n    this.createLoop();\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.createElement(\"div\");\n    this.domObject.classList.add(\"row-of-boxes\");\n    this.domObject.appendChild(this.makeRowLabel(this.name));\n    /**\n     * @type {array}\n     */\n    this.boxes = this.createBoxes();\n  }\n\n  /**\n   * \n   * @param {string} label Name of the row, to be added to the DOM object before any boxes\n   * @return {HTMLSpanElement} HTML span element with the row name\n   */\n  makeRowLabel(label) {\n    var rowName = document.createElement(\"span\");\n    rowName.classList.add(\"row-label\");\n    rowName.innerText = label;\n    rowName.style.width = this.labelWidth + \"em\";\n    return rowName;\n  }\n\n  /**\n   * Build and store the series of boxes in the row\n   */\n  createBoxes() {\n    var boxes = [];\n    let widthString = this.calculateBoxWidth();\n    for (let i = 0; i < this.pattern.length; i++) {\n      let box = new Box(this.pattern[i]);\n      box.domObject.style.width = widthString;\n\n      // add event listeners\n      box.domObject.addEventListener(\"click\", () => {\n        this.switchFilledStatus(box);\n        this.updateSequencePattern(i, box.filled);\n        this.createLoop();\n      })\n\n      // display and store the box\n      this.domObject.appendChild(box.domObject);\n      boxes.push(box);\n    };\n    return boxes;\n  }\n\n  /**\n   * Called by `createBoxes`, uses the number of boxes in\n   * a row to calculate and set the CSS width property\n   */\n  calculateBoxWidth() {\n    let percent = 100.0 / this.pattern.length + \"%\";\n    let padding = this.labelWidth / this.pattern.length + 0.1;\n    return \"calc(\" + percent + \" - \" + padding + \"em)\";\n  }\n\n  /**\n   * Used by the constructor and click event callbacks to remove the\n   * previous loop and replace it with an updated version\n   */\n  createLoop() {\n    // clear the previous sequence if one exists\n    if (this.sequence) {\n      this.sequence.dispose();\n    }\n\n    // create the new sequence for this row\n    this.sequence = new Tone.Sequence((time, note) => {\n      this.flashActiveBox();\n      this.source.triggerAttackRelease(note, \"8n\", time);\n    }, this.pattern).start(0);\n  }\n\n  /**\n   * Called in the Tone.Sequencer callback to determine which\n   * box to animate\n   */\n  flashActiveBox() {\n    var [beat, sixteenth] = Tone.Transport.position.split(/\\.|:/).slice(1,3);\n    beat = Number(beat);\n    sixteenth = Number(sixteenth);\n    var currentPosition = beat * 2 + sixteenth / 2, beat, sixteenth;\n    if (this.boxes[currentPosition].filled) {\n      this.boxes[currentPosition].flash();\n    }\n  }\n\n  /**\n   * Switch the status of a box as filled and not filled\n   * @param {Box} box\n   */\n  switchFilledStatus(box) {\n    var filled = false;\n    if (box.domObject.classList.contains(\"filled-box\")) {\n      box.domObject.classList.remove(\"filled-box\");\n      box.domObject.classList.add(\"empty-box\");\n    } else {\n      box.domObject.classList.add(\"filled-box\");\n      box.domObject.classList.remove(\"empty-box\");\n      filled = true;\n    }\n    box.filled = filled;\n  }\n\n  /**\n   * Update the sequence object passed by Row whenever a user clicks\n   * a box. This is part of the Box click event listener\n   */\n  updateSequencePattern(positionNumber, filled) {\n    var pattern = this.sequence._eventsArray;\n    if (filled) {\n      pattern[positionNumber] = this.note;\n    } else {\n      pattern[positionNumber] = null;\n    }\n    this.pattern = pattern;\n  }\n}\n",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/Row.js",
     "access": "public",
@@ -1775,7 +1593,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 108,
+    "__docId__": 101,
     "kind": "class",
     "name": "Row",
     "memberof": "scripts/Classes/Row.js",
@@ -1786,11 +1604,11 @@
     "importPath": "loopBuilder/scripts/Classes/Row.js",
     "importStyle": "{Row}",
     "description": "Creates and controls DOM objects for individual loop rows",
-    "lineNumber": 6,
+    "lineNumber": 7,
     "interface": false
   },
   {
-    "__docId__": 109,
+    "__docId__": 102,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1800,32 +1618,32 @@
     "longname": "scripts/Classes/Row.js~Row#constructor",
     "access": "public",
     "description": "",
-    "lineNumber": 11,
+    "lineNumber": 12,
     "params": [
       {
         "nullable": null,
         "types": [
-          "string"
+          "object"
         ],
         "spread": false,
         "optional": false,
-        "name": "note",
+        "name": "part",
         "description": ""
       },
       {
         "nullable": null,
         "types": [
-          "array"
+          "Tone.Synth"
         ],
         "spread": false,
         "optional": false,
-        "name": "pattern",
+        "name": "source",
         "description": ""
       }
     ]
   },
   {
-    "__docId__": 110,
+    "__docId__": 103,
     "kind": "member",
     "name": "labelWidth",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1833,7 +1651,7 @@
     "longname": "scripts/Classes/Row.js~Row#labelWidth",
     "access": "public",
     "description": "",
-    "lineNumber": 15,
+    "lineNumber": 16,
     "type": {
       "nullable": null,
       "types": [
@@ -1844,7 +1662,7 @@
     }
   },
   {
-    "__docId__": 111,
+    "__docId__": 104,
     "kind": "member",
     "name": "name",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1852,7 +1670,7 @@
     "longname": "scripts/Classes/Row.js~Row#name",
     "access": "public",
     "description": "",
-    "lineNumber": 19,
+    "lineNumber": 20,
     "type": {
       "nullable": null,
       "types": [
@@ -1863,7 +1681,26 @@
     }
   },
   {
-    "__docId__": 112,
+    "__docId__": 105,
+    "kind": "member",
+    "name": "note",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#note",
+    "access": "public",
+    "description": "",
+    "lineNumber": 24,
+    "type": {
+      "nullable": null,
+      "types": [
+        "array"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 106,
     "kind": "member",
     "name": "pattern",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1871,7 +1708,7 @@
     "longname": "scripts/Classes/Row.js~Row#pattern",
     "access": "public",
     "description": "",
-    "lineNumber": 23,
+    "lineNumber": 28,
     "type": {
       "nullable": null,
       "types": [
@@ -1882,26 +1719,26 @@
     }
   },
   {
-    "__docId__": 113,
+    "__docId__": 107,
     "kind": "member",
-    "name": "boxes",
+    "name": "source",
     "memberof": "scripts/Classes/Row.js~Row",
     "static": false,
-    "longname": "scripts/Classes/Row.js~Row#boxes",
+    "longname": "scripts/Classes/Row.js~Row#source",
     "access": "public",
     "description": "",
-    "lineNumber": 27,
+    "lineNumber": 32,
     "type": {
       "nullable": null,
       "types": [
-        "array"
+        "Tone.synth"
       ],
       "spread": false,
       "description": null
     }
   },
   {
-    "__docId__": 114,
+    "__docId__": 108,
     "kind": "member",
     "name": "domObject",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1909,7 +1746,7 @@
     "longname": "scripts/Classes/Row.js~Row#domObject",
     "access": "public",
     "description": "",
-    "lineNumber": 31,
+    "lineNumber": 37,
     "type": {
       "nullable": null,
       "types": [
@@ -1920,7 +1757,26 @@
     }
   },
   {
-    "__docId__": 115,
+    "__docId__": 109,
+    "kind": "member",
+    "name": "boxes",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#boxes",
+    "access": "public",
+    "description": "",
+    "lineNumber": 43,
+    "type": {
+      "nullable": null,
+      "types": [
+        "array"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 110,
     "kind": "method",
     "name": "makeRowLabel",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1930,7 +1786,7 @@
     "longname": "scripts/Classes/Row.js~Row#makeRowLabel",
     "access": "public",
     "description": "",
-    "lineNumber": 48,
+    "lineNumber": 51,
     "params": [
       {
         "nullable": null,
@@ -1953,7 +1809,77 @@
     }
   },
   {
-    "__docId__": 116,
+    "__docId__": 111,
+    "kind": "method",
+    "name": "createBoxes",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#createBoxes",
+    "access": "public",
+    "description": "Build and store the series of boxes in the row",
+    "lineNumber": 62,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 112,
+    "kind": "method",
+    "name": "calculateBoxWidth",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#calculateBoxWidth",
+    "access": "public",
+    "description": "Called by `createBoxes`, uses the number of boxes in\na row to calculate and set the CSS width property",
+    "lineNumber": 87,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 113,
+    "kind": "method",
+    "name": "createLoop",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#createLoop",
+    "access": "public",
+    "description": "Used by the constructor and click event callbacks to remove the\nprevious loop and replace it with an updated version",
+    "lineNumber": 97,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 114,
+    "kind": "member",
+    "name": "sequence",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#sequence",
+    "access": "public",
+    "description": null,
+    "lineNumber": 104,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 115,
     "kind": "method",
     "name": "flashActiveBox",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1963,15 +1889,69 @@
     "longname": "scripts/Classes/Row.js~Row#flashActiveBox",
     "access": "public",
     "description": "Called in the Tone.Sequencer callback to determine which\nbox to animate",
-    "lineNumber": 60,
+    "lineNumber": 114,
     "params": [],
     "return": null
   },
   {
+    "__docId__": 116,
+    "kind": "method",
+    "name": "switchFilledStatus",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#switchFilledStatus",
+    "access": "public",
+    "description": "Switch the status of a box as filled and not filled",
+    "lineNumber": 128,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Box"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "box",
+        "description": ""
+      }
+    ],
+    "return": null
+  },
+  {
     "__docId__": 117,
+    "kind": "method",
+    "name": "updateSequencePattern",
+    "memberof": "scripts/Classes/Row.js~Row",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Row.js~Row#updateSequencePattern",
+    "access": "public",
+    "description": "Update the sequence object passed by Row whenever a user clicks\na box. This is part of the Box click event listener",
+    "lineNumber": 145,
+    "params": [
+      {
+        "name": "positionNumber",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "filled",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 119,
     "kind": "file",
     "name": "scripts/audio.js",
-    "content": "import * as Tone from 'tone';\n\nimport hihat from \"../audio/hihat.mp3\";\nimport snare from \"../audio/snare.mp3\";\nimport kick from \"../audio/kick.mp3\";\nimport clave from \"../audio/clave.mp3\";\nimport ding from \"../audio/ding.mp3\";\nimport bongo1 from \"../audio/bongo1.mp3\";\nimport bongo2 from \"../audio/bongo2.mp3\";\nimport tom3 from \"../audio/tom3.mp3\";\nimport cowbell from \"../audio/cowbell.mp3\";\n\nexport function createDrumSampler() {\n  const drumSampler = new Tone.Sampler({\n    urls: {\n      A1: hihat,\n      A2: snare,\n      A3: kick,\n      A4: clave,\n      A5: ding,\n      A6: bongo1,\n      A7: bongo2,\n      A8: tom3,\n      A9: cowbell,\n    },\n  }).toDestination();\n\n  return drumSampler;\n}\n\nexport function createSynth() {\n  const synth = new Tone.Synth().toDestination();\n  return synth;\n}\n",
+    "content": "import * as Tone from 'tone';\n\nimport hihat from \"../audio/hihat.mp3\";\nimport snare from \"../audio/snare.mp3\";\nimport kick from \"../audio/kick.mp3\";\nimport clave from \"../audio/clave.mp3\";\nimport ding from \"../audio/ding.mp3\";\nimport bongo1 from \"../audio/bongo1.mp3\";\nimport bongo2 from \"../audio/bongo2.mp3\";\nimport tom3 from \"../audio/tom3.mp3\";\nimport cowbell from \"../audio/cowbell.mp3\";\n\nexport function createDrumSampler() {\n  const drumSampler = new Tone.Sampler({\n    urls: {\n      A1: hihat,\n      A2: snare,\n      A3: kick,\n      A4: clave,\n      A5: ding,\n      A6: bongo1,\n      A7: bongo2,\n      A8: tom3,\n      A9: cowbell,\n    },\n  }).toDestination();\n\n  return drumSampler;\n}\n\nexport function createSynth() {\n  const synth = new Tone.PolySynth().toDestination();\n  return synth;\n}\n",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/audio.js",
     "access": "public",
@@ -1979,7 +1959,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 118,
+    "__docId__": 120,
     "kind": "function",
     "name": "createDrumSampler",
     "memberof": "scripts/audio.js",
@@ -2002,7 +1982,7 @@
     }
   },
   {
-    "__docId__": 119,
+    "__docId__": 121,
     "kind": "function",
     "name": "createSynth",
     "memberof": "scripts/audio.js",
@@ -2025,10 +2005,10 @@
     }
   },
   {
-    "__docId__": 120,
+    "__docId__": 122,
     "kind": "file",
     "name": "scripts/loops.js",
-    "content": "var melodyLoop = {\n  tempo: 108,\n  parts: [\n    {\n      name: \"Melody\",\n      pattern: [\"C4\", \"C5\", null, \"F4\", null, \"Eb4\", \"Bb3\", null],\n    }\n  ]\n}\n\nvar bassLoop = {\n  tempo: 108,\n  parts: [\n    {\n      name: \"Bass\",\n      pattern: [\"C3\", null, null, \"G2\", \"Bb3\", null, \"G3\", null],\n    }\n  ]\n}\n\nvar drumLoop = {\n  tempo: 108,\n  parts: [\n    {\n      name: \"Kick drum\",\n      note: \"A3\",\n      pattern: [1, 0, 0, 0, 1, 0, 0, 0],\n    },\n    {\n      name: \"Snare drum\",\n      note: \"A2\",\n      pattern: [0, 0, 1, 1, 0, 0, 1, 0],\n    },\n    {\n      name: \"Cowbell\",\n      note: \"A9\",\n      pattern: [0, 0, 1, 0, 0, 1, 0, 0],\n    }\n  ]\n}\n\nexport var loops = {\n  drumLoop: drumLoop,\n  melodyLoop: melodyLoop,\n  bassLoop: bassLoop\n}",
+    "content": "var melodyLoop = {\n  tempo: 108,\n  parts: [\n    {\n      name: \"Melody\",\n      pattern: [\"C5\", \"C6\", null, \"F5\", null, \"Eb5\", \"Bb4\", null],\n    }\n  ]\n}\n\nvar bassLoop = {\n  tempo: 108,\n  parts: [\n    {\n      name: \"Bass\",\n      pattern: [\"C3\", null, null, \"G2\", \"Bb3\", null, \"G3\", null],\n    }\n  ]\n}\n\nvar drumLoop = {\n  tempo: 108,\n  parts: [\n    {\n      name: \"Kick drum\",\n      note: \"A3\",\n      pattern: [1, 0, 0, 0, 1, 0, 0, 0],\n    },\n    {\n      name: \"Snare drum\",\n      note: \"A2\",\n      pattern: [0, 0, 1, 1, 0, 0, 1, 0],\n    },\n    {\n      name: \"Cowbell\",\n      note: \"A9\",\n      pattern: [0, 0, 1, 0, 0, 1, 0, 0],\n    }\n  ]\n}\n\nexport var loops = {\n  drumLoop: drumLoop,\n  melodyLoop: melodyLoop,\n  bassLoop: bassLoop\n}",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/loops.js",
     "access": "public",
@@ -2036,7 +2016,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 121,
+    "__docId__": 123,
     "kind": "variable",
     "name": "melodyLoop",
     "memberof": "scripts/loops.js",
@@ -2057,7 +2037,7 @@
     "ignore": true
   },
   {
-    "__docId__": 122,
+    "__docId__": 124,
     "kind": "variable",
     "name": "bassLoop",
     "memberof": "scripts/loops.js",
@@ -2078,7 +2058,7 @@
     "ignore": true
   },
   {
-    "__docId__": 123,
+    "__docId__": 125,
     "kind": "variable",
     "name": "drumLoop",
     "memberof": "scripts/loops.js",
@@ -2099,7 +2079,7 @@
     "ignore": true
   },
   {
-    "__docId__": 124,
+    "__docId__": 126,
     "kind": "variable",
     "name": "loops",
     "memberof": "scripts/loops.js",
@@ -2119,7 +2099,7 @@
     }
   },
   {
-    "__docId__": 125,
+    "__docId__": 127,
     "kind": "file",
     "name": "scripts/script.js",
     "content": "import * as Tone from 'tone';\nimport { MelodyLoop } from './Classes/MelodyLoop.js';\nimport { DrumLoop } from './Classes/DrumLoop.js';\nimport { BassLoop } from './Classes/BassLoop.js';\nimport { PlayButton } from './Classes/PlayButton.js';\nimport { EffectsUI } from './Classes/EffectsUI.js';\nimport { loops } from './loops.js';\nimport { createDrumSampler, createSynth } from './audio.js';\n\n// create sources\nconst drumSampler = createDrumSampler();\nconst drumVolumeNode = new Tone.Volume(-6).toDestination();\ndrumSampler.connect(drumVolumeNode);\n\nconst melodySynth = createSynth();\nconst melodyVolumeNode = new Tone.Volume(0).toDestination();\nmelodySynth.connect(melodyVolumeNode);\n\nconst bassSynth = createSynth();\nconst bassVolumeNode = new Tone.Volume(-20).toDestination();\nbassSynth.connect(bassVolumeNode);\n\n// add effects\nconst melodyEffect1 = new Tone.Distortion({\n  distortion: 10,\n  wet: 0.5,\n})\n\nconst melodyEffect2 = new Tone.FeedbackDelay({\n  delayTime: \"8n\",\n  feedback: 0.7,\n  maxDelay: \"4n\",\n  wet: 0.5\n}).toDestination();\n\nmelodySynth.chain(melodyEffect1, melodyEffect2);\n\nconst bassEffect1 = new Tone.BitCrusher({ \n  bits: 2,\n  wet: 0.5\n}).toDestination();\n\nconst bassEffect2 = new Tone.Chorus({\n  depth: 1,\n  delayTime: 700,\n  feedback: 0.4,\n  wet: 0.5,\n}).toDestination();\n\nbassSynth.chain(bassEffect1, bassEffect2);\n\n// set up loops\nconst Play = new PlayButton();\nconst melodyLoop = new MelodyLoop(\"melodyLoop\", loops.melodyLoop, melodySynth);\nconst bassLoop = new BassLoop(\"bassLoop\", loops.bassLoop, bassSynth);\nconst drumLoop = new DrumLoop(\"drumLoop\", loops.drumLoop, drumSampler);\n\n// set up filter listeners\nconst synthEffects = new EffectsUI(\"melodyEffects\", melodyEffect1, melodyEffect2);\nconst bassEffects = new EffectsUI(\"bassEffects\", bassEffect1, bassEffect2);",
@@ -2130,7 +2110,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 126,
+    "__docId__": 128,
     "kind": "variable",
     "name": "drumSampler",
     "memberof": "scripts/script.js",
@@ -2151,7 +2131,7 @@
     "ignore": true
   },
   {
-    "__docId__": 127,
+    "__docId__": 129,
     "kind": "variable",
     "name": "drumVolumeNode",
     "memberof": "scripts/script.js",
@@ -2172,7 +2152,7 @@
     "ignore": true
   },
   {
-    "__docId__": 128,
+    "__docId__": 130,
     "kind": "variable",
     "name": "melodySynth",
     "memberof": "scripts/script.js",
@@ -2193,7 +2173,7 @@
     "ignore": true
   },
   {
-    "__docId__": 129,
+    "__docId__": 131,
     "kind": "variable",
     "name": "melodyVolumeNode",
     "memberof": "scripts/script.js",
@@ -2214,7 +2194,7 @@
     "ignore": true
   },
   {
-    "__docId__": 130,
+    "__docId__": 132,
     "kind": "variable",
     "name": "bassSynth",
     "memberof": "scripts/script.js",
@@ -2235,7 +2215,7 @@
     "ignore": true
   },
   {
-    "__docId__": 131,
+    "__docId__": 133,
     "kind": "variable",
     "name": "bassVolumeNode",
     "memberof": "scripts/script.js",
@@ -2256,7 +2236,7 @@
     "ignore": true
   },
   {
-    "__docId__": 132,
+    "__docId__": 134,
     "kind": "variable",
     "name": "melodyEffect1",
     "memberof": "scripts/script.js",
@@ -2277,7 +2257,7 @@
     "ignore": true
   },
   {
-    "__docId__": 133,
+    "__docId__": 135,
     "kind": "variable",
     "name": "melodyEffect2",
     "memberof": "scripts/script.js",
@@ -2298,7 +2278,7 @@
     "ignore": true
   },
   {
-    "__docId__": 134,
+    "__docId__": 136,
     "kind": "variable",
     "name": "bassEffect1",
     "memberof": "scripts/script.js",
@@ -2319,7 +2299,7 @@
     "ignore": true
   },
   {
-    "__docId__": 135,
+    "__docId__": 137,
     "kind": "variable",
     "name": "bassEffect2",
     "memberof": "scripts/script.js",
@@ -2340,7 +2320,7 @@
     "ignore": true
   },
   {
-    "__docId__": 136,
+    "__docId__": 138,
     "kind": "variable",
     "name": "Play",
     "memberof": "scripts/script.js",
@@ -2361,7 +2341,7 @@
     "ignore": true
   },
   {
-    "__docId__": 137,
+    "__docId__": 139,
     "kind": "variable",
     "name": "melodyLoop",
     "memberof": "scripts/script.js",
@@ -2382,7 +2362,7 @@
     "ignore": true
   },
   {
-    "__docId__": 138,
+    "__docId__": 140,
     "kind": "variable",
     "name": "bassLoop",
     "memberof": "scripts/script.js",
@@ -2403,7 +2383,7 @@
     "ignore": true
   },
   {
-    "__docId__": 139,
+    "__docId__": 141,
     "kind": "variable",
     "name": "drumLoop",
     "memberof": "scripts/script.js",
@@ -2424,7 +2404,7 @@
     "ignore": true
   },
   {
-    "__docId__": 140,
+    "__docId__": 142,
     "kind": "variable",
     "name": "synthEffects",
     "memberof": "scripts/script.js",
@@ -2445,7 +2425,7 @@
     "ignore": true
   },
   {
-    "__docId__": 141,
+    "__docId__": 143,
     "kind": "variable",
     "name": "bassEffects",
     "memberof": "scripts/script.js",
@@ -2467,7 +2447,7 @@
   },
   {
     "kind": "index",
-    "content": "# Loop Builder\n\n![Documentation coverage](./docs/badge.svg)\n\nThis is a test project that links [tone.js](https://tonejs.github.io) to a graphical interface to create looping melodies and rhythms. Documentation is in [the docs folder](./docs/index.html).\n\n## Features\n\n* Manipulate the timbre of generated synthesizer melodies using a graphical effects controller\n\n### Next\n\n* Rework flashActiveBox() or reorganize input for synthesizers\n* Create subclass synthesizers with specific ranges\n* Consider removing note names\n* Activate and deactivate notes\n* Make the synths polyphonic or add a switch that looks at each row's index to disable other notes\n  * Reset loop, ideally without stopping, may require changing sequence object\n\n### After that\n\n* Add control to change melody and bass loops\n* Add control to change drum loop\n* Write a short introduction\n* Allow saving and loading\n\n## Sounds\n\n* Cowbell sound is from [GowlerMusic on freesound.org](https://freesound.org/people/GowlerMusic/sounds/364919/)\n",
+    "content": "# Loop Builder\n\n![Documentation coverage](./docs/badge.svg)\n\nThis is a test project that links [tone.js](https://tonejs.github.io) to a graphical interface to create looping melodies and rhythms. Documentation is in [the docs folder](./docs/index.html).\n\n## Features\n\n* Manipulate the timbre of generated synthesizer melodies using a graphical effects controller\n* Change notes with simple UI\n\n### Next\n\n* Check DrumLoop version to make sure it's working correctly\n* Rework flashActiveBox() using position information\n* Reconsider box vs row class info (pass part and parent row to box, perhaps?)\n* Consider removing note names\n\n### After that\n\n* Add control to change melody and bass loops\n* Add control to change drum loop\n* Write a short introduction\n* Allow saving and loading\n\n## Sounds\n\n* Cowbell sound is from [GowlerMusic on freesound.org](https://freesound.org/people/GowlerMusic/sounds/364919/)\n",
     "longname": "/Users/cwituls/Documents/loopBuilder/README.md",
     "name": "./README.md",
     "static": true,

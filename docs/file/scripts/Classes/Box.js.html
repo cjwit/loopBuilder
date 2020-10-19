@@ -45,28 +45,21 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">scripts/Classes/Box.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import * as Tone from &quot;tone&quot;;
+
+/**
  * Creates and handles Box object data and
  * DOM interactions, including visual callbacks
  */
 export class Box {
   /**
-   * @param {number} positionNumber 
-   * @param {number} value 
+   * @param {string} note 
    */
-  constructor(positionNumber, value) {
+  constructor(note) {
     /**
      * @type {number}
      */
-    this.value = value;
-    /**
-     * @type {number}
-     */
-    this.positionNumber = positionNumber;
-    /**
-     * @type {string} A string in the format of 0:0 showing beat:sixteenth
-     */
-    this.position = this.getTransportPosition(this.positionNumber);
+    this.note = note;
     /**
      * @type {HTMLElement}
      */
@@ -74,39 +67,17 @@ export class Box {
     /**
      * @type {boolean}
      */
-    this.filled = this.isFilled();
+    this.filled = this.setFilledStatus();
     this.domObject.classList.add(&quot;box&quot;);
-  }
-
-  /**
-   * Called by the parent `Row` using the number of boxes
-   * to calculate and set the CSS width property
-   * @param {number} numberOfBoxes - The number of boxes in the row
-   * @param {number} labelWidth - The row name with, to subtract from the calculation
-   */
-  calculateWidth(numberOfBoxes, labelWidth) {
-    let percent = 100.0 / numberOfBoxes + &quot;%&quot;;
-    let padding = labelWidth / numberOfBoxes + 0.1;
-    this.domObject.style.width = &quot;calc(&quot; + percent + &quot; - &quot; + padding + &quot;em)&quot;;
-  }
-
-  /**
-   * Used to calculate the position for Tone.Transport
-   * @param {number} positionNumber - This box&apos;s place in the row 
-   */
-  getTransportPosition(positionNumber) {
-    var beat = Math.floor(positionNumber / 2);
-    var sixteenth = positionNumber % 2;
-    return `${beat}:${sixteenth}`;
   }
 
   /**
    * Determine whether the current box has an event associated with it
    * and sets the appropriate css class
    */
-  isFilled() {
+  setFilledStatus() {
     let filled = false;
-    if (this.value != null &amp;&amp; this.value != 0) {
+    if (this.note != null) {
       filled = true;
     }
     this.domObject.classList.add(filled ? &quot;filled-box&quot; : &quot;empty-box&quot;);
@@ -119,14 +90,10 @@ export class Box {
    */
   flash() {
     var box = this.domObject;
-    var bgColor = window.getComputedStyle(box, null).getPropertyValue(&quot;background-color&quot;);
-    box.style.backgroundColor = &quot;#0a4f2d&quot;;
-    setTimeout(function () {
-      box.animate({ backgroundColor: bgColor }, 1000);
-    });
-    setTimeout(function () {
-      box.style.backgroundColor = bgColor;
-    }, 1000);
+    $(box).addClass(&quot;active-box&quot;);
+    $(box).removeClass(&quot;filled-box&quot;);
+    $(box).addClass(&quot;filled-box&quot;, 500, &quot;swing&quot;);
+    $(box).removeClass(&quot;active-box&quot;, 500, &quot;swing&quot;);
   }
 }</code></pre>
 

@@ -663,10 +663,10 @@
                               }
                             },
                             "extra": {
-                              "rawValue": "A3",
-                              "raw": "\"A3\""
+                              "rawValue": "A2",
+                              "raw": "\"A2\""
                             },
-                            "value": "A3"
+                            "value": "A2"
                           },
                           {
                             "type": "StringLiteral",
@@ -683,10 +683,10 @@
                               }
                             },
                             "extra": {
-                              "rawValue": "Bb3",
-                              "raw": "\"Bb3\""
+                              "rawValue": "Bb2",
+                              "raw": "\"Bb2\""
                             },
-                            "value": "Bb3"
+                            "value": "Bb2"
                           },
                           {
                             "type": "StringLiteral",
@@ -803,10 +803,10 @@
                               }
                             },
                             "extra": {
-                              "rawValue": "A4",
-                              "raw": "\"A4\""
+                              "rawValue": "A3",
+                              "raw": "\"A3\""
                             },
-                            "value": "A4"
+                            "value": "A3"
                           },
                           {
                             "type": "StringLiteral",
@@ -823,10 +823,10 @@
                               }
                             },
                             "extra": {
-                              "rawValue": "Bb4",
-                              "raw": "\"Bb4\""
+                              "rawValue": "Bb3",
+                              "raw": "\"Bb3\""
                             },
-                            "value": "Bb4"
+                            "value": "Bb3"
                           },
                           {
                             "type": "StringLiteral",
@@ -2254,7 +2254,7 @@
         "binop": null,
         "updateContext": null
       },
-      "value": "A3",
+      "value": "A2",
       "start": 499,
       "end": 503,
       "loc": {
@@ -2307,7 +2307,7 @@
         "binop": null,
         "updateContext": null
       },
-      "value": "Bb3",
+      "value": "Bb2",
       "start": 505,
       "end": 510,
       "loc": {
@@ -2625,7 +2625,7 @@
         "binop": null,
         "updateContext": null
       },
-      "value": "A4",
+      "value": "A3",
       "start": 543,
       "end": 547,
       "loc": {
@@ -2678,7 +2678,7 @@
         "binop": null,
         "updateContext": null
       },
-      "value": "Bb4",
+      "value": "Bb3",
       "start": 549,
       "end": 554,
       "loc": {

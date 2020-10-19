@@ -67,7 +67,7 @@ export class MelodyLoop extends Loop {
    * @return {Array} Scale members as strings with note names and octaves
    */
   setScale() {
-    return [&quot;G2&quot;, &quot;A3&quot;, &quot;Bb3&quot;, &quot;C3&quot;, &quot;D3&quot;, &quot;Eb3&quot;, &quot;F3&quot;, &quot;G3&quot;, &quot;A4&quot;, &quot;Bb4&quot;, &quot;C4&quot;, &quot;D4&quot;, &quot;Eb4&quot;, &quot;F4&quot;, &quot;G4&quot;, &quot;A5&quot;, &quot;Bb5&quot;, &quot;C5&quot;];
+    return [&quot;G4&quot;, &quot;A4&quot;, &quot;Bb4&quot;, &quot;C5&quot;, &quot;D5&quot;, &quot;Eb5&quot;, &quot;F5&quot;, &quot;G5&quot;, &quot;A5&quot;, &quot;Bb5&quot;, &quot;C6&quot;];
   }
 
   /**
@@ -87,7 +87,7 @@ export class MelodyLoop extends Loop {
           currentNotePattern.push(null);
         }
       })
-      newPartsArray.push({ note: currentNote, pattern: currentNotePattern });
+      newPartsArray.push({ note: currentNote, name: currentNote, pattern: currentNotePattern });
     }
 
     this.parts = newPartsArray;
