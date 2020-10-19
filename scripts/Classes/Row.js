@@ -29,34 +29,21 @@ export class Row {
     /**
     * @type {Tone.synth}
     */
-   this.source = source;
+    this.source = source;
     /**
      * @type {array}
      */
     this.sequence = this.createLoop();
-    /**
-     * @type {array}
-     */
-    this.boxes = [];
     /**
      * @type {HTMLElement}
      */
     this.domObject = document.createElement("div");
     this.domObject.classList.add("row-of-boxes");
     this.domObject.appendChild(this.makeRowLabel(this.name));
-
-    for (let i = 0; i < this.pattern.length; i++) {
-      let box = new Box(i, this.pattern[i], this.note);
-      box.calculateWidth(this.pattern.length, this.labelWidth);
-      
-      // add event listeners
-      box.domObject.addEventListener("click", () => {
-        this.sequence.dispose();
-        this.switchFilledBox(box);
-      })  
-      this.domObject.appendChild(box.domObject);
-      this.boxes.push(box);
-    }
+    /**
+     * @type {array}
+     */
+    this.boxes = this.createBoxes();
   }
 
   /**
@@ -70,6 +57,39 @@ export class Row {
     rowName.innerText = label;
     rowName.style.width = this.labelWidth + "em";
     return rowName;
+  }
+
+  /**
+   * Build and store the series of boxes in the row
+   */
+  createBoxes() {
+    var boxes = [];
+    let widthString = this.calculateBoxWidth();
+    for (let i = 0; i < this.pattern.length; i++) {
+      let box = new Box(this.pattern[i], i);
+      box.domObject.style.width = widthString;
+
+      // add event listeners
+      box.domObject.addEventListener("click", () => {
+        this.sequence.dispose();
+        this.switchFilledBox(box);
+      })
+
+      // display and store the box
+      this.domObject.appendChild(box.domObject);
+      boxes.push(box);
+    };
+    return boxes;
+  }
+
+  /**
+   * Called by `createBoxes`, uses the number of boxes in
+   * a row to calculate and set the CSS width property
+   */
+  calculateBoxWidth() {
+    let percent = 100.0 / this.pattern.length + "%";
+    let padding = this.labelWidth / this.pattern.length + 0.1;
+    return "calc(" + percent + " - " + padding + "em)";
   }
 
   /**
@@ -99,15 +119,15 @@ export class Row {
         break;
       }
     }
-    
+
     var activeBox = filledBoxes[activeBoxIndex];
     activeBox.domObject.classList.add("active-box");
     activeBox.flash();
   }
 
-    /**
-   * Switch the status of a box as filled and not filled
-   */
+  /**
+ * Switch the status of a box as filled and not filled
+ */
   switchFilledBox(box) {
     var filled = false;
     if (box.domObject.classList.contains("filled-box")) {
@@ -137,5 +157,4 @@ export class Row {
       this.source.triggerAttackRelease(note, "8n", time);
     }, pattern).start(0);
   }
-
 }

@@ -6,10 +6,10 @@ import * as Tone from "tone";
  */
 export class Box {
   /**
-   * @param {number} positionNumber 
    * @param {string} note 
+   * @param {number} positionNumber 
    */
-  constructor(positionNumber, note) {
+  constructor(note, positionNumber) {
     /**
      * @type {number}
      */
@@ -31,18 +31,6 @@ export class Box {
      */
     this.filled = this.setFilledStatus();
     this.domObject.classList.add("box");
-  }
-
-  /**
-   * Called by the parent `Row` using the number of boxes
-   * to calculate and set the CSS width property
-   * @param {number} numberOfBoxes - The number of boxes in the row
-   * @param {number} labelWidth - The row name with, to subtract from the calculation
-   */
-  calculateWidth(numberOfBoxes, labelWidth) {
-    let percent = 100.0 / numberOfBoxes + "%";
-    let padding = labelWidth / numberOfBoxes + 0.1;
-    this.domObject.style.width = "calc(" + percent + " - " + padding + "em)";
   }
 
   /**
