@@ -70,6 +70,8 @@ export class Row {
       box.domObject.addEventListener("click", () => {
         this.sequence.dispose();
         this.switchFilledBox(box);
+        this.updateSequencePattern(box.positionNumber, box.filled);
+        this.createLoop();
       })
 
       // display and store the box
@@ -122,8 +124,8 @@ export class Row {
   }
 
   /**
- * Switch the status of a box as filled and not filled
- */
+   * Switch the status of a box as filled and not filled
+   */
   switchFilledBox(box) {
     var filled = false;
     if (box.domObject.classList.contains("filled-box")) {
@@ -134,14 +136,14 @@ export class Row {
       box.domObject.classList.remove("empty-box");
       filled = true;
     }
-    this.updateSequence(box.positionNumber, filled)
+    box.filled = filled;
   }
 
   /**
    * Update the sequence object passed by Row whenever a user clicks
    * a box. This is part of the Box click event listener
    */
-  updateSequence(positionNumber, filled) {
+  updateSequencePattern(positionNumber, filled) {
     var pattern = this.sequence._eventsArray;
     if (filled) {
       pattern[positionNumber] = this.note;
@@ -149,6 +151,5 @@ export class Row {
       pattern[positionNumber] = null;
     }
     this.pattern = pattern;
-    this.createLoop();
   }
 }
