@@ -6,22 +6,19 @@ This is a test project that links [tone.js](https://tonejs.github.io) to a graph
 
 ## Features
 
-* Manipulate the timbre of generated synthesizer melodies using a graphical effects controller
 * Change notes with simple UI
+* Manipulate the timbre of generated synthesizer melodies using a graphical effects controller
 
 ### Next
 
-* Check DrumLoop version to make sure it's working correctly
-* Rework flashActiveBox() using position information
-* Reconsider box vs row class info (pass part and parent row to box, perhaps?)
 * Consider removing note names
 
 ### After that
 
-* Add control to change melody and bass loops
-* Add control to change drum loop
-* Write a short introduction
+* Add tempo slider
 * Allow saving and loading
+* Add buttons to change mode
+* Write a short introduction
 
 ## Sounds
 
