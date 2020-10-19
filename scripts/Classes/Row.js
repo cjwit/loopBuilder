@@ -68,9 +68,8 @@ export class Row {
 
       // add event listeners
       box.domObject.addEventListener("click", () => {
-        this.sequence.dispose();
-        this.switchFilledBox(box);
-        this.updateSequencePattern(box.positionNumber, box.filled);
+        this.switchFilledStatus(box);
+        this.updateSequencePattern(i, box.filled);
         this.createLoop();
       })
 
@@ -92,11 +91,16 @@ export class Row {
   }
 
   /**
-   * Used by `setUpLoop()` to create individual `Tone.Sequence` objects
-   * and assign visual callbacks
-   * @param {number} partNumber 
+   * Used by the constructor and click event callbacks to remove the
+   * previous loop and replace it with an updated version
    */
   createLoop() {
+    // clear the previous sequence if one exists
+    if (this.sequence) {
+      this.sequence.dispose();
+    }
+
+    // create the new sequence for this row
     this.sequence = new Tone.Sequence((time, note) => {
       this.flashActiveBox();
       this.source.triggerAttackRelease(note, "8n", time);
@@ -112,13 +116,16 @@ export class Row {
     beat = Number(beat);
     sixteenth = Number(sixteenth);
     var currentPosition = beat * 2 + sixteenth / 2, beat, sixteenth;
-    this.boxes[currentPosition].flash();
+    if (this.boxes[currentPosition].filled) {
+      this.boxes[currentPosition].flash();
+    }
   }
 
   /**
    * Switch the status of a box as filled and not filled
+   * @param {Box} box
    */
-  switchFilledBox(box) {
+  switchFilledStatus(box) {
     var filled = false;
     if (box.domObject.classList.contains("filled-box")) {
       box.domObject.classList.remove("filled-box");
