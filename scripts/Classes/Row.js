@@ -48,6 +48,12 @@ export class Row {
     for (let i = 0; i < this.pattern.length; i++) {
       let box = new Box(i, this.pattern[i], this.note, this.sequence, this.source);
       box.calculateWidth(this.pattern.length, this.labelWidth);
+      
+      // add event listeners
+      box.domObject.addEventListener("click", () => {
+        this.sequence.dispose();
+        this.switchFilledBox(box);
+      })  
       this.domObject.appendChild(box.domObject);
       this.boxes.push(box);
     }
@@ -98,4 +104,39 @@ export class Row {
     activeBox.domObject.classList.add("active-box");
     activeBox.flash();
   }
+
+    /**
+   * Switch the status of a box as filled and not filled
+   */
+  switchFilledBox(box) {
+    var filled = false;
+    if (box.domObject.classList.contains("filled-box")) {
+      box.domObject.classList.remove("filled-box");
+      box.domObject.classList.add("empty-box");
+    } else {
+      box.domObject.classList.add("filled-box");
+      box.domObject.classList.remove("empty-box");
+      filled = true;
+    }
+    this.updateSequence(box, filled)
+  }
+
+  /**
+   * Update the sequence object passed by Row whenever a user clicks
+   * a box. This is part of the Box click event listener
+   */
+  updateSequence(box, filled) {
+    var pattern = this.sequence._eventsArray;
+    if (filled) {
+      pattern[box.positionNumber] = this.note;
+    } else {
+      pattern[box.positionNumber] = null;
+    }
+    console.log(pattern);
+    this.sequence = new Tone.Sequence((time, note) => {
+      // this.flashActiveBox();
+      this.source.triggerAttackRelease(note, "8n", time);
+    }, pattern).start(0);
+  }
+
 }

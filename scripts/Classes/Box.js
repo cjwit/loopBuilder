@@ -43,10 +43,6 @@ export class Box {
      */
     this.filled = this.isFilled();
     this.domObject.classList.add("box");
-    this.domObject.addEventListener("click", (e) => {
-      this.sequence.dispose();
-      this.switchFilledBox();
-    })
   }
 
   /**
@@ -122,39 +118,5 @@ export class Box {
     setTimeout(function () {
       box.style.backgroundColor = bgColor;
     }, 1000);
-  }
-
-  /**
-   * Switch the status of a box as filled and not filled
-   */
-  switchFilledBox() {
-    var filled = false;
-    if (this.domObject.classList.contains("filled-box")) {
-      this.domObject.classList.remove("filled-box");
-      this.domObject.classList.add("empty-box");
-    } else {
-      this.domObject.classList.add("filled-box");
-      this.domObject.classList.remove("empty-box");
-      filled = true;
-    }
-    this.updateSequence(filled)
-  }
-
-  /**
-   * Update the sequence object passed by Row whenever a user clicks
-   * a box. This is part of the Box click event listener
-   */
-  updateSequence(filled) {
-    var pattern = this.sequence._eventsArray;
-    if (filled) {
-      pattern[this.positionNumber] = this.note;
-    } else {
-      pattern[this.positionNumber] = null;
-    }
-    console.log(pattern);
-    this.sequence = new Tone.Sequence((time, note) => {
-      // this.flashActiveBox();
-      this.source.triggerAttackRelease(note, "8n", time);
-    }, pattern).start(0);
   }
 }
