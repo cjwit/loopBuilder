@@ -41,7 +41,7 @@
   "homepage": "https://github.com/cjwit/loopBuilder#readme",
   "esdoc": {
     "source": "./scripts",
-    "destination": "./docs",
+    "destination": "./dist/docs",
     "plugins": [
       {
         "name": "esdoc-standard-plugin",

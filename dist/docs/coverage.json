@@ -1,7 +1,7 @@
 {
-  "coverage": "63.09%",
+  "coverage": "70.23%",
   "expectCount": 84,
-  "actualCount": 53,
+  "actualCount": 59,
   "files": {
     "scripts/Classes/BassLoop.js": {
       "expectCount": 3,
@@ -39,15 +39,8 @@
     },
     "scripts/Classes/PlayButton.js": {
       "expectCount": 6,
-      "actualCount": 0,
-      "undocumentLines": [
-        3,
-        4,
-        5,
-        19,
-        28,
-        33
-      ]
+      "actualCount": 6,
+      "undocumentLines": []
     },
     "scripts/Classes/Row.js": {
       "expectCount": 17,
@@ -78,22 +71,22 @@
       "expectCount": 16,
       "actualCount": 0,
       "undocumentLines": [
+        10,
         11,
-        12,
+        14,
         15,
-        16,
+        18,
         19,
-        20,
-        24,
-        29,
-        38,
-        43,
+        23,
+        28,
+        37,
+        42,
+        52,
         53,
         54,
         55,
-        56,
-        59,
-        60
+        58,
+        59
       ]
     }
   }

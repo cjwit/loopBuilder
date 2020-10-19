@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">Home | loopBuilder</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">scripts/Classes/PlayButton.js | loopBuilder</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -44,28 +44,62 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="loop-builder">Loop Builder</h1><p><img src="./docs/badge.svg" alt="Documentation coverage"></p>
-<p>This is a test project that links <a href="https://tonejs.github.io">tone.js</a> to a graphical interface to create looping melodies and rhythms. Documentation is in <a href="./docs/index.html">the docs folder</a>.</p>
-<h2 id="features">Features</h2><ul>
-<li>Manipulate the timbre of generated synthesizer melodies using a graphical effects controller</li>
-<li>Change notes with simple UI</li>
-</ul>
-<h3 id="next">Next</h3><ul>
-<li>Check DrumLoop version to make sure it&apos;s working correctly</li>
-<li>Rework flashActiveBox() using position information</li>
-<li>Reconsider box vs row class info (pass part and parent row to box, perhaps?)</li>
-<li>Consider removing note names</li>
-</ul>
-<h3 id="after-that">After that</h3><ul>
-<li>Add control to change melody and bass loops</li>
-<li>Add control to change drum loop</li>
-<li>Write a short introduction</li>
-<li>Allow saving and loading</li>
-</ul>
-<h2 id="sounds">Sounds</h2><ul>
-<li>Cowbell sound is from <a href="https://freesound.org/people/GowlerMusic/sounds/364919/">GowlerMusic on freesound.org</a></li>
-</ul>
-</div>
+<div class="content" data-ice="content"><h1 data-ice="title">scripts/Classes/PlayButton.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import * as Tone from &quot;tone&quot;;
+
+/**
+ * Create master play button to start Tone.js and control play/pause events
+ */
+export class PlayButton {
+  /**
+   * Get element and create play button
+   */
+  constructor() {
+    /**
+     * @type {HTMLElement}
+     */
+    this.domObject = document.getElementById(&quot;playButton&quot;);
+    this.domObject.innerText = &quot;Start&quot;;
+    this.domObject.start = this.start;
+    this.domObject.stop = this.stop;
+    this.domObject.addEventListener(&quot;click&quot;, this.listener.bind(this));
+    document.addEventListener(&quot;keydown&quot;, e =&gt; {
+      if (e.code === &quot;Space&quot;) {
+        e.preventDefault();
+        this.listener();
+      }
+    });
+  }
+
+  /**
+   * Activate Tone.js and control start/stop functionality
+   */
+  async listener() { 
+    if (this.domObject.innerText == &quot;Start&quot;) {
+      await Tone.start();
+      this.start();
+    } else {
+      this.stop();
+    }
+  }
+
+  /**
+   * Start Tone.Transport
+   */
+  start() {
+    this.domObject.innerText = &quot;Stop&quot;;
+    Tone.Transport.start(&quot;+0.01&quot;)
+  }
+
+  /**
+   * Stop Tone.Transport
+   */
+  stop() {
+    Tone.Transport.stop();
+    this.domObject.innerText = &quot;Start&quot;;
+  }
+}</code></pre>
+
 </div>
 
 <footer class="footer">

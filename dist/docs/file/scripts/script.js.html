@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">scripts/Classes/PlayButton.js | loopBuilder</title>
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">scripts/script.js | loopBuilder</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -44,44 +44,66 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">scripts/Classes/PlayButton.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import * as Tone from &quot;tone&quot;;
+<div class="content" data-ice="content"><h1 data-ice="title">scripts/script.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import * as Tone from &apos;tone&apos;;
+import { MelodyLoop } from &apos;./Classes/MelodyLoop.js&apos;;
+import { DrumLoop } from &apos;./Classes/DrumLoop.js&apos;;
+import { BassLoop } from &apos;./Classes/BassLoop.js&apos;;
+import { PlayButton } from &apos;./Classes/PlayButton.js&apos;;
+import { EffectsUI } from &apos;./Classes/EffectsUI.js&apos;;
+import { loops } from &apos;./loops.js&apos;;
+import { createDrumSampler, createSynth } from &apos;./audio.js&apos;;
 
-export class PlayButton {
-  constructor() {
-    this.domObject = document.getElementById(&quot;playButton&quot;);
-    this.domObject.innerText = &quot;Start&quot;;
+const drumSampler = createDrumSampler();
+const drumVolumeNode = new Tone.Volume(-6).toDestination();
+drumSampler.connect(drumVolumeNode);
 
-    this.domObject.start = this.start;
-    this.domObject.stop = this.stop;
-    this.domObject.addEventListener(&quot;click&quot;, this.listener.bind(this));
-    document.addEventListener(&quot;keydown&quot;, e =&gt; {
-      if (e.code === &quot;Space&quot;) {
-        e.preventDefault();
-        this.listener();
-      }
-    });
-  }
+const melodySynth = createSynth();
+const melodyVolumeNode = new Tone.Volume(0).toDestination();
+melodySynth.connect(melodyVolumeNode);
 
-  async listener(e) { 
-    if (this.domObject.innerText == &quot;Start&quot;) {
-      await Tone.start();
-      this.start();
-    } else {
-      this.stop();
-    }
-  }
+const bassSynth = createSynth();
+const bassVolumeNode = new Tone.Volume(-20).toDestination();
+bassSynth.connect(bassVolumeNode);
 
-  start() {
-    this.domObject.innerText = &quot;Stop&quot;;
-    Tone.Transport.start(&quot;+0.01&quot;)
-  }
+// add effects
+const melodyEffect1 = new Tone.Distortion({
+  distortion: 10,
+  wet: 0.5,
+})
 
-  stop() {
-    Tone.Transport.stop();
-    this.domObject.innerText = &quot;Start&quot;;
-  }
-}</code></pre>
+const melodyEffect2 = new Tone.FeedbackDelay({
+  delayTime: &quot;8n&quot;,
+  feedback: 0.7,
+  maxDelay: &quot;4n&quot;,
+  wet: 0.5
+}).toDestination();
+
+melodySynth.chain(melodyEffect1, melodyEffect2);
+
+const bassEffect1 = new Tone.BitCrusher({ 
+  bits: 2,
+  wet: 0.5
+}).toDestination();
+
+const bassEffect2 = new Tone.Chorus({
+  depth: 1,
+  delayTime: 700,
+  feedback: 0.4,
+  wet: 0.5,
+}).toDestination();
+
+bassSynth.chain(bassEffect1, bassEffect2);
+
+// set up loops
+const Play = new PlayButton();
+const melodyLoop = new MelodyLoop(&quot;melodyLoop&quot;, loops.melodyLoop, melodySynth);
+const bassLoop = new BassLoop(&quot;bassLoop&quot;, loops.bassLoop, bassSynth);
+const drumLoop = new DrumLoop(&quot;drumLoop&quot;, loops.drumLoop, drumSampler);
+
+// set up filter listeners
+const synthEffects = new EffectsUI(&quot;melodyEffects&quot;, melodyEffect1, melodyEffect2);
+const bassEffects = new EffectsUI(&quot;bassEffects&quot;, bassEffect1, bassEffect2);</code></pre>
 
 </div>
 

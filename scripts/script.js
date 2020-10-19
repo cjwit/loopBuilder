@@ -7,7 +7,6 @@ import { EffectsUI } from './Classes/EffectsUI.js';
 import { loops } from './loops.js';
 import { createDrumSampler, createSynth } from './audio.js';
 
-// create sources
 const drumSampler = createDrumSampler();
 const drumVolumeNode = new Tone.Volume(-6).toDestination();
 drumSampler.connect(drumVolumeNode);

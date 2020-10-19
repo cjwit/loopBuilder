@@ -1472,7 +1472,7 @@
     "__docId__": 93,
     "kind": "file",
     "name": "scripts/Classes/PlayButton.js",
-    "content": "import * as Tone from \"tone\";\n\nexport class PlayButton {\n  constructor() {\n    this.domObject = document.getElementById(\"playButton\");\n    this.domObject.innerText = \"Start\";\n\n    this.domObject.start = this.start;\n    this.domObject.stop = this.stop;\n    this.domObject.addEventListener(\"click\", this.listener.bind(this));\n    document.addEventListener(\"keydown\", e => {\n      if (e.code === \"Space\") {\n        e.preventDefault();\n        this.listener();\n      }\n    });\n  }\n\n  async listener(e) { \n    if (this.domObject.innerText == \"Start\") {\n      await Tone.start();\n      this.start();\n    } else {\n      this.stop();\n    }\n  }\n\n  start() {\n    this.domObject.innerText = \"Stop\";\n    Tone.Transport.start(\"+0.01\")\n  }\n\n  stop() {\n    Tone.Transport.stop();\n    this.domObject.innerText = \"Start\";\n  }\n}",
+    "content": "import * as Tone from \"tone\";\n\n/**\n * Create master play button to start Tone.js and control play/pause events\n */\nexport class PlayButton {\n  /**\n   * Get element and create play button\n   */\n  constructor() {\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.getElementById(\"playButton\");\n    this.domObject.innerText = \"Start\";\n    this.domObject.start = this.start;\n    this.domObject.stop = this.stop;\n    this.domObject.addEventListener(\"click\", this.listener.bind(this));\n    document.addEventListener(\"keydown\", e => {\n      if (e.code === \"Space\") {\n        e.preventDefault();\n        this.listener();\n      }\n    });\n  }\n\n  /**\n   * Activate Tone.js and control start/stop functionality\n   */\n  async listener() { \n    if (this.domObject.innerText == \"Start\") {\n      await Tone.start();\n      this.start();\n    } else {\n      this.stop();\n    }\n  }\n\n  /**\n   * Start Tone.Transport\n   */\n  start() {\n    this.domObject.innerText = \"Stop\";\n    Tone.Transport.start(\"+0.01\")\n  }\n\n  /**\n   * Stop Tone.Transport\n   */\n  stop() {\n    Tone.Transport.stop();\n    this.domObject.innerText = \"Start\";\n  }\n}",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/PlayButton.js",
     "access": "public",
@@ -1490,9 +1490,8 @@
     "export": true,
     "importPath": "loopBuilder/scripts/Classes/PlayButton.js",
     "importStyle": "{PlayButton}",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
+    "description": "Create master play button to start Tone.js and control play/pause events",
+    "lineNumber": 6,
     "interface": false
   },
   {
@@ -1505,9 +1504,8 @@
     "static": false,
     "longname": "scripts/Classes/PlayButton.js~PlayButton#constructor",
     "access": "public",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true
+    "description": "Get element and create play button",
+    "lineNumber": 10
   },
   {
     "__docId__": 96,
@@ -1517,13 +1515,15 @@
     "static": false,
     "longname": "scripts/Classes/PlayButton.js~PlayButton#domObject",
     "access": "public",
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
+    "description": "",
+    "lineNumber": 14,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "HTMLElement"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -1536,17 +1536,9 @@
     "static": false,
     "longname": "scripts/Classes/PlayButton.js~PlayButton#listener",
     "access": "public",
-    "description": null,
-    "lineNumber": 19,
-    "undocument": true,
-    "params": [
-      {
-        "name": "e",
-        "types": [
-          "*"
-        ]
-      }
-    ],
+    "description": "Activate Tone.js and control start/stop functionality",
+    "lineNumber": 30,
+    "params": [],
     "return": null
   },
   {
@@ -1559,9 +1551,8 @@
     "static": false,
     "longname": "scripts/Classes/PlayButton.js~PlayButton#start",
     "access": "public",
-    "description": null,
-    "lineNumber": 28,
-    "undocument": true,
+    "description": "Start Tone.Transport",
+    "lineNumber": 42,
     "params": [],
     "return": null
   },
@@ -1575,9 +1566,8 @@
     "static": false,
     "longname": "scripts/Classes/PlayButton.js~PlayButton#stop",
     "access": "public",
-    "description": null,
-    "lineNumber": 33,
-    "undocument": true,
+    "description": "Stop Tone.Transport",
+    "lineNumber": 50,
     "params": [],
     "return": null
   },
@@ -2102,7 +2092,7 @@
     "__docId__": 127,
     "kind": "file",
     "name": "scripts/script.js",
-    "content": "import * as Tone from 'tone';\nimport { MelodyLoop } from './Classes/MelodyLoop.js';\nimport { DrumLoop } from './Classes/DrumLoop.js';\nimport { BassLoop } from './Classes/BassLoop.js';\nimport { PlayButton } from './Classes/PlayButton.js';\nimport { EffectsUI } from './Classes/EffectsUI.js';\nimport { loops } from './loops.js';\nimport { createDrumSampler, createSynth } from './audio.js';\n\n// create sources\nconst drumSampler = createDrumSampler();\nconst drumVolumeNode = new Tone.Volume(-6).toDestination();\ndrumSampler.connect(drumVolumeNode);\n\nconst melodySynth = createSynth();\nconst melodyVolumeNode = new Tone.Volume(0).toDestination();\nmelodySynth.connect(melodyVolumeNode);\n\nconst bassSynth = createSynth();\nconst bassVolumeNode = new Tone.Volume(-20).toDestination();\nbassSynth.connect(bassVolumeNode);\n\n// add effects\nconst melodyEffect1 = new Tone.Distortion({\n  distortion: 10,\n  wet: 0.5,\n})\n\nconst melodyEffect2 = new Tone.FeedbackDelay({\n  delayTime: \"8n\",\n  feedback: 0.7,\n  maxDelay: \"4n\",\n  wet: 0.5\n}).toDestination();\n\nmelodySynth.chain(melodyEffect1, melodyEffect2);\n\nconst bassEffect1 = new Tone.BitCrusher({ \n  bits: 2,\n  wet: 0.5\n}).toDestination();\n\nconst bassEffect2 = new Tone.Chorus({\n  depth: 1,\n  delayTime: 700,\n  feedback: 0.4,\n  wet: 0.5,\n}).toDestination();\n\nbassSynth.chain(bassEffect1, bassEffect2);\n\n// set up loops\nconst Play = new PlayButton();\nconst melodyLoop = new MelodyLoop(\"melodyLoop\", loops.melodyLoop, melodySynth);\nconst bassLoop = new BassLoop(\"bassLoop\", loops.bassLoop, bassSynth);\nconst drumLoop = new DrumLoop(\"drumLoop\", loops.drumLoop, drumSampler);\n\n// set up filter listeners\nconst synthEffects = new EffectsUI(\"melodyEffects\", melodyEffect1, melodyEffect2);\nconst bassEffects = new EffectsUI(\"bassEffects\", bassEffect1, bassEffect2);",
+    "content": "import * as Tone from 'tone';\nimport { MelodyLoop } from './Classes/MelodyLoop.js';\nimport { DrumLoop } from './Classes/DrumLoop.js';\nimport { BassLoop } from './Classes/BassLoop.js';\nimport { PlayButton } from './Classes/PlayButton.js';\nimport { EffectsUI } from './Classes/EffectsUI.js';\nimport { loops } from './loops.js';\nimport { createDrumSampler, createSynth } from './audio.js';\n\nconst drumSampler = createDrumSampler();\nconst drumVolumeNode = new Tone.Volume(-6).toDestination();\ndrumSampler.connect(drumVolumeNode);\n\nconst melodySynth = createSynth();\nconst melodyVolumeNode = new Tone.Volume(0).toDestination();\nmelodySynth.connect(melodyVolumeNode);\n\nconst bassSynth = createSynth();\nconst bassVolumeNode = new Tone.Volume(-20).toDestination();\nbassSynth.connect(bassVolumeNode);\n\n// add effects\nconst melodyEffect1 = new Tone.Distortion({\n  distortion: 10,\n  wet: 0.5,\n})\n\nconst melodyEffect2 = new Tone.FeedbackDelay({\n  delayTime: \"8n\",\n  feedback: 0.7,\n  maxDelay: \"4n\",\n  wet: 0.5\n}).toDestination();\n\nmelodySynth.chain(melodyEffect1, melodyEffect2);\n\nconst bassEffect1 = new Tone.BitCrusher({ \n  bits: 2,\n  wet: 0.5\n}).toDestination();\n\nconst bassEffect2 = new Tone.Chorus({\n  depth: 1,\n  delayTime: 700,\n  feedback: 0.4,\n  wet: 0.5,\n}).toDestination();\n\nbassSynth.chain(bassEffect1, bassEffect2);\n\n// set up loops\nconst Play = new PlayButton();\nconst melodyLoop = new MelodyLoop(\"melodyLoop\", loops.melodyLoop, melodySynth);\nconst bassLoop = new BassLoop(\"bassLoop\", loops.bassLoop, bassSynth);\nconst drumLoop = new DrumLoop(\"drumLoop\", loops.drumLoop, drumSampler);\n\n// set up filter listeners\nconst synthEffects = new EffectsUI(\"melodyEffects\", melodyEffect1, melodyEffect2);\nconst bassEffects = new EffectsUI(\"bassEffects\", bassEffect1, bassEffect2);",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/script.js",
     "access": "public",
@@ -2121,7 +2111,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 11,
+    "lineNumber": 10,
     "undocument": true,
     "type": {
       "types": [
@@ -2142,7 +2132,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 12,
+    "lineNumber": 11,
     "undocument": true,
     "type": {
       "types": [
@@ -2163,7 +2153,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 15,
+    "lineNumber": 14,
     "undocument": true,
     "type": {
       "types": [
@@ -2184,7 +2174,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 16,
+    "lineNumber": 15,
     "undocument": true,
     "type": {
       "types": [
@@ -2205,7 +2195,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 19,
+    "lineNumber": 18,
     "undocument": true,
     "type": {
       "types": [
@@ -2226,7 +2216,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 20,
+    "lineNumber": 19,
     "undocument": true,
     "type": {
       "types": [
@@ -2247,7 +2237,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 24,
+    "lineNumber": 23,
     "undocument": true,
     "type": {
       "types": [
@@ -2268,7 +2258,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 29,
+    "lineNumber": 28,
     "undocument": true,
     "type": {
       "types": [
@@ -2289,7 +2279,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 38,
+    "lineNumber": 37,
     "undocument": true,
     "type": {
       "types": [
@@ -2310,7 +2300,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 43,
+    "lineNumber": 42,
     "undocument": true,
     "type": {
       "types": [
@@ -2331,7 +2321,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 53,
+    "lineNumber": 52,
     "undocument": true,
     "type": {
       "types": [
@@ -2352,7 +2342,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 54,
+    "lineNumber": 53,
     "undocument": true,
     "type": {
       "types": [
@@ -2373,7 +2363,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 55,
+    "lineNumber": 54,
     "undocument": true,
     "type": {
       "types": [
@@ -2394,7 +2384,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 56,
+    "lineNumber": 55,
     "undocument": true,
     "type": {
       "types": [
@@ -2415,7 +2405,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 59,
+    "lineNumber": 58,
     "undocument": true,
     "type": {
       "types": [
@@ -2436,7 +2426,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 60,
+    "lineNumber": 59,
     "undocument": true,
     "type": {
       "types": [
@@ -2447,7 +2437,7 @@
   },
   {
     "kind": "index",
-    "content": "# Loop Builder\n\n![Documentation coverage](./docs/badge.svg)\n\nThis is a test project that links [tone.js](https://tonejs.github.io) to a graphical interface to create looping melodies and rhythms. Documentation is in [the docs folder](./docs/index.html).\n\n## Features\n\n* Manipulate the timbre of generated synthesizer melodies using a graphical effects controller\n* Change notes with simple UI\n\n### Next\n\n* Check DrumLoop version to make sure it's working correctly\n* Rework flashActiveBox() using position information\n* Reconsider box vs row class info (pass part and parent row to box, perhaps?)\n* Consider removing note names\n\n### After that\n\n* Add control to change melody and bass loops\n* Add control to change drum loop\n* Write a short introduction\n* Allow saving and loading\n\n## Sounds\n\n* Cowbell sound is from [GowlerMusic on freesound.org](https://freesound.org/people/GowlerMusic/sounds/364919/)\n",
+    "content": "# Loop Builder\n\n![Documentation coverage](./docs/badge.svg)\n\nThis is a test project that links [tone.js](https://tonejs.github.io) to a graphical interface to create looping melodies and rhythms. The current live version is at [cwitulski.com/loopBuilder](https://cwitulski.com/loopBuilder). Documentation is in [the docs folder](https://cwitulski.com/loopBuilder/docs).\n\n## Features\n\n* Change notes with simple UI\n* Manipulate the timbre of generated synthesizer melodies using a graphical effects controller\n\n### Next\n\n* Consider removing note names\n\n### After that\n\n* Add tempo slider\n* Allow saving and loading\n* Add buttons to change mode\n* Write a short introduction\n\n## Sounds\n\n* Cowbell sound is from [GowlerMusic on freesound.org](https://freesound.org/people/GowlerMusic/sounds/364919/)\n",
     "longname": "/Users/cwituls/Documents/loopBuilder/README.md",
     "name": "./README.md",
     "static": true,
@@ -2455,7 +2445,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"loopBuilder\",\n  \"version\": \"1.0.0\",\n  \"description\": \"A graphical interface to create looping melodies and rhythms\",\n  \"main\": \"script.js\",\n  \"dependencies\": {\n    \"tone\": \"^14.7.58\"\n  },\n  \"devDependencies\": {\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"file-loader\": \"^6.1.0\",\n    \"html-loader\": \"^1.3.1\",\n    \"markdown-loader\": \"^6.0.0\",\n    \"npm-run-all\": \"^4.1.5\",\n    \"sass\": \"^1.26.11\",\n    \"sass-loader\": \"^10.0.2\",\n    \"source-map-loader\": \"^1.1.0\",\n    \"webpack\": \"^4.44.2\",\n    \"webpack-cli\": \"^3.3.12\"\n  },\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n    \"sass\": \"sass --watch sass/style.scss:dist/styles.css\",\n    \"webpack\": \"npx webpack\",\n    \"firefox\": \"open -a Firefox ./dist/index.html\",\n    \"dev\": \"npm run firefox && npm-run-all --parallel sass webpack\",\n    \"build\": \"pandoc source/index.md -o dist/index.html -s -c styles.css\",\n    \"deploy\": \"git subtree push --prefix dist origin gh-pages\",\n    \"docs\": \"./node_modules/.bin/esdoc\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/cjwit/loopBuilder.git\"\n  },\n  \"author\": \"Christopher Witulski\",\n  \"license\": \"ISC\",\n  \"bugs\": {\n    \"url\": \"https://github.com/cjwit/loopBuilder/issues\"\n  },\n  \"homepage\": \"https://github.com/cjwit/loopBuilder#readme\",\n  \"esdoc\": {\n    \"source\": \"./scripts\",\n    \"destination\": \"./docs\",\n    \"plugins\": [\n      {\n        \"name\": \"esdoc-standard-plugin\",\n        \"option\": {\n          \"coverage\": {\"enable\": true}\n        }\n      }\n    ]\n  }\n}\n",
+    "content": "{\n  \"name\": \"loopBuilder\",\n  \"version\": \"1.0.0\",\n  \"description\": \"A graphical interface to create looping melodies and rhythms\",\n  \"main\": \"script.js\",\n  \"dependencies\": {\n    \"tone\": \"^14.7.58\"\n  },\n  \"devDependencies\": {\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"file-loader\": \"^6.1.0\",\n    \"html-loader\": \"^1.3.1\",\n    \"markdown-loader\": \"^6.0.0\",\n    \"npm-run-all\": \"^4.1.5\",\n    \"sass\": \"^1.26.11\",\n    \"sass-loader\": \"^10.0.2\",\n    \"source-map-loader\": \"^1.1.0\",\n    \"webpack\": \"^4.44.2\",\n    \"webpack-cli\": \"^3.3.12\"\n  },\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n    \"sass\": \"sass --watch sass/style.scss:dist/styles.css\",\n    \"webpack\": \"npx webpack\",\n    \"firefox\": \"open -a Firefox ./dist/index.html\",\n    \"dev\": \"npm run firefox && npm-run-all --parallel sass webpack\",\n    \"build\": \"pandoc source/index.md -o dist/index.html -s -c styles.css\",\n    \"deploy\": \"git subtree push --prefix dist origin gh-pages\",\n    \"docs\": \"./node_modules/.bin/esdoc\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/cjwit/loopBuilder.git\"\n  },\n  \"author\": \"Christopher Witulski\",\n  \"license\": \"ISC\",\n  \"bugs\": {\n    \"url\": \"https://github.com/cjwit/loopBuilder/issues\"\n  },\n  \"homepage\": \"https://github.com/cjwit/loopBuilder#readme\",\n  \"esdoc\": {\n    \"source\": \"./scripts\",\n    \"destination\": \"./dist/docs\",\n    \"plugins\": [\n      {\n        \"name\": \"esdoc-standard-plugin\",\n        \"option\": {\n          \"coverage\": {\"enable\": true}\n        }\n      }\n    ]\n  }\n}\n",
     "longname": "/Users/cwituls/Documents/loopBuilder/package.json",
     "name": "package.json",
     "static": true,
