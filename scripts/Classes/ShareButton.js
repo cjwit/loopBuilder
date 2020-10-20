@@ -25,14 +25,7 @@ export class ShareButton {
 
     var rows = document.getElementsByClassName("row-of-boxes");
     for (let i = 0; i < rows.length; i++) {
-      let row = rows[i];
-      let rowData = [];
-      // iterate through each box in the row
-      for (let j = 1; j < row.childNodes.length - 1; j++) {
-        // push box status
-        let filled = row.childNodes[j].classList.contains("filled-box")
-        filled ? rowData.push(1) : rowData.push(0);
-      }
+      var rowData = this.getLoopArray(rows[i]);
       if (i < 15) { melodyRows.push(rowData) }
       else if (i < 30) { bassRows.push(rowData) }
       else { drumsRows.push(rowData) }
@@ -63,6 +56,17 @@ export class ShareButton {
     }
 
     this.copyUrlToClipboard(result);
+  }
+
+  getLoopArray(row) {
+    let rowData = [];
+    // iterate through each box in the row
+    for (let j = 1; j < row.childNodes.length - 1; j++) {
+      // push box status
+      let filled = row.childNodes[j].classList.contains("filled-box")
+      filled ? rowData.push(1) : rowData.push(0);
+    }
+    return rowData;
   }
 
   /**
