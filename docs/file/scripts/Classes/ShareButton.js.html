@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">scripts/Classes/ShareButton.js | loopBuilder</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A graphical interface to create looping melodies and rhythms"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="loopBuilder"><meta property="twitter:description" content="A graphical interface to create looping melodies and rhythms"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/cjwit/loopBuilder"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createDrumSampler">createDrumSampler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSynth">createSynth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultLoops">defaultLoops</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html">DrumLoop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/EffectsUI.js~EffectsUI.html">EffectsUI</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ShareButton.js~ShareButton.html">ShareButton</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">scripts/Classes/ShareButton.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Create share button
+ */
+export class ShareButton {
+  /**
+   * Get element and create share button
+   */
+  constructor() {
+    /**
+     * @type {HTMLElement}
+     */
+    this.domObject = document.getElementById(&quot;shareButton&quot;);
+    this.domObject.innerText = &quot;Share&quot;;
+    this.domObject.addEventListener(&quot;click&quot;, this.listener.bind(this));
+  }
+
+  /**
+   * create URL with encoded loops object
+   */
+  listener() {
+    // get melody rows
+    var melodyRows = [];
+    var bassRows = [];
+    var drumsRows = [];
+
+    var rows = document.getElementsByClassName(&quot;row-of-boxes&quot;);
+    for (let i = 0; i &lt; rows.length; i++) {
+      let row = rows[i];
+      let rowData = [];
+      // iterate through each box in the row
+      for (let j = 1; j &lt; row.childNodes.length - 1; j++) {
+        // push box status
+        let filled = row.childNodes[j].classList.contains(&quot;filled-box&quot;)
+        filled ? rowData.push(1) : rowData.push(0);
+      }
+      if (i &lt; 15) { melodyRows.push(rowData) }
+      else if (i &lt; 30) { bassRows.push(rowData) }
+      else { drumsRows.push(rowData) }
+    }
+
+    // get tempo
+    var tempo = document.getElementById(&quot;bpm-span&quot;).innerText;
+
+    // get scale (coming later);
+    var scale = &quot;dorian&quot;;
+
+    // get effects values
+
+    var result = {
+      melodyLoop: {
+        scale: scale + &quot;Melody&quot;,
+        parts: melodyRows
+      },
+      bassLoop: {
+        scale: scale + &quot;Bass&quot;,
+        parts: bassRows
+      },
+      drumLoop: {
+        scale: &quot;drumSet&quot;,
+        parts: drumsRows
+      },
+      tempo: tempo
+    }
+
+    this.copyUrlToClipboard(result);
+  }
+
+  /**
+   * Create a URL and copy it to the clipboard
+   * @param {object} loops Current state of the sequencer loops
+   */
+  copyUrlToClipboard(loops) {
+    // create url string
+    var url = new URL(document.URL);
+    var urlString = url.host + url.pathname + &quot;?loops=&quot; + JSON.stringify(loops);
+
+    // create dummy object for clipboard copy
+    var urlStringDomHolder = document.createElement(&quot;input&quot;);
+    this.domObject.appendChild(urlStringDomHolder);
+    urlStringDomHolder.value = urlString;
+    urlStringDomHolder.select();
+    document.execCommand(&quot;copy&quot;);
+
+    this.domObject.innerText = &quot;URL copied to the clipboard&quot;;
+
+  }
+}</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
