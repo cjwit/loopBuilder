@@ -56,7 +56,7 @@ var drumLoop = {
   ]
 }
 
-export var loops = {
+export var defaultLoops = {
   drumLoop: drumLoop,
   melodyLoop: melodyLoop,
   bassLoop: bassLoop,
