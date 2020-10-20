@@ -6,7 +6,7 @@ author: "<a href='https://cwitulski.com'>Christopher Witulski</a>"
 
 >Note: This is a thing to see if I can do it. It's only the second thing I've worked on using <a href="https://tonejs.github.io/">Tone.js</a>, but I think I like it so far. It may be the beginning of a few other things, but that will depend.
 
-<div id="playButton">Start (click or us the space bar</div>
+<div id="playButton">Start (click or use the space bar)</div>
 
 <div class="loop">
 

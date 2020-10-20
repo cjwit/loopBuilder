@@ -12,7 +12,7 @@ export class PlayButton {
      * @type {HTMLElement}
      */
     this.domObject = document.getElementById("playButton");
-    this.domObject.innerText = "Start";
+    this.domObject.innerText = "Start (click or use the space bar)";
     this.domObject.start = this.start;
     this.domObject.stop = this.stop;
     this.domObject.addEventListener("click", this.listener.bind(this));
@@ -28,7 +28,7 @@ export class PlayButton {
    * Activate Tone.js and control start/stop functionality
    */
   async listener() { 
-    if (this.domObject.innerText == "Start") {
+    if (this.domObject.innerText == "Start (click or use the space bar)") {
       await Tone.start();
       this.start();
     } else {
@@ -49,6 +49,6 @@ export class PlayButton {
    */
   stop() {
     Tone.Transport.stop();
-    this.domObject.innerText = "Start";
+    this.domObject.innerText = "Start (click or use the space bar)";
   }
 }
