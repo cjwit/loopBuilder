@@ -32,12 +32,10 @@
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createDrumSampler">createDrumSampler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSynth">createSynth</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-loops">loops</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/BassLoop.js~BassLoop.html">BassLoop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html">DrumLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/EffectsUI.js~EffectsUI.html">EffectsUI</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/MelodyLoop.js~MelodyLoop.html">MelodyLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
 </ul>
@@ -104,7 +102,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(part: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, source: <span>Tone.Synth</span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(part: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, note: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, source: <span>Tone.Synth</span>)</span>
         </p>
       </div>
       <div>
@@ -580,11 +578,11 @@ a box.</p>
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(part: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, source: <span>Tone.Synth</span>)</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(part: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span>, name: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, note: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, source: <span>Tone.Synth</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber12">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber14">source</a></span></span>
     </span>
   </h3>
 
@@ -606,6 +604,18 @@ a box.</p>
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">part</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">name</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">note</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
@@ -652,7 +662,7 @@ a box.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber43">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber45">source</a></span></span>
     </span>
   </h3>
 
@@ -695,7 +705,7 @@ a box.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber37">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber39">source</a></span></span>
     </span>
   </h3>
 
@@ -738,7 +748,7 @@ a box.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber16">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber18">source</a></span></span>
     </span>
   </h3>
 
@@ -781,7 +791,7 @@ a box.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber20">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber22">source</a></span></span>
     </span>
   </h3>
 
@@ -824,7 +834,7 @@ a box.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber24">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber26">source</a></span></span>
     </span>
   </h3>
 
@@ -867,7 +877,7 @@ a box.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber28">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber30">source</a></span></span>
     </span>
   </h3>
 
@@ -910,7 +920,7 @@ a box.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber104">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber106">source</a></span></span>
     </span>
   </h3>
 
@@ -953,7 +963,7 @@ a box.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber32">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber34">source</a></span></span>
     </span>
   </h3>
 
@@ -999,7 +1009,7 @@ a box.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber87">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber89">source</a></span></span>
     </span>
   </h3>
 
@@ -1056,7 +1066,7 @@ a row to calculate and set the CSS width property</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber62">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber64">source</a></span></span>
     </span>
   </h3>
 
@@ -1112,7 +1122,7 @@ a row to calculate and set the CSS width property</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber97">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber99">source</a></span></span>
     </span>
   </h3>
 
@@ -1157,7 +1167,7 @@ previous loop and replace it with an updated version</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber114">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber116">source</a></span></span>
     </span>
   </h3>
 
@@ -1202,7 +1212,7 @@ box to animate</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber51">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber53">source</a></span></span>
     </span>
   </h3>
 
@@ -1275,7 +1285,7 @@ box to animate</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber128">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber130">source</a></span></span>
     </span>
   </h3>
 
@@ -1335,7 +1345,7 @@ box to animate</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber145">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Row.js.html#lineNumber147">source</a></span></span>
     </span>
   </h3>
 

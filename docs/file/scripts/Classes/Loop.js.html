@@ -32,12 +32,10 @@
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createDrumSampler">createDrumSampler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSynth">createSynth</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-loops">loops</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/BassLoop.js~BassLoop.html">BassLoop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html">DrumLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/EffectsUI.js~EffectsUI.html">EffectsUI</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/MelodyLoop.js~MelodyLoop.html">MelodyLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
 </ul>
@@ -45,7 +43,8 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">scripts/Classes/Loop.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Row } from &apos;./Row.js&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Tone } from &apos;tone/build/esm/core/Tone&apos;;
+import { Row } from &apos;./Row.js&apos;;
 
 /**
  * Parent interface for MelodyLoop, BassLoop, and DrumLoop
@@ -86,33 +85,49 @@ export class Loop {
     /**
      * @type {Array}
      */
-    this.scale = this.setScale();
+    this.scale = this.setScale(data.scale);
+    // if (data.names) { this.names = data.names }
     this.convertPattern();
     this.makeRows();
   }
 
   /**
-   * Overridden by subclasses to set individual scales
    * @return {Array} Scale members as strings with note names and octaves
    */
-  setScale() { return [] }
+  setScale(scale) {
+    switch (scale) {
+      case &quot;dorianMelody&quot;: return [&quot;C6&quot;, &quot;Bb5&quot;, &quot;A5&quot;, &quot;G5&quot;, &quot;F5&quot;, &quot;Eb5&quot;, &quot;D5&quot;, &quot;C5&quot;, &quot;Bb4&quot;, &quot;A4&quot;, &quot;G4&quot;, &quot;F4&quot;, &quot;Eb4&quot;, &quot;D4&quot;, &quot;C4&quot;];
+      case &quot;dorianBass&quot;: return [&quot;C4&quot;, &quot;Bb3&quot;, &quot;A3&quot;, &quot;G3&quot;, &quot;F3&quot;, &quot;Eb3&quot;, &quot;D3&quot;, &quot;C3&quot;, &quot;Bb2&quot;, &quot;A2&quot;, &quot;G2&quot;, &quot;F2&quot;, &quot;Eb2&quot;, &quot;D2&quot;, &quot;C2&quot;];
+      case &quot;drumSet&quot;: return [&quot;C3&quot;, &quot;D3&quot;, &quot;E3&quot;, &quot;F3&quot;, &quot;G3&quot;, &quot;A3&quot;, &quot;B3&quot;, &quot;C4&quot;, &quot;D4&quot;];
+    }
+    throw &quot;Unknown scale&quot;;
+  }
 
   /**
-   * Overridden by subclasses to process incoming pattern arrays and
-   * save them to `this.pattern`
+   * Convert an array of note names into a series of patterns for use by `makeRows()`
    */
-  convertPattern() { }
+  convertPattern() {
+    var newPartsArray = [];
 
-  /**
-   * Uses `this.parts` to create and store new row class objects and
-   * add them to the DOM
-   */
+    for (let i = 0; i &lt; this.scale.length; i++) {
+      let currentNote = this.scale[i];
+      let currentPart = this.parts[i];
+      let convertedPart = [];
+      currentPart.forEach(note =&gt; {
+        if (note == 1) { convertedPart.push(currentNote); }
+        else { convertedPart.push(null) }
+      });
+      newPartsArray.push(convertedPart);
+    }
+    this.parts = newPartsArray;
+  }
+
   makeRows() {
-    this.parts.forEach(part =&gt; {
-      let row = new Row(part, this.source);
+    for (let i = 0; i &lt; this.parts.length; i++) {
+      let row = new Row(this.source, this.parts[i], this.scale[i]);
       this.domObject.appendChild(row.domObject);
       this.rows.push(row);
-    })
+    }
   }
 }</code></pre>
 

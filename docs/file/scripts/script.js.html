@@ -32,12 +32,10 @@
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createDrumSampler">createDrumSampler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSynth">createSynth</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-loops">loops</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/BassLoop.js~BassLoop.html">BassLoop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html">DrumLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/EffectsUI.js~EffectsUI.html">EffectsUI</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/MelodyLoop.js~MelodyLoop.html">MelodyLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
 </ul>
@@ -46,9 +44,8 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">scripts/script.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import * as Tone from &apos;tone&apos;;
-import { MelodyLoop } from &apos;./Classes/MelodyLoop.js&apos;;
+import { Loop } from &apos;./Classes/Loop.js&apos;;
 import { DrumLoop } from &apos;./Classes/DrumLoop.js&apos;;
-import { BassLoop } from &apos;./Classes/BassLoop.js&apos;;
 import { PlayButton } from &apos;./Classes/PlayButton.js&apos;;
 import { EffectsUI } from &apos;./Classes/EffectsUI.js&apos;;
 import { loops } from &apos;./loops.js&apos;;
@@ -97,8 +94,8 @@ bassSynth.chain(bassEffect1, bassEffect2);
 
 // set up loops
 const Play = new PlayButton();
-const melodyLoop = new MelodyLoop(&quot;melodyLoop&quot;, loops.melodyLoop, melodySynth);
-const bassLoop = new BassLoop(&quot;bassLoop&quot;, loops.bassLoop, bassSynth);
+const melodyLoop = new Loop(&quot;melodyLoop&quot;, loops.melodyLoop, melodySynth);
+const bassLoop = new Loop(&quot;bassLoop&quot;, loops.bassLoop, bassSynth);
 const drumLoop = new DrumLoop(&quot;drumLoop&quot;, loops.drumLoop, drumSampler);
 
 // set up filter listeners
