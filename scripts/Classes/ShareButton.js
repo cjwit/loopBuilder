@@ -44,6 +44,8 @@ export class ShareButton {
     // get scale (coming later);
     var scale = "dorian";
 
+    // get effects values
+
     var result = {
       melodyLoop: {
         scale: scale + "Melody",
@@ -59,7 +61,10 @@ export class ShareButton {
       },
       tempo: tempo
     }
-
-    console.log(result);
+    
+    var paramString = "index.html?loops=" + encodeURIComponent(JSON.stringify(result));
+    var baseUrl = new URL(document.URL);
+    var urlToShare = baseUrl.hostname + baseUrl.pathname + paramString;
+    console.log(urlToShare);
   }
 }
