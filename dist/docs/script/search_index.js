@@ -36,6 +36,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "loopbuilder/scripts/classes/sharebutton.js~sharebutton",
+    "class/scripts/Classes/ShareButton.js~ShareButton.html",
+    "<span>ShareButton</span> <span class=\"search-result-import-path\">loopBuilder/scripts/Classes/ShareButton.js</span>",
+    "class"
+  ],
+  [
     "loopbuilder/scripts/audio.js~createdrumsampler",
     "function/index.html#static-function-createDrumSampler",
     "<span>createDrumSampler</span> <span class=\"search-result-import-path\">loopBuilder/scripts/audio.js</span>",
@@ -48,9 +54,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "loopbuilder/scripts/loops.js~loops",
-    "variable/index.html#static-variable-loops",
-    "<span>loops</span> <span class=\"search-result-import-path\">loopBuilder/scripts/loops.js</span>",
+    "loopbuilder/scripts/loops.js~defaultloops",
+    "variable/index.html#static-variable-defaultLoops",
+    "<span>defaultLoops</span> <span class=\"search-result-import-path\">loopBuilder/scripts/loops.js</span>",
     "variable"
   ],
   [
@@ -651,6 +657,36 @@ window.esdocSearchIndex = [
     "scripts/classes/row.js~row#updatesequencepattern",
     "class/scripts/Classes/Row.js~Row.html#instance-method-updateSequencePattern",
     "scripts/Classes/Row.js~Row#updateSequencePattern",
+    "method"
+  ],
+  [
+    "scripts/classes/sharebutton.js",
+    "file/scripts/Classes/ShareButton.js.html",
+    "scripts/Classes/ShareButton.js",
+    "file"
+  ],
+  [
+    "scripts/classes/sharebutton.js~sharebutton#constructor",
+    "class/scripts/Classes/ShareButton.js~ShareButton.html#instance-constructor-constructor",
+    "scripts/Classes/ShareButton.js~ShareButton#constructor",
+    "method"
+  ],
+  [
+    "scripts/classes/sharebutton.js~sharebutton#copyurltoclipboard",
+    "class/scripts/Classes/ShareButton.js~ShareButton.html#instance-method-copyUrlToClipboard",
+    "scripts/Classes/ShareButton.js~ShareButton#copyUrlToClipboard",
+    "method"
+  ],
+  [
+    "scripts/classes/sharebutton.js~sharebutton#domobject",
+    "class/scripts/Classes/ShareButton.js~ShareButton.html#instance-member-domObject",
+    "scripts/Classes/ShareButton.js~ShareButton#domObject",
+    "member"
+  ],
+  [
+    "scripts/classes/sharebutton.js~sharebutton#listener",
+    "class/scripts/Classes/ShareButton.js~ShareButton.html#instance-method-listener",
+    "scripts/Classes/ShareButton.js~ShareButton#listener",
     "method"
   ],
   [
