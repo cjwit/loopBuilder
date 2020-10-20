@@ -56,3 +56,15 @@ const drumLoop = new DrumLoop("drumLoop", loops.drumLoop, drumSampler);
 // set up filter listeners
 const synthEffects = new EffectsUI("melodyEffects", melodyEffect1, melodyEffect2);
 const bassEffects = new EffectsUI("bassEffects", bassEffect1, bassEffect2);
+
+// tempo slider
+var slider = document.getElementById("tempo-slider");
+var bpmSpan = document.getElementById("bpm-span");
+Tone.Transport.bpm.value = loops.tempo;
+slider.value = loops.tempo;
+bpmSpan.innerText = slider.value;
+
+slider.oninput = function() {
+  Tone.Transport.bpm.value = this.value;
+  bpmSpan.innerText = slider.value;
+}

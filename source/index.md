@@ -12,15 +12,21 @@ The large boxes under the melody and bass loops control the timbre of those soun
 
 <div id="playButton">Start</div>
 
-Drag the circle to add or remove distortion and delay to the melody synthesizer.
+Tempo: <span id = "bpm-span"></span> beats per minute. Use the slider to change it.
+
+<div id="tempo-container">
+  <input type="range" min="80" max="200" value="108" class="slider" id="tempo-slider">
+</div>
 
 <div id="melodyLoop" class="loop"></div>
 
+Drag the circle to add or remove distortion and delay to the melody synthesizer.
+
 <div id="melodyEffects" class="effects"></div>
 
-Drag the circle to add or remove "BitCrusher" and "Chorus" effects to the bass synthesizer.
-
 <div id="bassLoop" class="loop"></div>
+
+Drag the circle to add or remove "BitCrusher" and "Chorus" effects to the bass synthesizer.
 
 <div id="bassEffects" class="effects"></div>
 

@@ -1,5 +1,4 @@
 var melodyLoop = {
-  tempo: 108,
   scale: "dorianMelody",
   parts: [
     [0, 1, 0, 0, 0, 0, 0, 0],
@@ -21,7 +20,6 @@ var melodyLoop = {
 }
 
 var bassLoop = {
-  tempo: 108,
   scale: "dorianBass",
   parts: [
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -43,7 +41,6 @@ var bassLoop = {
 }
 
 var drumLoop = {
-  tempo: 108,
   scale: "drumSet",
   // names: ["Kick drum", "Snare drum", "Hi hat", "Cowbell", "Clave"],
   parts: [
@@ -62,5 +59,6 @@ var drumLoop = {
 export var loops = {
   drumLoop: drumLoop,
   melodyLoop: melodyLoop,
-  bassLoop: bassLoop
+  bassLoop: bassLoop,
+  tempo: 108
 }
