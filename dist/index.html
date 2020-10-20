@@ -31,24 +31,26 @@
 <div id="playButton">
 Start
 </div>
-<p>Tempo: <span id="bpm-span"></span> beats per minute. Use the slider to change it.</p>
+<div class="loop">
+<p><span class="title">Tempo: <span id="bpm-span"></span> beats per minute. Use the slider to change it.</span></p>
 <div id="tempo-container">
 <p><input type="range" min="80" max="200" value="108" class="slider" id="tempo-slider"></p>
 </div>
+</div>
 <div id="melodyLoop" class="loop">
-
+<span class="title">Melody synthesizer</span>
 </div>
 <div id="melodyEffects" class="effects">
 <span class="title">Drag the circle to add effects: ⬅ ➡ Distortion | ⬆ ⬇ Delay</span>
 </div>
 <div id="bassLoop" class="loop">
-
+<span class="title">Bass synthesizer</span>
 </div>
 <div id="bassEffects" class="effects">
 <span class="title">Drag the circle to add effects: ⬅ ➡ BitCrusher | ⬆ ⬇ Chorus</span>
 </div>
 <div id="drumLoop" class="loop">
-
+<span class="title">Drum sampler</span>
 </div>
 </main>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
