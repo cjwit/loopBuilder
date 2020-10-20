@@ -11,13 +11,10 @@ This is a test project that links [tone.js](https://tonejs.github.io) to a graph
 
 ### Next
 
-* Consider removing note names
-
-### After that
-
 * Add tempo slider (move tempo logic to one place)
-* Allow saving and loading
 * Add buttons to change mode
+* Allow saving and loading
+* Consider removing note names
 * Write a short introduction
 
 ## Sounds
