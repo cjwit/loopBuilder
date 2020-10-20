@@ -2,6 +2,7 @@ import * as Tone from 'tone';
 import { Loop } from './Classes/Loop.js';
 import { DrumLoop } from './Classes/DrumLoop.js';
 import { PlayButton } from './Classes/PlayButton.js';
+import { ShareButton } from './Classes/ShareButton.js';
 import { EffectsUI } from './Classes/EffectsUI.js';
 import { defaultLoops } from './loops.js';
 import { createDrumSampler, createSynth } from './audio.js';
@@ -65,6 +66,7 @@ if (url.searchParams != "") {
 
 // set up loops
 const Play = new PlayButton();
+const Share = new ShareButton();
 const melodyLoop = new Loop("melodyLoop", loops.melodyLoop, melodySynth);
 const bassLoop = new Loop("bassLoop", loops.bassLoop, bassSynth);
 const drumLoop = new DrumLoop("drumLoop", loops.drumLoop, drumSampler);

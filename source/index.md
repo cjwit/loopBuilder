@@ -8,6 +8,8 @@ author: "<a href='https://cwitulski.com'>Christopher Witulski</a>"
 
 <div id="playButton">Start (click or use the space bar)</div>
 
+<div id="shareButton">Share</div>
+
 <div class="loop">
 
 <span class = "title">Tempo: <span id = "bpm-span"></span> beats per minute. Use the slider to change it.</span>
