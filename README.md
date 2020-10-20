@@ -9,11 +9,12 @@ This is a test project that links [tone.js](https://tonejs.github.io) to a graph
 * Change notes with simple UI
 * Manipulate the timbre of generated synthesizer melodies using a graphical effects controller
 * Change tempo with a slider
+* Share loops (using a parameter-based url)
 
 ### Next
 
+* Extend save/load to include effect values
 * Add buttons to change mode
-* Allow saving and loading
 * Consider removing note names
 * Write a short introduction
 
