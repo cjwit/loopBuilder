@@ -7,9 +7,11 @@ import { Box } from './Box.js';
 export class Row {
   /**
    * @param {object} part
+   * @param {string} name
+   * @param {string} note
    * @param {Tone.Synth} source 
    */
-  constructor(part, source) {
+  constructor(source, pattern, note, name = note) {
     /**
      * @type {number}
      */
@@ -17,15 +19,15 @@ export class Row {
     /**
      * @type {string}
      */
-    this.name = part.name;
+    this.name = name;
     /**
      * @type {array}
      */
-    this.note = part.note;
+    this.note = note;
     /**
      * @type {array}
      */
-    this.pattern = part.pattern;
+    this.pattern = pattern;
     /**
     * @type {Tone.synth}
     */

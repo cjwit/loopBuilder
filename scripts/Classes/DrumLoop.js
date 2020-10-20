@@ -1,5 +1,6 @@
 import { Tone } from 'tone/build/esm/core/Tone';
 import { Loop } from './Loop.js';
+import { Row } from './Row.js';
 
 /**
  * Creates and controls the drum loop, overwrites the convertPattern() method
@@ -31,5 +32,13 @@ export class DrumLoop extends Loop {
       newPartsArray.push(part);
     })
     this.parts = newPartsArray;
+  }
+
+  makeRows() {
+    for (let i = 0; i < this.parts.length; i++) {
+      let row = new Row(this.source, this.parts[i], this.parts[i].note, this.parts[i].name);
+      this.domObject.appendChild(row.domObject);
+      this.rows.push(row);
+    }
   }
 }

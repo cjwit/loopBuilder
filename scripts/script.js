@@ -51,7 +51,7 @@ bassSynth.chain(bassEffect1, bassEffect2);
 // set up loops
 const Play = new PlayButton();
 const melodyLoop = new MelodyLoop("melodyLoop", loops.melodyLoop, melodySynth);
-const bassLoop = new BassLoop("bassLoop", loops.bassLoop, bassSynth);
+// const bassLoop = new BassLoop("bassLoop", loops.bassLoop, bassSynth);
 const drumLoop = new DrumLoop("drumLoop", loops.drumLoop, drumSampler);
 
 // set up filter listeners

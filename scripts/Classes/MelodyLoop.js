@@ -1,5 +1,6 @@
 import { Tone } from 'tone/build/esm/core/Tone';
 import { Loop } from './Loop.js';
+import { Row } from './Row.js';
 
 /**
  * Defines the scale for a melody loop graphical interface and the pattern
@@ -19,31 +20,38 @@ export class MelodyLoop extends Loop {
   /**
    * @return {Array} Scale members as strings with note names and octaves
    */
-  setScale() {
-    return ["G4", "A4", "Bb4", "C5", "D5", "Eb5", "F5", "G5", "A5", "Bb5", "C6"];
+  setScale(scale) {
+    switch (scale) {
+      case "dorian": return ["C6", "Bb5", "A5", "G5", "F5", "Eb5", "D5", "C5", "Bb4", "A4", "G4", "F4", "Eb4", "D4", "C4"];
+    }
+    throw "Unknown scale";
   }
 
   /**
    * Convert an array of note names into a series of patterns for use by `makeRows()`
    */
   convertPattern() {
-    var melody = this.parts[0].pattern;
     var newPartsArray = [];
 
-    for (let i = this.scale.length - 1; i >= 0; i--) {
-      let currentNotePattern = [];
+    for (let i = 0; i < this.scale.length; i++) {
       let currentNote = this.scale[i];
-      melody.forEach(melodyNote => {
-        if (melodyNote == currentNote) {
-          currentNotePattern.push(currentNote)
-        } else {
-          currentNotePattern.push(null);
-        }
-      })
-      newPartsArray.push({ note: currentNote, name: currentNote, pattern: currentNotePattern });
+      let currentPart = this.parts[i];
+      let convertedPart = [];
+      currentPart.forEach(note => {
+        if (note == 1) { convertedPart.push(currentNote); }
+        else { convertedPart.push(null) }
+      });
+      newPartsArray.push(convertedPart);
     }
-
+    console.log(newPartsArray);
     this.parts = newPartsArray;
   }
 
+  makeRows() {
+    for (let i = 0; i < this.parts.length; i++) {
+      let row = new Row(this.source, this.parts[i], this.scale[i]);
+      this.domObject.appendChild(row.domObject);
+      this.rows.push(row);
+    }
+  }
 }

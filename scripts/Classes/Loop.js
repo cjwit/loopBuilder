@@ -1,5 +1,3 @@
-import { Row } from './Row.js';
-
 /**
  * Parent interface for MelodyLoop, BassLoop, and DrumLoop
  */
@@ -39,7 +37,7 @@ export class Loop {
     /**
      * @type {Array}
      */
-    this.scale = this.setScale();
+    if (data.scale) { this.scale = this.setScale(data.scale); }
     this.convertPattern();
     this.makeRows();
   }
@@ -48,7 +46,7 @@ export class Loop {
    * Overridden by subclasses to set individual scales
    * @return {Array} Scale members as strings with note names and octaves
    */
-  setScale() { return [] }
+  setScale(scale) { return [] }
 
   /**
    * Overridden by subclasses to process incoming pattern arrays and
@@ -60,11 +58,5 @@ export class Loop {
    * Uses `this.parts` to create and store new row class objects and
    * add them to the DOM
    */
-  makeRows() {
-    this.parts.forEach(part => {
-      let row = new Row(part, this.source);
-      this.domObject.appendChild(row.domObject);
-      this.rows.push(row);
-    })
-  }
+  makeRows() { }
 }
