@@ -17,7 +17,7 @@ export class ShareButton {
   /**
    * create URL with encoded loops object
    */
-  listener() { 
+  listener() {
     // get melody rows
     var melodyRows = [];
     var bassRows = [];
@@ -61,10 +61,27 @@ export class ShareButton {
       },
       tempo: tempo
     }
-    
-    var paramString = "index.html?loops=" + encodeURIComponent(JSON.stringify(result));
-    var baseUrl = new URL(document.URL);
-    var urlToShare = baseUrl.hostname + baseUrl.pathname + paramString;
-    console.log(urlToShare);
+
+    this.copyUrlToClipboard(result);
+  }
+
+  /**
+   * Create a URL and copy it to the clipboard
+   * @param {object} loops Current state of the sequencer loops
+   */
+  copyUrlToClipboard(loops) {
+    // create url string
+    var url = new URL(document.URL);
+    var urlString = url.host + url.pathname + "?loops=" + JSON.stringify(loops);
+
+    // create dummy object for clipboard copy
+    var urlStringDomHolder = document.createElement("input");
+    this.domObject.appendChild(urlStringDomHolder);
+    urlStringDomHolder.value = urlString;
+    urlStringDomHolder.select();
+    document.execCommand("copy");
+
+    this.domObject.innerText = "URL copied to the clipboard";
+
   }
 }
