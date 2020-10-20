@@ -13,15 +13,15 @@ import cowbell from "../audio/cowbell.mp3";
 export function createDrumSampler() {
   const drumSampler = new Tone.Sampler({
     urls: {
-      A1: hihat,
-      A2: snare,
-      A3: kick,
-      A4: clave,
-      A5: ding,
-      A6: bongo1,
-      A7: bongo2,
-      A8: tom3,
-      A9: cowbell,
+      C3: kick,
+      D3: snare,
+      E3: hihat,
+      F3: cowbell,
+      G3: clave,
+      A3: bongo1,
+      B3: bongo2,
+      C4: ding,
+      D4: tom3,
     },
   }).toDestination();
 

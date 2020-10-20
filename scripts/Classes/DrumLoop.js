@@ -16,8 +16,9 @@ export class DrumLoop extends Loop {
   }
 
   makeRows() {
+    var names = ["Kick drum", "Snare drum", "Hi hat", "Cowbell", "Clave", "L bongo", "H bongo", "Bell", "Tom"];
     for (let i = 0; i < this.parts.length; i++) {
-      let row = new Row(this.source, this.parts[i], this.scale[i], this.names[i]);
+      let row = new Row(this.source, this.parts[i], this.scale[i], names[i]);
       this.domObject.appendChild(row.domObject);
       this.rows.push(row);
     }

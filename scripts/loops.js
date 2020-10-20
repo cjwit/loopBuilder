@@ -45,11 +45,17 @@ var bassLoop = {
 var drumLoop = {
   tempo: 108,
   scale: "drumSet",
-  names: ["Kick drum", "Snare drum", "Cowbell"],
+  // names: ["Kick drum", "Snare drum", "Hi hat", "Cowbell", "Clave"],
   parts: [
     [1, 0, 0, 0, 1, 0, 0, 0],
     [0, 0, 1, 1, 0, 0, 1, 0],
-    [0, 0, 1, 0, 0, 1, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 1, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
   ]
 }
 

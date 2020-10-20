@@ -41,7 +41,7 @@ export class Loop {
      * @type {Array}
      */
     this.scale = this.setScale(data.scale);
-    if (data.names) { this.names = data.names }
+    // if (data.names) { this.names = data.names }
     this.convertPattern();
     this.makeRows();
   }
@@ -53,7 +53,7 @@ export class Loop {
     switch (scale) {
       case "dorianMelody": return ["C6", "Bb5", "A5", "G5", "F5", "Eb5", "D5", "C5", "Bb4", "A4", "G4", "F4", "Eb4", "D4", "C4"];
       case "dorianBass": return ["C4", "Bb3", "A3", "G3", "F3", "Eb3", "D3", "C3", "Bb2", "A2", "G2", "F2", "Eb2", "D2", "C2"];
-      case "drumSet": return ["A3", "A2", "A9"];
+      case "drumSet": return ["C3", "D3", "E3", "F3", "G3", "A3", "B3", "C4", "D4"];
     }
     throw "Unknown scale";
   }
