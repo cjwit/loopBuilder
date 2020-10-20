@@ -1,23 +1,18 @@
 {
-  "coverage": "70.23%",
-  "expectCount": 84,
-  "actualCount": 59,
+  "coverage": "66.66%",
+  "expectCount": 75,
+  "actualCount": 50,
   "files": {
-    "scripts/Classes/BassLoop.js": {
-      "expectCount": 3,
-      "actualCount": 3,
-      "undocumentLines": []
-    },
     "scripts/Classes/Box.js": {
       "expectCount": 7,
       "actualCount": 7,
       "undocumentLines": []
     },
     "scripts/Classes/DrumLoop.js": {
-      "expectCount": 4,
-      "actualCount": 3,
+      "expectCount": 3,
+      "actualCount": 2,
       "undocumentLines": [
-        33
+        18
       ]
     },
     "scripts/Classes/EffectsUI.js": {
@@ -27,14 +22,9 @@
     },
     "scripts/Classes/Loop.js": {
       "expectCount": 12,
-      "actualCount": 12,
-      "undocumentLines": []
-    },
-    "scripts/Classes/MelodyLoop.js": {
-      "expectCount": 5,
-      "actualCount": 4,
+      "actualCount": 11,
       "undocumentLines": [
-        46
+        80
       ]
     },
     "scripts/Classes/PlayButton.js": {
@@ -46,7 +36,7 @@
       "expectCount": 17,
       "actualCount": 16,
       "undocumentLines": [
-        104
+        106
       ]
     },
     "scripts/audio.js": {
@@ -62,31 +52,31 @@
       "actualCount": 0,
       "undocumentLines": [
         1,
-        11,
-        21,
-        42
+        23,
+        45,
+        62
       ]
     },
     "scripts/script.js": {
       "expectCount": 16,
       "actualCount": 0,
       "undocumentLines": [
+        9,
         10,
-        11,
+        13,
         14,
-        15,
+        17,
         18,
-        19,
-        23,
-        28,
-        37,
-        42,
+        22,
+        27,
+        36,
+        41,
+        51,
         52,
         53,
         54,
-        55,
-        58,
-        59
+        57,
+        58
       ]
     }
   }

@@ -1,11 +1,5 @@
 window.esdocSearchIndex = [
   [
-    "loopbuilder/scripts/classes/bassloop.js~bassloop",
-    "class/scripts/Classes/BassLoop.js~BassLoop.html",
-    "<span>BassLoop</span> <span class=\"search-result-import-path\">loopBuilder/scripts/Classes/BassLoop.js</span>",
-    "class"
-  ],
-  [
     "loopbuilder/scripts/classes/box.js~box",
     "class/scripts/Classes/Box.js~Box.html",
     "<span>Box</span> <span class=\"search-result-import-path\">loopBuilder/scripts/Classes/Box.js</span>",
@@ -27,12 +21,6 @@ window.esdocSearchIndex = [
     "loopbuilder/scripts/classes/loop.js~loop",
     "class/scripts/Classes/Loop.js~Loop.html",
     "<span>Loop</span> <span class=\"search-result-import-path\">loopBuilder/scripts/Classes/Loop.js</span>",
-    "class"
-  ],
-  [
-    "loopbuilder/scripts/classes/melodyloop.js~melodyloop",
-    "class/scripts/Classes/MelodyLoop.js~MelodyLoop.html",
-    "<span>MelodyLoop</span> <span class=\"search-result-import-path\">loopBuilder/scripts/Classes/MelodyLoop.js</span>",
     "class"
   ],
   [
@@ -348,24 +336,6 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "scripts/classes/bassloop.js",
-    "file/scripts/Classes/BassLoop.js.html",
-    "scripts/Classes/BassLoop.js",
-    "file"
-  ],
-  [
-    "scripts/classes/bassloop.js~bassloop#constructor",
-    "class/scripts/Classes/BassLoop.js~BassLoop.html#instance-constructor-constructor",
-    "scripts/Classes/BassLoop.js~BassLoop#constructor",
-    "method"
-  ],
-  [
-    "scripts/classes/bassloop.js~bassloop#setscale",
-    "class/scripts/Classes/BassLoop.js~BassLoop.html#instance-method-setScale",
-    "scripts/Classes/BassLoop.js~BassLoop#setScale",
-    "method"
-  ],
-  [
     "scripts/classes/box.js",
     "file/scripts/Classes/Box.js.html",
     "scripts/Classes/Box.js",
@@ -420,16 +390,10 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "scripts/classes/drumloop.js~drumloop#convertpattern",
-    "class/scripts/Classes/DrumLoop.js~DrumLoop.html#instance-method-convertPattern",
-    "scripts/Classes/DrumLoop.js~DrumLoop#convertPattern",
+    "scripts/classes/drumloop.js~drumloop#makerows",
+    "class/scripts/Classes/DrumLoop.js~DrumLoop.html#instance-method-makeRows",
+    "scripts/Classes/DrumLoop.js~DrumLoop#makeRows",
     "method"
-  ],
-  [
-    "scripts/classes/drumloop.js~drumloop#parts",
-    "class/scripts/Classes/DrumLoop.js~DrumLoop.html#instance-member-parts",
-    "scripts/Classes/DrumLoop.js~DrumLoop#parts",
-    "member"
   ],
   [
     "scripts/classes/effectsui.js",
@@ -550,36 +514,6 @@ window.esdocSearchIndex = [
     "class/scripts/Classes/Loop.js~Loop.html#instance-member-tempo",
     "scripts/Classes/Loop.js~Loop#tempo",
     "member"
-  ],
-  [
-    "scripts/classes/melodyloop.js",
-    "file/scripts/Classes/MelodyLoop.js.html",
-    "scripts/Classes/MelodyLoop.js",
-    "file"
-  ],
-  [
-    "scripts/classes/melodyloop.js~melodyloop#constructor",
-    "class/scripts/Classes/MelodyLoop.js~MelodyLoop.html#instance-constructor-constructor",
-    "scripts/Classes/MelodyLoop.js~MelodyLoop#constructor",
-    "method"
-  ],
-  [
-    "scripts/classes/melodyloop.js~melodyloop#convertpattern",
-    "class/scripts/Classes/MelodyLoop.js~MelodyLoop.html#instance-method-convertPattern",
-    "scripts/Classes/MelodyLoop.js~MelodyLoop#convertPattern",
-    "method"
-  ],
-  [
-    "scripts/classes/melodyloop.js~melodyloop#parts",
-    "class/scripts/Classes/MelodyLoop.js~MelodyLoop.html#instance-member-parts",
-    "scripts/Classes/MelodyLoop.js~MelodyLoop#parts",
-    "member"
-  ],
-  [
-    "scripts/classes/melodyloop.js~melodyloop#setscale",
-    "class/scripts/Classes/MelodyLoop.js~MelodyLoop.html#instance-method-setScale",
-    "scripts/Classes/MelodyLoop.js~MelodyLoop#setScale",
-    "method"
   ],
   [
     "scripts/classes/playbutton.js",

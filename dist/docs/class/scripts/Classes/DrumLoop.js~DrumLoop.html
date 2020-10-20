@@ -32,12 +32,10 @@
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createDrumSampler">createDrumSampler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSynth">createSynth</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-loops">loops</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/BassLoop.js~BassLoop.html">BassLoop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html">DrumLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/EffectsUI.js~EffectsUI.html">EffectsUI</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/MelodyLoop.js~MelodyLoop.html">MelodyLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
 </ul>
@@ -45,13 +43,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {DrumLoop} from &apos;<span><a href="file/scripts/Classes/DrumLoop.js.html#lineNumber7">loopBuilder/scripts/Classes/DrumLoop.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {DrumLoop} from &apos;<span><a href="file/scripts/Classes/DrumLoop.js.html#lineNumber8">loopBuilder/scripts/Classes/DrumLoop.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/scripts/Classes/DrumLoop.js.html#lineNumber7">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/scripts/Classes/DrumLoop.js.html#lineNumber8">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -121,41 +119,7 @@
 </tbody>
 </table>
 </div>
-<div data-ice="memberSummary"><h2>Member Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Members</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html#instance-member-parts">parts</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-</tbody>
-</table>
-</div>
+
 <div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
   <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
   <tbody>
@@ -174,15 +138,13 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html#instance-method-convertPattern">convertPattern</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html#instance-method-makeRows">makeRows</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Used by the overwritten setUpLoop() to convert an array
-of numbers into note names</p>
-</div>
+        
       </div>
     </td>
     <td>
@@ -414,8 +376,7 @@ of numbers into note names</p>
       <div>
         
         
-        <div data-ice="description"><p>Overridden by subclasses to process incoming pattern arrays and
-save them to <code>this.pattern</code></p>
+        <div data-ice="description"><p>Convert an array of note names into a series of patterns for use by <code>makeRows()</code></p>
 </div>
       </div>
     </td>
@@ -444,9 +405,7 @@ save them to <code>this.pattern</code></p>
       <div>
         
         
-        <div data-ice="description"><p>Uses <code>this.parts</code> to create and store new row class objects and
-add them to the DOM</p>
-</div>
+        
       </div>
     </td>
     <td>
@@ -468,14 +427,13 @@ add them to the DOM</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-method-setScale">setScale</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-method-setScale">setScale</a></span></span><span class="code" data-ice="signature">(scale: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Overridden by subclasses to set individual scales</p>
-</div>
+        
       </div>
     </td>
     <td>
@@ -503,7 +461,7 @@ add them to the DOM</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/DrumLoop.js.html#lineNumber13">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/DrumLoop.js.html#lineNumber14">source</a></span></span>
     </span>
   </h3>
 
@@ -564,78 +522,31 @@ add them to the DOM</p>
   
 </div>
 </div>
-<div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-parts">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">parts</span><span class="code" data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/scripts/Classes/DrumLoop.js.html#lineNumber33">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  <div data-ice="override"><h4>Override:</h4><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-parts">Loop#parts</a></span></div>
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-</div>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-convertPattern">
+  <h3 data-ice="anchor" id="instance-method-makeRows">
     <span class="access" data-ice="access">public</span>
     
     
     
     
     
-    <span class="code" data-ice="name">convertPattern</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">makeRows</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/DrumLoop.js.html#lineNumber21">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/DrumLoop.js.html#lineNumber18">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Used by the overwritten setUpLoop() to convert an array
-of numbers into note names</p>
-</div>
+  
 
-  <div data-ice="override"><h4>Override:</h4><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-method-convertPattern">Loop#convertPattern</a></span></div>
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-method-makeRows">Loop#makeRows</a></span></div>
 
   <div data-ice="properties">
 </div>

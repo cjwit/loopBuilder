@@ -32,12 +32,10 @@
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createDrumSampler">createDrumSampler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSynth">createSynth</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-loops">loops</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/BassLoop.js~BassLoop.html">BassLoop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html">DrumLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/EffectsUI.js~EffectsUI.html">EffectsUI</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/MelodyLoop.js~MelodyLoop.html">MelodyLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
 </ul>
@@ -47,6 +45,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">scripts/Classes/DrumLoop.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Tone } from &apos;tone/build/esm/core/Tone&apos;;
 import { Loop } from &apos;./Loop.js&apos;;
+import { Row } from &apos;./Row.js&apos;;
 
 /**
  * Creates and controls the drum loop, overwrites the convertPattern() method
@@ -61,23 +60,13 @@ export class DrumLoop extends Loop {
     super(tagId, data, source);
   }
 
-    /**
-   * Used by the overwritten setUpLoop() to convert an array
-   * of numbers into note names
-   */
-  convertPattern() {
-    var newPartsArray = [];
-    this.parts.forEach(part =&gt; {
-      for (let i = 0; i &lt; part.pattern.length; i++) {
-        if (part.pattern[i] == 0) {
-          part.pattern[i] = null
-        } else {
-          part.pattern[i] = part.note;
-        }
-      }
-      newPartsArray.push(part);
-    })
-    this.parts = newPartsArray;
+  makeRows() {
+    var names = [&quot;Kick drum&quot;, &quot;Snare drum&quot;, &quot;Hi hat&quot;, &quot;Cowbell&quot;, &quot;Clave&quot;, &quot;L bongo&quot;, &quot;H bongo&quot;, &quot;Bell&quot;, &quot;Tom&quot;];
+    for (let i = 0; i &lt; this.parts.length; i++) {
+      let row = new Row(this.source, this.parts[i], this.scale[i], names[i]);
+      this.domObject.appendChild(row.domObject);
+      this.rows.push(row);
+    }
   }
 }</code></pre>
 
