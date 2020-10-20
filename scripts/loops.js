@@ -1,6 +1,6 @@
 var melodyLoop = {
   tempo: 108,
-  scale: "dorian",
+  scale: "dorianMelody",
   parts: [
     [0, 1, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -22,10 +22,11 @@ var melodyLoop = {
 
 var bassLoop = {
   tempo: 108,
-  scale: "dorian",
+  scale: "dorianBass",
   parts: [
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 1, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -38,28 +39,17 @@ var bassLoop = {
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
   ]
 }
 
 var drumLoop = {
   tempo: 108,
+  scale: "drumSet",
+  names: ["Kick drum", "Snare drum", "Cowbell"],
   parts: [
-    {
-      name: "Kick drum",
-      note: "A3",
-      pattern: [1, 0, 0, 0, 1, 0, 0, 0],
-    },
-    {
-      name: "Snare drum",
-      note: "A2",
-      pattern: [0, 0, 1, 1, 0, 0, 1, 0],
-    },
-    {
-      name: "Cowbell",
-      note: "A9",
-      pattern: [0, 0, 1, 0, 0, 1, 0, 0],
-    }
+    [1, 0, 0, 0, 1, 0, 0, 0],
+    [0, 0, 1, 1, 0, 0, 1, 0],
+    [0, 0, 1, 0, 0, 1, 0, 0]
   ]
 }
 

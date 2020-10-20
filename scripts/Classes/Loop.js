@@ -1,3 +1,6 @@
+import { Tone } from 'tone/build/esm/core/Tone';
+import { Row } from './Row.js';
+
 /**
  * Parent interface for MelodyLoop, BassLoop, and DrumLoop
  */
@@ -37,26 +40,48 @@ export class Loop {
     /**
      * @type {Array}
      */
-    if (data.scale) { this.scale = this.setScale(data.scale); }
+    this.scale = this.setScale(data.scale);
+    if (data.names) { this.names = data.names }
     this.convertPattern();
     this.makeRows();
   }
 
   /**
-   * Overridden by subclasses to set individual scales
    * @return {Array} Scale members as strings with note names and octaves
    */
-  setScale(scale) { return [] }
+  setScale(scale) {
+    switch (scale) {
+      case "dorianMelody": return ["C6", "Bb5", "A5", "G5", "F5", "Eb5", "D5", "C5", "Bb4", "A4", "G4", "F4", "Eb4", "D4", "C4"];
+      case "dorianBass": return ["C4", "Bb3", "A3", "G3", "F3", "Eb3", "D3", "C3", "Bb2", "A2", "G2", "F2", "Eb2", "D2", "C2"];
+      case "drumSet": return ["A3", "A2", "A9"];
+    }
+    throw "Unknown scale";
+  }
 
   /**
-   * Overridden by subclasses to process incoming pattern arrays and
-   * save them to `this.pattern`
+   * Convert an array of note names into a series of patterns for use by `makeRows()`
    */
-  convertPattern() { }
+  convertPattern() {
+    var newPartsArray = [];
 
-  /**
-   * Uses `this.parts` to create and store new row class objects and
-   * add them to the DOM
-   */
-  makeRows() { }
+    for (let i = 0; i < this.scale.length; i++) {
+      let currentNote = this.scale[i];
+      let currentPart = this.parts[i];
+      let convertedPart = [];
+      currentPart.forEach(note => {
+        if (note == 1) { convertedPart.push(currentNote); }
+        else { convertedPart.push(null) }
+      });
+      newPartsArray.push(convertedPart);
+    }
+    this.parts = newPartsArray;
+  }
+
+  makeRows() {
+    for (let i = 0; i < this.parts.length; i++) {
+      let row = new Row(this.source, this.parts[i], this.scale[i]);
+      this.domObject.appendChild(row.domObject);
+      this.rows.push(row);
+    }
+  }
 }

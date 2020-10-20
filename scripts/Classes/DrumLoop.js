@@ -15,28 +15,9 @@ export class DrumLoop extends Loop {
     super(tagId, data, source);
   }
 
-    /**
-   * Used by the overwritten setUpLoop() to convert an array
-   * of numbers into note names
-   */
-  convertPattern() {
-    var newPartsArray = [];
-    this.parts.forEach(part => {
-      for (let i = 0; i < part.pattern.length; i++) {
-        if (part.pattern[i] == 0) {
-          part.pattern[i] = null
-        } else {
-          part.pattern[i] = part.note;
-        }
-      }
-      newPartsArray.push(part);
-    })
-    this.parts = newPartsArray;
-  }
-
   makeRows() {
     for (let i = 0; i < this.parts.length; i++) {
-      let row = new Row(this.source, this.parts[i], this.parts[i].note, this.parts[i].name);
+      let row = new Row(this.source, this.parts[i], this.scale[i], this.names[i]);
       this.domObject.appendChild(row.domObject);
       this.rows.push(row);
     }
