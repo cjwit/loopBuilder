@@ -19,35 +19,6 @@ const bassSynth = createSynth();
 const bassVolumeNode = new Tone.Volume(-20).toDestination();
 bassSynth.connect(bassVolumeNode);
 
-// add effects
-const melodyEffect1 = new Tone.Distortion({
-  distortion: 10,
-  wet: 0.5,
-})
-
-const melodyEffect2 = new Tone.FeedbackDelay({
-  delayTime: "8n",
-  feedback: 0.7,
-  maxDelay: "4n",
-  wet: 0.5
-}).toDestination();
-
-melodySynth.chain(melodyEffect1, melodyEffect2);
-
-const bassEffect1 = new Tone.BitCrusher({ 
-  bits: 2,
-  wet: 0.5
-}).toDestination();
-
-const bassEffect2 = new Tone.Chorus({
-  depth: 1,
-  delayTime: 700,
-  feedback: 0.4,
-  wet: 0.5,
-}).toDestination();
-
-bassSynth.chain(bassEffect1, bassEffect2);
-
 // get shared loop
 var loops;
 const url = new URL(document.URL);
@@ -60,9 +31,34 @@ if (url.searchParams != "") {
   console.log("using default loops", loops)
 }
 
-// default: ?loops=%7B%22drumLoop%22%3A%7B%22scale%22%3A%22drumSet%22%2C%22parts%22%3A%5B%5B1%2C0%2C0%2C0%2C1%2C0%2C0%2C0%5D%2C%5B0%2C0%2C1%2C1%2C0%2C0%2C1%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C1%2C0%2C0%2C1%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%5D%7D%2C%22melodyLoop%22%3A%7B%22scale%22%3A%22dorianMelody%22%2C%22parts%22%3A%5B%5B0%2C1%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C1%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C1%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B1%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C1%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%5D%7D%2C%22bassLoop%22%3A%7B%22scale%22%3A%22dorianBass%22%2C%22parts%22%3A%5B%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C1%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C1%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B1%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C1%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%5D%7D%2C%22tempo%22%3A108%7D
-// set loop share
-// var params = encodeURIComponent(JSON.stringify(loops));
+// add effects
+const melodyEffect1 = new Tone.Distortion({
+  distortion: 10,
+  wet: loops.melodyLoop.effectLevels[0]
+})
+
+const melodyEffect2 = new Tone.FeedbackDelay({
+  delayTime: "8n",
+  feedback: 0.7,
+  maxDelay: "4n",
+  wet: loops.melodyLoop.effectLevels[1]
+}).toDestination();
+
+melodySynth.chain(melodyEffect1, melodyEffect2);
+
+const bassEffect1 = new Tone.BitCrusher({ 
+  bits: 2,
+  wet: loops.bassLoop.effectLevels[0]
+}).toDestination();
+
+const bassEffect2 = new Tone.Chorus({
+  depth: 1,
+  delayTime: 700,
+  feedback: 0.4,
+  wet: loops.bassLoop.effectLevels[1]
+}).toDestination();
+
+bassSynth.chain(bassEffect1, bassEffect2);
 
 // set up loops
 const Play = new PlayButton();
@@ -72,8 +68,8 @@ const bassLoop = new Loop("bassLoop", loops.bassLoop, bassSynth);
 const drumLoop = new DrumLoop("drumLoop", loops.drumLoop, drumSampler);
 
 // set up filter listeners
-const synthEffects = new EffectsUI("melodyEffects", melodyEffect1, melodyEffect2);
-const bassEffects = new EffectsUI("bassEffects", bassEffect1, bassEffect2);
+const synthEffects = new EffectsUI("melodyEffects", loops.melodyLoop.effectLevels, melodyEffect1, melodyEffect2);
+const bassEffects = new EffectsUI("bassEffects", loops.bassLoop.effectLevels, bassEffect1, bassEffect2);
 
 // tempo slider
 var slider = document.getElementById("tempo-slider");

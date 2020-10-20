@@ -39,6 +39,7 @@ export class ShareButton {
 
     // get effects values
 
+    // compile result
     var result = {
       melodyLoop: {
         scale: scale + "Melody",
@@ -56,6 +57,7 @@ export class ShareButton {
     }
 
     this.copyUrlToClipboard(result);
+    this.domObject.innerText = "URL copied to the clipboard";
   }
 
   getLoopArray(row) {
@@ -84,8 +86,5 @@ export class ShareButton {
     urlStringDomHolder.value = urlString;
     urlStringDomHolder.select();
     document.execCommand("copy");
-
-    this.domObject.innerText = "URL copied to the clipboard";
-
   }
 }

@@ -1,5 +1,3 @@
-import { Tone } from "tone/build/esm/core/Tone";
-
 /**
  * Create and handle effects user interaction objects
  */
@@ -9,7 +7,7 @@ export class EffectsUI {
    * @param {*} effect1 
    * @param {*} effect2 
    */
-  constructor(tagId, effect1 = null, effect2 = null) {
+  constructor(tagId, effectLevels, effect1 = null, effect2 = null) {
     /**
      * @type {string}
      */
@@ -22,6 +20,8 @@ export class EffectsUI {
      * @type {*}
      */
     this.effect2 = effect2;
+    this.effect1Value = effectLevels[0];
+    this.effect2Value = effectLevels[1];
     /**
      * @type {HTMLElement}
      */
@@ -46,9 +46,11 @@ export class EffectsUI {
     var handleWidth = handle.outerWidth();
     var handleHeight = handle.outerHeight();
 
+    console.log(this.effect1Value, this.effect2Value);
+
     handle.offset({ 
-      left: parent.offset().left + parentWidth / 2 - handleWidth / 2,
-      top: parent.offset().top + parentHeight / 2 - handleHeight / 2
+      left: parent.offset().left - handleWidth * 0.5 + parentWidth * this.effect1Value,
+      top: parent.offset().top - handleHeight * 0.5 + parentHeight * this.effect2Value
     })
 
     var self = this;
