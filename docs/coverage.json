@@ -1,7 +1,7 @@
 {
-  "coverage": "66.66%",
-  "expectCount": 75,
-  "actualCount": 50,
+  "coverage": "64.7%",
+  "expectCount": 85,
+  "actualCount": 55,
   "files": {
     "scripts/Classes/Box.js": {
       "expectCount": 7,
@@ -39,6 +39,11 @@
         106
       ]
     },
+    "scripts/Classes/ShareButton.js": {
+      "expectCount": 5,
+      "actualCount": 5,
+      "undocumentLines": []
+    },
     "scripts/audio.js": {
       "expectCount": 2,
       "actualCount": 0,
@@ -52,31 +57,36 @@
       "actualCount": 0,
       "undocumentLines": [
         1,
-        23,
-        45,
-        62
+        22,
+        43,
+        59
       ]
     },
     "scripts/script.js": {
-      "expectCount": 16,
+      "expectCount": 21,
       "actualCount": 0,
       "undocumentLines": [
-        9,
         10,
-        13,
+        11,
         14,
-        17,
+        15,
         18,
-        22,
-        27,
-        36,
-        41,
-        51,
-        52,
+        19,
+        23,
+        28,
+        37,
+        42,
         53,
-        54,
-        57,
-        58
+        68,
+        69,
+        70,
+        71,
+        72,
+        75,
+        76,
+        79,
+        80,
+        85
       ]
     }
   }

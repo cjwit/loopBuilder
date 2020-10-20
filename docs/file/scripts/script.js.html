@@ -31,13 +31,14 @@
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createDrumSampler">createDrumSampler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSynth">createSynth</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-loops">loops</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultLoops">defaultLoops</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html">DrumLoop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/EffectsUI.js~EffectsUI.html">EffectsUI</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ShareButton.js~ShareButton.html">ShareButton</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -47,8 +48,9 @@
 import { Loop } from &apos;./Classes/Loop.js&apos;;
 import { DrumLoop } from &apos;./Classes/DrumLoop.js&apos;;
 import { PlayButton } from &apos;./Classes/PlayButton.js&apos;;
+import { ShareButton } from &apos;./Classes/ShareButton.js&apos;;
 import { EffectsUI } from &apos;./Classes/EffectsUI.js&apos;;
-import { loops } from &apos;./loops.js&apos;;
+import { defaultLoops } from &apos;./loops.js&apos;;
 import { createDrumSampler, createSynth } from &apos;./audio.js&apos;;
 
 const drumSampler = createDrumSampler();
@@ -92,15 +94,45 @@ const bassEffect2 = new Tone.Chorus({
 
 bassSynth.chain(bassEffect1, bassEffect2);
 
+// get shared loop
+var loops;
+const url = new URL(document.URL);
+if (url.searchParams != &quot;&quot;) {
+  const decodedString = decodeURIComponent(url.searchParams).replace(&quot;loops=&quot;, &quot;&quot;);
+  loops = JSON.parse(decodedString)
+  console.log(&quot;decoded&quot;, loops)
+} else {
+  loops = defaultLoops;
+  console.log(&quot;using default loops&quot;, loops)
+}
+
+// default: ?loops=%7B%22drumLoop%22%3A%7B%22scale%22%3A%22drumSet%22%2C%22parts%22%3A%5B%5B1%2C0%2C0%2C0%2C1%2C0%2C0%2C0%5D%2C%5B0%2C0%2C1%2C1%2C0%2C0%2C1%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C1%2C0%2C0%2C1%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%5D%7D%2C%22melodyLoop%22%3A%7B%22scale%22%3A%22dorianMelody%22%2C%22parts%22%3A%5B%5B0%2C1%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C1%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C1%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B1%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C1%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%5D%7D%2C%22bassLoop%22%3A%7B%22scale%22%3A%22dorianBass%22%2C%22parts%22%3A%5B%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C1%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C1%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B1%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C1%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%2C%5B0%2C0%2C0%2C0%2C0%2C0%2C0%2C0%5D%5D%7D%2C%22tempo%22%3A108%7D
+// set loop share
+// var params = encodeURIComponent(JSON.stringify(loops));
+
 // set up loops
 const Play = new PlayButton();
+const Share = new ShareButton();
 const melodyLoop = new Loop(&quot;melodyLoop&quot;, loops.melodyLoop, melodySynth);
 const bassLoop = new Loop(&quot;bassLoop&quot;, loops.bassLoop, bassSynth);
 const drumLoop = new DrumLoop(&quot;drumLoop&quot;, loops.drumLoop, drumSampler);
 
 // set up filter listeners
 const synthEffects = new EffectsUI(&quot;melodyEffects&quot;, melodyEffect1, melodyEffect2);
-const bassEffects = new EffectsUI(&quot;bassEffects&quot;, bassEffect1, bassEffect2);</code></pre>
+const bassEffects = new EffectsUI(&quot;bassEffects&quot;, bassEffect1, bassEffect2);
+
+// tempo slider
+var slider = document.getElementById(&quot;tempo-slider&quot;);
+var bpmSpan = document.getElementById(&quot;bpm-span&quot;);
+Tone.Transport.bpm.value = loops.tempo;
+slider.value = loops.tempo;
+bpmSpan.innerText = slider.value;
+
+slider.oninput = function() {
+  Tone.Transport.bpm.value = this.value;
+  bpmSpan.innerText = slider.value;
+}
+</code></pre>
 
 </div>
 
