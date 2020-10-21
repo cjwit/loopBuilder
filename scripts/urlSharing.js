@@ -12,22 +12,21 @@ export function parseLoopFromURL() {
 
     var populatedLoops = {
       melodyLoop: {
-        scale: parsedLoops.m.scale,
-        parts: parseLoops(parsedLoops.m.parts),
-        effectLevels: parsedLoops.m.effectLevels
+        scale: parsedLoops.m.s,
+        parts: parseLoops(parsedLoops.m.p),
+        effectLevels: parsedLoops.m.e
       },
       bassLoop: {
-        scale: parsedLoops.b.scale,
-        parts: parseLoops(parsedLoops.b.parts),
-        effectLevels: parsedLoops.b.effectLevels
+        scale: parsedLoops.b.s,
+        parts: parseLoops(parsedLoops.b.p),
+        effectLevels: parsedLoops.b.e
       },
       drumLoop: {
-        scale: parsedLoops.d.scale,
-        parts: parseLoops(parsedLoops.d.parts)
+        scale: parsedLoops.d.s,
+        parts: parseLoops(parsedLoops.d.p)
       },
       tempo: parsedLoops.t
     }
-    console.log(populatedLoops)
     return populatedLoops
 
   } else {
@@ -115,18 +114,18 @@ function getLoopData() {
   // compile result
   var result = {
     m: {
-      scale: scale + "Melody",
-      parts: melodyRows,
-      effectLevels: melodyEffectLevels
+      s: scale + "Melody",
+      p: melodyRows,
+      e: melodyEffectLevels
     },
     b: {
-      scale: scale + "Bass",
-      parts: bassRows,
-      effectLevels: bassEffectLevels
+      s: scale + "Bass",
+      p: bassRows,
+      e: bassEffectLevels
     },
     d: {
-      scale: "drumSet",
-      parts: drumRows
+      s: "drumSet",
+      p: drumRows
     },
     t: tempo
   }

@@ -13,7 +13,6 @@ This is a test project that links [tone.js](https://tonejs.github.io) to a graph
 
 ### Next
 
-* Extend save/load to include effect values
 * Add buttons to change mode
 * Consider removing note names
 * Write a short introduction
