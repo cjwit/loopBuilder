@@ -4,7 +4,7 @@ import { DrumLoop } from './Classes/DrumLoop.js';
 import { PlayButton } from './Classes/PlayButton.js';
 import { ShareButton } from './Classes/ShareButton.js';
 import { EffectsUI } from './Classes/EffectsUI.js';
-import { defaultLoops } from './loops.js';
+import { parseLoopFromURL } from './urlSharing.js';
 import { createDrumSampler, createSynth } from './audio.js';
 
 const drumSampler = createDrumSampler();
@@ -20,16 +20,7 @@ const bassVolumeNode = new Tone.Volume(-20).toDestination();
 bassSynth.connect(bassVolumeNode);
 
 // get shared loop
-var loops;
-const url = new URL(document.URL);
-if (url.searchParams != "") {
-  const decodedString = decodeURIComponent(url.searchParams).replace("loops=", "");
-  loops = JSON.parse(decodedString)
-  console.log("decoded", loops)
-} else {
-  loops = defaultLoops;
-  console.log("using default loops", loops)
-}
+var loops = parseLoopFromURL();
 
 // add effects
 const melodyEffect1 = new Tone.Distortion({

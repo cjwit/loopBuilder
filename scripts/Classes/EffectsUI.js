@@ -4,6 +4,7 @@
 export class EffectsUI {
   /**
    * @param {string} tagId 
+   * @param {array} effectLevels
    * @param {*} effect1 
    * @param {*} effect2 
    */
@@ -13,6 +14,10 @@ export class EffectsUI {
      */
     this.tagId = tagId;
     /**
+     * @type {HTMLElement}
+     */
+    this.domObject = document.getElementById(this.tagId);
+    /**
      * @type {*}
      */
     this.effect1 = effect1;
@@ -20,13 +25,19 @@ export class EffectsUI {
      * @type {*}
      */
     this.effect2 = effect2;
-    this.effect1Value = effectLevels[0];
-    this.effect2Value = effectLevels[1];
     /**
-     * @type {HTMLElement}
+     * @type {number}
      */
-    this.domObject = document.getElementById(this.tagId);
-
+    this.effect1Value = effectLevels[0];
+    /**
+     * @type {number}
+     */
+    this.effect2Value = effectLevels[1];
+    
+    this.valueSpans = this.domObject.getElementsByClassName("effectValue")
+    this.valueSpans[0].innerText = this.effect1Value;
+    this.valueSpans[1].innerText = this.effect2Value;
+    
     this.createHandle();
   }
 
@@ -46,8 +57,8 @@ export class EffectsUI {
     var handleWidth = handle.outerWidth();
     var handleHeight = handle.outerHeight();
 
-    console.log(this.effect1Value, this.effect2Value);
-
+    // calculate the corners of the handle, add a small buffer because of an error/negative result
+    // TODO: fix with zero guard
     handle.offset({ 
       left: parent.offset().left - handleWidth * 0.5 + parentWidth * this.effect1Value,
       top: parent.offset().top - handleHeight * 0.5 + parentHeight * this.effect2Value
@@ -57,7 +68,7 @@ export class EffectsUI {
     handle.draggable({ 
       containment: "parent",
       drag: function() {
-        var handleOffset = handle.offset();
+        var handleOffset = handle.offset();        
         var left = (handleOffset.left - parent.offset().left) / parentWidth;
         var top = (handleOffset.top - parent.offset().top) / parentHeight;
         self.effect1Value = left;
@@ -77,5 +88,7 @@ export class EffectsUI {
     if (this.effect2) {
       this.effect2.wet.value = this.effect2Value;
     }
+    this.valueSpans[0].innerText = Math.round(this.effect1Value * 10) / 10;
+    this.valueSpans[1].innerText = Math.round(this.effect2Value * 10) / 10;
   }
 }

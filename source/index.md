@@ -21,11 +21,11 @@ author: "<a href='https://cwitulski.com'>Christopher Witulski</a>"
 
 <div id="melodyLoop" class="loop"><span class = "title">Melody synthesizer</span></div>
 
-<div id="melodyEffects" class="effects"><span class = "title">Drag the circle to add effects: &#11013; &#10145; Distortion | &#11014; &#11015; Delay</span></div>
+<div id="melodyEffects" class="effects"><span class = "title">Drag the circle for effects: &#11013; &#10145; Distortion (<span class = "effectValue"></span>) | &#11014; &#11015; Delay (<span class = "effectValue"></span>)</span></div>
 
 <div id="bassLoop" class="loop"><span class = "title">Bass synthesizer</span></div>
 
-<div id="bassEffects" class="effects"><span class = "title">Drag the circle to add effects: &#11013; &#10145; BitCrusher | &#11014; &#11015; Chorus</span></div>
+<div id="bassEffects" class="effects"><span class = "title">Drag the circle for effects: &#11013; &#10145; BitCrusher (<span class = "effectValue"></span>) | &#11014; &#11015; Chorus (<span class = "effectValue"></span>)</span></div>
 
 <div id="drumLoop" class="loop"><span class = "title">Drum sampler</span></div>
 
