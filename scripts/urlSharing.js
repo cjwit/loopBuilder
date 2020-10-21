@@ -51,8 +51,6 @@ function getRowData() {
     else { drumRows.push(rowData) }
   }
 
-  drumRows.forEach(filled => (console.log(filled)));
-
   // get tempo
   var tempo = document.getElementById("bpm-span").innerText;
 

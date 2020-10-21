@@ -22,5 +22,8 @@ export class ShareButton {
   listener() {
     copyUrlToClipboard();
     this.domObject.innerText = "URL copied to the clipboard";
+    setTimeout(() => {
+      this.domObject.innerText = "Share";
+    }, 5000)
   }
 }
