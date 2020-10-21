@@ -88,10 +88,9 @@ function getLoopData() {
 
   var rows = document.getElementsByClassName("row-of-boxes");
   for (let i = 0; i < rows.length; i++) {
-    var rowData = getLoopArray(rows[i]);
-    if (i < 15) { melodyRows += rowData }
-    else if (i < 30) { bassRows += rowData }
-    else { drumRows += rowData }
+    if (i < 15) { melodyRows += getLoopArray(rows[i]) }
+    else if (i < 30) { bassRows += getLoopArray(rows[i]) }
+    else { drumRows += getLoopArray(rows[i]) }
   }
 
   // remove trailing split markers
@@ -105,23 +104,17 @@ function getLoopData() {
   // get scale (coming later);
   var scale = "dorian";
 
-  // get effects values
-  var melodyEffectValueSpans = document.getElementById("melodyEffects").getElementsByClassName("effectValue");
-  var melodyEffectLevels = [melodyEffectValueSpans[0].innerText, melodyEffectValueSpans[1].innerText]
-  var bassEffectValueSpans = document.getElementById("bassEffects").getElementsByClassName("effectValue");
-  var bassEffectLevels = [bassEffectValueSpans[0].innerText, bassEffectValueSpans[1].innerText]
-
   // compile result
   var result = {
     m: {
       s: scale + "Melody",
       p: melodyRows,
-      e: melodyEffectLevels
+      e: getEffectValues("melodyEffects")
     },
     b: {
       s: scale + "Bass",
       p: bassRows,
-      e: bassEffectLevels
+      e: getEffectValues("bassEffects")
     },
     d: {
       s: "drumSet",
@@ -149,4 +142,9 @@ function getLoopArray(row) {
 
   // convert to hex string, add Z for splitting later
   return parseInt(rowData, 2).toString(16) + "Z";
+}
+
+function getEffectValues(tag) {
+  var melodyEffectValueSpans = document.getElementById(tag).getElementsByClassName("effectValue");
+  return [melodyEffectValueSpans[0].innerText, melodyEffectValueSpans[1].innerText]
 }
