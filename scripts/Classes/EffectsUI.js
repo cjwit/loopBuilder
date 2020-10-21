@@ -58,7 +58,6 @@ export class EffectsUI {
     var handleHeight = handle.outerHeight();
 
     // calculate the corners of the handle, add a small buffer because of an error/negative result
-    // TODO: fix with zero guard
     handle.offset({ 
       left: parent.offset().left - handleWidth * 0.5 + parentWidth * this.effect1Value,
       top: parent.offset().top - handleHeight * 0.5 + parentHeight * this.effect2Value
@@ -71,8 +70,10 @@ export class EffectsUI {
         var handleOffset = handle.offset();        
         var left = (handleOffset.left - parent.offset().left) / parentWidth;
         var top = (handleOffset.top - parent.offset().top) / parentHeight;
-        self.effect1Value = left;
-        self.effect2Value = top;
+
+        // guard against GUI issues where handle leaves the lower bound
+        self.effect1Value = left > 0 ? left : 0;
+        self.effect2Value = top > 0 ? top : 0;
         self.updateEffects();
       }
     });
