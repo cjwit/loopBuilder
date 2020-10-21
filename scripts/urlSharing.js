@@ -24,7 +24,7 @@ export function copyUrlToClipboard() {
   var loops = getRowData();
   // create url string
   var url = new URL(document.URL);
-  var urlString = url.host + url.pathname + "?loops=" + JSON.stringify(loops);
+  var urlString = url.host + url.pathname + "?loops=" + encodeURIComponent(JSON.stringify(loops));
 
   // create dummy object for clipboard copy
   var urlStringDomHolder = document.createElement("input");
