@@ -1,7 +1,7 @@
 {
-  "coverage": "65.93%",
-  "expectCount": 91,
-  "actualCount": 60,
+  "coverage": "66.3%",
+  "expectCount": 92,
+  "actualCount": 61,
   "files": {
     "scripts/Classes/Box.js": {
       "expectCount": 7,
@@ -92,8 +92,8 @@
       ]
     },
     "scripts/urlSharing.js": {
-      "expectCount": 4,
-      "actualCount": 4,
+      "expectCount": 5,
+      "actualCount": 5,
       "undocumentLines": []
     }
   }

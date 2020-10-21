@@ -1408,7 +1408,7 @@
     "__docId__": 93,
     "kind": "file",
     "name": "scripts/Classes/Row.js",
-    "content": "import * as Tone from 'tone';\nimport { Box } from './Box.js';\n\n/**\n * Creates and controls DOM objects for individual loop rows\n */\nexport class Row {\n  /**\n   * @param {object} part\n   * @param {string} name\n   * @param {string} note\n   * @param {Tone.Synth} source \n   */\n  constructor(source, pattern, note, name = note) {\n    /**\n     * @type {number}\n     */\n    this.labelWidth = 6.0;\n    /**\n     * @type {string}\n     */\n    this.name = name;\n    /**\n     * @type {array}\n     */\n    this.note = note;\n    /**\n     * @type {array}\n     */\n    this.pattern = pattern;\n    /**\n    * @type {Tone.synth}\n    */\n    this.source = source;\n    this.createLoop();\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.createElement(\"div\");\n    this.domObject.classList.add(\"row-of-boxes\");\n    this.domObject.appendChild(this.makeRowLabel(this.name));\n    /**\n     * @type {array}\n     */\n    this.boxes = this.createBoxes();\n  }\n\n  /**\n   * \n   * @param {string} label Name of the row, to be added to the DOM object before any boxes\n   * @return {HTMLSpanElement} HTML span element with the row name\n   */\n  makeRowLabel(label) {\n    var rowName = document.createElement(\"span\");\n    rowName.classList.add(\"row-label\");\n    rowName.innerText = label;\n    rowName.style.width = this.labelWidth + \"em\";\n    return rowName;\n  }\n\n  /**\n   * Build and store the series of boxes in the row\n   */\n  createBoxes() {\n    var boxes = [];\n    let widthString = this.calculateBoxWidth();\n    for (let i = 0; i < this.pattern.length; i++) {\n      let box = new Box(this.pattern[i]);\n      box.domObject.style.width = widthString;\n\n      // add event listeners\n      box.domObject.addEventListener(\"click\", () => {\n        this.switchFilledStatus(box);\n        this.updateSequencePattern(i, box.filled);\n        this.createLoop();\n      })\n\n      // display and store the box\n      this.domObject.appendChild(box.domObject);\n      boxes.push(box);\n    };\n    return boxes;\n  }\n\n  /**\n   * Called by `createBoxes`, uses the number of boxes in\n   * a row to calculate and set the CSS width property\n   */\n  calculateBoxWidth() {\n    let percent = 100.0 / this.pattern.length + \"%\";\n    let padding = this.labelWidth / this.pattern.length + 0.1;\n    return \"calc(\" + percent + \" - \" + padding + \"em)\";\n  }\n\n  /**\n   * Used by the constructor and click event callbacks to remove the\n   * previous loop and replace it with an updated version\n   */\n  createLoop() {\n    // clear the previous sequence if one exists\n    if (this.sequence) {\n      this.sequence.dispose();\n    }\n\n    // create the new sequence for this row\n    this.sequence = new Tone.Sequence((time, note) => {\n      this.flashActiveBox();\n      this.source.triggerAttackRelease(note, \"8n\", time);\n    }, this.pattern).start(0);\n  }\n\n  /**\n   * Called in the Tone.Sequencer callback to determine which\n   * box to animate\n   */\n  flashActiveBox() {\n    var [beat, sixteenth] = Tone.Transport.position.split(/\\.|:/).slice(1,3);\n    beat = Number(beat);\n    sixteenth = Number(sixteenth);\n    var currentPosition = beat * 2 + sixteenth / 2, beat, sixteenth;\n    if (this.boxes[currentPosition].filled) {\n      this.boxes[currentPosition].flash();\n    }\n  }\n\n  /**\n   * Switch the status of a box as filled and not filled\n   * @param {Box} box\n   */\n  switchFilledStatus(box) {\n    var filled = false;\n    if (box.domObject.classList.contains(\"filled-box\")) {\n      box.domObject.classList.remove(\"filled-box\");\n      box.domObject.classList.add(\"empty-box\");\n    } else {\n      box.domObject.classList.add(\"filled-box\");\n      box.domObject.classList.remove(\"empty-box\");\n      filled = true;\n    }\n    box.filled = filled;\n  }\n\n  /**\n   * Update the sequence object passed by Row whenever a user clicks\n   * a box. This is part of the Box click event listener\n   */\n  updateSequencePattern(positionNumber, filled) {\n    var pattern = this.sequence._eventsArray;\n    if (filled) {\n      pattern[positionNumber] = this.note;\n    } else {\n      pattern[positionNumber] = null;\n    }\n    this.pattern = pattern;\n  }\n}\n",
+    "content": "import * as Tone from 'tone';\nimport { Box } from './Box.js';\n\n/**\n * Creates and controls DOM objects for individual loop rows\n */\nexport class Row {\n  /**\n   * @param {object} part\n   * @param {string} name\n   * @param {string} note\n   * @param {Tone.Synth} source \n   */\n  constructor(source, pattern, note, name = note) {\n    /**\n     * @type {number}\n     */\n    this.labelWidth = 6.0;\n    /**\n     * @type {string}\n     */\n    this.name = name;\n    /**\n     * @type {array}\n     */\n    this.note = note;\n    /**\n     * @type {array}\n     */\n    this.pattern = pattern;\n    /**\n    * @type {Tone.synth}\n    */\n    this.source = source;\n    this.createLoop();\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.createElement(\"div\");\n    this.domObject.classList.add(\"row-of-boxes\");\n    this.domObject.appendChild(this.makeRowLabel(this.name));\n    /**\n     * @type {array}\n     */\n    this.boxes = this.createBoxes();\n  }\n\n  /**\n   * \n   * @param {string} label Name of the row, to be added to the DOM object before any boxes\n   * @return {HTMLSpanElement} HTML span element with the row name\n   */\n  makeRowLabel(label) {\n    var rowName = document.createElement(\"span\");\n    rowName.classList.add(\"row-label\");\n    rowName.innerText = label;\n    rowName.style.width = this.labelWidth + \"em\";\n    return rowName;\n  }\n\n  /**\n   * Build and store the series of boxes in the row\n   */\n  createBoxes() {\n    var boxes = [];\n    let widthString = this.calculateBoxWidth();\n    for (let i = 0; i < this.pattern.length; i++) {\n      let box = new Box(this.pattern[i]);\n      box.domObject.style.width = widthString;\n\n      // add event listeners\n      box.domObject.addEventListener(\"click\", () => {\n        this.switchFilledStatus(box);\n        this.updateSequencePattern(i, box.filled);\n        this.createLoop();\n      })\n\n      // display and store the box\n      this.domObject.appendChild(box.domObject);\n      boxes.push(box);\n    };\n    return boxes;\n  }\n\n  /**\n   * Called by `createBoxes`, uses the number of boxes in\n   * a row to calculate and set the CSS width property\n   */\n  calculateBoxWidth() {\n    let percent = 100.0 / this.pattern.length + \"%\";\n    let padding = this.labelWidth / this.pattern.length + 0.1;\n    return \"calc(\" + percent + \" - \" + padding + \"em)\";\n  }\n\n  /**\n   * Used by the constructor and click event callbacks to remove the\n   * previous loop and replace it with an updated version\n   */\n  createLoop() {\n    // clear the previous sequence if one exists\n    if (this.sequence) {\n      this.sequence.dispose();\n    }\n\n    // create the new sequence for this row\n    this.sequence = new Tone.Sequence((time, note) => {\n      this.flashActiveBox();\n      this.source.triggerAttackRelease(note, \"8n\", time);\n    }, this.pattern).start(0);\n  }\n\n  /**\n   * Called in the Tone.Sequencer callback to determine which\n   * box to animate\n   */\n  flashActiveBox() {\n    var [beat, sixteenth] = Tone.Transport.position.split(/\\.|:/).slice(1,3);\n    beat = Number(beat);\n    sixteenth = Number(sixteenth);\n    var currentPosition = beat * 2 + sixteenth / 2, beat, sixteenth;\n    if (this.boxes[currentPosition].filled && this.boxes[currentPosition].filled) {\n      this.boxes[currentPosition].flash();\n    }\n  }\n\n  /**\n   * Switch the status of a box as filled and not filled\n   * @param {Box} box\n   */\n  switchFilledStatus(box) {\n    var filled = false;\n    if (box.domObject.classList.contains(\"filled-box\")) {\n      box.domObject.classList.remove(\"filled-box\");\n      box.domObject.classList.add(\"empty-box\");\n    } else {\n      box.domObject.classList.add(\"filled-box\");\n      box.domObject.classList.remove(\"empty-box\");\n      filled = true;\n    }\n    box.filled = filled;\n  }\n\n  /**\n   * Update the sequence object passed by Row whenever a user clicks\n   * a box. This is part of the Box click event listener\n   */\n  updateSequencePattern(positionNumber, filled) {\n    var pattern = this.sequence._eventsArray;\n    if (filled) {\n      pattern[positionNumber] = this.note;\n    } else {\n      pattern[positionNumber] = null;\n    }\n    this.pattern = pattern;\n  }\n}\n",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/Row.js",
     "access": "public",
@@ -1794,7 +1794,7 @@
     "__docId__": 112,
     "kind": "file",
     "name": "scripts/Classes/ShareButton.js",
-    "content": "import { copyUrlToClipboard } from '../urlSharing.js';\n\n/**\n * Create share button\n */\nexport class ShareButton {\n  /**\n   * Get element and create share button\n   */\n  constructor() {\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.getElementById(\"shareButton\");\n    this.domObject.innerText = \"Share\";\n    this.domObject.addEventListener(\"click\", this.listener.bind(this));\n  }\n\n  /**\n   * create URL with encoded loops object\n   */\n  listener() {\n    copyUrlToClipboard();\n    this.domObject.innerText = \"URL copied to the clipboard\";\n  }\n}",
+    "content": "import { copyUrlToClipboard } from '../urlSharing.js';\n\n/**\n * Create share button\n */\nexport class ShareButton {\n  /**\n   * Get element and create share button\n   */\n  constructor() {\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.getElementById(\"shareButton\");\n    this.domObject.innerText = \"Share\";\n    this.domObject.addEventListener(\"click\", this.listener.bind(this));\n  }\n\n  /**\n   * create URL with encoded loops object\n   */\n  listener() {\n    copyUrlToClipboard();\n    this.domObject.innerText = \"URL copied to the clipboard\";\n    setTimeout(() => {\n      this.domObject.innerText = \"Share\";\n    }, 5000)\n  }\n}",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/ShareButton.js",
     "access": "public",
@@ -2469,7 +2469,7 @@
     "__docId__": 147,
     "kind": "file",
     "name": "scripts/urlSharing.js",
-    "content": "import { defaultLoops } from './loops.js';\n\n/**\n * Parse loop from URL\n */\nexport function parseLoopFromURL() {\n  var loops;\n  const url = new URL(document.URL);\n  if (url.searchParams != \"\") {\n    const decodedString = decodeURIComponent(url.searchParams).replace(\"loops=\", \"\");\n    loops = JSON.parse(decodedString)\n    console.log(\"decoded\", loops)\n  } else {\n    loops = defaultLoops;\n    console.log(\"using default loops\", loops)\n  }\n  return loops;\n}\n\n/**\n * Create a URL and copy it to the clipboard\n */\nexport function copyUrlToClipboard() {\n  var loops = getRowData();\n  // create url string\n  var url = new URL(document.URL);\n  var urlString = url.host + url.pathname + \"?loops=\" + JSON.stringify(loops);\n\n  // create dummy object for clipboard copy\n  var urlStringDomHolder = document.createElement(\"input\");\n  document.getElementById(\"shareButton\").appendChild(urlStringDomHolder);\n  urlStringDomHolder.value = urlString;\n  urlStringDomHolder.select();\n  document.execCommand(\"copy\");\n}\n\n/**\n * Get current sequencer state by scanning DOM objects\n */\nfunction getRowData() {\n  // get melody rows\n  var melodyRows = [];\n  var bassRows = [];\n  var drumsRows = [];\n\n  var rows = document.getElementsByClassName(\"row-of-boxes\");\n  for (let i = 0; i < rows.length; i++) {\n    var rowData = getLoopArray(rows[i]);\n    if (i < 15) { melodyRows.push(rowData) }\n    else if (i < 30) { bassRows.push(rowData) }\n    else { drumsRows.push(rowData) }\n  }\n\n  // get tempo\n  var tempo = document.getElementById(\"bpm-span\").innerText;\n\n  // get scale (coming later);\n  var scale = \"dorian\";\n\n  // get effects values\n  var melodyEffectValueSpans = document.getElementById(\"melodyEffects\").getElementsByClassName(\"effectValue\");\n  var bassEffectValueSpans = document.getElementById(\"bassEffects\").getElementsByClassName(\"effectValue\");\n  var melodyEffectLevels = [melodyEffectValueSpans[0].innerText, melodyEffectValueSpans[1].innerText]\n  var bassEffectLevels = [bassEffectValueSpans[0].innerText, bassEffectValueSpans[1].innerText]\n  console.log(melodyEffectLevels, bassEffectLevels);\n\n  // compile result\n  var result = {\n    melodyLoop: {\n      scale: scale + \"Melody\",\n      parts: melodyRows,\n      effectLevels: melodyEffectLevels\n    },\n    bassLoop: {\n      scale: scale + \"Bass\",\n      parts: bassRows,\n      effectLevels: bassEffectLevels\n    },\n    drumLoop: {\n      scale: \"drumSet\",\n      parts: drumsRows\n    },\n    tempo: tempo\n  }\n\n  return result;\n}\n\n/**\n * Create array of 1s and 0s based on current box status in a row\n * @param {HTMLElement} row\n * @return {array}\n */\nfunction getLoopArray(row) {\n  let rowData = [];\n  // iterate through each box in the row\n  for (let j = 1; j < row.childNodes.length - 1; j++) {\n    // push box status\n    let filled = row.childNodes[j].classList.contains(\"filled-box\")\n    filled ? rowData.push(1) : rowData.push(0);\n  }\n  return rowData;\n}\n",
+    "content": "import { defaultLoops } from './loops.js';\n\n/**\n * Parse loop from URL\n */\nexport function parseLoopFromURL() {\n  var loops;\n  const url = new URL(document.URL);\n  if (url.searchParams != \"\") {\n    const decodedString = decodeURIComponent(url.searchParams).replace(\"loops=\", \"\");\n    loops = JSON.parse(decodedString)\n    console.log(\"decoded\", loops)\n\n    // replace long strings to loop data\n    loops.melodyLoop.parts = parseLoops(loops.melodyLoop.parts)\n    loops.bassLoop.parts = parseLoops(loops.bassLoop.parts)\n    loops.drumLoop.parts = parseLoops(loops.drumLoop.parts)\n\n  } else {\n    loops = defaultLoops;\n    console.log(\"using default loops\", loops)\n  }\n  return loops;\n}\n\n/**\n * Replace long binary strings with an array of loops\n * @param {string} string \n */\nfunction parseLoops(string) {\n  // split loop string into substrings of a given length\n  var strings = string.split(/(.{8})/).filter(s => { return s.length > 0; });\n  var result = [];\n  strings.forEach(currentPart => {\n    currentPart = currentPart.split(\"\");\n    var parsedPart = [];\n    currentPart.forEach(value => {\n      parsedPart.push(Number(value));\n    })\n    result.push(parsedPart);\n  })\n  return result;\n}\n\n/**\n * Create a URL and copy it to the clipboard\n */\nexport function copyUrlToClipboard() {\n  var loops = getRowData();\n  // create url string\n  var url = new URL(document.URL);\n  var urlString = url.host + url.pathname + \"?loops=\" + encodeURIComponent(JSON.stringify(loops));\n  console.log(urlString)\n\n  // create dummy object for clipboard copy\n  var urlStringDomHolder = document.createElement(\"input\");\n  document.getElementById(\"shareButton\").appendChild(urlStringDomHolder);\n  urlStringDomHolder.value = urlString;\n  urlStringDomHolder.select();\n  document.execCommand(\"copy\");\n}\n\n/**\n * Get current sequencer state by scanning DOM objects\n */\nfunction getRowData() {\n  // get melody rows\n  var melodyRows = \"\";\n  var bassRows = \"\";\n  var drumRows = \"\";\n\n  var rows = document.getElementsByClassName(\"row-of-boxes\");\n  for (let i = 0; i < rows.length; i++) {\n    var rowData = getLoopArray(rows[i]);\n    if (i < 15) { melodyRows += rowData }\n    else if (i < 30) { bassRows += rowData }\n    else { drumRows += rowData }\n  }\n  \n  // get tempo\n  var tempo = document.getElementById(\"bpm-span\").innerText;\n\n  // get scale (coming later);\n  var scale = \"dorian\";\n\n  // get effects values\n  var melodyEffectValueSpans = document.getElementById(\"melodyEffects\").getElementsByClassName(\"effectValue\");\n  var bassEffectValueSpans = document.getElementById(\"bassEffects\").getElementsByClassName(\"effectValue\");\n  var melodyEffectLevels = [melodyEffectValueSpans[0].innerText, melodyEffectValueSpans[1].innerText]\n  var bassEffectLevels = [bassEffectValueSpans[0].innerText, bassEffectValueSpans[1].innerText]\n\n  // compile result\n  var result = {\n    melodyLoop: {\n      scale: scale + \"Melody\",\n      parts: melodyRows,\n      effectLevels: melodyEffectLevels\n    },\n    bassLoop: {\n      scale: scale + \"Bass\",\n      parts: bassRows,\n      effectLevels: bassEffectLevels\n    },\n    drumLoop: {\n      scale: \"drumSet\",\n      parts: drumRows\n    },\n    tempo: tempo\n  }\n\n  return result;\n}\n\n/**\n * Create array of 1s and 0s based on current box status in a row\n * @param {HTMLElement} row\n * @return {array}\n */\nfunction getLoopArray(row) {\n  let rowData = \"\";\n  // iterate through each box in the row\n  for (let j = 1; j < row.childNodes.length; j++) {\n    // convert row box status to a long binary string\n    let filled = row.childNodes[j].classList.contains(\"filled-box\")\n    filled ? rowData += \"1\" : rowData += \"0\";\n  }\n  return rowData;\n}\n",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/urlSharing.js",
     "access": "public",
@@ -2501,6 +2501,40 @@
   {
     "__docId__": 149,
     "kind": "function",
+    "name": "parseLoops",
+    "memberof": "scripts/urlSharing.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "scripts/urlSharing.js~parseLoops",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/urlSharing.js",
+    "importStyle": null,
+    "description": "Replace long binary strings with an array of loops",
+    "lineNumber": 30,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "string",
+        "description": ""
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 150,
+    "kind": "function",
     "name": "copyUrlToClipboard",
     "memberof": "scripts/urlSharing.js",
     "generator": false,
@@ -2512,12 +2546,12 @@
     "importPath": "loopBuilder/scripts/urlSharing.js",
     "importStyle": "{copyUrlToClipboard}",
     "description": "Create a URL and copy it to the clipboard",
-    "lineNumber": 23,
+    "lineNumber": 48,
     "params": [],
     "return": null
   },
   {
-    "__docId__": 150,
+    "__docId__": 151,
     "kind": "function",
     "name": "getRowData",
     "memberof": "scripts/urlSharing.js",
@@ -2530,7 +2564,7 @@
     "importPath": "loopBuilder/scripts/urlSharing.js",
     "importStyle": null,
     "description": "Get current sequencer state by scanning DOM objects",
-    "lineNumber": 40,
+    "lineNumber": 66,
     "params": [],
     "return": {
       "types": [
@@ -2540,7 +2574,7 @@
     "ignore": true
   },
   {
-    "__docId__": 151,
+    "__docId__": 152,
     "kind": "function",
     "name": "getLoopArray",
     "memberof": "scripts/urlSharing.js",
@@ -2553,7 +2587,7 @@
     "importPath": "loopBuilder/scripts/urlSharing.js",
     "importStyle": null,
     "description": "Create array of 1s and 0s based on current box status in a row",
-    "lineNumber": 94,
+    "lineNumber": 119,
     "params": [
       {
         "nullable": null,
@@ -2586,7 +2620,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"loopBuilder\",\n  \"version\": \"1.0.0\",\n  \"description\": \"A graphical interface to create looping melodies and rhythms\",\n  \"main\": \"script.js\",\n  \"dependencies\": {\n    \"tone\": \"^14.7.58\"\n  },\n  \"devDependencies\": {\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"file-loader\": \"^6.1.0\",\n    \"html-loader\": \"^1.3.1\",\n    \"markdown-loader\": \"^6.0.0\",\n    \"npm-run-all\": \"^4.1.5\",\n    \"sass\": \"^1.26.11\",\n    \"sass-loader\": \"^10.0.2\",\n    \"source-map-loader\": \"^1.1.0\",\n    \"webpack\": \"^4.44.2\",\n    \"webpack-cli\": \"^3.3.12\"\n  },\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n    \"sass\": \"sass --watch sass/style.scss:dist/styles.css\",\n    \"webpack\": \"npx webpack\",\n    \"firefox\": \"open -a Firefox ./dist/index.html\",\n    \"dev\": \"npm run firefox && npm-run-all --parallel sass webpack\",\n    \"build\": \"pandoc source/index.md -o dist/index.html -s -c styles.css\",\n    \"deploy\": \"git subtree push --prefix dist origin gh-pages\",\n    \"docs\": \"./node_modules/.bin/esdoc\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/cjwit/loopBuilder.git\"\n  },\n  \"author\": \"Christopher Witulski\",\n  \"license\": \"ISC\",\n  \"bugs\": {\n    \"url\": \"https://github.com/cjwit/loopBuilder/issues\"\n  },\n  \"homepage\": \"https://github.com/cjwit/loopBuilder#readme\",\n  \"esdoc\": {\n    \"source\": \"./scripts\",\n    \"destination\": \"./dist/docs\",\n    \"plugins\": [\n      {\n        \"name\": \"esdoc-standard-plugin\",\n        \"option\": {\n          \"coverage\": {\"enable\": true}\n        }\n      }\n    ]\n  }\n}\n",
+    "content": "{\n  \"name\": \"loopBuilder\",\n  \"version\": \"1.0.0\",\n  \"description\": \"A graphical interface to create looping melodies and rhythms\",\n  \"main\": \"script.js\",\n  \"dependencies\": {\n    \"jquery-ui-touch-punch\": \"^0.2.3\",\n    \"tone\": \"^14.7.58\"\n  },\n  \"devDependencies\": {\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"file-loader\": \"^6.1.0\",\n    \"html-loader\": \"^1.3.1\",\n    \"markdown-loader\": \"^6.0.0\",\n    \"npm-run-all\": \"^4.1.5\",\n    \"sass\": \"^1.26.11\",\n    \"sass-loader\": \"^10.0.2\",\n    \"source-map-loader\": \"^1.1.0\",\n    \"webpack\": \"^4.44.2\",\n    \"webpack-cli\": \"^3.3.12\"\n  },\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\n    \"sass\": \"sass --watch sass/style.scss:dist/styles.css\",\n    \"webpack\": \"npx webpack\",\n    \"firefox\": \"open -a Firefox ./dist/index.html\",\n    \"dev\": \"npm run firefox && npm-run-all --parallel sass webpack\",\n    \"build\": \"pandoc source/index.md -o dist/index.html -s -c styles.css\",\n    \"deploy\": \"git subtree push --prefix dist origin gh-pages\",\n    \"docs\": \"./node_modules/.bin/esdoc\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/cjwit/loopBuilder.git\"\n  },\n  \"author\": \"Christopher Witulski\",\n  \"license\": \"ISC\",\n  \"bugs\": {\n    \"url\": \"https://github.com/cjwit/loopBuilder/issues\"\n  },\n  \"homepage\": \"https://github.com/cjwit/loopBuilder#readme\",\n  \"esdoc\": {\n    \"source\": \"./scripts\",\n    \"destination\": \"./dist/docs\",\n    \"plugins\": [\n      {\n        \"name\": \"esdoc-standard-plugin\",\n        \"option\": {\n          \"coverage\": {\n            \"enable\": true\n          }\n        }\n      }\n    ]\n  }\n}\n",
     "longname": "/Users/cwituls/Documents/loopBuilder/package.json",
     "name": "package.json",
     "static": true,
