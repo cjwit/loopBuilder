@@ -31,6 +31,8 @@
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createDrumSampler">createDrumSampler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSynth">createSynth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copyUrlToClipboard">copyUrlToClipboard</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-parseLoopFromURL">parseLoopFromURL</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultLoops">defaultLoops</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html">DrumLoop</a></span></span></li>
@@ -46,6 +48,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">scripts/loops.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">var melodyLoop = {
   scale: &quot;dorianMelody&quot;,
+  effectLevels: [0.2, 0.5],
   parts: [
     [0, 1, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -67,6 +70,7 @@
 
 var bassLoop = {
   scale: &quot;dorianBass&quot;,
+  effectLevels: [0.2, 0.5],
   parts: [
     [0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 1, 0, 0, 0],
@@ -106,7 +110,7 @@ export var defaultLoops = {
   drumLoop: drumLoop,
   melodyLoop: melodyLoop,
   bassLoop: bassLoop,
-  tempo: 108
+  tempo: 108,
 }</code></pre>
 
 </div>
