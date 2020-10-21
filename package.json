@@ -4,6 +4,7 @@
   "description": "A graphical interface to create looping melodies and rhythms",
   "main": "script.js",
   "dependencies": {
+    "jquery-ui-touch-punch": "^0.2.3",
     "tone": "^14.7.58"
   },
   "devDependencies": {
@@ -46,7 +47,9 @@
       {
         "name": "esdoc-standard-plugin",
         "option": {
-          "coverage": {"enable": true}
+          "coverage": {
+            "enable": true
+          }
         }
       }
     ]
