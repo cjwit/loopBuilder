@@ -31,6 +31,8 @@
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createDrumSampler">createDrumSampler</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createSynth">createSynth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-copyUrlToClipboard">copyUrlToClipboard</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-parseLoopFromURL">parseLoopFromURL</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultLoops">defaultLoops</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#classes">Classes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html">Box</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/DrumLoop.js~DrumLoop.html">DrumLoop</a></span></span></li>
@@ -44,22 +46,25 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">scripts/Classes/EffectsUI.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { Tone } from &quot;tone/build/esm/core/Tone&quot;;
-
-/**
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
  * Create and handle effects user interaction objects
  */
 export class EffectsUI {
   /**
    * @param {string} tagId 
+   * @param {array} effectLevels
    * @param {*} effect1 
    * @param {*} effect2 
    */
-  constructor(tagId, effect1 = null, effect2 = null) {
+  constructor(tagId, effectLevels, effect1 = null, effect2 = null) {
     /**
      * @type {string}
      */
     this.tagId = tagId;
+    /**
+     * @type {HTMLElement}
+     */
+    this.domObject = document.getElementById(this.tagId);
     /**
      * @type {*}
      */
@@ -69,10 +74,18 @@ export class EffectsUI {
      */
     this.effect2 = effect2;
     /**
-     * @type {HTMLElement}
+     * @type {number}
      */
-    this.domObject = document.getElementById(this.tagId);
-
+    this.effect1Value = effectLevels[0];
+    /**
+     * @type {number}
+     */
+    this.effect2Value = effectLevels[1];
+    
+    this.valueSpans = this.domObject.getElementsByClassName(&quot;effectValue&quot;)
+    this.valueSpans[0].innerText = this.effect1Value;
+    this.valueSpans[1].innerText = this.effect2Value;
+    
     this.createHandle();
   }
 
@@ -92,20 +105,23 @@ export class EffectsUI {
     var handleWidth = handle.outerWidth();
     var handleHeight = handle.outerHeight();
 
+    // calculate the corners of the handle, add a small buffer because of an error/negative result
     handle.offset({ 
-      left: parent.offset().left + parentWidth / 2 - handleWidth / 2,
-      top: parent.offset().top + parentHeight / 2 - handleHeight / 2
+      left: parent.offset().left - handleWidth * 0.5 + parentWidth * this.effect1Value,
+      top: parent.offset().top - handleHeight * 0.5 + parentHeight * this.effect2Value
     })
 
     var self = this;
     handle.draggable({ 
       containment: &quot;parent&quot;,
       drag: function() {
-        var handleOffset = handle.offset();
+        var handleOffset = handle.offset();        
         var left = (handleOffset.left - parent.offset().left) / parentWidth;
         var top = (handleOffset.top - parent.offset().top) / parentHeight;
-        self.effect1Value = left;
-        self.effect2Value = top;
+
+        // guard against GUI issues where handle leaves the lower bound
+        self.effect1Value = left &gt; 0 ? left : 0;
+        self.effect2Value = top &gt; 0 ? top : 0;
         self.updateEffects();
       }
     });
@@ -121,6 +137,8 @@ export class EffectsUI {
     if (this.effect2) {
       this.effect2.wet.value = this.effect2Value;
     }
+    this.valueSpans[0].innerText = Math.round(this.effect1Value * 10) / 10;
+    this.valueSpans[1].innerText = Math.round(this.effect2Value * 10) / 10;
   }
 }</code></pre>
 

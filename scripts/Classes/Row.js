@@ -118,7 +118,7 @@ export class Row {
     beat = Number(beat);
     sixteenth = Number(sixteenth);
     var currentPosition = beat * 2 + sixteenth / 2, beat, sixteenth;
-    if (this.boxes[currentPosition].filled) {
+    if (this.boxes[currentPosition].filled && this.boxes[currentPosition].filled) {
       this.boxes[currentPosition].flash();
     }
   }

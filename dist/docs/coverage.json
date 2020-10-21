@@ -1,7 +1,7 @@
 {
-  "coverage": "64.7%",
-  "expectCount": 85,
-  "actualCount": 55,
+  "coverage": "65.93%",
+  "expectCount": 91,
+  "actualCount": 60,
   "files": {
     "scripts/Classes/Box.js": {
       "expectCount": 7,
@@ -16,9 +16,11 @@
       ]
     },
     "scripts/Classes/EffectsUI.js": {
-      "expectCount": 8,
-      "actualCount": 8,
-      "undocumentLines": []
+      "expectCount": 11,
+      "actualCount": 10,
+      "undocumentLines": [
+        37
+      ]
     },
     "scripts/Classes/Loop.js": {
       "expectCount": 12,
@@ -40,8 +42,8 @@
       ]
     },
     "scripts/Classes/ShareButton.js": {
-      "expectCount": 5,
-      "actualCount": 5,
+      "expectCount": 4,
+      "actualCount": 4,
       "undocumentLines": []
     },
     "scripts/audio.js": {
@@ -57,9 +59,9 @@
       "actualCount": 0,
       "undocumentLines": [
         1,
-        22,
-        43,
-        59
+        23,
+        45,
+        61
       ]
     },
     "scripts/script.js": {
@@ -73,21 +75,26 @@
         18,
         19,
         23,
-        28,
-        37,
-        42,
-        53,
-        68,
-        69,
-        70,
-        71,
-        72,
-        75,
-        76,
-        79,
-        80,
-        85
+        26,
+        31,
+        40,
+        45,
+        55,
+        56,
+        57,
+        58,
+        59,
+        62,
+        63,
+        66,
+        67,
+        72
       ]
+    },
+    "scripts/urlSharing.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
     }
   }
 }

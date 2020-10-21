@@ -42,6 +42,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "loopbuilder/scripts/urlsharing.js~copyurltoclipboard",
+    "function/index.html#static-function-copyUrlToClipboard",
+    "<span>copyUrlToClipboard</span> <span class=\"search-result-import-path\">loopBuilder/scripts/urlSharing.js</span>",
+    "function"
+  ],
+  [
     "loopbuilder/scripts/audio.js~createdrumsampler",
     "function/index.html#static-function-createDrumSampler",
     "<span>createDrumSampler</span> <span class=\"search-result-import-path\">loopBuilder/scripts/audio.js</span>",
@@ -58,6 +64,12 @@ window.esdocSearchIndex = [
     "variable/index.html#static-variable-defaultLoops",
     "<span>defaultLoops</span> <span class=\"search-result-import-path\">loopBuilder/scripts/loops.js</span>",
     "variable"
+  ],
+  [
+    "loopbuilder/scripts/urlsharing.js~parseloopfromurl",
+    "function/index.html#static-function-parseLoopFromURL",
+    "<span>parseLoopFromURL</span> <span class=\"search-result-import-path\">loopBuilder/scripts/urlSharing.js</span>",
+    "function"
   ],
   [
     "scripts/.external-ecmascript.js~array",
@@ -432,9 +444,21 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "scripts/classes/effectsui.js~effectsui#effect1value",
+    "class/scripts/Classes/EffectsUI.js~EffectsUI.html#instance-member-effect1Value",
+    "scripts/Classes/EffectsUI.js~EffectsUI#effect1Value",
+    "member"
+  ],
+  [
     "scripts/classes/effectsui.js~effectsui#effect2",
     "class/scripts/Classes/EffectsUI.js~EffectsUI.html#instance-member-effect2",
     "scripts/Classes/EffectsUI.js~EffectsUI#effect2",
+    "member"
+  ],
+  [
+    "scripts/classes/effectsui.js~effectsui#effect2value",
+    "class/scripts/Classes/EffectsUI.js~EffectsUI.html#instance-member-effect2Value",
+    "scripts/Classes/EffectsUI.js~EffectsUI#effect2Value",
     "member"
   ],
   [
@@ -448,6 +472,12 @@ window.esdocSearchIndex = [
     "class/scripts/Classes/EffectsUI.js~EffectsUI.html#instance-method-updateEffects",
     "scripts/Classes/EffectsUI.js~EffectsUI#updateEffects",
     "method"
+  ],
+  [
+    "scripts/classes/effectsui.js~effectsui#valuespans",
+    "class/scripts/Classes/EffectsUI.js~EffectsUI.html#instance-member-valueSpans",
+    "scripts/Classes/EffectsUI.js~EffectsUI#valueSpans",
+    "member"
   ],
   [
     "scripts/classes/loop.js",
@@ -672,12 +702,6 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "scripts/classes/sharebutton.js~sharebutton#copyurltoclipboard",
-    "class/scripts/Classes/ShareButton.js~ShareButton.html#instance-method-copyUrlToClipboard",
-    "scripts/Classes/ShareButton.js~ShareButton#copyUrlToClipboard",
-    "method"
-  ],
-  [
     "scripts/classes/sharebutton.js~sharebutton#domobject",
     "class/scripts/Classes/ShareButton.js~ShareButton.html#instance-member-domObject",
     "scripts/Classes/ShareButton.js~ShareButton#domObject",
@@ -705,6 +729,12 @@ window.esdocSearchIndex = [
     "scripts/script.js",
     "file/scripts/script.js.html",
     "scripts/script.js",
+    "file"
+  ],
+  [
+    "scripts/urlsharing.js",
+    "file/scripts/urlSharing.js.html",
+    "scripts/urlSharing.js",
     "file"
   ]
 ]

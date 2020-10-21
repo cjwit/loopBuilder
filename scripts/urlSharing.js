@@ -19,7 +19,6 @@ export function parseLoopFromURL() {
 
 /**
  * Create a URL and copy it to the clipboard
- * @param {object} loops Current state of the sequencer loops
  */
 export function copyUrlToClipboard() {
   var loops = getRowData();
@@ -35,19 +34,24 @@ export function copyUrlToClipboard() {
   document.execCommand("copy");
 }
 
+/**
+ * Get current sequencer state by scanning DOM objects
+ */
 function getRowData() {
   // get melody rows
   var melodyRows = [];
   var bassRows = [];
-  var drumsRows = [];
+  var drumRows = [];
 
   var rows = document.getElementsByClassName("row-of-boxes");
   for (let i = 0; i < rows.length; i++) {
     var rowData = getLoopArray(rows[i]);
     if (i < 15) { melodyRows.push(rowData) }
     else if (i < 30) { bassRows.push(rowData) }
-    else { drumsRows.push(rowData) }
+    else { drumRows.push(rowData) }
   }
+
+  drumRows.forEach(filled => (console.log(filled)));
 
   // get tempo
   var tempo = document.getElementById("bpm-span").innerText;
@@ -60,7 +64,6 @@ function getRowData() {
   var bassEffectValueSpans = document.getElementById("bassEffects").getElementsByClassName("effectValue");
   var melodyEffectLevels = [melodyEffectValueSpans[0].innerText, melodyEffectValueSpans[1].innerText]
   var bassEffectLevels = [bassEffectValueSpans[0].innerText, bassEffectValueSpans[1].innerText]
-  console.log(melodyEffectLevels, bassEffectLevels);
 
   // compile result
   var result = {
@@ -76,7 +79,7 @@ function getRowData() {
     },
     drumLoop: {
       scale: "drumSet",
-      parts: drumsRows
+      parts: drumRows
     },
     tempo: tempo
   }
@@ -84,10 +87,15 @@ function getRowData() {
   return result;
 }
 
+/**
+ * Create array of 1s and 0s based on current box status in a row
+ * @param {HTMLElement} row
+ * @return {array}
+ */
 function getLoopArray(row) {
   let rowData = [];
   // iterate through each box in the row
-  for (let j = 1; j < row.childNodes.length - 1; j++) {
+  for (let j = 1; j < row.childNodes.length; j++) {
     // push box status
     let filled = row.childNodes[j].classList.contains("filled-box")
     filled ? rowData.push(1) : rowData.push(0);
