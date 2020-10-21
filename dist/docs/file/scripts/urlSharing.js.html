@@ -58,11 +58,36 @@ export function parseLoopFromURL() {
     const decodedString = decodeURIComponent(url.searchParams).replace(&quot;loops=&quot;, &quot;&quot;);
     loops = JSON.parse(decodedString)
     console.log(&quot;decoded&quot;, loops)
+
+    // replace long strings to loop data
+    loops.melodyLoop.parts = parseLoops(loops.melodyLoop.parts)
+    loops.bassLoop.parts = parseLoops(loops.bassLoop.parts)
+    loops.drumLoop.parts = parseLoops(loops.drumLoop.parts)
+
   } else {
     loops = defaultLoops;
     console.log(&quot;using default loops&quot;, loops)
   }
   return loops;
+}
+
+/**
+ * Replace long binary strings with an array of loops
+ * @param {string} string 
+ */
+function parseLoops(string) {
+  // split loop string into substrings of a given length
+  var strings = string.split(/(.{8})/).filter(s =&gt; { return s.length &gt; 0; });
+  var result = [];
+  strings.forEach(currentPart =&gt; {
+    currentPart = currentPart.split(&quot;&quot;);
+    var parsedPart = [];
+    currentPart.forEach(value =&gt; {
+      parsedPart.push(Number(value));
+    })
+    result.push(parsedPart);
+  })
+  return result;
 }
 
 /**
@@ -72,7 +97,8 @@ export function copyUrlToClipboard() {
   var loops = getRowData();
   // create url string
   var url = new URL(document.URL);
-  var urlString = url.host + url.pathname + &quot;?loops=&quot; + JSON.stringify(loops);
+  var urlString = url.host + url.pathname + &quot;?loops=&quot; + encodeURIComponent(JSON.stringify(loops));
+  console.log(urlString)
 
   // create dummy object for clipboard copy
   var urlStringDomHolder = document.createElement(&quot;input&quot;);
@@ -87,18 +113,18 @@ export function copyUrlToClipboard() {
  */
 function getRowData() {
   // get melody rows
-  var melodyRows = [];
-  var bassRows = [];
-  var drumsRows = [];
+  var melodyRows = &quot;&quot;;
+  var bassRows = &quot;&quot;;
+  var drumRows = &quot;&quot;;
 
   var rows = document.getElementsByClassName(&quot;row-of-boxes&quot;);
   for (let i = 0; i &lt; rows.length; i++) {
     var rowData = getLoopArray(rows[i]);
-    if (i &lt; 15) { melodyRows.push(rowData) }
-    else if (i &lt; 30) { bassRows.push(rowData) }
-    else { drumsRows.push(rowData) }
+    if (i &lt; 15) { melodyRows += rowData }
+    else if (i &lt; 30) { bassRows += rowData }
+    else { drumRows += rowData }
   }
-
+  
   // get tempo
   var tempo = document.getElementById(&quot;bpm-span&quot;).innerText;
 
@@ -110,7 +136,6 @@ function getRowData() {
   var bassEffectValueSpans = document.getElementById(&quot;bassEffects&quot;).getElementsByClassName(&quot;effectValue&quot;);
   var melodyEffectLevels = [melodyEffectValueSpans[0].innerText, melodyEffectValueSpans[1].innerText]
   var bassEffectLevels = [bassEffectValueSpans[0].innerText, bassEffectValueSpans[1].innerText]
-  console.log(melodyEffectLevels, bassEffectLevels);
 
   // compile result
   var result = {
@@ -126,7 +151,7 @@ function getRowData() {
     },
     drumLoop: {
       scale: &quot;drumSet&quot;,
-      parts: drumsRows
+      parts: drumRows
     },
     tempo: tempo
   }
@@ -140,12 +165,12 @@ function getRowData() {
  * @return {array}
  */
 function getLoopArray(row) {
-  let rowData = [];
+  let rowData = &quot;&quot;;
   // iterate through each box in the row
-  for (let j = 1; j &lt; row.childNodes.length - 1; j++) {
-    // push box status
+  for (let j = 1; j &lt; row.childNodes.length; j++) {
+    // convert row box status to a long binary string
     let filled = row.childNodes[j].classList.contains(&quot;filled-box&quot;)
-    filled ? rowData.push(1) : rowData.push(0);
+    filled ? rowData += &quot;1&quot; : rowData += &quot;0&quot;;
   }
   return rowData;
 }
