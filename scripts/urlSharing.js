@@ -10,11 +10,36 @@ export function parseLoopFromURL() {
     const decodedString = decodeURIComponent(url.searchParams).replace("loops=", "");
     loops = JSON.parse(decodedString)
     console.log("decoded", loops)
+
+    // replace long strings to loop data
+    loops.melodyLoop.parts = parseLoops(loops.melodyLoop.parts)
+    loops.bassLoop.parts = parseLoops(loops.bassLoop.parts)
+    loops.drumLoop.parts = parseLoops(loops.drumLoop.parts)
+
   } else {
     loops = defaultLoops;
     console.log("using default loops", loops)
   }
   return loops;
+}
+
+/**
+ * Replace long binary strings with an array of loops
+ * @param {string} string 
+ */
+function parseLoops(string) {
+  // split loop string into substrings of a given length
+  var strings = string.split(/(.{8})/).filter(s => { return s.length > 0; });
+  var result = [];
+  strings.forEach(currentPart => {
+    currentPart = currentPart.split("");
+    var parsedPart = [];
+    currentPart.forEach(value => {
+      parsedPart.push(Number(value));
+    })
+    result.push(parsedPart);
+  })
+  return result;
 }
 
 /**
@@ -25,6 +50,7 @@ export function copyUrlToClipboard() {
   // create url string
   var url = new URL(document.URL);
   var urlString = url.host + url.pathname + "?loops=" + encodeURIComponent(JSON.stringify(loops));
+  console.log(urlString)
 
   // create dummy object for clipboard copy
   var urlStringDomHolder = document.createElement("input");
@@ -39,17 +65,19 @@ export function copyUrlToClipboard() {
  */
 function getRowData() {
   // get melody rows
-  var melodyRows = [];
-  var bassRows = [];
-  var drumRows = [];
+  var melodyRows = "";
+  var bassRows = "";
+  var drumRows = "";
 
   var rows = document.getElementsByClassName("row-of-boxes");
   for (let i = 0; i < rows.length; i++) {
     var rowData = getLoopArray(rows[i]);
-    if (i < 15) { melodyRows.push(rowData) }
-    else if (i < 30) { bassRows.push(rowData) }
-    else { drumRows.push(rowData) }
+    if (i < 15) { melodyRows += rowData }
+    else if (i < 30) { bassRows += rowData }
+    else { drumRows += rowData }
   }
+
+  var hexMelody = toHex(melodyRows)
 
   // get tempo
   var tempo = document.getElementById("bpm-span").innerText;
@@ -91,12 +119,31 @@ function getRowData() {
  * @return {array}
  */
 function getLoopArray(row) {
-  let rowData = [];
+  let rowData = "";
   // iterate through each box in the row
   for (let j = 1; j < row.childNodes.length; j++) {
-    // push box status
+    // convert row box status to a long binary string
     let filled = row.childNodes[j].classList.contains("filled-box")
-    filled ? rowData.push(1) : rowData.push(0);
+    filled ? rowData += "1" : rowData += "0";
   }
   return rowData;
+}
+
+/**
+ * Convert row data from binary strings to hexidecimal
+ * TODO: Not currently working
+ * @param {string} string
+ */
+function toHex(string) {
+  var hex = parseInt(string, 2).toString(16);
+
+  var result = "";
+  // for (let i = 0; i < string.length / 8; i++) {
+  //   var currentString = string.substr(i * 8, 8);
+  //   console.log(currentString, hex)
+  // }
+  console.log(string)
+  console.log(hex)
+  console.log(parseInt(hex, 16).toString(2))
+  return hex;
 }
