@@ -26,19 +26,24 @@ export function parseLoopFromURL() {
 /**
  * Replace long binary strings with an array of loops
  * @param {string} string 
+ * @return {array} Array of loops representing the parsed loop string
  */
 function parseLoops(string) {
   // split loop string into substrings of a given length
-  var strings = string.split(/(.{8})/).filter(s => { return s.length > 0; });
+  var loopArray = string.split("Z")
+
+  // create loops of binary numbers
   var result = [];
-  strings.forEach(currentPart => {
-    currentPart = currentPart.split("");
-    var parsedPart = [];
-    currentPart.forEach(value => {
-      parsedPart.push(Number(value));
-    })
+  loopArray.forEach(part => {
+    // parse the hex representation back to an 8 digit binary string
+    part = parseInt(part, 16).toString(2).padStart(8, "0").split("")
+    
+    // convert strings to integers
+    let parsedPart = [];
+    part.forEach(value => { parsedPart.push(Number(value)) });
     result.push(parsedPart);
   })
+
   return result;
 }
 
@@ -46,7 +51,7 @@ function parseLoops(string) {
  * Create a URL and copy it to the clipboard
  */
 export function copyUrlToClipboard() {
-  var loops = getRowData();
+  var loops = getLoopData();
   // create url string
   var url = new URL(document.URL);
   var urlString = url.host + url.pathname + "?loops=" + encodeURIComponent(JSON.stringify(loops));
@@ -63,7 +68,7 @@ export function copyUrlToClipboard() {
 /**
  * Get current sequencer state by scanning DOM objects
  */
-function getRowData() {
+function getLoopData() {
   // get melody rows
   var melodyRows = "";
   var bassRows = "";
@@ -76,7 +81,12 @@ function getRowData() {
     else if (i < 30) { bassRows += rowData }
     else { drumRows += rowData }
   }
-  
+
+  // remove trailing split markers
+  melodyRows = melodyRows.substr(0, melodyRows.length - 1)
+  bassRows = bassRows.substr(0, bassRows.length - 1)
+  drumRows = drumRows.substr(0, drumRows.length - 1)
+
   // get tempo
   var tempo = document.getElementById("bpm-span").innerText;
 
@@ -85,8 +95,8 @@ function getRowData() {
 
   // get effects values
   var melodyEffectValueSpans = document.getElementById("melodyEffects").getElementsByClassName("effectValue");
-  var bassEffectValueSpans = document.getElementById("bassEffects").getElementsByClassName("effectValue");
   var melodyEffectLevels = [melodyEffectValueSpans[0].innerText, melodyEffectValueSpans[1].innerText]
+  var bassEffectValueSpans = document.getElementById("bassEffects").getElementsByClassName("effectValue");
   var bassEffectLevels = [bassEffectValueSpans[0].innerText, bassEffectValueSpans[1].innerText]
 
   // compile result
@@ -124,5 +134,7 @@ function getLoopArray(row) {
     let filled = row.childNodes[j].classList.contains("filled-box")
     filled ? rowData += "1" : rowData += "0";
   }
-  return rowData;
+
+  // convert to hex string, add Z for splitting later
+  return parseInt(rowData, 2).toString(16) + "Z";
 }
