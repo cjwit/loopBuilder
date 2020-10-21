@@ -7,7 +7,7 @@ export function parseLoopFromURL() {
   var loops;
   const url = new URL(document.URL);
   if (url.searchParams != "") {
-    const decodedString = decodeURIComponent(url.searchParams).replace("loops=", "");
+    const decodedString = decodeURIComponent(url.searchParams).replace("l=", "");
     loops = JSON.parse(decodedString)
     console.log("decoded", loops)
 
@@ -54,7 +54,7 @@ export function copyUrlToClipboard() {
   var loops = getLoopData();
   // create url string
   var url = new URL(document.URL);
-  var urlString = url.host + url.pathname + "?loops=" + encodeURIComponent(JSON.stringify(loops));
+  var urlString = url.host + url.pathname + "?l=" + encodeURIComponent(JSON.stringify(loops));
   console.log(urlString)
 
   // create dummy object for clipboard copy
