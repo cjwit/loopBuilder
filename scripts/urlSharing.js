@@ -4,23 +4,36 @@ import { defaultLoops } from './loops.js';
  * Parse loop from URL
  */
 export function parseLoopFromURL() {
-  var loops;
   const url = new URL(document.URL);
   if (url.searchParams != "") {
     const decodedString = decodeURIComponent(url.searchParams).replace("l=", "");
-    loops = JSON.parse(decodedString)
-    console.log("decoded", loops)
+    var parsedLoops = JSON.parse(decodedString)
+    console.log("decoded", parsedLoops)
 
-    // replace long strings to loop data
-    loops.melodyLoop.parts = parseLoops(loops.melodyLoop.parts)
-    loops.bassLoop.parts = parseLoops(loops.bassLoop.parts)
-    loops.drumLoop.parts = parseLoops(loops.drumLoop.parts)
+    var populatedLoops = {
+      melodyLoop: {
+        scale: parsedLoops.m.scale,
+        parts: parseLoops(parsedLoops.m.parts),
+        effectLevels: parsedLoops.m.effectLevels
+      },
+      bassLoop: {
+        scale: parsedLoops.b.scale,
+        parts: parseLoops(parsedLoops.b.parts),
+        effectLevels: parsedLoops.b.effectLevels
+      },
+      drumLoop: {
+        scale: parsedLoops.d.scale,
+        parts: parseLoops(parsedLoops.d.parts)
+      },
+      tempo: parsedLoops.t
+    }
+    console.log(populatedLoops)
+    return populatedLoops
 
   } else {
-    loops = defaultLoops;
-    console.log("using default loops", loops)
+    console.log("using default loops")
+    return defaultLoops;
   }
-  return loops;
 }
 
 /**
@@ -101,21 +114,21 @@ function getLoopData() {
 
   // compile result
   var result = {
-    melodyLoop: {
+    m: {
       scale: scale + "Melody",
       parts: melodyRows,
       effectLevels: melodyEffectLevels
     },
-    bassLoop: {
+    b: {
       scale: scale + "Bass",
       parts: bassRows,
       effectLevels: bassEffectLevels
     },
-    drumLoop: {
+    d: {
       scale: "drumSet",
       parts: drumRows
     },
-    tempo: tempo
+    t: tempo
   }
 
   return result;
