@@ -76,9 +76,7 @@ function getRowData() {
     else if (i < 30) { bassRows += rowData }
     else { drumRows += rowData }
   }
-
-  var hexMelody = toHex(melodyRows)
-
+  
   // get tempo
   var tempo = document.getElementById("bpm-span").innerText;
 
@@ -127,23 +125,4 @@ function getLoopArray(row) {
     filled ? rowData += "1" : rowData += "0";
   }
   return rowData;
-}
-
-/**
- * Convert row data from binary strings to hexidecimal
- * TODO: Not currently working
- * @param {string} string
- */
-function toHex(string) {
-  var hex = parseInt(string, 2).toString(16);
-
-  var result = "";
-  // for (let i = 0; i < string.length / 8; i++) {
-  //   var currentString = string.substr(i * 8, 8);
-  //   console.log(currentString, hex)
-  // }
-  console.log(string)
-  console.log(hex)
-  console.log(parseInt(hex, 16).toString(2))
-  return hex;
 }
