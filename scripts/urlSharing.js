@@ -64,6 +64,7 @@ function parseLoops(string) {
  */
 export function copyUrlToClipboard() {
   var loops = getLoopData();
+
   // create url string
   var url = new URL(document.URL);
   var urlString = url.host + url.pathname + "?l=" + encodeURIComponent(JSON.stringify(loops));
@@ -93,34 +94,26 @@ function getLoopData() {
     else { drumRows += getLoopArray(rows[i]) }
   }
 
-  // remove trailing split markers
-  melodyRows = melodyRows.substr(0, melodyRows.length - 1)
-  bassRows = bassRows.substr(0, bassRows.length - 1)
-  drumRows = drumRows.substr(0, drumRows.length - 1)
-
-  // get tempo
-  var tempo = document.getElementById("bpm-span").innerText;
-
   // get scale (coming later);
   var scale = "dorian";
 
-  // compile result
+  // compile result (remove trailing split Z in parts)
   var result = {
     m: {
       s: scale + "Melody",
-      p: melodyRows,
+      p: melodyRows.substr(0, melodyRows.length - 1),
       e: getEffectValues("melodyEffects")
     },
     b: {
       s: scale + "Bass",
-      p: bassRows,
+      p: bassRows.substr(0, bassRows.length - 1),
       e: getEffectValues("bassEffects")
     },
     d: {
       s: "drumSet",
-      p: drumRows
+      p: drumRows.substr(0, drumRows.length - 1)
     },
-    t: tempo
+    t: document.getElementById("bpm-span").innerText
   }
 
   return result;
