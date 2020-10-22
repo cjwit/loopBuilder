@@ -46,7 +46,6 @@ export class Loop {
    * @return {Array} Scale members as strings with note names and octaves
    */
   setScale(scale) {
-    console.log(scale);
     var scaleArray;
     switch (scale) {
       case "dorianMelody": 
@@ -95,11 +94,13 @@ export class Loop {
     for (let i = 0; i < this.scale.length; i++) {
       let currentNote = this.scale[i];
       let currentPart = this.parts[i];
+
       let convertedPart = [];
       currentPart.forEach(note => {
-        if (note == 1) { convertedPart.push(currentNote); }
+        if (note != 0 && note != null) { convertedPart.push(currentNote); }
         else { convertedPart.push(null) }
       });
+
       newPartsArray.push(convertedPart);
     }
     this.parts = newPartsArray;
@@ -108,8 +109,24 @@ export class Loop {
   makeRows() {
     for (let i = 0; i < this.parts.length; i++) {
       let row = new Row(this.source, this.parts[i], this.scale[i]);
-      this.domObject.appendChild(row.domObject);
+      this.domObject.appendChild(row.domObject); 
       this.rows.push(row);
     }
+  }
+
+  updateRows(scale) {
+    this.setScale(scale);
+    this.convertPattern();
+
+    // delete current rows
+    for (let i = 0; i < this.parts.length; i++) {
+      this.rows[i].sequence.dispose();
+      this.rows[i].domObject.remove();
+      delete this.rows[i]
+    }
+    this.rows = [];
+
+    // make new rows
+    this.makeRows();
   }
 }

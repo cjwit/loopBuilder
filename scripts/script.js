@@ -55,12 +55,13 @@ bassSynth.chain(bassEffect1, bassEffect2);
 // set up buttons
 const Play = new PlayButton();
 const Share = new ShareButton();
-const Scales = new ScaleButtons("dorian");
 
 // set up loops
 const melodyLoop = new Loop("melodyLoop", loops.melodyLoop, melodySynth);
 const bassLoop = new Loop("bassLoop", loops.bassLoop, bassSynth);
 const drumLoop = new DrumLoop("drumLoop", loops.drumLoop, drumSampler);
+
+const Scales = new ScaleButtons("dorian", melodyLoop, bassLoop);
 
 // set up filter listeners
 const synthEffects = new EffectsUI("melodyEffects", loops.melodyLoop.effectLevels, melodyEffect1, melodyEffect2);
