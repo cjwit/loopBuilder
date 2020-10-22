@@ -58,6 +58,9 @@ export class Loop {
       
       case "minorMelody": return ["C6", "B5", "Ab5", "G5", "F5", "Eb5", "D5", "C5", "B4", "Ab4", "G4", "F4", "Eb4", "D4", "C4"];
       case "minorBass": return ["C4", "B3", "Ab3", "G3", "F3", "Eb3", "D3", "C3", "B2", "Ab2", "G2", "F2", "Eb2", "D2", "C2"];
+      
+      case "pentatonicMelody": return ["A6", "G6", "E6", "D6", "C6", "A5", "G5", "E5", "D5", "C5", "A4", "G4", "E4", "D4", "C4"];
+      case "pentatonicBass": return ["A4", "G4", "E4", "D4", "C4", "A3", "G3", "E3", "D3", "C3", "A2", "G2", "E2", "D2", "C2"];
 
       case "drumSet": return ["C3", "D3", "E3", "F3", "G3", "A3", "B3", "C4", "D4"];
     }
