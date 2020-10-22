@@ -53,7 +53,9 @@ export class ScaleButtons {
    * @param {*} e Event listener target object
    */
   listener(e) {
+    document.getElementById('playButton').innerText = "Start (click or use the space bar)";
     Tone.Transport.stop();
+
     this.buttons.forEach(button => {
       button.classList.remove("active");
     })
