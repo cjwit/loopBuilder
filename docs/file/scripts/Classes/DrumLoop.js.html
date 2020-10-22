@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ScaleButtons.js~ScaleButtons.html">ScaleButtons</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ShareButton.js~ShareButton.html">ShareButton</a></span></span></li>
 </ul>
 </div>
@@ -63,6 +64,9 @@ export class DrumLoop extends Loop {
     super(tagId, data, source);
   }
 
+  /**
+   * Create rows using hard coded names for the drum parts
+   */
   makeRows() {
     var names = [&quot;Kick drum&quot;, &quot;Snare drum&quot;, &quot;Hi hat&quot;, &quot;Cowbell&quot;, &quot;Clave&quot;, &quot;L bongo&quot;, &quot;H bongo&quot;, &quot;Bell&quot;, &quot;Tom&quot;];
     for (let i = 0; i &lt; this.parts.length; i++) {

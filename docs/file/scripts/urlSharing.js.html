@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ScaleButtons.js~ScaleButtons.html">ScaleButtons</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ShareButton.js~ShareButton.html">ShareButton</a></span></span></li>
 </ul>
 </div>
@@ -52,41 +53,58 @@
  * Parse loop from URL
  */
 export function parseLoopFromURL() {
-  var loops;
   const url = new URL(document.URL);
   if (url.searchParams != &quot;&quot;) {
-    const decodedString = decodeURIComponent(url.searchParams).replace(&quot;loops=&quot;, &quot;&quot;);
-    loops = JSON.parse(decodedString)
-    console.log(&quot;decoded&quot;, loops)
+    const decodedString = decodeURIComponent(url.searchParams).replace(&quot;l=&quot;, &quot;&quot;);
+    var parsedLoops = JSON.parse(decodedString)
+    console.log(&quot;decoded&quot;, parsedLoops)
 
-    // replace long strings to loop data
-    loops.melodyLoop.parts = parseLoops(loops.melodyLoop.parts)
-    loops.bassLoop.parts = parseLoops(loops.bassLoop.parts)
-    loops.drumLoop.parts = parseLoops(loops.drumLoop.parts)
+    var populatedLoops = {
+      melodyLoop: {
+        scale: parsedLoops.m.s,
+        parts: parseLoops(parsedLoops.m.p),
+        effectLevels: parsedLoops.m.e
+      },
+      bassLoop: {
+        scale: parsedLoops.b.s,
+        parts: parseLoops(parsedLoops.b.p),
+        effectLevels: parsedLoops.b.e
+      },
+      drumLoop: {
+        scale: parsedLoops.d.s,
+        parts: parseLoops(parsedLoops.d.p)
+      },
+      tempo: parsedLoops.t
+    }
+    return populatedLoops
 
   } else {
-    loops = defaultLoops;
-    console.log(&quot;using default loops&quot;, loops)
+    console.log(&quot;using default loops&quot;)
+    return defaultLoops;
   }
-  return loops;
 }
 
 /**
  * Replace long binary strings with an array of loops
  * @param {string} string 
+ * @return {array} Array of loops representing the parsed loop string
  */
 function parseLoops(string) {
   // split loop string into substrings of a given length
-  var strings = string.split(/(.{8})/).filter(s =&gt; { return s.length &gt; 0; });
+  var loopArray = string.split(&quot;Z&quot;)
+
+  // create loops of binary numbers
   var result = [];
-  strings.forEach(currentPart =&gt; {
-    currentPart = currentPart.split(&quot;&quot;);
-    var parsedPart = [];
-    currentPart.forEach(value =&gt; {
-      parsedPart.push(Number(value));
-    })
+  loopArray.forEach(part =&gt; {
+    // parse the hex representation back to an 8 digit binary string
+    part = parseInt(part, 16).toString(2).padStart(8, &quot;0&quot;).split(&quot;&quot;)
+    
+    // convert strings to integers
+    let parsedPart = [];
+    part.forEach(value =&gt; { parsedPart.push(Number(value)) });
     result.push(parsedPart);
   })
+
   return result;
 }
 
@@ -94,10 +112,11 @@ function parseLoops(string) {
  * Create a URL and copy it to the clipboard
  */
 export function copyUrlToClipboard() {
-  var loops = getRowData();
+  var loops = getLoopData();
+
   // create url string
   var url = new URL(document.URL);
-  var urlString = url.host + url.pathname + &quot;?loops=&quot; + encodeURIComponent(JSON.stringify(loops));
+  var urlString = url.host + url.pathname + &quot;?l=&quot; + encodeURIComponent(JSON.stringify(loops));
   console.log(urlString)
 
   // create dummy object for clipboard copy
@@ -111,7 +130,7 @@ export function copyUrlToClipboard() {
 /**
  * Get current sequencer state by scanning DOM objects
  */
-function getRowData() {
+function getLoopData() {
   // get melody rows
   var melodyRows = &quot;&quot;;
   var bassRows = &quot;&quot;;
@@ -119,41 +138,34 @@ function getRowData() {
 
   var rows = document.getElementsByClassName(&quot;row-of-boxes&quot;);
   for (let i = 0; i &lt; rows.length; i++) {
-    var rowData = getLoopArray(rows[i]);
-    if (i &lt; 15) { melodyRows += rowData }
-    else if (i &lt; 30) { bassRows += rowData }
-    else { drumRows += rowData }
+    if (i &lt; 15) { melodyRows += getLoopArray(rows[i]) }
+    else if (i &lt; 30) { bassRows += getLoopArray(rows[i]) }
+    else { drumRows += getLoopArray(rows[i]) }
   }
-  
-  // get tempo
-  var tempo = document.getElementById(&quot;bpm-span&quot;).innerText;
 
   // get scale (coming later);
-  var scale = &quot;dorian&quot;;
+  var scale = Array.from(
+    document.getElementsByClassName(&quot;scaleButton&quot;))
+    .filter(btn =&gt; btn.classList.contains(&quot;active&quot;))[0]
+    .innerText.toLowerCase();
 
-  // get effects values
-  var melodyEffectValueSpans = document.getElementById(&quot;melodyEffects&quot;).getElementsByClassName(&quot;effectValue&quot;);
-  var bassEffectValueSpans = document.getElementById(&quot;bassEffects&quot;).getElementsByClassName(&quot;effectValue&quot;);
-  var melodyEffectLevels = [melodyEffectValueSpans[0].innerText, melodyEffectValueSpans[1].innerText]
-  var bassEffectLevels = [bassEffectValueSpans[0].innerText, bassEffectValueSpans[1].innerText]
-
-  // compile result
+  // compile result (remove trailing split Z in parts)
   var result = {
-    melodyLoop: {
-      scale: scale + &quot;Melody&quot;,
-      parts: melodyRows,
-      effectLevels: melodyEffectLevels
+    m: {
+      s: scale + &quot;Melody&quot;,
+      p: melodyRows.substr(0, melodyRows.length - 1),
+      e: getEffectValues(&quot;melodyEffects&quot;)
     },
-    bassLoop: {
-      scale: scale + &quot;Bass&quot;,
-      parts: bassRows,
-      effectLevels: bassEffectLevels
+    b: {
+      s: scale + &quot;Bass&quot;,
+      p: bassRows.substr(0, bassRows.length - 1),
+      e: getEffectValues(&quot;bassEffects&quot;)
     },
-    drumLoop: {
-      scale: &quot;drumSet&quot;,
-      parts: drumRows
+    d: {
+      s: &quot;drumSet&quot;,
+      p: drumRows.substr(0, drumRows.length - 1)
     },
-    tempo: tempo
+    t: document.getElementById(&quot;bpm-span&quot;).innerText
   }
 
   return result;
@@ -172,9 +184,19 @@ function getLoopArray(row) {
     let filled = row.childNodes[j].classList.contains(&quot;filled-box&quot;)
     filled ? rowData += &quot;1&quot; : rowData += &quot;0&quot;;
   }
-  return rowData;
+
+  // convert to hex string, add Z for splitting later
+  return parseInt(rowData, 2).toString(16) + &quot;Z&quot;;
 }
-</code></pre>
+
+/**
+ * Get the displayed effects values from child spans within the effects interface
+ * @param {string} tag DOM id tag for the parent effect interface
+ */
+function getEffectValues(tag) {
+  var melodyEffectValueSpans = document.getElementById(tag).getElementsByClassName(&quot;effectValue&quot;);
+  return [melodyEffectValueSpans[0].innerText, melodyEffectValueSpans[1].innerText]
+}</code></pre>
 
 </div>
 

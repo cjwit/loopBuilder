@@ -1,7 +1,7 @@
 {
-  "coverage": "66.3%",
-  "expectCount": 92,
-  "actualCount": 61,
+  "coverage": "72.81%",
+  "expectCount": 103,
+  "actualCount": 75,
   "files": {
     "scripts/Classes/Box.js": {
       "expectCount": 7,
@@ -10,10 +10,8 @@
     },
     "scripts/Classes/DrumLoop.js": {
       "expectCount": 3,
-      "actualCount": 2,
-      "undocumentLines": [
-        18
-      ]
+      "actualCount": 3,
+      "undocumentLines": []
     },
     "scripts/Classes/EffectsUI.js": {
       "expectCount": 11,
@@ -23,10 +21,10 @@
       ]
     },
     "scripts/Classes/Loop.js": {
-      "expectCount": 12,
-      "actualCount": 11,
+      "expectCount": 13,
+      "actualCount": 12,
       "undocumentLines": [
-        80
+        85
       ]
     },
     "scripts/Classes/PlayButton.js": {
@@ -41,6 +39,11 @@
         106
       ]
     },
+    "scripts/Classes/ScaleButtons.js": {
+      "expectCount": 8,
+      "actualCount": 8,
+      "undocumentLines": []
+    },
     "scripts/Classes/ShareButton.js": {
       "expectCount": 4,
       "actualCount": 4,
@@ -48,52 +51,49 @@
     },
     "scripts/audio.js": {
       "expectCount": 2,
-      "actualCount": 0,
-      "undocumentLines": [
-        13,
-        31
-      ]
+      "actualCount": 2,
+      "undocumentLines": []
     },
     "scripts/loops.js": {
       "expectCount": 4,
-      "actualCount": 0,
+      "actualCount": 1,
       "undocumentLines": [
-        1,
-        23,
-        45,
-        61
+        29,
+        54,
+        73
       ]
     },
     "scripts/script.js": {
-      "expectCount": 21,
+      "expectCount": 22,
       "actualCount": 0,
       "undocumentLines": [
-        10,
         11,
-        14,
+        12,
         15,
-        18,
+        16,
         19,
-        23,
-        26,
-        31,
-        40,
-        45,
-        55,
+        20,
+        24,
+        27,
+        32,
+        41,
+        46,
         56,
         57,
-        58,
-        59,
+        60,
+        61,
         62,
-        63,
-        66,
+        64,
         67,
-        72
+        68,
+        71,
+        72,
+        77
       ]
     },
     "scripts/urlSharing.js": {
-      "expectCount": 5,
-      "actualCount": 5,
+      "expectCount": 6,
+      "actualCount": 6,
       "undocumentLines": []
     }
   }

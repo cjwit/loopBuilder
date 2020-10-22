@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">scripts/loops.js | loopBuilder</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">scripts/Classes/ScaleButtons.js | loopBuilder</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -46,84 +46,71 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">scripts/loops.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
- * Default melodic loop information
- */
-var melodyLoop = {
-  scale: &quot;dorianMelody&quot;,
-  effectLevels: [0.2, 0.5],
-  parts: [
-    [0, 1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-  ]
-}
+<div class="content" data-ice="content"><h1 data-ice="title">scripts/Classes/ScaleButtons.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import * as Tone from &quot;tone&quot;;
 
 /**
- * Default bass loop information
+ * Create scale button group to change scalar patterns
  */
-var bassLoop = {
-  scale: &quot;dorianBass&quot;,
-  effectLevels: [0.2, 0.5],
-  parts: [
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-  ]
-}
+export class ScaleButtons {
+  /**
+   * Get element and create play button
+   */
+  constructor(currentScale, melodyLoop, bassLoop) {
+    /**
+     * @type {string}
+     */
+    this.currentScale = currentScale;
+    /**
+     * @type {HTMLElement}
+     */
+    this.domObject = document.getElementById(&quot;scaleSelector&quot;);
+    /**
+     * @type {Loop}
+     */
+    this.melodyLoop = melodyLoop;
+    /**
+     * @type {Loop}
+     */
+    this.bassLoop = bassLoop;
+    /**
+     * @type {array}
+     */
+    this.buttons = []
 
-/**
- * Default drum loop information
- */
-var drumLoop = {
-  scale: &quot;drumSet&quot;,
-  // names: [&quot;Kick drum&quot;, &quot;Snare drum&quot;, &quot;Hi hat&quot;, &quot;Cowbell&quot;, &quot;Clave&quot;],
-  parts: [
-    [1, 0, 0, 0, 1, 0, 0, 0],
-    [0, 0, 1, 1, 0, 0, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0],
-  ]
-}
+    var scales = [&quot;Minor&quot;, &quot;Major&quot;, &quot;Dorian&quot;, &quot;Pentatonic&quot;];
+    for (let i = 0; i &lt; scales.length; i++) {
+      var button = document.createElement(&quot;span&quot;);
+      button.innerText = scales[i];
+      if (scales[i].toLowerCase() == this.currentScale) {
+        button.classList.add(&quot;active&quot;);
+      }
+      button.classList.add(&quot;scaleButton&quot;);
+      button.style.marginRight = i != scales.length - 1 ? &quot;1em&quot; : &quot;0em&quot;;
+      
+      this.domObject.appendChild(button)
+      this.buttons.push(button);
+    }
 
-/**
- * Default loops compiled to export object
- */
-export var defaultLoops = {
-  drumLoop: drumLoop,
-  melodyLoop: melodyLoop,
-  bassLoop: bassLoop,
-  tempo: 108,
+    this.buttons.forEach(button =&gt; {
+      button.addEventListener(&quot;click&quot;, this.listener.bind(this));
+    });
+  }
+
+  /**
+   * Rebuild loops using the selected scale
+   * @param {*} e Event listener target object
+   */
+  listener(e) {
+    Tone.Transport.stop();
+    this.buttons.forEach(button =&gt; {
+      button.classList.remove(&quot;active&quot;);
+    })
+    e.target.classList.add(&quot;active&quot;);
+    this.currentScale = e.target.innerText.toLowerCase();
+    this.melodyLoop.updateRows(this.currentScale + &quot;Melody&quot;);
+    this.bassLoop.updateRows(this.currentScale + &quot;Bass&quot;);
+  }
 }</code></pre>
 
 </div>

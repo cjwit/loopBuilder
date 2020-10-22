@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ScaleButtons.js~ScaleButtons.html">ScaleButtons</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ShareButton.js~ShareButton.html">ShareButton</a></span></span></li>
 </ul>
 </div>
@@ -225,7 +226,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-scale">scale</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-member-scale">scale</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -379,7 +380,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Create rows of DOM objects and sequences</p>
+</div>
       </div>
     </td>
     <td>
@@ -408,6 +410,35 @@
         
         
         
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html#instance-method-updateRows">updateRows</a></span></span><span class="code" data-ice="signature">(scale: <span>array</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Used by the ScaleButton to replace the rows in each loop</p>
+</div>
       </div>
     </td>
     <td>
@@ -637,11 +668,11 @@
     
     
     
-    <span class="code" data-ice="name">scale</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
+    <span class="code" data-ice="name">scale</span><span class="code" data-ice="signature">: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Loop.js.html#lineNumber43">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Loop.js.html#lineNumber85">source</a></span></span>
     </span>
   </h3>
 
@@ -816,7 +847,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Loop.js.html#lineNumber64">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Loop.js.html#lineNumber91">source</a></span></span>
     </span>
   </h3>
 
@@ -860,14 +891,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Loop.js.html#lineNumber80">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Loop.js.html#lineNumber112">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Create rows of DOM objects and sequences</p>
+</div>
 
   
 
@@ -903,7 +935,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Loop.js.html#lineNumber52">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/Loop.js.html#lineNumber48">source</a></span></span>
     </span>
   </h3>
 
@@ -947,6 +979,66 @@
     <div data-ice="returnProperties">
 </div>
   </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-updateRows">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">updateRows</span><span class="code" data-ice="signature">(scale: <span>array</span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/scripts/Classes/Loop.js.html#lineNumber124">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Used by the ScaleButton to replace the rows in each loop</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">scale</td>
+      <td data-ice="type" class="code"><span>array</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
 
   
 

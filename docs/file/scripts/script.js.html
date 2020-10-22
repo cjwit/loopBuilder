@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ScaleButtons.js~ScaleButtons.html">ScaleButtons</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ShareButton.js~ShareButton.html">ShareButton</a></span></span></li>
 </ul>
 </div>
@@ -51,6 +52,7 @@ import { Loop } from &apos;./Classes/Loop.js&apos;;
 import { DrumLoop } from &apos;./Classes/DrumLoop.js&apos;;
 import { PlayButton } from &apos;./Classes/PlayButton.js&apos;;
 import { ShareButton } from &apos;./Classes/ShareButton.js&apos;;
+import { ScaleButtons } from &apos;./Classes/ScaleButtons.js&apos;;
 import { EffectsUI } from &apos;./Classes/EffectsUI.js&apos;;
 import { parseLoopFromURL } from &apos;./urlSharing.js&apos;;
 import { createDrumSampler, createSynth } from &apos;./audio.js&apos;;
@@ -99,12 +101,16 @@ const bassEffect2 = new Tone.Chorus({
 
 bassSynth.chain(bassEffect1, bassEffect2);
 
-// set up loops
+// set up buttons
 const Play = new PlayButton();
 const Share = new ShareButton();
+
+// set up loops
 const melodyLoop = new Loop(&quot;melodyLoop&quot;, loops.melodyLoop, melodySynth);
 const bassLoop = new Loop(&quot;bassLoop&quot;, loops.bassLoop, bassSynth);
 const drumLoop = new DrumLoop(&quot;drumLoop&quot;, loops.drumLoop, drumSampler);
+
+const Scales = new ScaleButtons(loops.melodyLoop.scale.split(&quot;M&quot;)[0], melodyLoop, bassLoop);
 
 // set up filter listeners
 const synthEffects = new EffectsUI(&quot;melodyEffects&quot;, loops.melodyLoop.effectLevels, melodyEffect1, melodyEffect2);
