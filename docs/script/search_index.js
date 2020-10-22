@@ -48,6 +48,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "loopbuilder/scripts/classes/temposlider.js~temposlider",
+    "class/scripts/Classes/TempoSlider.js~TempoSlider.html",
+    "<span>TempoSlider</span> <span class=\"search-result-import-path\">loopBuilder/scripts/Classes/TempoSlider.js</span>",
+    "class"
+  ],
+  [
     "loopbuilder/scripts/urlsharing.js~copyurltoclipboard",
     "function/index.html#static-function-copyUrlToClipboard",
     "<span>copyUrlToClipboard</span> <span class=\"search-result-import-path\">loopBuilder/scripts/urlSharing.js</span>",
@@ -771,6 +777,18 @@ window.esdocSearchIndex = [
     "scripts/classes/sharebutton.js~sharebutton#listener",
     "class/scripts/Classes/ShareButton.js~ShareButton.html#instance-method-listener",
     "scripts/Classes/ShareButton.js~ShareButton#listener",
+    "method"
+  ],
+  [
+    "scripts/classes/temposlider.js",
+    "file/scripts/Classes/TempoSlider.js.html",
+    "scripts/Classes/TempoSlider.js",
+    "file"
+  ],
+  [
+    "scripts/classes/temposlider.js~temposlider#constructor",
+    "class/scripts/Classes/TempoSlider.js~TempoSlider.html#instance-constructor-constructor",
+    "scripts/Classes/TempoSlider.js~TempoSlider#constructor",
     "method"
   ],
   [

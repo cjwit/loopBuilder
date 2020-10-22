@@ -42,6 +42,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ScaleButtons.js~ScaleButtons.html">ScaleButtons</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ShareButton.js~ShareButton.html">ShareButton</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/TempoSlider.js~TempoSlider.html">TempoSlider</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -53,9 +54,17 @@ import { DrumLoop } from &apos;./Classes/DrumLoop.js&apos;;
 import { PlayButton } from &apos;./Classes/PlayButton.js&apos;;
 import { ShareButton } from &apos;./Classes/ShareButton.js&apos;;
 import { ScaleButtons } from &apos;./Classes/ScaleButtons.js&apos;;
+import { TempoSlider } from &apos;./Classes/TempoSlider.js&apos;;
 import { EffectsUI } from &apos;./Classes/EffectsUI.js&apos;;
 import { parseLoopFromURL } from &apos;./urlSharing.js&apos;;
 import { createDrumSampler, createSynth } from &apos;./audio.js&apos;;
+
+/**
+ * 
+ * Create sampler and synth instruments
+ * and connect volume nodes
+ * 
+ */
 
 const drumSampler = createDrumSampler();
 const drumVolumeNode = new Tone.Volume(-6).toDestination();
@@ -69,10 +78,16 @@ const bassSynth = createSynth();
 const bassVolumeNode = new Tone.Volume(-20).toDestination();
 bassSynth.connect(bassVolumeNode);
 
-// get shared loop
+/**
+ * Get the imported loop or set the default
+ */
 var loops = parseLoopFromURL();
 
-// add effects
+/**
+ * 
+ * Create effects and link them to the instruments
+ * 
+ */
 const melodyEffect1 = new Tone.Distortion({
   distortion: 10,
   wet: loops.melodyLoop.effectLevels[0]
@@ -101,32 +116,27 @@ const bassEffect2 = new Tone.Chorus({
 
 bassSynth.chain(bassEffect1, bassEffect2);
 
-// set up buttons
-const Play = new PlayButton();
-const Share = new ShareButton();
-
-// set up loops
+/**
+ * 
+ * Set up loop objects and effects interfaces
+ * (needs to be done before creating the scale buttons)
+ * 
+ */
 const melodyLoop = new Loop(&quot;melodyLoop&quot;, loops.melodyLoop, melodySynth);
 const bassLoop = new Loop(&quot;bassLoop&quot;, loops.bassLoop, bassSynth);
 const drumLoop = new DrumLoop(&quot;drumLoop&quot;, loops.drumLoop, drumSampler);
-
-const Scales = new ScaleButtons(loops.melodyLoop.scale.split(&quot;M&quot;)[0], melodyLoop, bassLoop);
-
-// set up filter listeners
 const synthEffects = new EffectsUI(&quot;melodyEffects&quot;, loops.melodyLoop.effectLevels, melodyEffect1, melodyEffect2);
 const bassEffects = new EffectsUI(&quot;bassEffects&quot;, loops.bassLoop.effectLevels, bassEffect1, bassEffect2);
 
-// tempo slider
-var slider = document.getElementById(&quot;tempo-slider&quot;);
-var bpmSpan = document.getElementById(&quot;bpm-span&quot;);
-Tone.Transport.bpm.value = loops.tempo;
-slider.value = loops.tempo;
-bpmSpan.innerText = slider.value;
-
-slider.oninput = function() {
-  Tone.Transport.bpm.value = this.value;
-  bpmSpan.innerText = slider.value;
-}
+/**
+ * 
+ * Set up interface buttons
+ * 
+ */
+const Play = new PlayButton();
+const Share = new ShareButton();
+const Scales = new ScaleButtons(loops.melodyLoop.scale.split(&quot;M&quot;)[0], melodyLoop, bassLoop);
+const TempoSliderObject = new TempoSlider(loops.tempo);
 </code></pre>
 
 </div>
