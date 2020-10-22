@@ -1,5 +1,3 @@
-import * as Tone from "tone";
-
 /**
  * Creates and handles Box object data and
  * DOM interactions, including visual callbacks

@@ -1,3 +1,5 @@
+import 'jquery-ui-touch-punch';
+
 /**
  * Create and handle effects user interaction objects
  */

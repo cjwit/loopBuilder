@@ -4,6 +4,8 @@
   "description": "A graphical interface to create looping melodies and rhythms",
   "main": "script.js",
   "dependencies": {
+    "jquery": "^3.5.1",
+    "jquery-ui": "^1.12.1",
     "jquery-ui-touch-punch": "^0.2.3",
     "tone": "^14.7.58"
   },
