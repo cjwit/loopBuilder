@@ -61,7 +61,7 @@ const melodyLoop = new Loop("melodyLoop", loops.melodyLoop, melodySynth);
 const bassLoop = new Loop("bassLoop", loops.bassLoop, bassSynth);
 const drumLoop = new DrumLoop("drumLoop", loops.drumLoop, drumSampler);
 
-const Scales = new ScaleButtons("dorian", melodyLoop, bassLoop);
+const Scales = new ScaleButtons(loops.melodyLoop.scale.split("M")[0], melodyLoop, bassLoop);
 
 // set up filter listeners
 const synthEffects = new EffectsUI("melodyEffects", loops.melodyLoop.effectLevels, melodyEffect1, melodyEffect2);

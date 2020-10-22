@@ -95,7 +95,10 @@ function getLoopData() {
   }
 
   // get scale (coming later);
-  var scale = "dorian";
+  var scale = Array.from(
+    document.getElementsByClassName("scaleButton"))
+    .filter(btn => btn.classList.contains("active"))[0]
+    .innerText.toLowerCase();
 
   // compile result (remove trailing split Z in parts)
   var result = {
