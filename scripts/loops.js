@@ -1,3 +1,6 @@
+/**
+ * Default melodic loop information
+ */
 var melodyLoop = {
   scale: "dorianMelody",
   effectLevels: [0.2, 0.5],
@@ -20,6 +23,9 @@ var melodyLoop = {
   ]
 }
 
+/**
+ * Default bass loop information
+ */
 var bassLoop = {
   scale: "dorianBass",
   effectLevels: [0.2, 0.5],
@@ -42,6 +48,9 @@ var bassLoop = {
   ]
 }
 
+/**
+ * Default drum loop information
+ */
 var drumLoop = {
   scale: "drumSet",
   // names: ["Kick drum", "Snare drum", "Hi hat", "Cowbell", "Clave"],
@@ -58,6 +67,9 @@ var drumLoop = {
   ]
 }
 
+/**
+ * Default loops compiled to export object
+ */
 export var defaultLoops = {
   drumLoop: drumLoop,
   melodyLoop: melodyLoop,

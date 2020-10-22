@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">Box | loopBuilder</title>
+  <title data-ice="title">ScaleButtons | loopBuilder</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -47,17 +47,17 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {Box} from &apos;<span><a href="file/scripts/Classes/Box.js.html#lineNumber7">loopBuilder/scripts/Classes/Box.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {ScaleButtons} from &apos;<span><a href="file/scripts/Classes/ScaleButtons.js.html#lineNumber6">loopBuilder/scripts/Classes/ScaleButtons.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/scripts/Classes/Box.js.html#lineNumber7">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/scripts/Classes/ScaleButtons.js.html#lineNumber6">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
-  <h1 data-ice="name">Box</h1>
+  <h1 data-ice="name">ScaleButtons</h1>
 
   
 
@@ -73,8 +73,7 @@
 
   
   
-  <div class="description" data-ice="description"><p>Creates and handles Box object data and
-DOM interactions, including visual callbacks</p>
+  <div class="description" data-ice="description"><p>Create scale button group to change scalar patterns</p>
 </div>
   
 
@@ -107,13 +106,14 @@ DOM interactions, including visual callbacks</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(note: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/ScaleButtons.js~ScaleButtons.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Get element and create play button</p>
+</div>
       </div>
     </td>
     <td>
@@ -142,7 +142,7 @@ DOM interactions, including visual callbacks</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html#instance-member-domObject">domObject</a></span></span><span class="code" data-ice="signature">: <span>HTMLElement</span></span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/ScaleButtons.js~ScaleButtons.html#instance-member-bassLoop">bassLoop</a></span></span><span class="code" data-ice="signature">: <span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span>
         </p>
       </div>
       <div>
@@ -170,7 +170,7 @@ DOM interactions, including visual callbacks</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html#instance-member-filled">filled</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/ScaleButtons.js~ScaleButtons.html#instance-member-buttons">buttons</a></span></span><span class="code" data-ice="signature">: <span>array</span></span>
         </p>
       </div>
       <div>
@@ -198,7 +198,63 @@ DOM interactions, including visual callbacks</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html#instance-member-note">note</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/ScaleButtons.js~ScaleButtons.html#instance-member-currentScale">currentScale</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/ScaleButtons.js~ScaleButtons.html#instance-member-domObject">domObject</a></span></span><span class="code" data-ice="signature">: <span>HTMLElement</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/ScaleButtons.js~ScaleButtons.html#instance-member-melodyLoop">melodyLoop</a></span></span><span class="code" data-ice="signature">: <span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span>
         </p>
       </div>
       <div>
@@ -233,44 +289,13 @@ DOM interactions, including visual callbacks</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html#instance-method-flash">flash</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/ScaleButtons.js~ScaleButtons.html#instance-method-listener">listener</a></span></span><span class="code" data-ice="signature">(e: <span>*</span>)</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p><code>Box.flash()</code> is called by a <code>Row</code> object to animate 
-a block as part of the <code>Tone.Sequencer</code> callback</p>
-</div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/scripts/Classes/Box.js~Box.html#instance-method-setFilledStatus">setFilledStatus</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        <div data-ice="description"><p>Determine whether the current box has an event associated with it
-and sets the appropriate css class</p>
+        <div data-ice="description"><p>Rebuild loops using the selected scale</p>
 </div>
       </div>
     </td>
@@ -297,38 +322,23 @@ and sets the appropriate css class</p>
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(note: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Box.js.html#lineNumber11">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/ScaleButtons.js.html#lineNumber10">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">note</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
+  <div data-ice="description"><p>Get element and create play button</p>
 </div>
+
+  
+
+  <div data-ice="properties">
 </div>
 
   
@@ -352,6 +362,135 @@ and sets the appropriate css class</p>
 <div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-member-bassLoop">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">bassLoop</span><span class="code" data-ice="signature">: <span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/scripts/Classes/ScaleButtons.js.html#lineNumber26">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-member-buttons">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">buttons</span><span class="code" data-ice="signature">: <span>array</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/scripts/Classes/ScaleButtons.js.html#lineNumber30">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-member-currentScale">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span class="code" data-ice="name">currentScale</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/scripts/Classes/ScaleButtons.js.html#lineNumber14">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-member-domObject">
     <span class="access" data-ice="access">public</span>
     
@@ -363,7 +502,7 @@ and sets the appropriate css class</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Box.js.html#lineNumber19">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/ScaleButtons.js.html#lineNumber18">source</a></span></span>
     </span>
   </h3>
 
@@ -395,61 +534,18 @@ and sets the appropriate css class</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-filled">
+  <h3 data-ice="anchor" id="instance-member-melodyLoop">
     <span class="access" data-ice="access">public</span>
     
     
     
     
     
-    <span class="code" data-ice="name">filled</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="code" data-ice="name">melodyLoop</span><span class="code" data-ice="signature">: <span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Box.js.html#lineNumber23">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-note">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">note</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/scripts/Classes/Box.js.html#lineNumber15">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/ScaleButtons.js.html#lineNumber22">source</a></span></span>
     </span>
   </h3>
 
@@ -484,91 +580,50 @@ and sets the appropriate css class</p>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-flash">
+  <h3 data-ice="anchor" id="instance-method-listener">
     <span class="access" data-ice="access">public</span>
     
     
     
     
     
-    <span class="code" data-ice="name">flash</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">listener</span><span class="code" data-ice="signature">(e: <span>*</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/scripts/Classes/Box.js.html#lineNumber44">source</a></span></span>
+      <span data-ice="source"><span><a href="file/scripts/Classes/ScaleButtons.js.html#lineNumber55">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p><code>Box.flash()</code> is called by a <code>Row</code> object to animate 
-a block as part of the <code>Tone.Sequencer</code> callback</p>
+  <div data-ice="description"><p>Rebuild loops using the selected scale</p>
 </div>
 
   
 
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-setFilledStatus">
-    <span class="access" data-ice="access">public</span>
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
     
-    
-    
-    
-    
-    <span class="code" data-ice="name">setFilledStatus</span><span class="code" data-ice="signature">(): <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/scripts/Classes/Box.js.html#lineNumber31">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Determine whether the current box has an event associated with it
-and sets the appropriate css class</p>
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">e</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Event listener target object</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
 </div>
 
   
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
 
   
 

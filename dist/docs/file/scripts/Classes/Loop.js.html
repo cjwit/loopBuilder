@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ScaleButtons.js~ScaleButtons.html">ScaleButtons</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ShareButton.js~ShareButton.html">ShareButton</a></span></span></li>
 </ul>
 </div>
@@ -85,11 +86,7 @@ export class Loop {
      */
     this.domObject = document.getElementById(tagId);
 
-    /**
-     * @type {Array}
-     */
-    this.scale = this.setScale(data.scale);
-    // if (data.names) { this.names = data.names }
+    this.setScale(data.scale);
     this.convertPattern();
     this.makeRows();
   }
@@ -98,12 +95,43 @@ export class Loop {
    * @return {Array} Scale members as strings with note names and octaves
    */
   setScale(scale) {
+    var scaleArray;
     switch (scale) {
-      case &quot;dorianMelody&quot;: return [&quot;C6&quot;, &quot;Bb5&quot;, &quot;A5&quot;, &quot;G5&quot;, &quot;F5&quot;, &quot;Eb5&quot;, &quot;D5&quot;, &quot;C5&quot;, &quot;Bb4&quot;, &quot;A4&quot;, &quot;G4&quot;, &quot;F4&quot;, &quot;Eb4&quot;, &quot;D4&quot;, &quot;C4&quot;];
-      case &quot;dorianBass&quot;: return [&quot;C4&quot;, &quot;Bb3&quot;, &quot;A3&quot;, &quot;G3&quot;, &quot;F3&quot;, &quot;Eb3&quot;, &quot;D3&quot;, &quot;C3&quot;, &quot;Bb2&quot;, &quot;A2&quot;, &quot;G2&quot;, &quot;F2&quot;, &quot;Eb2&quot;, &quot;D2&quot;, &quot;C2&quot;];
-      case &quot;drumSet&quot;: return [&quot;C3&quot;, &quot;D3&quot;, &quot;E3&quot;, &quot;F3&quot;, &quot;G3&quot;, &quot;A3&quot;, &quot;B3&quot;, &quot;C4&quot;, &quot;D4&quot;];
+      case &quot;dorianMelody&quot;: 
+        scaleArray = [&quot;C6&quot;, &quot;Bb5&quot;, &quot;A5&quot;, &quot;G5&quot;, &quot;F5&quot;, &quot;Eb5&quot;, &quot;D5&quot;, &quot;C5&quot;, &quot;Bb4&quot;, &quot;A4&quot;, &quot;G4&quot;, &quot;F4&quot;, &quot;Eb4&quot;, &quot;D4&quot;, &quot;C4&quot;];
+        break;
+      case &quot;dorianBass&quot;: 
+        scaleArray = [&quot;C4&quot;, &quot;Bb3&quot;, &quot;A3&quot;, &quot;G3&quot;, &quot;F3&quot;, &quot;Eb3&quot;, &quot;D3&quot;, &quot;C3&quot;, &quot;Bb2&quot;, &quot;A2&quot;, &quot;G2&quot;, &quot;F2&quot;, &quot;Eb2&quot;, &quot;D2&quot;, &quot;C2&quot;];
+        break;
+
+      case &quot;majorMelody&quot;: 
+        scaleArray = [&quot;C6&quot;, &quot;B5&quot;, &quot;A5&quot;, &quot;G5&quot;, &quot;F5&quot;, &quot;E5&quot;, &quot;D5&quot;, &quot;C5&quot;, &quot;B4&quot;, &quot;A4&quot;, &quot;G4&quot;, &quot;F4&quot;, &quot;E4&quot;, &quot;D4&quot;, &quot;C4&quot;];
+        break;
+      case &quot;majorBass&quot;: 
+        scaleArray = [&quot;C4&quot;, &quot;B3&quot;, &quot;A3&quot;, &quot;G3&quot;, &quot;F3&quot;, &quot;E3&quot;, &quot;D3&quot;, &quot;C3&quot;, &quot;B2&quot;, &quot;A2&quot;, &quot;G2&quot;, &quot;F2&quot;, &quot;E2&quot;, &quot;D2&quot;, &quot;C2&quot;];
+        break;
+      
+      case &quot;minorMelody&quot;: 
+        scaleArray = [&quot;C6&quot;, &quot;B5&quot;, &quot;Ab5&quot;, &quot;G5&quot;, &quot;F5&quot;, &quot;Eb5&quot;, &quot;D5&quot;, &quot;C5&quot;, &quot;B4&quot;, &quot;Ab4&quot;, &quot;G4&quot;, &quot;F4&quot;, &quot;Eb4&quot;, &quot;D4&quot;, &quot;C4&quot;];
+        break;
+      case &quot;minorBass&quot;: 
+        scaleArray = [&quot;C4&quot;, &quot;B3&quot;, &quot;Ab3&quot;, &quot;G3&quot;, &quot;F3&quot;, &quot;Eb3&quot;, &quot;D3&quot;, &quot;C3&quot;, &quot;B2&quot;, &quot;Ab2&quot;, &quot;G2&quot;, &quot;F2&quot;, &quot;Eb2&quot;, &quot;D2&quot;, &quot;C2&quot;];
+        break;
+      
+      case &quot;pentatonicMelody&quot;: 
+        scaleArray = [&quot;A6&quot;, &quot;G6&quot;, &quot;E6&quot;, &quot;D6&quot;, &quot;C6&quot;, &quot;A5&quot;, &quot;G5&quot;, &quot;E5&quot;, &quot;D5&quot;, &quot;C5&quot;, &quot;A4&quot;, &quot;G4&quot;, &quot;E4&quot;, &quot;D4&quot;, &quot;C4&quot;];
+        break;
+      case &quot;pentatonicBass&quot;: 
+        scaleArray = [&quot;A4&quot;, &quot;G4&quot;, &quot;E4&quot;, &quot;D4&quot;, &quot;C4&quot;, &quot;A3&quot;, &quot;G3&quot;, &quot;E3&quot;, &quot;D3&quot;, &quot;C3&quot;, &quot;A2&quot;, &quot;G2&quot;, &quot;E2&quot;, &quot;D2&quot;, &quot;C2&quot;];
+        break;
+
+      case &quot;drumSet&quot;: 
+        scaleArray = [&quot;C3&quot;, &quot;D3&quot;, &quot;E3&quot;, &quot;F3&quot;, &quot;G3&quot;, &quot;A3&quot;, &quot;B3&quot;, &quot;C4&quot;, &quot;D4&quot;];
+        break;
+      
+      default: console.log(&quot;Unknown scale&quot;)
     }
-    throw &quot;Unknown scale&quot;;
+    this.scale = scaleArray;
   }
 
   /**
@@ -115,22 +143,47 @@ export class Loop {
     for (let i = 0; i &lt; this.scale.length; i++) {
       let currentNote = this.scale[i];
       let currentPart = this.parts[i];
+
       let convertedPart = [];
       currentPart.forEach(note =&gt; {
-        if (note == 1) { convertedPart.push(currentNote); }
+        if (note != 0 &amp;&amp; note != null) { convertedPart.push(currentNote); }
         else { convertedPart.push(null) }
       });
+
       newPartsArray.push(convertedPart);
     }
     this.parts = newPartsArray;
   }
 
+  /**
+   * Create rows of DOM objects and sequences
+   */
   makeRows() {
     for (let i = 0; i &lt; this.parts.length; i++) {
       let row = new Row(this.source, this.parts[i], this.scale[i]);
-      this.domObject.appendChild(row.domObject);
+      this.domObject.appendChild(row.domObject); 
       this.rows.push(row);
     }
+  }
+
+  /**
+   * Used by the ScaleButton to replace the rows in each loop
+   * @param {array} scale 
+   */
+  updateRows(scale) {
+    this.setScale(scale);
+    this.convertPattern();
+
+    // delete current rows
+    for (let i = 0; i &lt; this.parts.length; i++) {
+      this.rows[i].sequence.dispose();
+      this.rows[i].domObject.remove();
+      delete this.rows[i]
+    }
+    this.rows = [];
+
+    // make new rows
+    this.makeRows();
   }
 }</code></pre>
 

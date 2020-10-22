@@ -140,6 +140,10 @@ function getLoopArray(row) {
   return parseInt(rowData, 2).toString(16) + "Z";
 }
 
+/**
+ * Get the displayed effects values from child spans within the effects interface
+ * @param {string} tag DOM id tag for the parent effect interface
+ */
 function getEffectValues(tag) {
   var melodyEffectValueSpans = document.getElementById(tag).getElementsByClassName("effectValue");
   return [melodyEffectValueSpans[0].innerText, melodyEffectValueSpans[1].innerText]

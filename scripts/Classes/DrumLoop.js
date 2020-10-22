@@ -15,6 +15,9 @@ export class DrumLoop extends Loop {
     super(tagId, data, source);
   }
 
+  /**
+   * Create rows using hard coded names for the drum parts
+   */
   makeRows() {
     var names = ["Kick drum", "Snare drum", "Hi hat", "Cowbell", "Clave", "L bongo", "H bongo", "Bell", "Tom"];
     for (let i = 0; i < this.parts.length; i++) {

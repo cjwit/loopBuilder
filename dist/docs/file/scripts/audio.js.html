@@ -40,6 +40,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Loop.js~Loop.html">Loop</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/PlayButton.js~PlayButton.html">PlayButton</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/Row.js~Row.html">Row</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ScaleButtons.js~ScaleButtons.html">ScaleButtons</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/scripts/Classes/ShareButton.js~ShareButton.html">ShareButton</a></span></span></li>
 </ul>
 </div>
@@ -47,7 +48,6 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">scripts/audio.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import * as Tone from &apos;tone&apos;;
-
 import hihat from &quot;../audio/hihat.mp3&quot;;
 import snare from &quot;../audio/snare.mp3&quot;;
 import kick from &quot;../audio/kick.mp3&quot;;
@@ -58,6 +58,10 @@ import bongo2 from &quot;../audio/bongo2.mp3&quot;;
 import tom3 from &quot;../audio/tom3.mp3&quot;;
 import cowbell from &quot;../audio/cowbell.mp3&quot;;
 
+/**
+ * Create a drum sampler object to be passed around
+ * @return {Tone.Sampler}
+ */
 export function createDrumSampler() {
   const drumSampler = new Tone.Sampler({
     urls: {
@@ -76,6 +80,10 @@ export function createDrumSampler() {
   return drumSampler;
 }
 
+/**
+ * Create a synthesizer object to be passed around
+ * @return {Tone.PolySynth}
+ */
 export function createSynth() {
   const synth = new Tone.PolySynth().toDestination();
   return synth;

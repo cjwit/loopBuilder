@@ -1,5 +1,4 @@
 import * as Tone from 'tone';
-
 import hihat from "../audio/hihat.mp3";
 import snare from "../audio/snare.mp3";
 import kick from "../audio/kick.mp3";
@@ -10,6 +9,10 @@ import bongo2 from "../audio/bongo2.mp3";
 import tom3 from "../audio/tom3.mp3";
 import cowbell from "../audio/cowbell.mp3";
 
+/**
+ * Create a drum sampler object to be passed around
+ * @return {Tone.Sampler}
+ */
 export function createDrumSampler() {
   const drumSampler = new Tone.Sampler({
     urls: {
@@ -28,6 +31,10 @@ export function createDrumSampler() {
   return drumSampler;
 }
 
+/**
+ * Create a synthesizer object to be passed around
+ * @return {Tone.PolySynth}
+ */
 export function createSynth() {
   const synth = new Tone.PolySynth().toDestination();
   return synth;

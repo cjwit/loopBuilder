@@ -8,16 +8,28 @@ export class ScaleButtons {
    * Get element and create play button
    */
   constructor(currentScale, melodyLoop, bassLoop) {
+    /**
+     * @type {string}
+     */
     this.currentScale = currentScale;
     /**
      * @type {HTMLElement}
      */
     this.domObject = document.getElementById("scaleSelector");
+    /**
+     * @type {Loop}
+     */
     this.melodyLoop = melodyLoop;
+    /**
+     * @type {Loop}
+     */
     this.bassLoop = bassLoop;
+    /**
+     * @type {array}
+     */
+    this.buttons = []
 
     var scales = ["Minor", "Major", "Dorian", "Pentatonic"];
-    this.buttons = []
     for (let i = 0; i < scales.length; i++) {
       var button = document.createElement("span");
       button.innerText = scales[i];
@@ -38,6 +50,7 @@ export class ScaleButtons {
 
   /**
    * Rebuild loops using the selected scale
+   * @param {*} e Event listener target object
    */
   listener(e) {
     Tone.Transport.stop();

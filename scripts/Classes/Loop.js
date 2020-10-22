@@ -106,6 +106,9 @@ export class Loop {
     this.parts = newPartsArray;
   }
 
+  /**
+   * Create rows of DOM objects and sequences
+   */
   makeRows() {
     for (let i = 0; i < this.parts.length; i++) {
       let row = new Row(this.source, this.parts[i], this.scale[i]);
@@ -114,6 +117,10 @@ export class Loop {
     }
   }
 
+  /**
+   * Used by the ScaleButton to replace the rows in each loop
+   * @param {array} scale 
+   */
   updateRows(scale) {
     this.setScale(scale);
     this.convertPattern();

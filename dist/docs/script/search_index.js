@@ -36,6 +36,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "loopbuilder/scripts/classes/scalebuttons.js~scalebuttons",
+    "class/scripts/Classes/ScaleButtons.js~ScaleButtons.html",
+    "<span>ScaleButtons</span> <span class=\"search-result-import-path\">loopBuilder/scripts/Classes/ScaleButtons.js</span>",
+    "class"
+  ],
+  [
     "loopbuilder/scripts/classes/sharebutton.js~sharebutton",
     "class/scripts/Classes/ShareButton.js~ShareButton.html",
     "<span>ShareButton</span> <span class=\"search-result-import-path\">loopBuilder/scripts/Classes/ShareButton.js</span>",
@@ -552,6 +558,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "scripts/classes/loop.js~loop#updaterows",
+    "class/scripts/Classes/Loop.js~Loop.html#instance-method-updateRows",
+    "scripts/Classes/Loop.js~Loop#updateRows",
+    "method"
+  ],
+  [
     "scripts/classes/playbutton.js",
     "file/scripts/Classes/PlayButton.js.html",
     "scripts/Classes/PlayButton.js",
@@ -688,6 +700,54 @@ window.esdocSearchIndex = [
     "class/scripts/Classes/Row.js~Row.html#instance-method-updateSequencePattern",
     "scripts/Classes/Row.js~Row#updateSequencePattern",
     "method"
+  ],
+  [
+    "scripts/classes/scalebuttons.js",
+    "file/scripts/Classes/ScaleButtons.js.html",
+    "scripts/Classes/ScaleButtons.js",
+    "file"
+  ],
+  [
+    "scripts/classes/scalebuttons.js~scalebuttons#bassloop",
+    "class/scripts/Classes/ScaleButtons.js~ScaleButtons.html#instance-member-bassLoop",
+    "scripts/Classes/ScaleButtons.js~ScaleButtons#bassLoop",
+    "member"
+  ],
+  [
+    "scripts/classes/scalebuttons.js~scalebuttons#buttons",
+    "class/scripts/Classes/ScaleButtons.js~ScaleButtons.html#instance-member-buttons",
+    "scripts/Classes/ScaleButtons.js~ScaleButtons#buttons",
+    "member"
+  ],
+  [
+    "scripts/classes/scalebuttons.js~scalebuttons#constructor",
+    "class/scripts/Classes/ScaleButtons.js~ScaleButtons.html#instance-constructor-constructor",
+    "scripts/Classes/ScaleButtons.js~ScaleButtons#constructor",
+    "method"
+  ],
+  [
+    "scripts/classes/scalebuttons.js~scalebuttons#currentscale",
+    "class/scripts/Classes/ScaleButtons.js~ScaleButtons.html#instance-member-currentScale",
+    "scripts/Classes/ScaleButtons.js~ScaleButtons#currentScale",
+    "member"
+  ],
+  [
+    "scripts/classes/scalebuttons.js~scalebuttons#domobject",
+    "class/scripts/Classes/ScaleButtons.js~ScaleButtons.html#instance-member-domObject",
+    "scripts/Classes/ScaleButtons.js~ScaleButtons#domObject",
+    "member"
+  ],
+  [
+    "scripts/classes/scalebuttons.js~scalebuttons#listener",
+    "class/scripts/Classes/ScaleButtons.js~ScaleButtons.html#instance-method-listener",
+    "scripts/Classes/ScaleButtons.js~ScaleButtons#listener",
+    "method"
+  ],
+  [
+    "scripts/classes/scalebuttons.js~scalebuttons#melodyloop",
+    "class/scripts/Classes/ScaleButtons.js~ScaleButtons.html#instance-member-melodyLoop",
+    "scripts/Classes/ScaleButtons.js~ScaleButtons#melodyLoop",
+    "member"
   ],
   [
     "scripts/classes/sharebutton.js",

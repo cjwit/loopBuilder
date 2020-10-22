@@ -709,7 +709,7 @@
     "__docId__": 56,
     "kind": "file",
     "name": "scripts/Classes/DrumLoop.js",
-    "content": "import { Tone } from 'tone/build/esm/core/Tone';\nimport { Loop } from './Loop.js';\nimport { Row } from './Row.js';\n\n/**\n * Creates and controls the drum loop, overwrites the convertPattern() method\n */\nexport class DrumLoop extends Loop {\n  /**\n   * @param {string} tagId \n   * @param {object} data \n   * @param {Tone.Sampler} source \n   */\n  constructor(tagId, data, source) {\n    super(tagId, data, source);\n  }\n\n  makeRows() {\n    var names = [\"Kick drum\", \"Snare drum\", \"Hi hat\", \"Cowbell\", \"Clave\", \"L bongo\", \"H bongo\", \"Bell\", \"Tom\"];\n    for (let i = 0; i < this.parts.length; i++) {\n      let row = new Row(this.source, this.parts[i], this.scale[i], names[i]);\n      this.domObject.appendChild(row.domObject);\n      this.rows.push(row);\n    }\n  }\n}",
+    "content": "import { Tone } from 'tone/build/esm/core/Tone';\nimport { Loop } from './Loop.js';\nimport { Row } from './Row.js';\n\n/**\n * Creates and controls the drum loop, overwrites the convertPattern() method\n */\nexport class DrumLoop extends Loop {\n  /**\n   * @param {string} tagId \n   * @param {object} data \n   * @param {Tone.Sampler} source \n   */\n  constructor(tagId, data, source) {\n    super(tagId, data, source);\n  }\n\n  /**\n   * Create rows using hard coded names for the drum parts\n   */\n  makeRows() {\n    var names = [\"Kick drum\", \"Snare drum\", \"Hi hat\", \"Cowbell\", \"Clave\", \"L bongo\", \"H bongo\", \"Bell\", \"Tom\"];\n    for (let i = 0; i < this.parts.length; i++) {\n      let row = new Row(this.source, this.parts[i], this.scale[i], names[i]);\n      this.domObject.appendChild(row.domObject);\n      this.rows.push(row);\n    }\n  }\n}",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/DrumLoop.js",
     "access": "public",
@@ -789,9 +789,8 @@
     "static": false,
     "longname": "scripts/Classes/DrumLoop.js~DrumLoop#makeRows",
     "access": "public",
-    "description": null,
-    "lineNumber": 18,
-    "undocument": true,
+    "description": "Create rows using hard coded names for the drum parts",
+    "lineNumber": 21,
     "params": [],
     "return": null
   },
@@ -1041,7 +1040,7 @@
     "__docId__": 72,
     "kind": "file",
     "name": "scripts/Classes/Loop.js",
-    "content": "import { Tone } from 'tone/build/esm/core/Tone';\nimport { Row } from './Row.js';\n\n/**\n * Parent interface for MelodyLoop, BassLoop, and DrumLoop\n */\nexport class Loop {\n  /**\n   * Synthesizer loop structure and graphical representation\n   * @param {string} tagId \n   * @param {object} data \n   * @param {Tone.Synth} source \n   */\n  constructor(tagId, data, source) {\n    /**\n     * @type {string}\n     */\n    this.tagId = tagId;\n    /**\n     * @type {Tone.synth}\n     */\n    this.source = source;\n    /**\n     * @type {Array}\n     */\n    this.parts = data.parts;\n    /**\n     * @type {number}\n     */\n    this.tempo = data.tempo;\n    /**\n     * @type {Array}\n     */\n    this.rows = [];\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.getElementById(tagId);\n\n    /**\n     * @type {Array}\n     */\n    this.scale = this.setScale(data.scale);\n    // if (data.names) { this.names = data.names }\n    this.convertPattern();\n    this.makeRows();\n  }\n\n  /**\n   * @return {Array} Scale members as strings with note names and octaves\n   */\n  setScale(scale) {\n    switch (scale) {\n      case \"dorianMelody\": return [\"C6\", \"Bb5\", \"A5\", \"G5\", \"F5\", \"Eb5\", \"D5\", \"C5\", \"Bb4\", \"A4\", \"G4\", \"F4\", \"Eb4\", \"D4\", \"C4\"];\n      case \"dorianBass\": return [\"C4\", \"Bb3\", \"A3\", \"G3\", \"F3\", \"Eb3\", \"D3\", \"C3\", \"Bb2\", \"A2\", \"G2\", \"F2\", \"Eb2\", \"D2\", \"C2\"];\n      case \"drumSet\": return [\"C3\", \"D3\", \"E3\", \"F3\", \"G3\", \"A3\", \"B3\", \"C4\", \"D4\"];\n    }\n    throw \"Unknown scale\";\n  }\n\n  /**\n   * Convert an array of note names into a series of patterns for use by `makeRows()`\n   */\n  convertPattern() {\n    var newPartsArray = [];\n\n    for (let i = 0; i < this.scale.length; i++) {\n      let currentNote = this.scale[i];\n      let currentPart = this.parts[i];\n      let convertedPart = [];\n      currentPart.forEach(note => {\n        if (note == 1) { convertedPart.push(currentNote); }\n        else { convertedPart.push(null) }\n      });\n      newPartsArray.push(convertedPart);\n    }\n    this.parts = newPartsArray;\n  }\n\n  makeRows() {\n    for (let i = 0; i < this.parts.length; i++) {\n      let row = new Row(this.source, this.parts[i], this.scale[i]);\n      this.domObject.appendChild(row.domObject);\n      this.rows.push(row);\n    }\n  }\n}",
+    "content": "import { Tone } from 'tone/build/esm/core/Tone';\nimport { Row } from './Row.js';\n\n/**\n * Parent interface for MelodyLoop, BassLoop, and DrumLoop\n */\nexport class Loop {\n  /**\n   * Synthesizer loop structure and graphical representation\n   * @param {string} tagId \n   * @param {object} data \n   * @param {Tone.Synth} source \n   */\n  constructor(tagId, data, source) {\n    /**\n     * @type {string}\n     */\n    this.tagId = tagId;\n    /**\n     * @type {Tone.synth}\n     */\n    this.source = source;\n    /**\n     * @type {Array}\n     */\n    this.parts = data.parts;\n    /**\n     * @type {number}\n     */\n    this.tempo = data.tempo;\n    /**\n     * @type {Array}\n     */\n    this.rows = [];\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.getElementById(tagId);\n\n    this.setScale(data.scale);\n    this.convertPattern();\n    this.makeRows();\n  }\n\n  /**\n   * @return {Array} Scale members as strings with note names and octaves\n   */\n  setScale(scale) {\n    var scaleArray;\n    switch (scale) {\n      case \"dorianMelody\": \n        scaleArray = [\"C6\", \"Bb5\", \"A5\", \"G5\", \"F5\", \"Eb5\", \"D5\", \"C5\", \"Bb4\", \"A4\", \"G4\", \"F4\", \"Eb4\", \"D4\", \"C4\"];\n        break;\n      case \"dorianBass\": \n        scaleArray = [\"C4\", \"Bb3\", \"A3\", \"G3\", \"F3\", \"Eb3\", \"D3\", \"C3\", \"Bb2\", \"A2\", \"G2\", \"F2\", \"Eb2\", \"D2\", \"C2\"];\n        break;\n\n      case \"majorMelody\": \n        scaleArray = [\"C6\", \"B5\", \"A5\", \"G5\", \"F5\", \"E5\", \"D5\", \"C5\", \"B4\", \"A4\", \"G4\", \"F4\", \"E4\", \"D4\", \"C4\"];\n        break;\n      case \"majorBass\": \n        scaleArray = [\"C4\", \"B3\", \"A3\", \"G3\", \"F3\", \"E3\", \"D3\", \"C3\", \"B2\", \"A2\", \"G2\", \"F2\", \"E2\", \"D2\", \"C2\"];\n        break;\n      \n      case \"minorMelody\": \n        scaleArray = [\"C6\", \"B5\", \"Ab5\", \"G5\", \"F5\", \"Eb5\", \"D5\", \"C5\", \"B4\", \"Ab4\", \"G4\", \"F4\", \"Eb4\", \"D4\", \"C4\"];\n        break;\n      case \"minorBass\": \n        scaleArray = [\"C4\", \"B3\", \"Ab3\", \"G3\", \"F3\", \"Eb3\", \"D3\", \"C3\", \"B2\", \"Ab2\", \"G2\", \"F2\", \"Eb2\", \"D2\", \"C2\"];\n        break;\n      \n      case \"pentatonicMelody\": \n        scaleArray = [\"A6\", \"G6\", \"E6\", \"D6\", \"C6\", \"A5\", \"G5\", \"E5\", \"D5\", \"C5\", \"A4\", \"G4\", \"E4\", \"D4\", \"C4\"];\n        break;\n      case \"pentatonicBass\": \n        scaleArray = [\"A4\", \"G4\", \"E4\", \"D4\", \"C4\", \"A3\", \"G3\", \"E3\", \"D3\", \"C3\", \"A2\", \"G2\", \"E2\", \"D2\", \"C2\"];\n        break;\n\n      case \"drumSet\": \n        scaleArray = [\"C3\", \"D3\", \"E3\", \"F3\", \"G3\", \"A3\", \"B3\", \"C4\", \"D4\"];\n        break;\n      \n      default: console.log(\"Unknown scale\")\n    }\n    this.scale = scaleArray;\n  }\n\n  /**\n   * Convert an array of note names into a series of patterns for use by `makeRows()`\n   */\n  convertPattern() {\n    var newPartsArray = [];\n\n    for (let i = 0; i < this.scale.length; i++) {\n      let currentNote = this.scale[i];\n      let currentPart = this.parts[i];\n\n      let convertedPart = [];\n      currentPart.forEach(note => {\n        if (note != 0 && note != null) { convertedPart.push(currentNote); }\n        else { convertedPart.push(null) }\n      });\n\n      newPartsArray.push(convertedPart);\n    }\n    this.parts = newPartsArray;\n  }\n\n  /**\n   * Create rows of DOM objects and sequences\n   */\n  makeRows() {\n    for (let i = 0; i < this.parts.length; i++) {\n      let row = new Row(this.source, this.parts[i], this.scale[i]);\n      this.domObject.appendChild(row.domObject); \n      this.rows.push(row);\n    }\n  }\n\n  /**\n   * Used by the ScaleButton to replace the rows in each loop\n   * @param {array} scale \n   */\n  updateRows(scale) {\n    this.setScale(scale);\n    this.convertPattern();\n\n    // delete current rows\n    for (let i = 0; i < this.parts.length; i++) {\n      this.rows[i].sequence.dispose();\n      this.rows[i].domObject.remove();\n      delete this.rows[i]\n    }\n    this.rows = [];\n\n    // make new rows\n    this.makeRows();\n  }\n}",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/Loop.js",
     "access": "public",
@@ -1224,25 +1223,6 @@
   },
   {
     "__docId__": 81,
-    "kind": "member",
-    "name": "scale",
-    "memberof": "scripts/Classes/Loop.js~Loop",
-    "static": false,
-    "longname": "scripts/Classes/Loop.js~Loop#scale",
-    "access": "public",
-    "description": "",
-    "lineNumber": 43,
-    "type": {
-      "nullable": null,
-      "types": [
-        "Array"
-      ],
-      "spread": false,
-      "description": null
-    }
-  },
-  {
-    "__docId__": 82,
     "kind": "method",
     "name": "setScale",
     "memberof": "scripts/Classes/Loop.js~Loop",
@@ -1252,7 +1232,7 @@
     "longname": "scripts/Classes/Loop.js~Loop#setScale",
     "access": "public",
     "description": "",
-    "lineNumber": 52,
+    "lineNumber": 48,
     "return": {
       "nullable": null,
       "types": [
@@ -1271,6 +1251,23 @@
     ]
   },
   {
+    "__docId__": 82,
+    "kind": "member",
+    "name": "scale",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#scale",
+    "access": "public",
+    "description": null,
+    "lineNumber": 85,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
     "__docId__": 83,
     "kind": "method",
     "name": "convertPattern",
@@ -1281,7 +1278,7 @@
     "longname": "scripts/Classes/Loop.js~Loop#convertPattern",
     "access": "public",
     "description": "Convert an array of note names into a series of patterns for use by `makeRows()`",
-    "lineNumber": 64,
+    "lineNumber": 91,
     "params": [],
     "return": null
   },
@@ -1295,14 +1292,39 @@
     "static": false,
     "longname": "scripts/Classes/Loop.js~Loop#makeRows",
     "access": "public",
-    "description": null,
-    "lineNumber": 80,
-    "undocument": true,
+    "description": "Create rows of DOM objects and sequences",
+    "lineNumber": 112,
     "params": [],
     "return": null
   },
   {
     "__docId__": 86,
+    "kind": "method",
+    "name": "updateRows",
+    "memberof": "scripts/Classes/Loop.js~Loop",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/Loop.js~Loop#updateRows",
+    "access": "public",
+    "description": "Used by the ScaleButton to replace the rows in each loop",
+    "lineNumber": 124,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "scale",
+        "description": ""
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 88,
     "kind": "file",
     "name": "scripts/Classes/PlayButton.js",
     "content": "import * as Tone from \"tone\";\n\n/**\n * Create master play button to start Tone.js and control play/pause events\n */\nexport class PlayButton {\n  /**\n   * Get element and create play button\n   */\n  constructor() {\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.getElementById(\"playButton\");\n    this.domObject.innerText = \"Start (click or use the space bar)\";\n    this.domObject.start = this.start;\n    this.domObject.stop = this.stop;\n    this.domObject.addEventListener(\"click\", this.listener.bind(this));\n    document.addEventListener(\"keydown\", e => {\n      if (e.code === \"Space\") {\n        e.preventDefault();\n        this.listener();\n      }\n    });\n  }\n\n  /**\n   * Activate Tone.js and control start/stop functionality\n   */\n  async listener() { \n    if (this.domObject.innerText == \"Start (click or use the space bar)\") {\n      await Tone.start();\n      this.start();\n    } else {\n      this.stop();\n    }\n  }\n\n  /**\n   * Start Tone.Transport\n   */\n  start() {\n    this.domObject.innerText = \"Stop\";\n    Tone.Transport.start(\"+0.01\")\n  }\n\n  /**\n   * Stop Tone.Transport\n   */\n  stop() {\n    Tone.Transport.stop();\n    this.domObject.innerText = \"Start (click or use the space bar)\";\n  }\n}",
@@ -1313,7 +1335,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 87,
+    "__docId__": 89,
     "kind": "class",
     "name": "PlayButton",
     "memberof": "scripts/Classes/PlayButton.js",
@@ -1328,7 +1350,7 @@
     "interface": false
   },
   {
-    "__docId__": 88,
+    "__docId__": 90,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "scripts/Classes/PlayButton.js~PlayButton",
@@ -1341,7 +1363,7 @@
     "lineNumber": 10
   },
   {
-    "__docId__": 89,
+    "__docId__": 91,
     "kind": "member",
     "name": "domObject",
     "memberof": "scripts/Classes/PlayButton.js~PlayButton",
@@ -1360,7 +1382,7 @@
     }
   },
   {
-    "__docId__": 90,
+    "__docId__": 92,
     "kind": "method",
     "name": "listener",
     "memberof": "scripts/Classes/PlayButton.js~PlayButton",
@@ -1375,7 +1397,7 @@
     "return": null
   },
   {
-    "__docId__": 91,
+    "__docId__": 93,
     "kind": "method",
     "name": "start",
     "memberof": "scripts/Classes/PlayButton.js~PlayButton",
@@ -1390,7 +1412,7 @@
     "return": null
   },
   {
-    "__docId__": 92,
+    "__docId__": 94,
     "kind": "method",
     "name": "stop",
     "memberof": "scripts/Classes/PlayButton.js~PlayButton",
@@ -1405,7 +1427,7 @@
     "return": null
   },
   {
-    "__docId__": 93,
+    "__docId__": 95,
     "kind": "file",
     "name": "scripts/Classes/Row.js",
     "content": "import * as Tone from 'tone';\nimport { Box } from './Box.js';\n\n/**\n * Creates and controls DOM objects for individual loop rows\n */\nexport class Row {\n  /**\n   * @param {object} part\n   * @param {string} name\n   * @param {string} note\n   * @param {Tone.Synth} source \n   */\n  constructor(source, pattern, note, name = note) {\n    /**\n     * @type {number}\n     */\n    this.labelWidth = 6.0;\n    /**\n     * @type {string}\n     */\n    this.name = name;\n    /**\n     * @type {array}\n     */\n    this.note = note;\n    /**\n     * @type {array}\n     */\n    this.pattern = pattern;\n    /**\n    * @type {Tone.synth}\n    */\n    this.source = source;\n    this.createLoop();\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.createElement(\"div\");\n    this.domObject.classList.add(\"row-of-boxes\");\n    this.domObject.appendChild(this.makeRowLabel(this.name));\n    /**\n     * @type {array}\n     */\n    this.boxes = this.createBoxes();\n  }\n\n  /**\n   * \n   * @param {string} label Name of the row, to be added to the DOM object before any boxes\n   * @return {HTMLSpanElement} HTML span element with the row name\n   */\n  makeRowLabel(label) {\n    var rowName = document.createElement(\"span\");\n    rowName.classList.add(\"row-label\");\n    rowName.innerText = label;\n    rowName.style.width = this.labelWidth + \"em\";\n    return rowName;\n  }\n\n  /**\n   * Build and store the series of boxes in the row\n   */\n  createBoxes() {\n    var boxes = [];\n    let widthString = this.calculateBoxWidth();\n    for (let i = 0; i < this.pattern.length; i++) {\n      let box = new Box(this.pattern[i]);\n      box.domObject.style.width = widthString;\n\n      // add event listeners\n      box.domObject.addEventListener(\"click\", () => {\n        this.switchFilledStatus(box);\n        this.updateSequencePattern(i, box.filled);\n        this.createLoop();\n      })\n\n      // display and store the box\n      this.domObject.appendChild(box.domObject);\n      boxes.push(box);\n    };\n    return boxes;\n  }\n\n  /**\n   * Called by `createBoxes`, uses the number of boxes in\n   * a row to calculate and set the CSS width property\n   */\n  calculateBoxWidth() {\n    let percent = 100.0 / this.pattern.length + \"%\";\n    let padding = this.labelWidth / this.pattern.length + 0.1;\n    return \"calc(\" + percent + \" - \" + padding + \"em)\";\n  }\n\n  /**\n   * Used by the constructor and click event callbacks to remove the\n   * previous loop and replace it with an updated version\n   */\n  createLoop() {\n    // clear the previous sequence if one exists\n    if (this.sequence) {\n      this.sequence.dispose();\n    }\n\n    // create the new sequence for this row\n    this.sequence = new Tone.Sequence((time, note) => {\n      this.flashActiveBox();\n      this.source.triggerAttackRelease(note, \"8n\", time);\n    }, this.pattern).start(0);\n  }\n\n  /**\n   * Called in the Tone.Sequencer callback to determine which\n   * box to animate\n   */\n  flashActiveBox() {\n    var [beat, sixteenth] = Tone.Transport.position.split(/\\.|:/).slice(1,3);\n    beat = Number(beat);\n    sixteenth = Number(sixteenth);\n    var currentPosition = beat * 2 + sixteenth / 2, beat, sixteenth;\n    if (this.boxes[currentPosition].filled && this.boxes[currentPosition].filled) {\n      this.boxes[currentPosition].flash();\n    }\n  }\n\n  /**\n   * Switch the status of a box as filled and not filled\n   * @param {Box} box\n   */\n  switchFilledStatus(box) {\n    var filled = false;\n    if (box.domObject.classList.contains(\"filled-box\")) {\n      box.domObject.classList.remove(\"filled-box\");\n      box.domObject.classList.add(\"empty-box\");\n    } else {\n      box.domObject.classList.add(\"filled-box\");\n      box.domObject.classList.remove(\"empty-box\");\n      filled = true;\n    }\n    box.filled = filled;\n  }\n\n  /**\n   * Update the sequence object passed by Row whenever a user clicks\n   * a box. This is part of the Box click event listener\n   */\n  updateSequencePattern(positionNumber, filled) {\n    var pattern = this.sequence._eventsArray;\n    if (filled) {\n      pattern[positionNumber] = this.note;\n    } else {\n      pattern[positionNumber] = null;\n    }\n    this.pattern = pattern;\n  }\n}\n",
@@ -1416,7 +1438,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 94,
+    "__docId__": 96,
     "kind": "class",
     "name": "Row",
     "memberof": "scripts/Classes/Row.js",
@@ -1431,7 +1453,7 @@
     "interface": false
   },
   {
-    "__docId__": 95,
+    "__docId__": 97,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1486,7 +1508,7 @@
     ]
   },
   {
-    "__docId__": 96,
+    "__docId__": 98,
     "kind": "member",
     "name": "labelWidth",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1505,7 +1527,7 @@
     }
   },
   {
-    "__docId__": 97,
+    "__docId__": 99,
     "kind": "member",
     "name": "name",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1524,7 +1546,7 @@
     }
   },
   {
-    "__docId__": 98,
+    "__docId__": 100,
     "kind": "member",
     "name": "note",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1543,7 +1565,7 @@
     }
   },
   {
-    "__docId__": 99,
+    "__docId__": 101,
     "kind": "member",
     "name": "pattern",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1562,7 +1584,7 @@
     }
   },
   {
-    "__docId__": 100,
+    "__docId__": 102,
     "kind": "member",
     "name": "source",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1581,7 +1603,7 @@
     }
   },
   {
-    "__docId__": 101,
+    "__docId__": 103,
     "kind": "member",
     "name": "domObject",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1600,7 +1622,7 @@
     }
   },
   {
-    "__docId__": 102,
+    "__docId__": 104,
     "kind": "member",
     "name": "boxes",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1619,7 +1641,7 @@
     }
   },
   {
-    "__docId__": 103,
+    "__docId__": 105,
     "kind": "method",
     "name": "makeRowLabel",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1652,7 +1674,7 @@
     }
   },
   {
-    "__docId__": 104,
+    "__docId__": 106,
     "kind": "method",
     "name": "createBoxes",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1671,7 +1693,7 @@
     }
   },
   {
-    "__docId__": 105,
+    "__docId__": 107,
     "kind": "method",
     "name": "calculateBoxWidth",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1690,7 +1712,7 @@
     }
   },
   {
-    "__docId__": 106,
+    "__docId__": 108,
     "kind": "method",
     "name": "createLoop",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1705,7 +1727,7 @@
     "return": null
   },
   {
-    "__docId__": 107,
+    "__docId__": 109,
     "kind": "member",
     "name": "sequence",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1722,7 +1744,7 @@
     }
   },
   {
-    "__docId__": 108,
+    "__docId__": 110,
     "kind": "method",
     "name": "flashActiveBox",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1737,7 +1759,7 @@
     "return": null
   },
   {
-    "__docId__": 109,
+    "__docId__": 111,
     "kind": "method",
     "name": "switchFilledStatus",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1763,7 +1785,7 @@
     "return": null
   },
   {
-    "__docId__": 110,
+    "__docId__": 112,
     "kind": "method",
     "name": "updateSequencePattern",
     "memberof": "scripts/Classes/Row.js~Row",
@@ -1791,7 +1813,167 @@
     "return": null
   },
   {
-    "__docId__": 112,
+    "__docId__": 114,
+    "kind": "file",
+    "name": "scripts/Classes/ScaleButtons.js",
+    "content": "import * as Tone from \"tone\";\n\n/**\n * Create scale button group to change scalar patterns\n */\nexport class ScaleButtons {\n  /**\n   * Get element and create play button\n   */\n  constructor(currentScale, melodyLoop, bassLoop) {\n    /**\n     * @type {string}\n     */\n    this.currentScale = currentScale;\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.getElementById(\"scaleSelector\");\n    /**\n     * @type {Loop}\n     */\n    this.melodyLoop = melodyLoop;\n    /**\n     * @type {Loop}\n     */\n    this.bassLoop = bassLoop;\n    /**\n     * @type {array}\n     */\n    this.buttons = []\n\n    var scales = [\"Minor\", \"Major\", \"Dorian\", \"Pentatonic\"];\n    for (let i = 0; i < scales.length; i++) {\n      var button = document.createElement(\"span\");\n      button.innerText = scales[i];\n      if (scales[i].toLowerCase() == this.currentScale) {\n        button.classList.add(\"active\");\n      }\n      button.classList.add(\"scaleButton\");\n      button.style.marginRight = i != scales.length - 1 ? \"1em\" : \"0em\";\n      \n      this.domObject.appendChild(button)\n      this.buttons.push(button);\n    }\n\n    this.buttons.forEach(button => {\n      button.addEventListener(\"click\", this.listener.bind(this));\n    });\n  }\n\n  /**\n   * Rebuild loops using the selected scale\n   * @param {*} e Event listener target object\n   */\n  listener(e) {\n    Tone.Transport.stop();\n    this.buttons.forEach(button => {\n      button.classList.remove(\"active\");\n    })\n    e.target.classList.add(\"active\");\n    this.currentScale = e.target.innerText.toLowerCase();\n    this.melodyLoop.updateRows(this.currentScale + \"Melody\");\n    this.bassLoop.updateRows(this.currentScale + \"Bass\");\n  }\n}",
+    "static": true,
+    "longname": "/Users/cwituls/Documents/loopBuilder/scripts/Classes/ScaleButtons.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 115,
+    "kind": "class",
+    "name": "ScaleButtons",
+    "memberof": "scripts/Classes/ScaleButtons.js",
+    "static": true,
+    "longname": "scripts/Classes/ScaleButtons.js~ScaleButtons",
+    "access": "public",
+    "export": true,
+    "importPath": "loopBuilder/scripts/Classes/ScaleButtons.js",
+    "importStyle": "{ScaleButtons}",
+    "description": "Create scale button group to change scalar patterns",
+    "lineNumber": 6,
+    "interface": false
+  },
+  {
+    "__docId__": 116,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "scripts/Classes/ScaleButtons.js~ScaleButtons",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/ScaleButtons.js~ScaleButtons#constructor",
+    "access": "public",
+    "description": "Get element and create play button",
+    "lineNumber": 10
+  },
+  {
+    "__docId__": 117,
+    "kind": "member",
+    "name": "currentScale",
+    "memberof": "scripts/Classes/ScaleButtons.js~ScaleButtons",
+    "static": false,
+    "longname": "scripts/Classes/ScaleButtons.js~ScaleButtons#currentScale",
+    "access": "public",
+    "description": "",
+    "lineNumber": 14,
+    "type": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 118,
+    "kind": "member",
+    "name": "domObject",
+    "memberof": "scripts/Classes/ScaleButtons.js~ScaleButtons",
+    "static": false,
+    "longname": "scripts/Classes/ScaleButtons.js~ScaleButtons#domObject",
+    "access": "public",
+    "description": "",
+    "lineNumber": 18,
+    "type": {
+      "nullable": null,
+      "types": [
+        "HTMLElement"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 119,
+    "kind": "member",
+    "name": "melodyLoop",
+    "memberof": "scripts/Classes/ScaleButtons.js~ScaleButtons",
+    "static": false,
+    "longname": "scripts/Classes/ScaleButtons.js~ScaleButtons#melodyLoop",
+    "access": "public",
+    "description": "",
+    "lineNumber": 22,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Loop"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 120,
+    "kind": "member",
+    "name": "bassLoop",
+    "memberof": "scripts/Classes/ScaleButtons.js~ScaleButtons",
+    "static": false,
+    "longname": "scripts/Classes/ScaleButtons.js~ScaleButtons#bassLoop",
+    "access": "public",
+    "description": "",
+    "lineNumber": 26,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Loop"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 121,
+    "kind": "member",
+    "name": "buttons",
+    "memberof": "scripts/Classes/ScaleButtons.js~ScaleButtons",
+    "static": false,
+    "longname": "scripts/Classes/ScaleButtons.js~ScaleButtons#buttons",
+    "access": "public",
+    "description": "",
+    "lineNumber": 30,
+    "type": {
+      "nullable": null,
+      "types": [
+        "array"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 122,
+    "kind": "method",
+    "name": "listener",
+    "memberof": "scripts/Classes/ScaleButtons.js~ScaleButtons",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "scripts/Classes/ScaleButtons.js~ScaleButtons#listener",
+    "access": "public",
+    "description": "Rebuild loops using the selected scale",
+    "lineNumber": 55,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "e",
+        "description": "Event listener target object"
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 124,
     "kind": "file",
     "name": "scripts/Classes/ShareButton.js",
     "content": "import { copyUrlToClipboard } from '../urlSharing.js';\n\n/**\n * Create share button\n */\nexport class ShareButton {\n  /**\n   * Get element and create share button\n   */\n  constructor() {\n    /**\n     * @type {HTMLElement}\n     */\n    this.domObject = document.getElementById(\"shareButton\");\n    this.domObject.innerText = \"Share\";\n    this.domObject.addEventListener(\"click\", this.listener.bind(this));\n  }\n\n  /**\n   * create URL with encoded loops object\n   */\n  listener() {\n    copyUrlToClipboard();\n    this.domObject.innerText = \"URL copied to the clipboard\";\n    setTimeout(() => {\n      this.domObject.innerText = \"Share\";\n    }, 5000)\n  }\n}",
@@ -1802,7 +1984,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 113,
+    "__docId__": 125,
     "kind": "class",
     "name": "ShareButton",
     "memberof": "scripts/Classes/ShareButton.js",
@@ -1817,7 +1999,7 @@
     "interface": false
   },
   {
-    "__docId__": 114,
+    "__docId__": 126,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "scripts/Classes/ShareButton.js~ShareButton",
@@ -1830,7 +2012,7 @@
     "lineNumber": 10
   },
   {
-    "__docId__": 115,
+    "__docId__": 127,
     "kind": "member",
     "name": "domObject",
     "memberof": "scripts/Classes/ShareButton.js~ShareButton",
@@ -1849,7 +2031,7 @@
     }
   },
   {
-    "__docId__": 116,
+    "__docId__": 128,
     "kind": "method",
     "name": "listener",
     "memberof": "scripts/Classes/ShareButton.js~ShareButton",
@@ -1864,10 +2046,10 @@
     "return": null
   },
   {
-    "__docId__": 117,
+    "__docId__": 129,
     "kind": "file",
     "name": "scripts/audio.js",
-    "content": "import * as Tone from 'tone';\n\nimport hihat from \"../audio/hihat.mp3\";\nimport snare from \"../audio/snare.mp3\";\nimport kick from \"../audio/kick.mp3\";\nimport clave from \"../audio/clave.mp3\";\nimport ding from \"../audio/ding.mp3\";\nimport bongo1 from \"../audio/bongo1.mp3\";\nimport bongo2 from \"../audio/bongo2.mp3\";\nimport tom3 from \"../audio/tom3.mp3\";\nimport cowbell from \"../audio/cowbell.mp3\";\n\nexport function createDrumSampler() {\n  const drumSampler = new Tone.Sampler({\n    urls: {\n      C3: kick,\n      D3: snare,\n      E3: hihat,\n      F3: cowbell,\n      G3: clave,\n      A3: bongo1,\n      B3: bongo2,\n      C4: ding,\n      D4: tom3,\n    },\n  }).toDestination();\n\n  return drumSampler;\n}\n\nexport function createSynth() {\n  const synth = new Tone.PolySynth().toDestination();\n  return synth;\n}\n",
+    "content": "import * as Tone from 'tone';\nimport hihat from \"../audio/hihat.mp3\";\nimport snare from \"../audio/snare.mp3\";\nimport kick from \"../audio/kick.mp3\";\nimport clave from \"../audio/clave.mp3\";\nimport ding from \"../audio/ding.mp3\";\nimport bongo1 from \"../audio/bongo1.mp3\";\nimport bongo2 from \"../audio/bongo2.mp3\";\nimport tom3 from \"../audio/tom3.mp3\";\nimport cowbell from \"../audio/cowbell.mp3\";\n\n/**\n * Create a drum sampler object to be passed around\n * @return {Tone.Sampler}\n */\nexport function createDrumSampler() {\n  const drumSampler = new Tone.Sampler({\n    urls: {\n      C3: kick,\n      D3: snare,\n      E3: hihat,\n      F3: cowbell,\n      G3: clave,\n      A3: bongo1,\n      B3: bongo2,\n      C4: ding,\n      D4: tom3,\n    },\n  }).toDestination();\n\n  return drumSampler;\n}\n\n/**\n * Create a synthesizer object to be passed around\n * @return {Tone.PolySynth}\n */\nexport function createSynth() {\n  const synth = new Tone.PolySynth().toDestination();\n  return synth;\n}\n",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/audio.js",
     "access": "public",
@@ -1875,7 +2057,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 118,
+    "__docId__": 130,
     "kind": "function",
     "name": "createDrumSampler",
     "memberof": "scripts/audio.js",
@@ -1887,18 +2069,20 @@
     "export": true,
     "importPath": "loopBuilder/scripts/audio.js",
     "importStyle": "{createDrumSampler}",
-    "description": null,
-    "lineNumber": 13,
-    "undocument": true,
-    "params": [],
+    "description": "Create a drum sampler object to be passed around",
+    "lineNumber": 16,
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
-    }
+        "Tone.Sampler"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
   },
   {
-    "__docId__": 119,
+    "__docId__": 131,
     "kind": "function",
     "name": "createSynth",
     "memberof": "scripts/audio.js",
@@ -1910,21 +2094,23 @@
     "export": true,
     "importPath": "loopBuilder/scripts/audio.js",
     "importStyle": "{createSynth}",
-    "description": null,
-    "lineNumber": 31,
-    "undocument": true,
-    "params": [],
+    "description": "Create a synthesizer object to be passed around",
+    "lineNumber": 38,
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
-    }
+        "Tone.PolySynth"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
   },
   {
-    "__docId__": 120,
+    "__docId__": 132,
     "kind": "file",
     "name": "scripts/loops.js",
-    "content": "var melodyLoop = {\n  scale: \"dorianMelody\",\n  effectLevels: [0.2, 0.5],\n  parts: [\n    [0, 1, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 1, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 1, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [1, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 1, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n  ]\n}\n\nvar bassLoop = {\n  scale: \"dorianBass\",\n  effectLevels: [0.2, 0.5],\n  parts: [\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 1, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 1, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [1, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 1, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n  ]\n}\n\nvar drumLoop = {\n  scale: \"drumSet\",\n  // names: [\"Kick drum\", \"Snare drum\", \"Hi hat\", \"Cowbell\", \"Clave\"],\n  parts: [\n    [1, 0, 0, 0, 1, 0, 0, 0],\n    [0, 0, 1, 1, 0, 0, 1, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 1, 0, 0, 1, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n  ]\n}\n\nexport var defaultLoops = {\n  drumLoop: drumLoop,\n  melodyLoop: melodyLoop,\n  bassLoop: bassLoop,\n  tempo: 108,\n}",
+    "content": "/**\n * Default melodic loop information\n */\nvar melodyLoop = {\n  scale: \"dorianMelody\",\n  effectLevels: [0.2, 0.5],\n  parts: [\n    [0, 1, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 1, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 1, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [1, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 1, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n  ]\n}\n\n/**\n * Default bass loop information\n */\nvar bassLoop = {\n  scale: \"dorianBass\",\n  effectLevels: [0.2, 0.5],\n  parts: [\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 1, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 1, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [1, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 1, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n  ]\n}\n\n/**\n * Default drum loop information\n */\nvar drumLoop = {\n  scale: \"drumSet\",\n  // names: [\"Kick drum\", \"Snare drum\", \"Hi hat\", \"Cowbell\", \"Clave\"],\n  parts: [\n    [1, 0, 0, 0, 1, 0, 0, 0],\n    [0, 0, 1, 1, 0, 0, 1, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 1, 0, 0, 1, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n    [0, 0, 0, 0, 0, 0, 0, 0],\n  ]\n}\n\n/**\n * Default loops compiled to export object\n */\nexport var defaultLoops = {\n  drumLoop: drumLoop,\n  melodyLoop: melodyLoop,\n  bassLoop: bassLoop,\n  tempo: 108,\n}",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/loops.js",
     "access": "public",
@@ -1932,7 +2118,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 121,
+    "__docId__": 133,
     "kind": "variable",
     "name": "melodyLoop",
     "memberof": "scripts/loops.js",
@@ -1942,9 +2128,8 @@
     "export": false,
     "importPath": "loopBuilder/scripts/loops.js",
     "importStyle": null,
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "Default melodic loop information",
+    "lineNumber": 4,
     "type": {
       "types": [
         "{\"scale\": string, \"effectLevels\": *, \"parts\": *}"
@@ -1953,7 +2138,7 @@
     "ignore": true
   },
   {
-    "__docId__": 122,
+    "__docId__": 134,
     "kind": "variable",
     "name": "bassLoop",
     "memberof": "scripts/loops.js",
@@ -1964,7 +2149,7 @@
     "importPath": "loopBuilder/scripts/loops.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 23,
+    "lineNumber": 29,
     "undocument": true,
     "type": {
       "types": [
@@ -1974,7 +2159,7 @@
     "ignore": true
   },
   {
-    "__docId__": 123,
+    "__docId__": 135,
     "kind": "variable",
     "name": "drumLoop",
     "memberof": "scripts/loops.js",
@@ -1985,7 +2170,7 @@
     "importPath": "loopBuilder/scripts/loops.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 45,
+    "lineNumber": 54,
     "undocument": true,
     "type": {
       "types": [
@@ -1995,7 +2180,7 @@
     "ignore": true
   },
   {
-    "__docId__": 124,
+    "__docId__": 136,
     "kind": "variable",
     "name": "defaultLoops",
     "memberof": "scripts/loops.js",
@@ -2006,7 +2191,7 @@
     "importPath": "loopBuilder/scripts/loops.js",
     "importStyle": "{defaultLoops}",
     "description": null,
-    "lineNumber": 61,
+    "lineNumber": 73,
     "undocument": true,
     "type": {
       "types": [
@@ -2015,10 +2200,10 @@
     }
   },
   {
-    "__docId__": 125,
+    "__docId__": 137,
     "kind": "file",
     "name": "scripts/script.js",
-    "content": "import * as Tone from 'tone';\nimport { Loop } from './Classes/Loop.js';\nimport { DrumLoop } from './Classes/DrumLoop.js';\nimport { PlayButton } from './Classes/PlayButton.js';\nimport { ShareButton } from './Classes/ShareButton.js';\nimport { EffectsUI } from './Classes/EffectsUI.js';\nimport { parseLoopFromURL } from './urlSharing.js';\nimport { createDrumSampler, createSynth } from './audio.js';\n\nconst drumSampler = createDrumSampler();\nconst drumVolumeNode = new Tone.Volume(-6).toDestination();\ndrumSampler.connect(drumVolumeNode);\n\nconst melodySynth = createSynth();\nconst melodyVolumeNode = new Tone.Volume(0).toDestination();\nmelodySynth.connect(melodyVolumeNode);\n\nconst bassSynth = createSynth();\nconst bassVolumeNode = new Tone.Volume(-20).toDestination();\nbassSynth.connect(bassVolumeNode);\n\n// get shared loop\nvar loops = parseLoopFromURL();\n\n// add effects\nconst melodyEffect1 = new Tone.Distortion({\n  distortion: 10,\n  wet: loops.melodyLoop.effectLevels[0]\n})\n\nconst melodyEffect2 = new Tone.FeedbackDelay({\n  delayTime: \"8n\",\n  feedback: 0.7,\n  maxDelay: \"4n\",\n  wet: loops.melodyLoop.effectLevels[1]\n}).toDestination();\n\nmelodySynth.chain(melodyEffect1, melodyEffect2);\n\nconst bassEffect1 = new Tone.BitCrusher({ \n  bits: 2,\n  wet: loops.bassLoop.effectLevels[0]\n}).toDestination();\n\nconst bassEffect2 = new Tone.Chorus({\n  depth: 1,\n  delayTime: 700,\n  feedback: 0.4,\n  wet: loops.bassLoop.effectLevels[1]\n}).toDestination();\n\nbassSynth.chain(bassEffect1, bassEffect2);\n\n// set up loops\nconst Play = new PlayButton();\nconst Share = new ShareButton();\nconst melodyLoop = new Loop(\"melodyLoop\", loops.melodyLoop, melodySynth);\nconst bassLoop = new Loop(\"bassLoop\", loops.bassLoop, bassSynth);\nconst drumLoop = new DrumLoop(\"drumLoop\", loops.drumLoop, drumSampler);\n\n// set up filter listeners\nconst synthEffects = new EffectsUI(\"melodyEffects\", loops.melodyLoop.effectLevels, melodyEffect1, melodyEffect2);\nconst bassEffects = new EffectsUI(\"bassEffects\", loops.bassLoop.effectLevels, bassEffect1, bassEffect2);\n\n// tempo slider\nvar slider = document.getElementById(\"tempo-slider\");\nvar bpmSpan = document.getElementById(\"bpm-span\");\nTone.Transport.bpm.value = loops.tempo;\nslider.value = loops.tempo;\nbpmSpan.innerText = slider.value;\n\nslider.oninput = function() {\n  Tone.Transport.bpm.value = this.value;\n  bpmSpan.innerText = slider.value;\n}\n",
+    "content": "import * as Tone from 'tone';\nimport { Loop } from './Classes/Loop.js';\nimport { DrumLoop } from './Classes/DrumLoop.js';\nimport { PlayButton } from './Classes/PlayButton.js';\nimport { ShareButton } from './Classes/ShareButton.js';\nimport { ScaleButtons } from './Classes/ScaleButtons.js';\nimport { EffectsUI } from './Classes/EffectsUI.js';\nimport { parseLoopFromURL } from './urlSharing.js';\nimport { createDrumSampler, createSynth } from './audio.js';\n\nconst drumSampler = createDrumSampler();\nconst drumVolumeNode = new Tone.Volume(-6).toDestination();\ndrumSampler.connect(drumVolumeNode);\n\nconst melodySynth = createSynth();\nconst melodyVolumeNode = new Tone.Volume(0).toDestination();\nmelodySynth.connect(melodyVolumeNode);\n\nconst bassSynth = createSynth();\nconst bassVolumeNode = new Tone.Volume(-20).toDestination();\nbassSynth.connect(bassVolumeNode);\n\n// get shared loop\nvar loops = parseLoopFromURL();\n\n// add effects\nconst melodyEffect1 = new Tone.Distortion({\n  distortion: 10,\n  wet: loops.melodyLoop.effectLevels[0]\n})\n\nconst melodyEffect2 = new Tone.FeedbackDelay({\n  delayTime: \"8n\",\n  feedback: 0.7,\n  maxDelay: \"4n\",\n  wet: loops.melodyLoop.effectLevels[1]\n}).toDestination();\n\nmelodySynth.chain(melodyEffect1, melodyEffect2);\n\nconst bassEffect1 = new Tone.BitCrusher({ \n  bits: 2,\n  wet: loops.bassLoop.effectLevels[0]\n}).toDestination();\n\nconst bassEffect2 = new Tone.Chorus({\n  depth: 1,\n  delayTime: 700,\n  feedback: 0.4,\n  wet: loops.bassLoop.effectLevels[1]\n}).toDestination();\n\nbassSynth.chain(bassEffect1, bassEffect2);\n\n// set up buttons\nconst Play = new PlayButton();\nconst Share = new ShareButton();\n\n// set up loops\nconst melodyLoop = new Loop(\"melodyLoop\", loops.melodyLoop, melodySynth);\nconst bassLoop = new Loop(\"bassLoop\", loops.bassLoop, bassSynth);\nconst drumLoop = new DrumLoop(\"drumLoop\", loops.drumLoop, drumSampler);\n\nconst Scales = new ScaleButtons(loops.melodyLoop.scale.split(\"M\")[0], melodyLoop, bassLoop);\n\n// set up filter listeners\nconst synthEffects = new EffectsUI(\"melodyEffects\", loops.melodyLoop.effectLevels, melodyEffect1, melodyEffect2);\nconst bassEffects = new EffectsUI(\"bassEffects\", loops.bassLoop.effectLevels, bassEffect1, bassEffect2);\n\n// tempo slider\nvar slider = document.getElementById(\"tempo-slider\");\nvar bpmSpan = document.getElementById(\"bpm-span\");\nTone.Transport.bpm.value = loops.tempo;\nslider.value = loops.tempo;\nbpmSpan.innerText = slider.value;\n\nslider.oninput = function() {\n  Tone.Transport.bpm.value = this.value;\n  bpmSpan.innerText = slider.value;\n}\n",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/script.js",
     "access": "public",
@@ -2026,33 +2211,12 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 126,
+    "__docId__": 138,
     "kind": "variable",
     "name": "drumSampler",
     "memberof": "scripts/script.js",
     "static": true,
     "longname": "scripts/script.js~drumSampler",
-    "access": "public",
-    "export": false,
-    "importPath": "loopBuilder/scripts/script.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 10,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 127,
-    "kind": "variable",
-    "name": "drumVolumeNode",
-    "memberof": "scripts/script.js",
-    "static": true,
-    "longname": "scripts/script.js~drumVolumeNode",
     "access": "public",
     "export": false,
     "importPath": "loopBuilder/scripts/script.js",
@@ -2068,18 +2232,18 @@
     "ignore": true
   },
   {
-    "__docId__": 128,
+    "__docId__": 139,
     "kind": "variable",
-    "name": "melodySynth",
+    "name": "drumVolumeNode",
     "memberof": "scripts/script.js",
     "static": true,
-    "longname": "scripts/script.js~melodySynth",
+    "longname": "scripts/script.js~drumVolumeNode",
     "access": "public",
     "export": false,
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 14,
+    "lineNumber": 12,
     "undocument": true,
     "type": {
       "types": [
@@ -2089,12 +2253,12 @@
     "ignore": true
   },
   {
-    "__docId__": 129,
+    "__docId__": 140,
     "kind": "variable",
-    "name": "melodyVolumeNode",
+    "name": "melodySynth",
     "memberof": "scripts/script.js",
     "static": true,
-    "longname": "scripts/script.js~melodyVolumeNode",
+    "longname": "scripts/script.js~melodySynth",
     "access": "public",
     "export": false,
     "importPath": "loopBuilder/scripts/script.js",
@@ -2110,18 +2274,18 @@
     "ignore": true
   },
   {
-    "__docId__": 130,
+    "__docId__": 141,
     "kind": "variable",
-    "name": "bassSynth",
+    "name": "melodyVolumeNode",
     "memberof": "scripts/script.js",
     "static": true,
-    "longname": "scripts/script.js~bassSynth",
+    "longname": "scripts/script.js~melodyVolumeNode",
     "access": "public",
     "export": false,
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 18,
+    "lineNumber": 16,
     "undocument": true,
     "type": {
       "types": [
@@ -2131,12 +2295,12 @@
     "ignore": true
   },
   {
-    "__docId__": 131,
+    "__docId__": 142,
     "kind": "variable",
-    "name": "bassVolumeNode",
+    "name": "bassSynth",
     "memberof": "scripts/script.js",
     "static": true,
-    "longname": "scripts/script.js~bassVolumeNode",
+    "longname": "scripts/script.js~bassSynth",
     "access": "public",
     "export": false,
     "importPath": "loopBuilder/scripts/script.js",
@@ -2152,7 +2316,28 @@
     "ignore": true
   },
   {
-    "__docId__": 132,
+    "__docId__": 143,
+    "kind": "variable",
+    "name": "bassVolumeNode",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~bassVolumeNode",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 144,
     "kind": "variable",
     "name": "loops",
     "memberof": "scripts/script.js",
@@ -2163,259 +2348,7 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 23,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 133,
-    "kind": "variable",
-    "name": "melodyEffect1",
-    "memberof": "scripts/script.js",
-    "static": true,
-    "longname": "scripts/script.js~melodyEffect1",
-    "access": "public",
-    "export": false,
-    "importPath": "loopBuilder/scripts/script.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 26,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 134,
-    "kind": "variable",
-    "name": "melodyEffect2",
-    "memberof": "scripts/script.js",
-    "static": true,
-    "longname": "scripts/script.js~melodyEffect2",
-    "access": "public",
-    "export": false,
-    "importPath": "loopBuilder/scripts/script.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 31,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 135,
-    "kind": "variable",
-    "name": "bassEffect1",
-    "memberof": "scripts/script.js",
-    "static": true,
-    "longname": "scripts/script.js~bassEffect1",
-    "access": "public",
-    "export": false,
-    "importPath": "loopBuilder/scripts/script.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 40,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 136,
-    "kind": "variable",
-    "name": "bassEffect2",
-    "memberof": "scripts/script.js",
-    "static": true,
-    "longname": "scripts/script.js~bassEffect2",
-    "access": "public",
-    "export": false,
-    "importPath": "loopBuilder/scripts/script.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 45,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 137,
-    "kind": "variable",
-    "name": "Play",
-    "memberof": "scripts/script.js",
-    "static": true,
-    "longname": "scripts/script.js~Play",
-    "access": "public",
-    "export": false,
-    "importPath": "loopBuilder/scripts/script.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 55,
-    "undocument": true,
-    "type": {
-      "types": [
-        "scripts/Classes/PlayButton.js~PlayButton"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 138,
-    "kind": "variable",
-    "name": "Share",
-    "memberof": "scripts/script.js",
-    "static": true,
-    "longname": "scripts/script.js~Share",
-    "access": "public",
-    "export": false,
-    "importPath": "loopBuilder/scripts/script.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 56,
-    "undocument": true,
-    "type": {
-      "types": [
-        "scripts/Classes/ShareButton.js~ShareButton"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 139,
-    "kind": "variable",
-    "name": "melodyLoop",
-    "memberof": "scripts/script.js",
-    "static": true,
-    "longname": "scripts/script.js~melodyLoop",
-    "access": "public",
-    "export": false,
-    "importPath": "loopBuilder/scripts/script.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 57,
-    "undocument": true,
-    "type": {
-      "types": [
-        "scripts/Classes/Loop.js~Loop"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 140,
-    "kind": "variable",
-    "name": "bassLoop",
-    "memberof": "scripts/script.js",
-    "static": true,
-    "longname": "scripts/script.js~bassLoop",
-    "access": "public",
-    "export": false,
-    "importPath": "loopBuilder/scripts/script.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 58,
-    "undocument": true,
-    "type": {
-      "types": [
-        "scripts/Classes/Loop.js~Loop"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 141,
-    "kind": "variable",
-    "name": "drumLoop",
-    "memberof": "scripts/script.js",
-    "static": true,
-    "longname": "scripts/script.js~drumLoop",
-    "access": "public",
-    "export": false,
-    "importPath": "loopBuilder/scripts/script.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 59,
-    "undocument": true,
-    "type": {
-      "types": [
-        "scripts/Classes/DrumLoop.js~DrumLoop"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 142,
-    "kind": "variable",
-    "name": "synthEffects",
-    "memberof": "scripts/script.js",
-    "static": true,
-    "longname": "scripts/script.js~synthEffects",
-    "access": "public",
-    "export": false,
-    "importPath": "loopBuilder/scripts/script.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 62,
-    "undocument": true,
-    "type": {
-      "types": [
-        "scripts/Classes/EffectsUI.js~EffectsUI"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 143,
-    "kind": "variable",
-    "name": "bassEffects",
-    "memberof": "scripts/script.js",
-    "static": true,
-    "longname": "scripts/script.js~bassEffects",
-    "access": "public",
-    "export": false,
-    "importPath": "loopBuilder/scripts/script.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 63,
-    "undocument": true,
-    "type": {
-      "types": [
-        "scripts/Classes/EffectsUI.js~EffectsUI"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 144,
-    "kind": "variable",
-    "name": "slider",
-    "memberof": "scripts/script.js",
-    "static": true,
-    "longname": "scripts/script.js~slider",
-    "access": "public",
-    "export": false,
-    "importPath": "loopBuilder/scripts/script.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 66,
+    "lineNumber": 24,
     "undocument": true,
     "type": {
       "types": [
@@ -2427,16 +2360,16 @@
   {
     "__docId__": 145,
     "kind": "variable",
-    "name": "bpmSpan",
+    "name": "melodyEffect1",
     "memberof": "scripts/script.js",
     "static": true,
-    "longname": "scripts/script.js~bpmSpan",
+    "longname": "scripts/script.js~melodyEffect1",
     "access": "public",
     "export": false,
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 67,
+    "lineNumber": 27,
     "undocument": true,
     "type": {
       "types": [
@@ -2447,6 +2380,279 @@
   },
   {
     "__docId__": 146,
+    "kind": "variable",
+    "name": "melodyEffect2",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~melodyEffect2",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 32,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 147,
+    "kind": "variable",
+    "name": "bassEffect1",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~bassEffect1",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 41,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 148,
+    "kind": "variable",
+    "name": "bassEffect2",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~bassEffect2",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 46,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 149,
+    "kind": "variable",
+    "name": "Play",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~Play",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 56,
+    "undocument": true,
+    "type": {
+      "types": [
+        "scripts/Classes/PlayButton.js~PlayButton"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 150,
+    "kind": "variable",
+    "name": "Share",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~Share",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 57,
+    "undocument": true,
+    "type": {
+      "types": [
+        "scripts/Classes/ShareButton.js~ShareButton"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 151,
+    "kind": "variable",
+    "name": "melodyLoop",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~melodyLoop",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 60,
+    "undocument": true,
+    "type": {
+      "types": [
+        "scripts/Classes/Loop.js~Loop"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 152,
+    "kind": "variable",
+    "name": "bassLoop",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~bassLoop",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 61,
+    "undocument": true,
+    "type": {
+      "types": [
+        "scripts/Classes/Loop.js~Loop"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 153,
+    "kind": "variable",
+    "name": "drumLoop",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~drumLoop",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 62,
+    "undocument": true,
+    "type": {
+      "types": [
+        "scripts/Classes/DrumLoop.js~DrumLoop"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 154,
+    "kind": "variable",
+    "name": "Scales",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~Scales",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 64,
+    "undocument": true,
+    "type": {
+      "types": [
+        "scripts/Classes/ScaleButtons.js~ScaleButtons"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 155,
+    "kind": "variable",
+    "name": "synthEffects",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~synthEffects",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 67,
+    "undocument": true,
+    "type": {
+      "types": [
+        "scripts/Classes/EffectsUI.js~EffectsUI"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 156,
+    "kind": "variable",
+    "name": "bassEffects",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~bassEffects",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 68,
+    "undocument": true,
+    "type": {
+      "types": [
+        "scripts/Classes/EffectsUI.js~EffectsUI"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 157,
+    "kind": "variable",
+    "name": "slider",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~slider",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 71,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 158,
+    "kind": "variable",
+    "name": "bpmSpan",
+    "memberof": "scripts/script.js",
+    "static": true,
+    "longname": "scripts/script.js~bpmSpan",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/script.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 72,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 159,
     "kind": "function",
     "name": "oninput",
     "memberof": "scripts/script.js",
@@ -2459,17 +2665,17 @@
     "importPath": "loopBuilder/scripts/script.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 72,
+    "lineNumber": 77,
     "undocument": true,
     "params": [],
     "return": null,
     "ignore": true
   },
   {
-    "__docId__": 147,
+    "__docId__": 160,
     "kind": "file",
     "name": "scripts/urlSharing.js",
-    "content": "import { defaultLoops } from './loops.js';\n\n/**\n * Parse loop from URL\n */\nexport function parseLoopFromURL() {\n  var loops;\n  const url = new URL(document.URL);\n  if (url.searchParams != \"\") {\n    const decodedString = decodeURIComponent(url.searchParams).replace(\"loops=\", \"\");\n    loops = JSON.parse(decodedString)\n    console.log(\"decoded\", loops)\n\n    // replace long strings to loop data\n    loops.melodyLoop.parts = parseLoops(loops.melodyLoop.parts)\n    loops.bassLoop.parts = parseLoops(loops.bassLoop.parts)\n    loops.drumLoop.parts = parseLoops(loops.drumLoop.parts)\n\n  } else {\n    loops = defaultLoops;\n    console.log(\"using default loops\", loops)\n  }\n  return loops;\n}\n\n/**\n * Replace long binary strings with an array of loops\n * @param {string} string \n */\nfunction parseLoops(string) {\n  // split loop string into substrings of a given length\n  var strings = string.split(/(.{8})/).filter(s => { return s.length > 0; });\n  var result = [];\n  strings.forEach(currentPart => {\n    currentPart = currentPart.split(\"\");\n    var parsedPart = [];\n    currentPart.forEach(value => {\n      parsedPart.push(Number(value));\n    })\n    result.push(parsedPart);\n  })\n  return result;\n}\n\n/**\n * Create a URL and copy it to the clipboard\n */\nexport function copyUrlToClipboard() {\n  var loops = getRowData();\n  // create url string\n  var url = new URL(document.URL);\n  var urlString = url.host + url.pathname + \"?loops=\" + encodeURIComponent(JSON.stringify(loops));\n  console.log(urlString)\n\n  // create dummy object for clipboard copy\n  var urlStringDomHolder = document.createElement(\"input\");\n  document.getElementById(\"shareButton\").appendChild(urlStringDomHolder);\n  urlStringDomHolder.value = urlString;\n  urlStringDomHolder.select();\n  document.execCommand(\"copy\");\n}\n\n/**\n * Get current sequencer state by scanning DOM objects\n */\nfunction getRowData() {\n  // get melody rows\n  var melodyRows = \"\";\n  var bassRows = \"\";\n  var drumRows = \"\";\n\n  var rows = document.getElementsByClassName(\"row-of-boxes\");\n  for (let i = 0; i < rows.length; i++) {\n    var rowData = getLoopArray(rows[i]);\n    if (i < 15) { melodyRows += rowData }\n    else if (i < 30) { bassRows += rowData }\n    else { drumRows += rowData }\n  }\n  \n  // get tempo\n  var tempo = document.getElementById(\"bpm-span\").innerText;\n\n  // get scale (coming later);\n  var scale = \"dorian\";\n\n  // get effects values\n  var melodyEffectValueSpans = document.getElementById(\"melodyEffects\").getElementsByClassName(\"effectValue\");\n  var bassEffectValueSpans = document.getElementById(\"bassEffects\").getElementsByClassName(\"effectValue\");\n  var melodyEffectLevels = [melodyEffectValueSpans[0].innerText, melodyEffectValueSpans[1].innerText]\n  var bassEffectLevels = [bassEffectValueSpans[0].innerText, bassEffectValueSpans[1].innerText]\n\n  // compile result\n  var result = {\n    melodyLoop: {\n      scale: scale + \"Melody\",\n      parts: melodyRows,\n      effectLevels: melodyEffectLevels\n    },\n    bassLoop: {\n      scale: scale + \"Bass\",\n      parts: bassRows,\n      effectLevels: bassEffectLevels\n    },\n    drumLoop: {\n      scale: \"drumSet\",\n      parts: drumRows\n    },\n    tempo: tempo\n  }\n\n  return result;\n}\n\n/**\n * Create array of 1s and 0s based on current box status in a row\n * @param {HTMLElement} row\n * @return {array}\n */\nfunction getLoopArray(row) {\n  let rowData = \"\";\n  // iterate through each box in the row\n  for (let j = 1; j < row.childNodes.length; j++) {\n    // convert row box status to a long binary string\n    let filled = row.childNodes[j].classList.contains(\"filled-box\")\n    filled ? rowData += \"1\" : rowData += \"0\";\n  }\n  return rowData;\n}\n",
+    "content": "import { defaultLoops } from './loops.js';\n\n/**\n * Parse loop from URL\n */\nexport function parseLoopFromURL() {\n  const url = new URL(document.URL);\n  if (url.searchParams != \"\") {\n    const decodedString = decodeURIComponent(url.searchParams).replace(\"l=\", \"\");\n    var parsedLoops = JSON.parse(decodedString)\n    console.log(\"decoded\", parsedLoops)\n\n    var populatedLoops = {\n      melodyLoop: {\n        scale: parsedLoops.m.s,\n        parts: parseLoops(parsedLoops.m.p),\n        effectLevels: parsedLoops.m.e\n      },\n      bassLoop: {\n        scale: parsedLoops.b.s,\n        parts: parseLoops(parsedLoops.b.p),\n        effectLevels: parsedLoops.b.e\n      },\n      drumLoop: {\n        scale: parsedLoops.d.s,\n        parts: parseLoops(parsedLoops.d.p)\n      },\n      tempo: parsedLoops.t\n    }\n    return populatedLoops\n\n  } else {\n    console.log(\"using default loops\")\n    return defaultLoops;\n  }\n}\n\n/**\n * Replace long binary strings with an array of loops\n * @param {string} string \n * @return {array} Array of loops representing the parsed loop string\n */\nfunction parseLoops(string) {\n  // split loop string into substrings of a given length\n  var loopArray = string.split(\"Z\")\n\n  // create loops of binary numbers\n  var result = [];\n  loopArray.forEach(part => {\n    // parse the hex representation back to an 8 digit binary string\n    part = parseInt(part, 16).toString(2).padStart(8, \"0\").split(\"\")\n    \n    // convert strings to integers\n    let parsedPart = [];\n    part.forEach(value => { parsedPart.push(Number(value)) });\n    result.push(parsedPart);\n  })\n\n  return result;\n}\n\n/**\n * Create a URL and copy it to the clipboard\n */\nexport function copyUrlToClipboard() {\n  var loops = getLoopData();\n\n  // create url string\n  var url = new URL(document.URL);\n  var urlString = url.host + url.pathname + \"?l=\" + encodeURIComponent(JSON.stringify(loops));\n  console.log(urlString)\n\n  // create dummy object for clipboard copy\n  var urlStringDomHolder = document.createElement(\"input\");\n  document.getElementById(\"shareButton\").appendChild(urlStringDomHolder);\n  urlStringDomHolder.value = urlString;\n  urlStringDomHolder.select();\n  document.execCommand(\"copy\");\n}\n\n/**\n * Get current sequencer state by scanning DOM objects\n */\nfunction getLoopData() {\n  // get melody rows\n  var melodyRows = \"\";\n  var bassRows = \"\";\n  var drumRows = \"\";\n\n  var rows = document.getElementsByClassName(\"row-of-boxes\");\n  for (let i = 0; i < rows.length; i++) {\n    if (i < 15) { melodyRows += getLoopArray(rows[i]) }\n    else if (i < 30) { bassRows += getLoopArray(rows[i]) }\n    else { drumRows += getLoopArray(rows[i]) }\n  }\n\n  // get scale (coming later);\n  var scale = Array.from(\n    document.getElementsByClassName(\"scaleButton\"))\n    .filter(btn => btn.classList.contains(\"active\"))[0]\n    .innerText.toLowerCase();\n\n  // compile result (remove trailing split Z in parts)\n  var result = {\n    m: {\n      s: scale + \"Melody\",\n      p: melodyRows.substr(0, melodyRows.length - 1),\n      e: getEffectValues(\"melodyEffects\")\n    },\n    b: {\n      s: scale + \"Bass\",\n      p: bassRows.substr(0, bassRows.length - 1),\n      e: getEffectValues(\"bassEffects\")\n    },\n    d: {\n      s: \"drumSet\",\n      p: drumRows.substr(0, drumRows.length - 1)\n    },\n    t: document.getElementById(\"bpm-span\").innerText\n  }\n\n  return result;\n}\n\n/**\n * Create array of 1s and 0s based on current box status in a row\n * @param {HTMLElement} row\n * @return {array}\n */\nfunction getLoopArray(row) {\n  let rowData = \"\";\n  // iterate through each box in the row\n  for (let j = 1; j < row.childNodes.length; j++) {\n    // convert row box status to a long binary string\n    let filled = row.childNodes[j].classList.contains(\"filled-box\")\n    filled ? rowData += \"1\" : rowData += \"0\";\n  }\n\n  // convert to hex string, add Z for splitting later\n  return parseInt(rowData, 2).toString(16) + \"Z\";\n}\n\n/**\n * Get the displayed effects values from child spans within the effects interface\n * @param {string} tag DOM id tag for the parent effect interface\n */\nfunction getEffectValues(tag) {\n  var melodyEffectValueSpans = document.getElementById(tag).getElementsByClassName(\"effectValue\");\n  return [melodyEffectValueSpans[0].innerText, melodyEffectValueSpans[1].innerText]\n}",
     "static": true,
     "longname": "/Users/cwituls/Documents/loopBuilder/scripts/urlSharing.js",
     "access": "public",
@@ -2477,7 +2683,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 148,
+    "__docId__": 161,
     "kind": "function",
     "name": "parseLoopFromURL",
     "memberof": "scripts/urlSharing.js",
@@ -2499,7 +2705,7 @@
     }
   },
   {
-    "__docId__": 149,
+    "__docId__": 162,
     "kind": "function",
     "name": "parseLoops",
     "memberof": "scripts/urlSharing.js",
@@ -2512,7 +2718,7 @@
     "importPath": "loopBuilder/scripts/urlSharing.js",
     "importStyle": null,
     "description": "Replace long binary strings with an array of loops",
-    "lineNumber": 30,
+    "lineNumber": 43,
     "params": [
       {
         "nullable": null,
@@ -2526,14 +2732,17 @@
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "array"
+      ],
+      "spread": false,
+      "description": "Array of loops representing the parsed loop string"
     },
     "ignore": true
   },
   {
-    "__docId__": 150,
+    "__docId__": 163,
     "kind": "function",
     "name": "copyUrlToClipboard",
     "memberof": "scripts/urlSharing.js",
@@ -2546,25 +2755,25 @@
     "importPath": "loopBuilder/scripts/urlSharing.js",
     "importStyle": "{copyUrlToClipboard}",
     "description": "Create a URL and copy it to the clipboard",
-    "lineNumber": 48,
+    "lineNumber": 65,
     "params": [],
     "return": null
   },
   {
-    "__docId__": 151,
+    "__docId__": 164,
     "kind": "function",
-    "name": "getRowData",
+    "name": "getLoopData",
     "memberof": "scripts/urlSharing.js",
     "generator": false,
     "async": false,
     "static": true,
-    "longname": "scripts/urlSharing.js~getRowData",
+    "longname": "scripts/urlSharing.js~getLoopData",
     "access": "public",
     "export": false,
     "importPath": "loopBuilder/scripts/urlSharing.js",
     "importStyle": null,
     "description": "Get current sequencer state by scanning DOM objects",
-    "lineNumber": 66,
+    "lineNumber": 84,
     "params": [],
     "return": {
       "types": [
@@ -2574,7 +2783,7 @@
     "ignore": true
   },
   {
-    "__docId__": 152,
+    "__docId__": 165,
     "kind": "function",
     "name": "getLoopArray",
     "memberof": "scripts/urlSharing.js",
@@ -2587,7 +2796,7 @@
     "importPath": "loopBuilder/scripts/urlSharing.js",
     "importStyle": null,
     "description": "Create array of 1s and 0s based on current box status in a row",
-    "lineNumber": 119,
+    "lineNumber": 130,
     "params": [
       {
         "nullable": null,
@@ -2611,8 +2820,42 @@
     "ignore": true
   },
   {
+    "__docId__": 166,
+    "kind": "function",
+    "name": "getEffectValues",
+    "memberof": "scripts/urlSharing.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "scripts/urlSharing.js~getEffectValues",
+    "access": "public",
+    "export": false,
+    "importPath": "loopBuilder/scripts/urlSharing.js",
+    "importStyle": null,
+    "description": "Get the displayed effects values from child spans within the effects interface",
+    "lineNumber": 147,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "tag",
+        "description": "DOM id tag for the parent effect interface"
+      }
+    ],
+    "return": {
+      "types": [
+        "undefined[]"
+      ]
+    },
+    "ignore": true
+  },
+  {
     "kind": "index",
-    "content": "# Loop Builder\n\n![Documentation coverage](./dist/docs/badge.svg)\n\nThis is a test project that links [tone.js](https://tonejs.github.io) to a graphical interface to create looping melodies and rhythms. The current live version is at [cwitulski.com/loopBuilder](https://cwitulski.com/loopBuilder). Documentation is in [the docs folder](https://cwitulski.com/loopBuilder/docs).\n\n## Features\n\n* Change notes with simple UI\n* Manipulate the timbre of generated synthesizer melodies using a graphical effects controller\n* Change tempo with a slider\n* Share loops (using a parameter-based url)\n\n### Next\n\n* Extend save/load to include effect values\n* Add buttons to change mode\n* Consider removing note names\n* Write a short introduction\n\n## Sounds\n\n* Cowbell sound is from [GowlerMusic on freesound.org](https://freesound.org/people/GowlerMusic/sounds/364919/)\n",
+    "content": "# Loop Builder\n\n![Documentation coverage](./dist/docs/badge.svg)\n\nThis is a test project that links [tone.js](https://tonejs.github.io) to a graphical interface to create looping melodies and rhythms. The current live version is at [cwitulski.com/loopBuilder](https://cwitulski.com/loopBuilder). Documentation is in [the docs folder](https://cwitulski.com/loopBuilder/docs).\n\n## Features\n\n* Change notes with simple UI\n* Manipulate the timbre of generated synthesizer melodies using a graphical effects controller\n* Change tempo with a slider\n* Share loops (using a parameter-based url)\n\n### Next\n\n* Add buttons to change mode\n* Consider removing note names\n* Write a short introduction\n\n## Sounds\n\n* Cowbell sound is from [GowlerMusic on freesound.org](https://freesound.org/people/GowlerMusic/sounds/364919/)\n",
     "longname": "/Users/cwituls/Documents/loopBuilder/README.md",
     "name": "./README.md",
     "static": true,
