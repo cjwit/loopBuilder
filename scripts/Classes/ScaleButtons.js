@@ -25,7 +25,6 @@ export class ScaleButtons {
         button.classList.add("active");
       }
       button.classList.add("scaleButton");
-      button.style.width = "calc(25% - 0.75em)";
       button.style.marginRight = i != scales.length - 1 ? "1em" : "0em";
       
       this.domObject.appendChild(button)

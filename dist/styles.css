@@ -821,6 +821,7 @@ input {
 .scaleButton:hover {
   background-color: #90488A;
 }
+
 .scaleButton.active {
   background-color: #3A0035;
 }
