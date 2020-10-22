@@ -3,6 +3,7 @@ import { Loop } from './Classes/Loop.js';
 import { DrumLoop } from './Classes/DrumLoop.js';
 import { PlayButton } from './Classes/PlayButton.js';
 import { ShareButton } from './Classes/ShareButton.js';
+import { ScaleButtons } from './Classes/ScaleButtons.js';
 import { EffectsUI } from './Classes/EffectsUI.js';
 import { parseLoopFromURL } from './urlSharing.js';
 import { createDrumSampler, createSynth } from './audio.js';
@@ -51,9 +52,12 @@ const bassEffect2 = new Tone.Chorus({
 
 bassSynth.chain(bassEffect1, bassEffect2);
 
-// set up loops
+// set up buttons
 const Play = new PlayButton();
 const Share = new ShareButton();
+const Scales = new ScaleButtons();
+
+// set up loops
 const melodyLoop = new Loop("melodyLoop", loops.melodyLoop, melodySynth);
 const bassLoop = new Loop("bassLoop", loops.bassLoop, bassSynth);
 const drumLoop = new DrumLoop("drumLoop", loops.drumLoop, drumSampler);

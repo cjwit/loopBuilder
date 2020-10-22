@@ -15,6 +15,23 @@
   }
 }
 
+.scaleButton {
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  border: 2px solid $red-4;
+  border-radius: 5px;
+  background-color: $red-5;
+  color: white;
+  padding: 1em;
+  margin-bottom: 1em;
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+
+  &:hover {
+    background-color: $red-3;
+  }
+}
+
 // color schemes
 #melodyLoop {
   border: 2px solid $red-5;
