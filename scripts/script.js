@@ -55,7 +55,7 @@ bassSynth.chain(bassEffect1, bassEffect2);
 // set up buttons
 const Play = new PlayButton();
 const Share = new ShareButton();
-const Scales = new ScaleButtons();
+const Scales = new ScaleButtons("dorian");
 
 // set up loops
 const melodyLoop = new Loop("melodyLoop", loops.melodyLoop, melodySynth);

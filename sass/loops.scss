@@ -21,15 +21,19 @@
   font-weight: bold;
   border: 2px solid $red-4;
   border-radius: 5px;
-  background-color: $red-5;
+  background-color: $red-3;
   color: white;
   padding: 1em;
   margin-bottom: 1em;
   transition: color 0.2s, background-color 0.2s, border-color 0.2s;
 
   &:hover {
-    background-color: $red-3;
+    background-color: $red-2;
   }
+}
+
+.scaleButton.active {
+  background-color: $red-5;
 }
 
 // color schemes
